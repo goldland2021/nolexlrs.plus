@@ -3,6 +3,7 @@
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
+import ContactInfo from "./ContactInfo";
 
 type BookingProps = {
   title?: string;
@@ -139,6 +140,12 @@ export default function Booking({
             </button>
           </div>
         </form>
+        <div className="mt-8 max-w-md mx-auto">
+          <ContactInfo compact />
+          <p className="text-xs text-ink/50 mt-2 text-center">
+            Send details via form or message directly on WhatsApp
+          </p>
+        </div>
       </div>
     </section>
   );

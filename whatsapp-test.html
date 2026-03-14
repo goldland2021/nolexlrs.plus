@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Link Test - ハヤシ +81 8092776072</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f6efe7;
+            color: #1f1b16;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 18px 36px rgba(31, 27, 22, 0.12);
+        }
+        h1 {
+            color: #c46b3b;
+            border-bottom: 2px solid #d9c3ad;
+            padding-bottom: 10px;
+        }
+        .contact-card {
+            background: #f1e2d2;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #d9c3ad;
+        }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: transform 0.2s;
+        }
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            background: #128C7E;
+        }
+        .phone-display {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1f1b16;
+            margin: 10px 0;
+        }
+        .note {
+            background: #fff8f0;
+            border-left: 4px solid #c46b3b;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 WhatsApp联系方式测试</h1>
+        
+        <div class="contact-card">
+            <h2>ハヤシ的联系方式</h2>
+            <div class="phone-display">+81 8092776072</div>
+            <p>东京机场接送服务专属WhatsApp号码</p>
+        </div>
+        
+        <h2>测试链接</h2>
+        
+        <div class="note">
+            <strong>注意：</strong>以下链接会在WhatsApp应用中打开，并自动填充消息
+        </div>
+        
+        <h3>1. 默认消息链接</h3>
+        <a href="https://wa.me/818092776072?text=Hello%20I%20need%20airport%20transfer" 
+           class="whatsapp-btn" target="_blank">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M17.6 6.32A7.85 7.85 0 0 0 12 4a8 8 0 0 0-8 8 7.93 7.93 0 0 0 1.38 4.48L4 20l3.64-1.36A7.93 7.93 0 0 0 12 20a8 8 0 0 0 8-8 7.92 7.92 0 0 0-2.4-5.68zM12 18.53a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.93.93-2.45-.15-.25a6.6 6.6 0 0 1-1-3.5 6.53 6.53 0 0 1 6.53-6.53 6.5 6.5 0 0 1 4.66 1.9 6.5 6.5 0 0 1 1.9 4.66 6.53 6.53 0 0 1-6.53 6.53z"/>
+            </svg>
+            发送默认消息
+        </a>
+        <p>消息内容: "Hello I need airport transfer"</p>
+        
+        <h3>2. 自定义消息链接</h3>
+        <a href="https://wa.me/818092776072?text=你好，我需要从成田机场到东京酒店的接送服务。" 
+           class="whatsapp-btn" target="_blank">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M17.6 6.32A7.85 7.85 0 0 0 12 4a8 8 0 0 0-8 8 7.93 7.93 0 0 0 1.38 4.48L4 20l3.64-1.36A7.93 7.93 0 0 0 12 20a8 8 0 0 0 8-8 7.92 7.92 0 0 0-2.4-5.68zM12 18.53a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.93.93-2.45-.15-.25a6.6 6.6 0 0 1-1-3.5 6.53 6.53 0 0 1 6.53-6.53 6.5 6.5 0 0 1 4.66 1.9 6.5 6.5 0 0 1 1.9 4.66 6.53 6.53 0 0 1-6.53 6.53z"/>
+            </svg>
+            发送中文消息
+        </a>
+        <p>消息内容: "你好，我需要从成田机场到东京酒店的接送服务。"</p>
+        
+        <h3>3. 技术细节</h3>
+        <div class="note">
+            <p><strong>电话号码格式转换：</strong></p>
+            <ul>
+                <li>原始号码: <code>+81 8092776072</code></li>
+                <li>WhatsApp格式: <code>818092776072</code> (去掉+号和空格)</li>
+                <li>国际区号: <code>81</code> (日本)</li>
+                <li>本地号码: <code>8092776072</code></li>
+            </ul>
+        </div>
+        
+        <h3>4. 在网站中的集成</h3>
+        <p>已添加到以下位置：</p>
+        <ul>
+            <li>✅ Hero区域 - 显眼的联系方式徽章</li>
+            <li>✅ 预订表单 - 表单下方的联系方式提示</li>
+            <li>✅ 页脚 - 24/7联系信息</li>
+            <li>✅ 浮动按钮 - 随时可点击的WhatsApp按钮</li>
+            <li>✅ 环境变量 - 可配置的电话号码</li>
+        </ul>
+        
+        <div class="note">
+            <p><strong>测试说明：</strong></p>
+            <p>1. 点击上面的按钮会在WhatsApp中打开聊天窗口</p>
+            <p>2. 消息会自动填充，用户只需点击发送</p>
+            <p>3. 确保设备上已安装WhatsApp应用</p>
+            <p>4. 网页版WhatsApp也会正常工作</p>
+        </div>
+    </div>
+    
+    <script>
+        // 验证链接格式
+        function validateLinks() {
+            const links = document.querySelectorAll('.whatsapp-btn');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('https://wa.me/')) {
+                    console.log('Valid WhatsApp link:', href);
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', validateLinks);
+    </script>
+</body>
+</html>

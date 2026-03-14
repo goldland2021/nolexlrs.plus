@@ -124,7 +124,9 @@ const dictionaries: Record<Locale, Dictionary> = {
         "24 hour service",
         "English speaking driver",
         "Meet and greet at arrival gate",
-        "Fixed transparent pricing"
+        "Fixed transparent pricing",
+        "Pickup: 90 min free waiting (from flight landing)",
+        "Drop-off: 30 min free waiting"
       ],
       cta: "Get Quote on WhatsApp",
       imageAlt: "Tokyo airport transfer luxury pickup"
@@ -224,7 +226,9 @@ const dictionaries: Record<Locale, Dictionary> = {
         "24時間対応",
         "英語対応ドライバー",
         "到着ゲートでお出迎え",
-        "明朗な固定料金"
+        "明朗な固定料金",
+        "空港お迎え: 90分無料待機（飛行機着陸時から）",
+        "空港お見送り: 30分無料待機"
       ],
       cta: "WhatsAppで見積もり",
       imageAlt: "東京 空港送迎のプライベートピックアップ"
@@ -324,7 +328,9 @@ const dictionaries: Record<Locale, Dictionary> = {
         "24小时服务",
         "英文司机",
         "到达口举牌接机",
-        "透明固定价格"
+        "透明固定价格",
+        "接机免费等候90分钟（从飞机降落算起）",
+        "送机免费等候30分钟"
       ],
       cta: "WhatsApp 获取报价",
       imageAlt: "东京机场接送专车服务"
