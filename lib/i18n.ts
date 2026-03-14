@@ -144,8 +144,8 @@ const dictionaries: Record<Locale, Dictionary> = {
       title: "Price Guide",
       subtitle: "Fixed transparent pricing with no surprise fees.",
       items: [
-        { route: "Narita → Tokyo", price: "from $180" },
-        { route: "Haneda → Tokyo", price: "from $120" }
+        { route: "Narita → Tokyo", price: "from $120+" },
+        { route: "Haneda → Tokyo", price: "from $80+" }
       ],
       itemNote: "Includes meet and greet."
     },
@@ -244,8 +244,8 @@ const dictionaries: Record<Locale, Dictionary> = {
       title: "料金目安",
       subtitle: "追加料金なしの明朗価格。",
       items: [
-        { route: "成田 → 東京", price: "$180 から" },
-        { route: "羽田 → 東京", price: "$120 から" }
+        { route: "成田 → 東京", price: "$120 から" },
+        { route: "羽田 → 東京", price: "$80 から" }
       ],
       itemNote: "ミート＆グリート込み。"
     },
@@ -344,8 +344,8 @@ const dictionaries: Record<Locale, Dictionary> = {
       title: "价格参考",
       subtitle: "透明固定价格，无隐藏费用。",
       items: [
-        { route: "成田 → 东京", price: "$180 起" },
-        { route: "羽田 → 东京", price: "$120 起" }
+        { route: "成田 → 东京", price: "$120 起" },
+        { route: "羽田 → 东京", price: "$80 起" }
       ],
       itemNote: "包含接机举牌服务。"
     },
