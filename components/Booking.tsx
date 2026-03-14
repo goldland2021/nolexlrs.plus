@@ -1,0 +1,145 @@
+"use client";
+
+import type { FormEvent } from "react";
+import { useMemo, useState } from "react";
+import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
+
+type BookingProps = {
+  title?: string;
+  subtitle?: string;
+  fields?: {
+    airport: string;
+    flight: string;
+    hotel: string;
+    passengers: string;
+    luggage: string;
+  };
+  placeholders?: {
+    airport: string;
+    flight: string;
+    hotel: string;
+    passengers: string;
+    luggage: string;
+  };
+  buttonLabel?: string;
+  messageHeader?: string;
+};
+
+export default function Booking({
+  title = "Book Your Transfer",
+  subtitle = "Send your trip details and get a fast quote on WhatsApp.",
+  fields = {
+    airport: "Airport",
+    flight: "Flight number",
+    hotel: "Hotel",
+    passengers: "Passengers",
+    luggage: "Luggage"
+  },
+  placeholders = {
+    airport: "Narita or Haneda",
+    flight: "JL123",
+    hotel: "Shinjuku Hotel",
+    passengers: "2",
+    luggage: "3 suitcases"
+  },
+  buttonLabel = "Send on WhatsApp",
+  messageHeader = defaultWhatsAppMessage
+}: BookingProps) {
+  const [airport, setAirport] = useState("");
+  const [flight, setFlight] = useState("");
+  const [hotel, setHotel] = useState("");
+  const [passengers, setPassengers] = useState("");
+  const [luggage, setLuggage] = useState("");
+
+  const message = useMemo(() => {
+    return [
+      messageHeader,
+      "",
+      `${fields.airport}: ${airport}`,
+      `${fields.flight}: ${flight}`,
+      `${fields.hotel}: ${hotel}`,
+      `${fields.passengers}: ${passengers}`,
+      `${fields.luggage}: ${luggage}`
+    ].join("\n");
+  }, [airport, flight, hotel, passengers, luggage, fields, messageHeader]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const href = buildWhatsAppLink(message);
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <section className="section bg-sand">
+      <div className="container mx-auto px-4">
+        <div className="max-w-3xl">
+          <h2 className="section-title">{title}</h2>
+          <p className="section-subtitle">{subtitle}</p>
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="mt-10 grid gap-4 rounded-2xl border border-clay/60 bg-white p-6 shadow-soft md:grid-cols-2"
+        >
+          <label className="grid gap-2 text-sm">
+            {fields.airport}
+            <input
+              className="h-12 rounded-xl border border-clay/60 px-4 text-base"
+              placeholder={placeholders.airport}
+              value={airport}
+              onChange={(event) => setAirport(event.target.value)}
+              required
+            />
+          </label>
+          <label className="grid gap-2 text-sm">
+            {fields.flight}
+            <input
+              className="h-12 rounded-xl border border-clay/60 px-4 text-base"
+              placeholder={placeholders.flight}
+              value={flight}
+              onChange={(event) => setFlight(event.target.value)}
+              required
+            />
+          </label>
+          <label className="grid gap-2 text-sm">
+            {fields.hotel}
+            <input
+              className="h-12 rounded-xl border border-clay/60 px-4 text-base"
+              placeholder={placeholders.hotel}
+              value={hotel}
+              onChange={(event) => setHotel(event.target.value)}
+              required
+            />
+          </label>
+          <label className="grid gap-2 text-sm">
+            {fields.passengers}
+            <input
+              className="h-12 rounded-xl border border-clay/60 px-4 text-base"
+              placeholder={placeholders.passengers}
+              value={passengers}
+              onChange={(event) => setPassengers(event.target.value)}
+              required
+            />
+          </label>
+          <label className="grid gap-2 text-sm">
+            {fields.luggage}
+            <input
+              className="h-12 rounded-xl border border-clay/60 px-4 text-base"
+              placeholder={placeholders.luggage}
+              value={luggage}
+              onChange={(event) => setLuggage(event.target.value)}
+              required
+            />
+          </label>
+          <div className="flex items-end">
+            <button
+              type="submit"
+              className="h-12 w-full rounded-xl bg-ink text-white transition hover:bg-ink/90"
+            >
+              {buttonLabel}
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,61 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-ink;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.section {
+  @apply py-16 md:py-24;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-semibold tracking-tight;
+}
+
+.section-subtitle {
+  @apply text-base md:text-lg text-ink/70 mt-3 max-w-2xl;
+}
+
+.card {
+  @apply rounded-2xl border border-clay/60 bg-white/90 shadow-soft;
+}
+
+.badge {
+  @apply inline-flex items-center gap-2 rounded-full border border-clay/70 px-4 py-2 text-sm font-medium text-ink/80 bg-white/80;
+}
+
+.fancy-bg {
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(196, 107, 59, 0.14), transparent 60%),
+    radial-gradient(800px 600px at 90% 10%, rgba(196, 107, 59, 0.18), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f6efe7 100%);
+}
+
+.grid-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgba(31, 27, 22, 0.06) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+
+.image-warm {
+  filter: saturate(1.05) contrast(1.02);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.reveal {
+  animation: floatUp 0.8s ease both;
+}
