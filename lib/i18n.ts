@@ -300,7 +300,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         flight: "便名",
         landingTime: "到着時刻",
         hotel: "ホテルまたは住所",
-        passengers: "人数",
+        passengers: "ご利用人数",
         luggage: "荷物"
       },
       placeholders: {
@@ -308,7 +308,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         flight: "JL123",
         landingTime: "5月3日 16:30",
         hotel: "新宿のホテル",
-        passengers: "2",
+        passengers: "2名",
         luggage: "スーツケース3個"
       },
       button: "WhatsAppで送信",
@@ -414,7 +414,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         flight: "航班号",
         landingTime: "落地时间",
         hotel: "酒店或地址",
-        passengers: "人数",
+        passengers: "乘客人数",
         luggage: "行李"
       },
       placeholders: {
@@ -422,7 +422,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         flight: "JL123",
         landingTime: "5月3日 16:30",
         hotel: "新宿酒店",
-        passengers: "2",
+        passengers: "2人",
         luggage: "3个行李箱"
       },
       button: "通过 WhatsApp 发送",
