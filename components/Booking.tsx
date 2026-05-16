@@ -63,16 +63,33 @@ export default function Booking({
   messageHeader = defaultWhatsAppMessage,
   routeQuote = null
 }: BookingProps) {
-  const [airport, setAirport] = useState("");
+  const [airportInput, setAirportInput] = useState({ value: "", quoteKey: "" });
   const [flight, setFlight] = useState("");
   const [landingTime, setLandingTime] = useState("");
-  const [hotel, setHotel] = useState("");
+  const [hotelInput, setHotelInput] = useState({ value: "", quoteKey: "" });
   const [passengers, setPassengers] = useState("");
   const [luggage, setLuggage] = useState("");
   const landingTimeLabel = fields.landingTime ?? "Landing time";
   const landingTimePlaceholder = placeholders.landingTime ?? "May 3, 4:30 PM";
-  const airportValue = airport || routeQuote?.airportName || "";
-  const hotelValue = hotel || routeQuote?.destName || "";
+  const routeQuoteKey = routeQuote
+    ? [
+        routeQuote.airportId,
+        routeQuote.direction,
+        routeQuote.destLat,
+        routeQuote.destLng,
+        routeQuote.estimateLowYen,
+        routeQuote.estimateHighYen
+      ].join("|")
+    : "";
+  const routeDestination = routeQuote?.destName || (routeQuote ? `${routeQuote.destLat}, ${routeQuote.destLng}` : "");
+  const airportValue =
+    routeQuote && airportInput.quoteKey !== routeQuoteKey
+      ? routeQuote.airportName
+      : airportInput.value || routeQuote?.airportName || "";
+  const hotelValue =
+    routeQuote && hotelInput.quoteKey !== routeQuoteKey
+      ? routeDestination
+      : hotelInput.value || routeDestination;
 
   const message = useMemo(() => {
     const routeLines = routeQuote
@@ -134,7 +151,7 @@ export default function Booking({
               className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
               placeholder={placeholders.airport}
               value={airportValue}
-              onChange={(event) => setAirport(event.target.value)}
+              onChange={(event) => setAirportInput({ value: event.target.value, quoteKey: routeQuoteKey })}
               required
             />
           </label>
@@ -164,7 +181,7 @@ export default function Booking({
               className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
               placeholder={placeholders.hotel}
               value={hotelValue}
-              onChange={(event) => setHotel(event.target.value)}
+              onChange={(event) => setHotelInput({ value: event.target.value, quoteKey: routeQuoteKey })}
               required
             />
           </label>

@@ -27,7 +27,7 @@ export interface RouteQuote {
 
 interface RoutePickerProps {
   locale: "en" | "ja" | "zh";
-  onRouteCalculated: (result: RouteQuote) => void;
+  onRouteCalculated: (result: RouteQuote | null) => void;
 }
 
 export default function RoutePicker(props: RoutePickerProps) {

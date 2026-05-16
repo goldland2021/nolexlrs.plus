@@ -40,7 +40,7 @@ interface RouteResult {
 
 interface RoutePickerInnerProps {
   locale: "en" | "ja" | "zh";
-  onRouteCalculated: (result: RouteResult) => void;
+  onRouteCalculated: (result: RouteResult | null) => void;
 }
 
 const UI = {
@@ -223,8 +223,9 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
     removeRoutePolyline();
     setError("");
     setRouteResult(null);
+    onRouteCalculated(null);
     setRoutePath(null);
-  }, [removeRoutePolyline]);
+  }, [onRouteCalculated, removeRoutePolyline]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -266,6 +267,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
       setError("");
       setDestLatLng(dest);
       setRouteResult(null);
+      onRouteCalculated(null);
       removeRoutePolyline();
       setRoutePath(null);
 
@@ -286,6 +288,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
       if (!route || route.path.length === 0) {
         setError(t.notFound);
         setRouteResult(null);
+        onRouteCalculated(null);
         removeRoutePolyline();
         setRoutePath(null);
         return;
@@ -370,6 +373,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
     } else {
       setError(t.notFound);
       setRouteResult(null);
+      onRouteCalculated(null);
       setRoutePath(null);
     }
 
