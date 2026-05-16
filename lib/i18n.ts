@@ -2,6 +2,10 @@ export type Locale = "en" | "ja" | "zh";
 
 export const locales: Locale[] = ["en", "ja", "zh"];
 
+export function isLocale(value: string): value is Locale {
+  return (locales as readonly string[]).includes(value);
+}
+
 export type Dictionary = {
   meta: {
     homeTitle: string;
@@ -109,9 +113,9 @@ const commonVehicles = [
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      homeTitle: "Tokyo Airport Transfer | Narita & Haneda Private Pickup",
+      homeTitle: "Tokyo Airport Transfer | Narita & Haneda Private Car",
       homeDescription:
-        "Book a private Tokyo airport transfer from Narita or Haneda. Fixed pricing, 24/7 WhatsApp support, and English-speaking drivers. Optional name-sign meet-and-greet at the arrival gate is +¥2,000 when requested.",
+        "Book a private Tokyo airport transfer from Narita or Haneda with Toyota Alphard and Hiace options. Fixed yen quotes, 24/7 WhatsApp support, English-speaking drivers, and 90 min free airport pickup waiting.",
       keywords: [
         "Tokyo airport transfer",
         "Narita airport transfer",
@@ -119,17 +123,22 @@ const dictionaries: Record<Locale, Dictionary> = {
         "Tokyo airport pickup",
         "Tokyo private driver",
         "Narita to Tokyo private car",
-        "Haneda to Tokyo private car"
+        "Haneda to Tokyo private car",
+        "Toyota Alphard airport transfer Tokyo",
+        "Tokyo airport transfer English driver",
+        "Narita Airport to Shinjuku transfer",
+        "Haneda Airport to Ginza transfer",
+        "Tokyo hotel to Narita airport"
       ],
-      naritaTitle: "Narita Airport Transfer to Tokyo | Private Pickup",
+      naritaTitle: "Narita Airport Transfer to Tokyo | Private Car Pickup",
       naritaDescription:
-        "Private Narita Airport transfer to Tokyo hotels, Shinjuku, Shibuya, Ginza, and Tokyo Disney Resort. Fixed quotes on WhatsApp. Optional arrival-gate name sign: +¥2,000 if requested.",
-      hanedaTitle: "Haneda Airport Transfer to Tokyo | Private Car",
+        "Private Narita Airport transfer to Tokyo hotels, Shinjuku, Shibuya, Ginza, Shinagawa, and Tokyo Disney Resort. Toyota Alphard and Hiace options with fixed yen quotes on WhatsApp.",
+      hanedaTitle: "Haneda Airport Transfer to Tokyo | Private Car Pickup",
       hanedaDescription:
-        "Fast private Haneda Airport transfer to central Tokyo hotels. Door-to-door pickup, English-speaking driver, and transparent pricing. Optional arrival-gate name sign: +¥2,000 if requested.",
+        "Fast private Haneda Airport transfer to Ginza, Shinjuku, Shibuya, Shinagawa, and central Tokyo hotels. Door-to-door pickup, English-speaking driver, and transparent yen pricing.",
       driverTitle: "Tokyo Private Driver Service | Airport, Tours & Charters",
       driverDescription:
-        "Hire a Tokyo private driver for airport transfers, city tours, Mt Fuji day trips, and hourly charters with clean vehicles and WhatsApp booking."
+        "Hire a Tokyo private driver for airport transfers, city tours, Mt Fuji day trips, hourly charters, Toyota Alphard rides, and WhatsApp booking."
     },
     hero: {
       title: "Tokyo Airport Transfer",

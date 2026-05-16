@@ -1,10 +1,13 @@
 import Hero from "@/components/Hero";
-import Pricing from "@/components/Pricing";
 import Vehicles from "@/components/Vehicles";
-import Booking from "@/components/Booking";
+import QuoteBookingSection from "@/components/QuoteBookingSection";
 import WaitingTimeBanner from "@/components/WaitingTimeBanner";
-import { getDictionary, locales, type Locale } from "@/lib/i18n";
-import { buildPageMetadata } from "@/lib/seo";
+import SeoContent from "@/components/SeoContent";
+import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
+import { faqJsonLd, buildPageMetadata } from "@/lib/seo";
+import { homeSeoContent } from "@/lib/seo-content";
+
+type LocaleParams = Promise<{ locale: string }>;
 
 const pageLabels = {
   en: {
@@ -63,9 +66,10 @@ const pageLabels = {
 export async function generateMetadata({
   params
 }: {
-  params: { locale: Locale };
+  params: LocaleParams;
 }) {
-  const locale = locales.includes(params.locale) ? params.locale : "en";
+  const { locale: requestedLocale } = await params;
+  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
 
   return buildPageMetadata({
@@ -76,13 +80,22 @@ export async function generateMetadata({
   });
 }
 
-export default function HomePage({ params }: { params: { locale: Locale } }) {
-  const locale = locales.includes(params.locale) ? params.locale : "en";
+export default async function HomePage({ params }: { params: LocaleParams }) {
+  const { locale: requestedLocale } = await params;
+  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
   const labels = pageLabels[locale];
+  const seoContent = homeSeoContent[locale] ?? homeSeoContent.en;
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd(seoContent.faqs))
+        }}
+      />
       <Hero
         title={dict.hero.title}
         subtitle={dict.hero.subtitle}
@@ -92,55 +105,35 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
         ctaLabel={dict.hero.cta}
       />
 
-      <section className="section bg-gradient-to-b from-white to-sand">
+      <QuoteBookingSection
+        locale={locale}
+        title={labels.quoteTitle}
+        subtitle={labels.quoteCopy}
+        directNote={labels.directNote}
+        booking={dict.booking}
+      />
+
+      <section className="section grid-dots">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-10 grid gap-5 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
               <div>
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-ember/10 px-4 py-2">
-                  <span className="text-sm font-semibold text-ember">{labels.eyebrow}</span>
+                <WaitingTimeBanner locale={locale} />
+                <div className="mt-4 rounded-lg bg-white/80 p-4">
+                  <p className="text-sm leading-6 text-ink/70">{labels.pickupNote}</p>
+                  <p className="mt-2 text-sm leading-6 text-ink/70">{labels.delayNote}</p>
                 </div>
-                <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{labels.quoteTitle}</h2>
-              </div>
-              <p className="max-w-2xl text-base leading-7 text-ink/70 md:text-lg">{labels.quoteCopy}</p>
-            </div>
-
-            <div className="grid gap-6 lg:grid-cols-[1.18fr_0.82fr] lg:items-start">
-              <div className="rounded-2xl border border-ember/20 bg-white p-4 shadow-lift sm:p-6 md:p-8">
-                <Booking
-                  variant="embedded"
-                  title={dict.booking.title}
-                  subtitle={dict.booking.subtitle}
-                  fields={dict.booking.fields}
-                  placeholders={dict.booking.placeholders}
-                  buttonLabel={dict.booking.button}
-                  messageHeader={dict.booking.messageHeader}
-                />
-                <p className="mt-5 border-t border-clay/40 pt-4 text-center text-xs text-ink/60 sm:text-sm">
-                  {labels.directNote}
-                </p>
               </div>
 
-              <div className="space-y-6">
-                <div className="rounded-2xl border border-clay/60 bg-white p-4 shadow-soft sm:p-6">
-                  <h3 className="mb-4 text-lg font-semibold">{labels.waitTitle}</h3>
-                  <WaitingTimeBanner locale={locale} />
-                  <div className="mt-4 rounded-xl bg-ember/5 p-4">
-                    <p className="text-sm leading-6 text-ink/70">{labels.pickupNote}</p>
-                    <p className="mt-2 text-sm leading-6 text-ink/70">{labels.delayNote}</p>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-clay/60 bg-white p-4 shadow-soft sm:p-6">
-                  <h3 className="mb-4 text-lg font-semibold">{labels.promiseTitle}</h3>
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                    {labels.promises.map(([title, copy]) => (
-                      <div key={title} className="rounded-xl border border-clay/40 bg-sand/50 p-4">
-                        <p className="font-medium">{title}</p>
-                        <p className="mt-1 text-sm leading-6 text-ink/60">{copy}</p>
-                      </div>
-                    ))}
-                  </div>
+              <div className="rounded-lg border border-clay/60 bg-white/95 p-4 shadow-soft sm:p-6">
+                <h3 className="mb-4 text-lg font-semibold">{labels.promiseTitle}</h3>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                  {labels.promises.map(([title, copy]) => (
+                    <div key={title} className="rounded-lg border border-clay/40 bg-sand/50 p-4">
+                      <p className="font-medium">{title}</p>
+                      <p className="mt-1 text-sm leading-6 text-ink/60">{copy}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -148,12 +141,8 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
         </div>
       </section>
 
-      <Pricing
-        title={dict.pricing.title}
-        subtitle={dict.pricing.subtitle}
-        items={dict.pricing.items}
-        itemNote={dict.pricing.itemNote}
-      />
+      <SeoContent locale={locale} />
+
       <Vehicles
         title={dict.vehicles.title}
         subtitle={dict.vehicles.subtitle}

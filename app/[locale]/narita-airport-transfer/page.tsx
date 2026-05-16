@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
-import { getDictionary, locales, type Locale } from "@/lib/i18n";
+import AirportTransferGuide from "@/components/AirportTransferGuide";
+import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import { buildPageMetadata } from "@/lib/seo";
+
+type LocaleParams = Promise<{ locale: string }>;
 
 export async function generateMetadata({
   params
 }: {
-  params: { locale: Locale };
+  params: LocaleParams;
 }): Promise<Metadata> {
-  const locale = locales.includes(params.locale) ? params.locale : "en";
+  const { locale: requestedLocale } = await params;
+  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
 
   return buildPageMetadata({
@@ -23,8 +27,9 @@ export async function generateMetadata({
   });
 }
 
-export default function NaritaPage({ params }: { params: { locale: Locale } }) {
-  const locale = locales.includes(params.locale) ? params.locale : "en";
+export default async function NaritaPage({ params }: { params: LocaleParams }) {
+  const { locale: requestedLocale } = await params;
+  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
 
   return (
@@ -44,6 +49,7 @@ export default function NaritaPage({ params }: { params: { locale: Locale } }) {
           </div>
         </div>
       </section>
+      <AirportTransferGuide airport="narita" locale={locale} />
       <Vehicles
         title={dict.vehicles.title}
         subtitle={dict.vehicles.subtitle}

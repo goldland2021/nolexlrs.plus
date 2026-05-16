@@ -1,8 +1,10 @@
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { getDictionary, locales, type Locale } from "@/lib/i18n";
+import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
 import { buildPageMetadata, serviceJsonLd } from "@/lib/seo";
+
+type LocaleParams = Promise<{ locale: string }>;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -11,9 +13,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params
 }: {
-  params: { locale: Locale };
+  params: LocaleParams;
 }) {
-  const locale = locales.includes(params.locale) ? params.locale : "en";
+  const { locale: requestedLocale } = await params;
+  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
 
   return buildPageMetadata({
@@ -24,14 +27,15 @@ export async function generateMetadata({
   });
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params
 }: {
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: LocaleParams;
 }) {
-  const locale = locales.includes(params.locale) ? params.locale : "en";
+  const { locale: requestedLocale } = await params;
+  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
 
   return (
@@ -44,7 +48,7 @@ export default function LocaleLayout({
         }}
       />
       {children}
-      <Footer />
+      <Footer locale={locale} />
       <WhatsAppButton />
       <LanguageSwitcher />
     </>

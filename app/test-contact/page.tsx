@@ -2,6 +2,7 @@
 import Booking from "@/components/Booking";
 import ContactInfo from "@/components/ContactInfo";
 import Footer from "@/components/Footer";
+import { whatsAppDisplayPhone, whatsAppPhoneNumber } from "@/lib/whatsapp";
 
 export default function TestContactPage() {
   return (
@@ -47,7 +48,7 @@ export default function TestContactPage() {
               <p className="text-ink/70">点击以下链接测试WhatsApp功能：</p>
               <div className="space-y-2">
                 <a 
-                  href="https://wa.me/818092776072?text=Hello%20I%20need%20airport%20transfer"
+                  href={`https://wa.me/${whatsAppPhoneNumber}?text=Hello%20I%20need%20airport%20transfer`}
                   className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
                   target="_blank"
                   rel="noreferrer"
@@ -55,10 +56,10 @@ export default function TestContactPage() {
                   测试默认消息链接
                 </a>
                 <p className="text-sm text-ink/50">
-                  链接格式: https://wa.me/818092776072?text=编码后的消息
+                  链接格式: https://wa.me/{whatsAppPhoneNumber}?text=编码后的消息
                 </p>
                 <p className="text-sm text-ink/50">
-                  电话号码: +81 8092776072 → WhatsApp格式: 818092776072
+                  电话号码: {whatsAppDisplayPhone} → WhatsApp格式: {whatsAppPhoneNumber}
                 </p>
               </div>
             </div>

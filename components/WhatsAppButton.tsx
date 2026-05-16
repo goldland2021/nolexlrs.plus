@@ -1,4 +1,4 @@
-﻿import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
+import { buildWhatsAppLink, defaultWhatsAppMessage, whatsAppDisplayPhone } from "@/lib/whatsapp";
 
 export default function WhatsAppButton() {
   const href = buildWhatsAppLink(defaultWhatsAppMessage);
@@ -9,7 +9,8 @@ export default function WhatsAppButton() {
       className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-ember px-5 py-3 text-sm font-semibold text-white shadow-lift transition hover:translate-y-[-2px]"
       target="_blank"
       rel="noreferrer"
-      aria-label="Chat on WhatsApp"
+      aria-label={`Chat on WhatsApp ${whatsAppDisplayPhone}`}
+      title={`WhatsApp ${whatsAppDisplayPhone}`}
     >
       WhatsApp
     </a>

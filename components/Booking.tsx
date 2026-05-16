@@ -3,6 +3,7 @@
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
+import type { RouteQuote } from "./RoutePicker";
 import ContactInfo from "./ContactInfo";
 
 type BookingProps = {
@@ -27,7 +28,16 @@ type BookingProps = {
   };
   buttonLabel?: string;
   messageHeader?: string;
+  routeQuote?: RouteQuote | null;
 };
+
+function formatYen(amount: number) {
+  return `JPY ${Math.round(amount).toLocaleString("en-US")}`;
+}
+
+function formatRouteDirection(direction: RouteQuote["direction"]) {
+  return direction === "pickup" ? "Airport to hotel" : "Hotel to airport";
+}
 
 export default function Booking({
   title = "Book Your Transfer",
@@ -50,7 +60,8 @@ export default function Booking({
     luggage: "3 suitcases"
   },
   buttonLabel = "Send on WhatsApp",
-  messageHeader = defaultWhatsAppMessage
+  messageHeader = defaultWhatsAppMessage,
+  routeQuote = null
 }: BookingProps) {
   const [airport, setAirport] = useState("");
   const [flight, setFlight] = useState("");
@@ -60,19 +71,36 @@ export default function Booking({
   const [luggage, setLuggage] = useState("");
   const landingTimeLabel = fields.landingTime ?? "Landing time";
   const landingTimePlaceholder = placeholders.landingTime ?? "May 3, 4:30 PM";
+  const airportValue = airport || routeQuote?.airportName || "";
+  const hotelValue = hotel || routeQuote?.destName || "";
 
   const message = useMemo(() => {
+    const routeLines = routeQuote
+      ? [
+          "",
+          "Map estimate:",
+          `Route type: ${formatRouteDirection(routeQuote.direction)}`,
+          `Airport: ${routeQuote.airportName}`,
+          `Estimated fare: ${formatYen(routeQuote.estimateLowYen)} - ${formatYen(routeQuote.estimateHighYen)}`,
+          `Distance: ${routeQuote.distanceKm} km`,
+          `Estimated drive time: ${routeQuote.durationMin} min`,
+          `Toll estimate: ${formatYen(routeQuote.tollYen)}`,
+          `Map destination: ${routeQuote.destName || `${routeQuote.destLat}, ${routeQuote.destLng}`}`
+        ]
+      : [];
+
     return [
       messageHeader,
       "",
-      `${fields.airport}: ${airport}`,
+      `${fields.airport}: ${airportValue}`,
       `${fields.flight}: ${flight}`,
       `${landingTimeLabel}: ${landingTime}`,
-      `${fields.hotel}: ${hotel}`,
+      `${fields.hotel}: ${hotelValue}`,
       `${fields.passengers}: ${passengers}`,
-      `${fields.luggage}: ${luggage}`
+      `${fields.luggage}: ${luggage}`,
+      ...routeLines
     ].join("\n");
-  }, [airport, flight, landingTime, landingTimeLabel, hotel, passengers, luggage, fields, messageHeader]);
+  }, [airportValue, flight, landingTime, landingTimeLabel, hotelValue, passengers, luggage, fields, messageHeader, routeQuote]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -90,12 +118,22 @@ export default function Booking({
           onSubmit={handleSubmit}
           className="mt-10 grid gap-4 rounded-2xl border border-clay/60 bg-white p-4 md:p-6 shadow-soft md:grid-cols-2"
         >
+          {routeQuote ? (
+            <div className="rounded-xl border border-ember/30 bg-ember/5 px-4 py-3 text-sm text-ink/75 md:col-span-2">
+              <p className="font-semibold text-ember">
+                Map estimate: {formatYen(routeQuote.estimateLowYen)} - {formatYen(routeQuote.estimateHighYen)}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-ink/60">
+                {routeQuote.distanceKm} km, about {routeQuote.durationMin} min. This estimate will be included in your WhatsApp message.
+              </p>
+            </div>
+          ) : null}
           <label className="grid gap-2 text-sm">
             {fields.airport}
             <input
               className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
               placeholder={placeholders.airport}
-              value={airport}
+              value={airportValue}
               onChange={(event) => setAirport(event.target.value)}
               required
             />
@@ -125,7 +163,7 @@ export default function Booking({
             <input
               className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
               placeholder={placeholders.hotel}
-              value={hotel}
+              value={hotelValue}
               onChange={(event) => setHotel(event.target.value)}
               required
             />
