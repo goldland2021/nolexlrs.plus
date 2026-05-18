@@ -4,7 +4,7 @@ import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
 import AirportTransferGuide from "@/components/AirportTransferGuide";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
-import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -43,6 +43,15 @@ export default async function NaritaPage({ params }: { params: LocaleParams }) {
               { name: dict.hero.title },
               { name: dict.narita.sectionTitle, path: "/narita-airport-transfer" }
             ])
+          )
+        }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            serviceJsonLd(locale, dict.narita.sectionTitle, dict.meta.naritaDescription, "/narita-airport-transfer")
           )
         }}
       />

@@ -4,7 +4,7 @@ import QuoteBookingSection from "@/components/QuoteBookingSection";
 import WaitingTimeBanner from "@/components/WaitingTimeBanner";
 import SeoContent from "@/components/SeoContent";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
-import { breadcrumbJsonLd, faqJsonLd, buildPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
 import { homeSeoContent } from "@/lib/seo-content";
 
 type LocaleParams = Promise<{ locale: string }>;
@@ -101,6 +101,13 @@ export default async function HomePage({ params }: { params: LocaleParams }) {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbJsonLd(locale, [{ name: dict.hero.title }]))
+        }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceJsonLd(locale, dict.hero.title, dict.meta.homeDescription))
         }}
       />
       <Hero

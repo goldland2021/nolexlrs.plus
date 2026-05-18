@@ -1,9 +1,8 @@
-import { headers } from "next/headers";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
-import { buildPageMetadata, serviceJsonLd } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -37,28 +36,9 @@ export default async function LocaleLayout({
 }) {
   const { locale: requestedLocale } = await params;
   const locale = isLocale(requestedLocale) ? requestedLocale : "en";
-  const dict = getDictionary(locale);
-
-  // 获取当前请求路径，用于 TaxiService 结构化数据的 url
-  let requestPath = "";
-  try {
-    const h = await headers();
-    requestPath = h.get("x-invoke-path") ?? h.get("next-url") ?? "";
-  } catch {
-    requestPath = "";
-  }
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            serviceJsonLd(locale, dict.hero.title, dict.meta.homeDescription, requestPath)
-          )
-        }}
-      />
       {children}
       <Footer locale={locale} />
       <WhatsAppButton />
