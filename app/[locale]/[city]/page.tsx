@@ -8,7 +8,7 @@ import WaitingTimeBanner from "@/components/WaitingTimeBanner";
 import { cityPageSlugs, isCitySlug, type CitySlug } from "@/lib/city-routes";
 import { getCityPageContent } from "@/lib/city-pages";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
-import { buildPageMetadata, faqJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, buildPageMetadata, faqJsonLd } from "@/lib/seo";
 
 type CityParams = Promise<{ locale: string; city: string }>;
 type CityPageSlug = Exclude<CitySlug, "tokyo">;
@@ -62,6 +62,15 @@ export default async function CityPage({ params }: { params: CityParams }) {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqJsonLd(content.seo.faqs))
+        }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd(locale, [{ name: dict.hero.title }, { name: content.hero.title, path: content.path }])
+          )
         }}
       />
       <Hero

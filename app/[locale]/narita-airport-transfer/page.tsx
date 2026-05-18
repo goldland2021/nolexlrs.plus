@@ -4,7 +4,7 @@ import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
 import AirportTransferGuide from "@/components/AirportTransferGuide";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
-import { buildPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -34,6 +34,18 @@ export default async function NaritaPage({ params }: { params: LocaleParams }) {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd(locale, [
+              { name: dict.hero.title },
+              { name: dict.narita.sectionTitle, path: "/narita-airport-transfer" }
+            ])
+          )
+        }}
+      />
       <Hero
         title={dict.narita.heroTitle}
         subtitle={dict.narita.heroSubtitle}

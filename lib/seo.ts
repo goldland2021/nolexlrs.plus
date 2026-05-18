@@ -227,3 +227,21 @@ export function faqJsonLd(items: FaqJsonLdItem[]) {
     }))
   };
 }
+
+export type BreadcrumbJsonLdItem = {
+  name: string;
+  path?: string;
+};
+
+export function breadcrumbJsonLd(locale: Locale, items: BreadcrumbJsonLdItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${siteUrl}${localizedPath(locale, item.path ?? "")}`
+    }))
+  };
+}
