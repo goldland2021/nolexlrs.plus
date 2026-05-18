@@ -90,7 +90,7 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/tokyo-private-driver"
       }
     ],
-    faqTitle: "JP Airport Transfer FAQ",
+    faqTitle: "Tokyo Airport Transfer FAQ",
     faqSubtitle:
       "Clear answers for travelers booking a private car from Narita Airport, Haneda Airport, or Tokyo hotels.",
     faqs: [
