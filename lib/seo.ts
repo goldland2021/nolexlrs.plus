@@ -343,7 +343,7 @@ export function serviceJsonLd(
         "@id": `${siteUrl}/#organization`,
         name: siteName,
         url: siteUrl,
-        logo: `${siteUrl}/images/icon.svg`,
+        logo: `${siteUrl}/icon.png`,
         image: `${siteUrl}/images/tokyo-airport-transfer.jpg`,
         telephone: whatsAppDisplayPhone,
         contactPoint: {
