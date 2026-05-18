@@ -35,8 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="notranslate" translate="no" suppressHydrationWarning>
       <head>
+        <meta name="google" content="notranslate" />
         <Script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}

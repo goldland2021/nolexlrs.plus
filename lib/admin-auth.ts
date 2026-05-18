@@ -9,11 +9,11 @@ type AdminSessionPayload = {
 };
 
 function getAdminUsername() {
-  return process.env.ADMIN_USERNAME || (process.env.NODE_ENV === "production" ? "" : "baioowen");
+  return process.env.ADMIN_USERNAME || "";
 }
 
 function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "280950");
+  return process.env.ADMIN_PASSWORD || "";
 }
 
 function getSessionSecret() {

@@ -5,8 +5,8 @@ type ServicePolicyProps = {
 };
 
 export default function ServicePolicy({
-  title = "服务政策",
-  subtitle = "透明、公平的服务条款",
+  title = "服務政策",
+  subtitle = "透明、公平的服務條款",
   compact = false
 }: ServicePolicyProps) {
   if (compact) {
@@ -16,11 +16,11 @@ export default function ServicePolicy({
         <ul className="space-y-2 text-sm text-ink/80">
           <li className="flex items-start gap-2">
             <span className="inline-flex h-1.5 w-1.5 rounded-full bg-ember mt-1 flex-shrink-0" />
-            <span><strong>接机:</strong> 免费等候90分钟（从飞机降落时间算起）</span>
+            <span><strong>接機:</strong> 免費等候90分鐘（從飛機降落時間算起）</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="inline-flex h-1.5 w-1.5 rounded-full bg-ember mt-1 flex-shrink-0" />
-            <span><strong>送机:</strong> 免费等候30分钟</span>
+            <span><strong>送機:</strong> 免費等候30分鐘</span>
           </li>
         </ul>
       </div>
@@ -40,24 +40,24 @@ export default function ServicePolicy({
                 <div className="w-10 h-10 rounded-full bg-ember/10 flex items-center justify-center">
                   <span className="text-2xl">🛬</span>
                 </div>
-                <h3 className="text-xl font-semibold">接机服务</h3>
+                <h3 className="text-xl font-semibold">接機服務</h3>
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span><strong>免费等候时间:</strong> 90分钟</span>
+                  <span><strong>免費等候時間:</strong> 90分鐘</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span><strong>计时起点:</strong> 飞机降落时间</span>
+                  <span><strong>計時起點:</strong> 飛機降落時間</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span><strong>可选服务:</strong> 到达口举牌接机，另加 2,000 日元（需在预约时说明）</span>
+                  <span><strong>可選服務:</strong> 到達口舉牌接機，另加 2,000 日元（需在預約時說明）</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span>选择举牌服务时，司机在行李提取区举牌等候</span>
+                  <span>選擇舉牌服務時，司機在行李提取區舉牌等候</span>
                 </li>
               </ul>
             </div>
@@ -67,47 +67,47 @@ export default function ServicePolicy({
                 <div className="w-10 h-10 rounded-full bg-ember/10 flex items-center justify-center">
                   <span className="text-2xl">🛫</span>
                 </div>
-                <h3 className="text-xl font-semibold">送机服务</h3>
+                <h3 className="text-xl font-semibold">送機服務</h3>
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span><strong>免费等候时间:</strong> 30分钟</span>
+                  <span><strong>免費等候時間:</strong> 30分鐘</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span><strong>计时起点:</strong> 约定接载时间</span>
+                  <span><strong>計時起點:</strong> 約定接載時間</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span><strong>包含服务:</strong> 酒店/地址上门接载</span>
+                  <span><strong>包含服務:</strong> 酒店/地址上門接載</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="inline-flex h-2 w-2 rounded-full bg-ember mt-2 flex-shrink-0" />
-                  <span>准时到达指定地点，协助行李装载</span>
+                  <span>準時到達指定地點，協助行李裝載</span>
                 </li>
               </ul>
             </div>
           </div>
           
           <div className="mt-8 card p-6">
-            <h3 className="text-lg font-semibold mb-4">重要说明</h3>
+            <h3 className="text-lg font-semibold mb-4">重要說明</h3>
             <ul className="space-y-3 text-sm text-ink/80">
               <li className="flex items-start gap-3">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-ember/60 mt-1 flex-shrink-0" />
-                <span>等候时间从上述计时起点开始计算，超时将收取额外等候费用</span>
+                <span>等候時間從上述計時起點開始計算，超時將收取額外等候費用</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-ember/60 mt-1 flex-shrink-0" />
-                <span>航班延误无需担心，司机会根据实际降落时间调整等候</span>
+                <span>航班延誤無需擔心，司機會根據實際降落時間調整等候</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-ember/60 mt-1 flex-shrink-0" />
-                <span>建议提前通过WhatsApp告知航班号，以便司机跟踪航班状态</span>
+                <span>建議提前透過WhatsApp告知航班號，以便司機跟蹤航班狀態</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-ember/60 mt-1 flex-shrink-0" />
-                <span>所有价格均为固定价格，包含税费，无隐藏费用</span>
+                <span>所有價格均為固定價格，包含稅費，無隱藏費用</span>
               </li>
             </ul>
           </div>

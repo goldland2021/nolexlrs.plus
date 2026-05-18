@@ -1,6 +1,6 @@
 import { AIRPORTS, haversineDistance, type LatLng } from "@/lib/toll-routes";
 
-type AirportId = "narita" | "haneda";
+type AirportId = string;
 type Direction = "pickup" | "dropoff";
 
 interface WardPricing {
@@ -30,6 +30,19 @@ export interface FareEstimate {
   referenceFareYen: number;
 }
 
+const DEFAULT_PRICING: AirportPricingProfile = {
+  baseFareYen: 8000,
+  referenceKm: 8,
+  perKmAfterReference: 260,
+  pickupSurchargeYen: 1000,
+  dropoffSurchargeYen: 0,
+  pickupRangeYen: 1500,
+  dropoffRangeYen: 1200,
+  minimumPickupFareYen: 9500,
+  minimumDropoffFareYen: 8500,
+  fallbackTollYen: 1000
+};
+
 const PRICING: Record<AirportId, AirportPricingProfile> = {
   haneda: {
     baseFareYen: 10500,
@@ -54,6 +67,78 @@ const PRICING: Record<AirportId, AirportPricingProfile> = {
     minimumPickupFareYen: 21500,
     minimumDropoffFareYen: 18000,
     fallbackTollYen: 3000
+  },
+  kansai: {
+    baseFareYen: 14000,
+    referenceKm: 35,
+    perKmAfterReference: 180,
+    pickupSurchargeYen: 2000,
+    dropoffSurchargeYen: 0,
+    pickupRangeYen: 1500,
+    dropoffRangeYen: 1500,
+    minimumPickupFareYen: 17000,
+    minimumDropoffFareYen: 14500,
+    fallbackTollYen: 2500
+  },
+  itami: {
+    baseFareYen: 9000,
+    referenceKm: 10,
+    perKmAfterReference: 250,
+    pickupSurchargeYen: 1000,
+    dropoffSurchargeYen: 0,
+    pickupRangeYen: 1500,
+    dropoffRangeYen: 1000,
+    minimumPickupFareYen: 10500,
+    minimumDropoffFareYen: 9000,
+    fallbackTollYen: 1000
+  },
+  newChitose: {
+    baseFareYen: 15000,
+    referenceKm: 40,
+    perKmAfterReference: 170,
+    pickupSurchargeYen: 2500,
+    dropoffSurchargeYen: 0,
+    pickupRangeYen: 1800,
+    dropoffRangeYen: 1500,
+    minimumPickupFareYen: 18500,
+    minimumDropoffFareYen: 15500,
+    fallbackTollYen: 2000
+  },
+  okadama: {
+    baseFareYen: 8500,
+    referenceKm: 6,
+    perKmAfterReference: 240,
+    pickupSurchargeYen: 800,
+    dropoffSurchargeYen: 0,
+    pickupRangeYen: 1200,
+    dropoffRangeYen: 1000,
+    minimumPickupFareYen: 9800,
+    minimumDropoffFareYen: 8500,
+    fallbackTollYen: 800
+  },
+  fukuoka: {
+    baseFareYen: 6500,
+    referenceKm: 5,
+    perKmAfterReference: 280,
+    pickupSurchargeYen: 500,
+    dropoffSurchargeYen: 0,
+    pickupRangeYen: 1200,
+    dropoffRangeYen: 1000,
+    minimumPickupFareYen: 7500,
+    minimumDropoffFareYen: 6500,
+    fallbackTollYen: 700
+  },
+  naha: {
+    baseFareYen: 7000,
+    referenceKm: 5,
+    perKmAfterReference: 260,
+    pickupSurchargeYen: 500,
+    dropoffSurchargeYen: 0,
+    pickupRangeYen: 1200,
+    dropoffRangeYen: 1000,
+    minimumPickupFareYen: 8000,
+    minimumDropoffFareYen: 7000,
+    fallbackTollYen: 700
   }
 };
 
@@ -121,7 +206,7 @@ function findNearestWard(latlng: LatLng) {
 }
 
 function getAirportId(value: string): AirportId {
-  return value === "haneda" ? "haneda" : "narita";
+  return PRICING[value] ? value : "narita";
 }
 
 function getDirection(value: string): Direction {
@@ -155,9 +240,14 @@ export function calculateAirportFareEstimate({
 }): FareEstimate {
   const selectedAirportId = getAirportId(airportId);
   const selectedDirection = getDirection(direction);
-  const profile = PRICING[selectedAirportId];
-  const airport = AIRPORTS[selectedAirportId].latlng;
-  const wardItem = addressText ? findWardByAddress(addressText) ?? findNearestWard(destination) : findNearestWard(destination);
+  const profile = PRICING[selectedAirportId] ?? DEFAULT_PRICING;
+  const airport = AIRPORTS[selectedAirportId]?.latlng ?? destination;
+  const useTokyoWardPricing = selectedAirportId === "narita" || selectedAirportId === "haneda";
+  const wardItem = useTokyoWardPricing
+    ? addressText
+      ? findWardByAddress(addressText) ?? findNearestWard(destination)
+      : findNearestWard(destination)
+    : null;
   const referenceDistanceKm = wardItem ? haversineDistance(airport, wardItem.center) : routeDistanceKm;
   const baseFare = calculateBaseFare(profile, referenceDistanceKm, selectedDirection);
   const fallbackAddOn = wardItem ? 0 : tollYen || profile.fallbackTollYen;

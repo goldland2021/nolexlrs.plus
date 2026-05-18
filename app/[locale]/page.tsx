@@ -45,20 +45,20 @@ const pageLabels = {
     ]
   },
   zh: {
-    eyebrow: "快速报价",
-    quoteTitle: "立即预约接送服务",
-    quoteCopy: "填写行程信息，通过 WhatsApp 快速获取报价。",
+    eyebrow: "快速報價",
+    quoteTitle: "立即預約接送服務",
+    quoteCopy: "填寫行程資訊，透過 WhatsApp 快速獲取報價。",
     directNote:
-      "提交后会打开 WhatsApp，方便直接和司机沟通。到达口举牌接机为可选服务，需要时另加 2,000 日元，请在沟通时说明。",
-    waitTitle: "免费等待时间政策",
-    pickupNote: "接机等待时间从航班实际落地算起，送机从预约时间算起。",
-    delayNote: "航班延误不用担心，司机会根据实际落地时间调整接机。",
-    promiseTitle: "我们的服务承诺",
+      "提交後會打開 WhatsApp，方便直接和司機溝通。到達口舉牌接機為可選服務，需要時另加 2,000 日元，請在溝通時說明。",
+    waitTitle: "免費等待時間政策",
+    pickupNote: "接機等待時間從航班實際落地算起，送機從預約時間算起。",
+    delayNote: "航班延誤不用擔心，司機會根據實際落地時間調整接機。",
+    promiseTitle: "我們的服務承諾",
     promises: [
-      ["准时到达", "司机会提前到达，在约定地点等待。"],
-      ["价格透明", "固定报价，无隐藏费用。"],
-      ["英文司机", "专业英文司机，沟通顺畅。"],
-      ["即时回复", "WhatsApp 快速响应，24小时服务。"]
+      ["準時到達", "司機會提前到達，在約定地點等待。"],
+      ["價格透明", "固定報價，無隱藏費用。"],
+      ["英文司機", "專業英文司機，溝通順暢。"],
+      ["即時回覆", "WhatsApp 快速響應，24小時服務。"]
     ]
   }
 };
@@ -103,6 +103,8 @@ export default async function HomePage({ params }: { params: LocaleParams }) {
         imageSrc="/images/tokyo-airport-transfer.jpg"
         imageAlt={dict.hero.imageAlt}
         ctaLabel={dict.hero.cta}
+        locale={locale}
+        citySlug="tokyo"
       />
 
       <QuoteBookingSection

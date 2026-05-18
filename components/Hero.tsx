@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { trackAnalyticsEvent } from "@/lib/analytics";
-import { buildWhatsAppLink, defaultWhatsAppMessage, whatsAppDisplayPhone } from "@/lib/whatsapp";
+import { cityLabels, citySlugs, localizedCityPath, type CitySlug } from "@/lib/city-routes";
+import type { Locale } from "@/lib/i18n";
+import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
 
 type HeroProps = {
   title: string;
@@ -12,6 +15,8 @@ type HeroProps = {
   imageAlt: string;
   ctaLabel?: string;
   ctaMessage?: string;
+  locale?: Locale;
+  citySlug?: CitySlug;
 };
 
 export default function Hero({
@@ -21,9 +26,12 @@ export default function Hero({
   imageSrc,
   imageAlt,
   ctaLabel = "Get Quote on WhatsApp",
-  ctaMessage = defaultWhatsAppMessage
+  ctaMessage = defaultWhatsAppMessage,
+  locale = "en",
+  citySlug = "tokyo"
 }: HeroProps) {
   const href = buildWhatsAppLink(ctaMessage);
+  const labels = cityLabels[locale] ?? cityLabels.en;
 
   return (
     <section className="section fancy-bg">
@@ -31,13 +39,23 @@ export default function Hero({
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap gap-3">
-              <span className="badge">Tokyo Airport Transfer</span>
-              <span className="badge flex items-center gap-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.707 12.293a.999.999 0 00-1.414 0l-1.594 1.594c-.739-.22-2.118-.72-2.992-1.594s-1.374-2.253-1.594-2.992l1.594-1.594a.999.999 0 000-1.414l-4-4a.999.999 0 00-1.414 0L3.581 5.005c-.38.38-.594.902-.586 1.435.023 1.424.4 6.37 4.298 10.268s8.844 4.274 10.269 4.298h.028c.528 0 1.027-.208 1.405-.586l2.712-2.712a.999.999 0 000-1.414l-4-4z" />
-                </svg>
-                WhatsApp: {whatsAppDisplayPhone}
-              </span>
+              {citySlugs.map((slug) => {
+                const active = slug === citySlug;
+
+                return (
+                  <Link
+                    key={slug}
+                    href={localizedCityPath(locale, slug)}
+                    className={`inline-flex h-10 items-center justify-center rounded-full border px-4 text-sm font-semibold transition ${
+                      active
+                        ? "border-ember bg-ember text-white shadow-soft"
+                        : "border-clay/70 bg-white/85 text-ink/70 hover:border-ember/50 hover:text-ember"
+                    }`}
+                  >
+                    {labels[slug]}
+                  </Link>
+                );
+              })}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight">
               {title}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Booking from "@/components/Booking";
 import RoutePicker, { type RouteQuote } from "@/components/RoutePicker";
+import type { CityAirport } from "@/lib/city-routes";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 interface QuoteBookingSectionProps {
@@ -11,6 +12,10 @@ interface QuoteBookingSectionProps {
   subtitle: string;
   directNote: string;
   booking: Dictionary["booking"];
+  routeAirports?: CityAirport[];
+  cityName?: string;
+  citySearchName?: string;
+  defaultAirportId?: string;
 }
 
 const copy = {
@@ -23,8 +28,8 @@ const copy = {
     routeTitle: "ルートと参考料金"
   },
   zh: {
-    eyebrow: "快速报价",
-    routeTitle: "路线与参考价格"
+    eyebrow: "快速報價",
+    routeTitle: "路線與參考價格"
   }
 };
 
@@ -33,7 +38,11 @@ export default function QuoteBookingSection({
   title,
   subtitle,
   directNote,
-  booking
+  booking,
+  routeAirports,
+  cityName,
+  citySearchName,
+  defaultAirportId
 }: QuoteBookingSectionProps) {
   const [routeQuote, setRouteQuote] = useState<RouteQuote | null>(null);
   const labels = copy[locale] ?? copy.en;
@@ -55,7 +64,14 @@ export default function QuoteBookingSection({
           <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
             <div className="rounded-lg border border-clay/60 bg-white/95 p-4 shadow-soft sm:p-6 md:p-7">
               <h3 className="mb-5 text-lg font-semibold text-ink">{labels.routeTitle}</h3>
-              <RoutePicker locale={locale} onRouteCalculated={setRouteQuote} />
+              <RoutePicker
+                locale={locale}
+                onRouteCalculated={setRouteQuote}
+                airports={routeAirports}
+                cityName={cityName}
+                citySearchName={citySearchName}
+                defaultAirportId={defaultAirportId}
+              />
             </div>
 
             <div>

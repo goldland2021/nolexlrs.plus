@@ -66,8 +66,8 @@ function formatAnalyticsError(error: unknown) {
 
   if (!message || message === "undefined undefined: undefined") {
     return [
-      "GA4 Data API 暂时无法读取数据。",
-      "请检查 GA_PROPERTY_ID 是否是数字 Property ID，服务账号是否已加入 GA4 property 并拥有 Viewer 权限，GA_PRIVATE_KEY 是否完整包含换行符。"
+      "GA4 Data API 暫時無法讀取資料。",
+      "請檢查 GA_PROPERTY_ID 是否是數字 Property ID，服務帳號是否已加入 GA4 property 並擁有 Viewer 權限，GA_PRIVATE_KEY 是否完整包含換行符。"
     ].join(" ");
   }
 
@@ -129,8 +129,8 @@ export async function getAnalyticsSummary(days = 30): Promise<AnalyticsSummary> 
 
     return configuredResponse(
       missing.length
-        ? `GA4 Data API 还没有连接完成。Vercel 环境变量缺少：${missing.join(", ")}。`
-        : "GA4 Data API 凭证格式不正确。请检查 GA_CLIENT_EMAIL 和 GA_PRIVATE_KEY，或改用完整的 GA_SERVICE_ACCOUNT_JSON。"
+        ? `GA4 Data API 還沒有連接完成。Vercel 環境變數缺少：${missing.join(", ")}。`
+        : "GA4 Data API 憑證格式不正確。請檢查 GA_CLIENT_EMAIL 和 GA_PRIVATE_KEY，或改用完整的 GA_SERVICE_ACCOUNT_JSON。"
     );
   }
 

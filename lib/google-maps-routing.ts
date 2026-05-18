@@ -1,5 +1,5 @@
 /**
- * 在浏览器已加载 Maps JavaScript API 后调用（需 geometry 库以解码 polyline）。
+ * 在瀏覽器已載入 Maps JavaScript API 後調用（需 geometry 庫以解碼 polyline）。
  */
 
 export interface DrivingRouteResult {

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import type { CityAirport } from "@/lib/city-routes";
 
 const RoutePickerInner = dynamic(() => import("./RoutePickerInner"), {
   ssr: false,
@@ -28,6 +29,10 @@ export interface RouteQuote {
 interface RoutePickerProps {
   locale: "en" | "ja" | "zh";
   onRouteCalculated: (result: RouteQuote | null) => void;
+  airports?: CityAirport[];
+  cityName?: string;
+  citySearchName?: string;
+  defaultAirportId?: string;
 }
 
 export default function RoutePicker(props: RoutePickerProps) {

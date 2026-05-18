@@ -13,38 +13,38 @@ export default function PreviewNewLayoutPage() {
   const dict = {
     zh: {
       hero: {
-        title: "东京机场接送",
-        subtitle: "成田机场与羽田机场专车接送。",
+        title: "東京機場接送",
+        subtitle: "成田機場與羽田機場專車接送。",
         features: [
-          "24小时服务",
-          "英文司机",
-          "到达口举牌接机",
-          "透明固定价格",
-          "接机免费等候90分钟（从飞机降落算起）",
-          "送机免费等候30分钟"
+          "24小時服務",
+          "英文司機",
+          "到達口舉牌接機",
+          "透明固定價格",
+          "接機免費等候90分鐘（從飛機降落算起）",
+          "送機免費等候30分鐘"
         ],
-        cta: "WhatsApp 获取报价",
-        imageAlt: "东京机场接送专车服务"
+        cta: "WhatsApp 獲取報價",
+        imageAlt: "東京機場接送專車服務"
       },
       services: {
-        title: "机场接送服务",
-        subtitle: "固定价格，举牌接机，安心省心。",
+        title: "機場接送服務",
+        subtitle: "固定價格，舉牌接機，安心省心。",
         items: [
-          "成田机场 → 东京酒店",
-          "羽田机场 → 东京酒店",
-          "东京 → 成田机场",
-          "东京 → 羽田机场"
+          "成田機場 → 東京酒店",
+          "羽田機場 → 東京酒店",
+          "東京 → 成田機場",
+          "東京 → 羽田機場"
         ],
-        itemNote: "点对点直达，准时安心。"
+        itemNote: "點對點直達，準時安心。"
       },
       booking: {
-        title: "预约接送",
-        subtitle: "发送行程信息，WhatsApp 迅速报价。",
+        title: "預約接送",
+        subtitle: "發送行程資訊，WhatsApp 迅速報價。",
         fields: {
-          airport: "机场",
-          flight: "航班号",
+          airport: "機場",
+          flight: "航班號",
           hotel: "酒店",
-          passengers: "人数",
+          passengers: "人數",
           luggage: "行李"
         },
         placeholders: {
@@ -52,19 +52,19 @@ export default function PreviewNewLayoutPage() {
           flight: "JL123",
           hotel: "新宿酒店",
           passengers: "2",
-          luggage: "3 个行李箱"
+          luggage: "3 個行李箱"
         },
-        button: "通过 WhatsApp 发送",
-        messageHeader: "您好，我需要机场接送"
+        button: "透過 WhatsApp 發送",
+        messageHeader: "您好，我需要機場接送"
       },
       pricing: {
-        title: "价格参考",
-        subtitle: "透明固定价格，无隐藏费用。",
+        title: "價格參考",
+        subtitle: "透明固定價格，無隱藏費用。",
         items: [
-          { route: "成田 → 东京", price: "$120 起" },
-          { route: "羽田 → 东京", price: "$80 起" }
+          { route: "成田 → 東京", price: "$120 起" },
+          { route: "羽田 → 東京", price: "$80 起" }
         ],
-        itemNote: "包含接机举牌服务。"
+        itemNote: "包含接機舉牌服務。"
       }
     },
     en: {
@@ -187,7 +187,7 @@ export default function PreviewNewLayoutPage() {
     <div className="min-h-screen bg-sand">
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">新布局预览</h1>
+          <h1 className="text-3xl font-bold">新佈局預覽</h1>
           <div className="flex gap-2">
             <button
               onClick={() => setLocale("zh")}
@@ -211,19 +211,19 @@ export default function PreviewNewLayoutPage() {
         </div>
 
         <div className="mb-8 p-4 bg-white rounded-lg border">
-          <h2 className="text-xl font-semibold mb-2">布局说明</h2>
+          <h2 className="text-xl font-semibold mb-2">佈局說明</h2>
           <p className="text-ink/70">
-            已将&quot;预约接送&quot;表单调整到第二行，放在&quot;东京机场接送&quot;标题下面。
-            表单现在更加突出，用户无需滚动就能看到并立即预订。
+            已將&quot;預約接送&quot;表單調整到第二行，放在&quot;東京機場接送&quot;標題下面。
+            表單現在更加突出，用戶無需滾動就能看到並立即預訂。
           </p>
         </div>
 
-        {/* 模拟实际页面布局 */}
+        {/* 模擬實際頁面佈局 */}
         <div className="border-2 border-dashed border-ember/30 rounded-2xl p-2">
           <main>
-            {/* 第一行：Hero区域 */}
+            {/* 第一行：Hero區域 */}
             <section className="mb-8">
-              <h3 className="text-lg font-semibold mb-2 text-ink/60">第一行: Hero区域</h3>
+              <h3 className="text-lg font-semibold mb-2 text-ink/60">第一行: Hero區域</h3>
               <Hero
                 title={currentDict.hero.title}
                 subtitle={currentDict.hero.subtitle}
@@ -234,35 +234,35 @@ export default function PreviewNewLayoutPage() {
               />
             </section>
 
-            {/* 第二行：快速预约区域 - 单列布局，手机友好 */}
+            {/* 第二行：快速預約區域 - 單列布局，手機友好 */}
             <section className="mb-8">
-              <h3 className="text-lg font-semibold mb-2 text-ink/60">第二行: 快速预约区域（单列布局）</h3>
+              <h3 className="text-lg font-semibold mb-2 text-ink/60">第二行: 快速預約區域（單列布局）</h3>
               
               <div className="bg-gradient-to-b from-white to-sand rounded-2xl p-6">
                 <div className="max-w-4xl mx-auto">
-                  {/* 快速预约标题 */}
+                  {/* 快速預約標題 */}
                   <div className="text-center mb-10">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-ember/10 rounded-full mb-4">
                       <span className="text-ember">⚡</span>
                       <span className="text-sm font-semibold text-ember">
-                        {locale === "zh" ? "快速报价" :
+                        {locale === "zh" ? "快速報價" :
                          locale === "ja" ? "すぐに見積もり" :
                          "Instant Quote"}
                       </span>
                     </div>
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                      {locale === "zh" ? "立即预约接送服务" : 
+                      {locale === "zh" ? "立即預約接送服務" : 
                        locale === "ja" ? "すぐに送迎を予約" : 
                        "Book Your Transfer Now"}
                     </h2>
                     <p className="text-lg text-ink/70 mt-3 max-w-2xl mx-auto">
-                      {locale === "zh" ? "填写行程信息，立即获取WhatsApp报价" :
+                      {locale === "zh" ? "填寫行程資訊，立即獲取WhatsApp報價" :
                        locale === "ja" ? "旅程の詳細を入力して、WhatsAppですぐに見積もり" :
                        "Fill in your trip details and get instant quote on WhatsApp"}
                     </p>
                   </div>
                   
-                  {/* 预约接送表单 - 放在最前面 */}
+                  {/* 預約接送表單 - 放在最前面 */}
                   <div className="mb-12">
                     <div className="card p-6 md:p-8 shadow-lift border-2 border-ember/20">
                       <div className="text-center mb-6">
@@ -281,22 +281,22 @@ export default function PreviewNewLayoutPage() {
                     </div>
                   </div>
                   
-                  {/* 服务承诺和等候时间政策 */}
+                  {/* 服務承諾和等候時間政策 */}
                   <div className="space-y-8">
-                    {/* 等候时间政策横幅 */}
+                    {/* 等候時間政策橫幅 */}
                     <div className="card p-6">
                       <h3 className="text-xl font-semibold mb-4">
-                        {locale === "zh" ? "免费等候时间政策" :
+                        {locale === "zh" ? "免費等候時間政策" :
                          locale === "ja" ? "無料待機時間ポリシー" :
                          "Free Waiting Time Policy"}
                       </h3>
                       <WaitingTimeBanner locale={locale} />
                     </div>
                     
-                    {/* 服务特性卡片 */}
+                    {/* 服務特性卡片 */}
                     <div className="card p-6">
                       <h3 className="text-xl font-semibold mb-6">
-                        {locale === "zh" ? "我们的服务承诺" :
+                        {locale === "zh" ? "我們的服務承諾" :
                          locale === "ja" ? "サービス保証" :
                          "Our Service Promise"}
                       </h3>
@@ -307,12 +307,12 @@ export default function PreviewNewLayoutPage() {
                           </div>
                           <div>
                             <p className="font-medium">
-                              {locale === "zh" ? "准时到达" :
+                              {locale === "zh" ? "準時到達" :
                                locale === "ja" ? "時間厳守" :
                                "On-time Arrival"}
                             </p>
                             <p className="text-sm text-ink/60 mt-1">
-                              {locale === "zh" ? "司机提前到达等候" :
+                              {locale === "zh" ? "司機提前到達等候" :
                                locale === "ja" ? "ドライバーが事前に到着" :
                                "Driver arrives early"}
                             </p>
@@ -325,12 +325,12 @@ export default function PreviewNewLayoutPage() {
                           </div>
                           <div>
                             <p className="font-medium">
-                              {locale === "zh" ? "透明价格" :
+                              {locale === "zh" ? "透明價格" :
                                locale === "ja" ? "透明な価格" :
                                "Transparent Pricing"}
                             </p>
                             <p className="text-sm text-ink/60 mt-1">
-                              {locale === "zh" ? "无隐藏费用" :
+                              {locale === "zh" ? "無隱藏費用" :
                                locale === "ja" ? "隠れた費用なし" :
                                "No hidden fees"}
                             </p>
@@ -344,9 +344,9 @@ export default function PreviewNewLayoutPage() {
               </div>
             </section>
 
-            {/* 第三行及以后：其他内容 */}
+            {/* 第三行及以後：其他內容 */}
             <section className="space-y-8">
-              <h3 className="text-lg font-semibold mb-2 text-ink/60">第三行及以后: 其他内容</h3>
+              <h3 className="text-lg font-semibold mb-2 text-ink/60">第三行及以後: 其他內容</h3>
               
               <Pricing
                 title={currentDict.pricing.title}
@@ -357,15 +357,15 @@ export default function PreviewNewLayoutPage() {
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-lg font-semibold mb-4">车型展示</h4>
+                  <h4 className="text-lg font-semibold mb-4">車型展示</h4>
                   <div className="card p-6">
-                    <p className="text-ink/70">车辆图片和描述...</p>
+                    <p className="text-ink/70">車輛圖片和描述...</p>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-4">用户评价</h4>
+                  <h4 className="text-lg font-semibold mb-4">用戶評價</h4>
                   <div className="card p-6">
-                    <p className="text-ink/70">客户评价内容...</p>
+                    <p className="text-ink/70">客戶評價內容...</p>
                   </div>
                 </div>
               </div>
@@ -374,34 +374,34 @@ export default function PreviewNewLayoutPage() {
         </div>
 
         <div className="mt-8 p-6 bg-white rounded-xl border">
-          <h3 className="text-xl font-semibold mb-4">布局改进总结</h3>
+          <h3 className="text-xl font-semibold mb-4">佈局改進總結</h3>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-2">✅ 改进前的问题</h4>
+              <h4 className="font-semibold mb-2">✅ 改進前的問題</h4>
               <ul className="space-y-2 text-sm text-ink/70">
-                <li>• 预约表单在页面很靠下的位置</li>
-                <li>• 用户需要滚动才能找到预订入口</li>
-                <li>• 转化率可能较低</li>
-                <li>• 不够突出重要功能</li>
+                <li>• 預約表單在頁面很靠下的位置</li>
+                <li>• 用戶需要滾動才能找到預訂入口</li>
+                <li>• 轉化率可能較低</li>
+                <li>• 不夠突出重要功能</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">🚀 改进后的优势</h4>
+              <h4 className="font-semibold mb-2">🚀 改進後的優勢</h4>
               <ul className="space-y-2 text-sm text-ink/70">
-                <li>• 预约表单在第二行，非常显眼</li>
-                <li>• 用户无需滚动即可立即预订</li>
-                <li>• 提高转化率和用户体验</li>
-                <li>• 表单区域视觉突出，吸引注意力</li>
-                <li>• 与服务政策并列，建立信任</li>
+                <li>• 預約表單在第二行，非常顯眼</li>
+                <li>• 用戶無需滾動即可立即預訂</li>
+                <li>• 提高轉化率和用戶體驗</li>
+                <li>• 表單區域視覺突出，吸引注意力</li>
+                <li>• 與服務政策並列，建立信任</li>
               </ul>
             </div>
           </div>
           
           <div className="mt-6 p-4 bg-ember/5 rounded-lg">
-            <h4 className="font-semibold mb-2">📱 移动端优化</h4>
+            <h4 className="font-semibold mb-2">📱 移動端優化</h4>
             <p className="text-sm text-ink/70">
-              新布局在移动设备上会自动调整，表单会显示在服务政策下方，
-              但仍然在很靠前的位置，确保移动用户也能轻松找到预订入口。
+              新佈局在移動設備上會自動調整，表單會顯示在服務政策下方，
+              但仍然在很靠前的位置，確保移動用戶也能輕鬆找到預訂入口。
             </p>
           </div>
         </div>

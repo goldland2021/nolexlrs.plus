@@ -40,6 +40,8 @@ export default async function HanedaPage({ params }: { params: LocaleParams }) {
         imageSrc="/images/haneda-airport.jpg"
         imageAlt="Haneda airport transfer to Tokyo"
         ctaLabel={dict.hero.cta}
+        locale={locale}
+        citySlug="tokyo"
       />
       <section className="section">
         <div className="container mx-auto px-4">

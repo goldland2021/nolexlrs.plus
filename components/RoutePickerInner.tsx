@@ -4,11 +4,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { calculateAirportFareEstimate } from "@/lib/airport-pricing";
 import { trackAnalyticsEvent } from "@/lib/analytics";
+import type { CityAirport } from "@/lib/city-routes";
 import { AIRPORTS, type LatLng, findNearestTollZone } from "@/lib/toll-routes";
 import { geocodeAddressGoogleMaps, getDrivingRouteGoogleMaps } from "@/lib/google-maps-routing";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
-/** 必须在模块作用域保持同一引用；每次 render 传新数组会触发脚本重复加载并导致地图异常 */
+/** Keep this stable at module scope; a new array every render can reload Maps and break the map state. */
 const GOOGLE_MAPS_LIBRARIES: "geometry"[] = ["geometry"];
 
 declare global {
@@ -42,15 +43,22 @@ interface RouteResult {
 interface RoutePickerInnerProps {
   locale: "en" | "ja" | "zh";
   onRouteCalculated: (result: RouteResult | null) => void;
+  airports?: CityAirport[];
+  cityName?: string;
+  citySearchName?: string;
+  defaultAirportId?: string;
 }
+
+const DEFAULT_AIRPORTS: CityAirport[] = [
+  { id: "narita", ...AIRPORTS.narita },
+  { id: "haneda", ...AIRPORTS.haneda }
+];
 
 const UI = {
   en: {
     pickup: "Airport to hotel",
     dropoff: "Hotel to airport",
     airport: "Airport",
-    narita: "Narita Airport (NRT)",
-    haneda: "Haneda Airport (HND)",
     address: "Hotel, Airbnb, or address",
     hint: "Example: Shinjuku Washington Hotel",
     search: "Get estimate",
@@ -75,27 +83,25 @@ const UI = {
       "Google rejected this map key (common: Maps JavaScript API not enabled, billing not linked, or HTTP referrer restrictions do not match this URL). In Google Cloud Console, enable the APIs and add http://localhost:3000/* for local dev."
   },
   ja: {
-    pickup: "Airport to hotel",
-    dropoff: "Hotel to airport",
-    airport: "Airport",
-    narita: "Narita Airport (NRT)",
-    haneda: "Haneda Airport (HND)",
-    address: "Hotel or address",
-    hint: "Example: Shinjuku Washington Hotel",
-    search: "Get estimate",
-    distance: "Distance",
-    time: "Drive time",
-    toll: "Toll estimate",
-    total: "Estimated private transfer",
-    included: "Usually includes",
-    includedItems: ["Private door-to-door ride", "Toll estimate", "Flight delay tracking", "90 min airport pickup waiting"],
-    note: "Final fixed price is confirmed on WhatsApp after vehicle size, luggage, and pickup time are checked.",
-    drag: "Fine-tune the red marker if needed.",
-    empty: "Enter a hotel name or address to see a reference fare.",
-    searching: "Searching...",
-    notFound: "We could not find that place. Please try a more specific address.",
-    confirm: "Confirm on WhatsApp",
-    mapLoading: "Loading map...",
+    pickup: "空港からホテル",
+    dropoff: "ホテルから空港",
+    airport: "空港",
+    address: "ホテル・民泊・住所",
+    hint: "例: 新宿ワシントンホテル",
+    search: "見積もり",
+    distance: "距離",
+    time: "所要時間",
+    toll: "高速代目安",
+    total: "プライベート送迎の目安",
+    included: "通常含まれるもの",
+    includedItems: ["ドアツードア送迎", "高速代目安", "フライト遅延確認", "空港お迎え90分無料待機"],
+    note: "車種、荷物、出発時刻を確認後、WhatsAppで最終固定料金をご案内します。",
+    drag: "ピンの位置がずれている場合は、赤いマーカーを調整できます。",
+    empty: "ホテル名または住所を入力すると、問い合わせ前に参考料金を確認できます。",
+    searching: "検索中...",
+    notFound: "場所が見つかりませんでした。都市名、区名、ホテルの郵便番号などを追加してください。",
+    confirm: "WhatsAppで確認",
+    mapLoading: "地図を読み込み中...",
     mapKeyMissing:
       "Google Maps is not configured. Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to .env.local and restart the dev server.",
     mapLoadFailed:
@@ -104,33 +110,31 @@ const UI = {
       "Google マップのキーが拒否されました。Maps JavaScript API の有効化、課金アカウントの紐付け、HTTP リファラ（例: http://localhost:3000/*）をご確認ください。"
   },
   zh: {
-    pickup: "Airport to hotel",
-    dropoff: "Hotel to airport",
-    airport: "Airport",
-    narita: "Narita Airport (NRT)",
-    haneda: "Haneda Airport (HND)",
-    address: "Hotel or address",
-    hint: "Example: Shinjuku Washington Hotel",
-    search: "Get estimate",
-    distance: "Distance",
-    time: "Drive time",
-    toll: "Toll estimate",
-    total: "Estimated private transfer",
-    included: "Usually includes",
-    includedItems: ["Private door-to-door ride", "Toll estimate", "Flight delay tracking", "90 min airport pickup waiting"],
-    note: "Final fixed price is confirmed on WhatsApp after vehicle size, luggage, and pickup time are checked.",
-    drag: "Fine-tune the red marker if needed.",
-    empty: "Enter a hotel name or address to see a reference fare.",
-    searching: "Searching...",
-    notFound: "We could not find that place. Please try a more specific address.",
-    confirm: "Confirm on WhatsApp",
-    mapLoading: "Loading map...",
+    pickup: "機場到酒店",
+    dropoff: "酒店到機場",
+    airport: "機場",
+    address: "酒店、民宿或地址",
+    hint: "例如：新宿華盛頓酒店",
+    search: "獲取預估",
+    distance: "距離",
+    time: "車程",
+    toll: "高速費預估",
+    total: "私人接送預估價",
+    included: "通常包含",
+    includedItems: ["點對點專車接送", "高速費預估", "航班延誤跟蹤", "機場接機90分鐘免費等待"],
+    note: "最終固定報價會在確認車型、行李和接送時間後透過 WhatsApp 確認。",
+    drag: "如果紅色定位點不準確，可以拖動微調。",
+    empty: "輸入酒店名或地址，就可以先查看參考價格。",
+    searching: "搜尋中...",
+    notFound: "沒有找到這個地點，請嘗試加入城市名、區域名或酒店郵遞區號。",
+    confirm: "透過 WhatsApp 確認",
+    mapLoading: "地圖載入中...",
     mapKeyMissing:
       "Google Maps is not configured. Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to .env.local and restart the dev server.",
     mapLoadFailed:
-      "无法加载 Google 地图脚本。若控制台里对 maps.googleapis.com 的请求出现 net::ERR_CONNECTION_TIMED_OUT，说明当前网络连不上 Google 服务器（国内直连、公司防火墙或未覆盖浏览器的代理都很常见），可尝试更换网络、使用系统级代理/VPN 后硬刷新。若能连通但仍报错，再检查是否启用 Maps JavaScript API、Geocoding、Directions、已绑定结算，以及密钥的 HTTP 引荐来源是否包含当前页面地址。",
+      "無法載入 Google 地圖腳本。若主控台裡對 maps.googleapis.com 的請求出現 net::ERR_CONNECTION_TIMED_OUT，說明當前網路連不上 Google 伺服器（國內直連、公司防火牆或未覆蓋瀏覽器的代理都很常見），可嘗試更換網路、使用系統級代理/VPN 後強制重新整理。若能連通但仍報錯，再檢查是否啟用 Maps JavaScript API、Geocoding、Directions、已綁定結算，以及金鑰的 HTTP 引薦來源是否包含當前頁面地址。",
     mapAuthFailed:
-      "Google 拒绝了当前地图密钥。常见原因：未启用「Maps JavaScript API」、项目未绑定结算账号、或密钥的「HTTP 引荐来源网址」不包含当前页面地址。本地开发请为该密钥添加 http://localhost:3000/*（端口需一致），保存后等待约 1～5 分钟再刷新。"
+      "Google 拒絕了當前地圖金鑰。常見原因：未啟用「Maps JavaScript API」、專案未綁定結算帳號、或金鑰的「HTTP 引薦來源網址」不包含當前頁面地址。本地開發請為該金鑰新增 http://localhost:3000/*（連接埠需一致），保存後等待約 1～5 分鐘再刷新。"
   }
 };
 
@@ -151,11 +155,23 @@ const redDotIcon: google.maps.Icon = {
   url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
 };
 
-export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePickerInnerProps) {
+export default function RoutePickerInner({
+  locale,
+  onRouteCalculated,
+  airports = DEFAULT_AIRPORTS,
+  cityName = "Tokyo",
+  citySearchName = "Tokyo, Japan",
+  defaultAirportId
+}: RoutePickerInnerProps) {
   const t = UI[locale];
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? "";
+  const airportOptions = airports.length ? airports : DEFAULT_AIRPORTS;
+  const initialAirportId =
+    defaultAirportId && airportOptions.some((airport) => airport.id === defaultAirportId)
+      ? defaultAirportId
+      : airportOptions[0].id;
 
-  const mapLanguage = useMemo(() => (locale === "zh" ? "zh-CN" : locale === "ja" ? "ja" : "en"), [locale]);
+  const mapLanguage = useMemo(() => (locale === "zh" ? "zh-TW" : locale === "ja" ? "ja" : "en"), [locale]);
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: "route-picker-google-maps",
@@ -183,7 +199,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
   }, []);
 
   const [direction, setDirection] = useState<"pickup" | "dropoff">("pickup");
-  const [airportId, setAirportId] = useState<string>("narita");
+  const [airportId, setAirportId] = useState<string>(initialAirportId);
   const [address, setAddress] = useState("");
   const [searching, setSearching] = useState(false);
   const [error, setError] = useState("");
@@ -192,8 +208,9 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
   const [routePath, setRoutePath] = useState<google.maps.LatLngLiteral[] | null>(null);
   const latestSelectionRef = useRef({ airportId, direction });
 
-  const airportPos = AIRPORTS[airportId]?.latlng ?? AIRPORTS.narita.latlng;
-  const airportName = t[airportId as "narita" | "haneda"];
+  const currentAirport = airportOptions.find((airport) => airport.id === airportId) ?? airportOptions[0];
+  const airportPos = currentAirport.latlng;
+  const airportName = currentAirport.name[locale] ?? currentAirport.name.en;
   const airportCenter = useMemo(
     () => ({ lat: airportPos.lat, lng: airportPos.lng }),
     [airportPos.lat, airportPos.lng]
@@ -263,7 +280,8 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
       const requestId = ++routeRequestIdRef.current;
       const selectedAirportId = selection.airportId ?? latestSelectionRef.current.airportId;
       const selectedDirection = selection.direction ?? latestSelectionRef.current.direction;
-      const selectedAirportPos = AIRPORTS[selectedAirportId]?.latlng ?? AIRPORTS.narita.latlng;
+      const selectedAirport = airportOptions.find((airport) => airport.id === selectedAirportId) ?? airportOptions[0];
+      const selectedAirportPos = selectedAirport.latlng;
 
       setError("");
       setDestLatLng(dest);
@@ -319,7 +337,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
 
       const result: RouteResult = {
         airportId: selectedAirportId,
-        airportName: t[selectedAirportId as "narita" | "haneda"],
+        airportName: selectedAirport.name[locale] ?? selectedAirport.name.en,
         direction: selectedDirection,
         distanceKm: route.distanceKm,
         durationMin: route.durationMin,
@@ -336,7 +354,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
       setRouteResult(result);
       onRouteCalculated(result);
     },
-    [address, isLoaded, onRouteCalculated, removeRoutePolyline, t]
+    [address, airportOptions, isLoaded, locale, onRouteCalculated, removeRoutePolyline, t]
   );
 
   const handleDirectionChange = (nextDirection: "pickup" | "dropoff") => {
@@ -366,7 +384,9 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
 
     setSearching(true);
     setError("");
-    const query = /japan|tokyo|chiba|kanagawa/i.test(address) ? address : `${address}, Tokyo, Japan`;
+    const query = /japan|日本|tokyo|osaka|sapporo|hokkaido|fukuoka|naha|okinawa|chiba|kanagawa/i.test(address)
+      ? address
+      : `${address}, ${citySearchName}`;
     const geo = await geocodeAddressGoogleMaps(query);
 
     if (geo) {
@@ -391,7 +411,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
 
     return buildWhatsAppLink(
       [
-        "Hello, I would like to confirm a Tokyo airport transfer quote.",
+        `Hello, I would like to confirm a ${cityName} airport transfer quote.`,
         "",
         `Route: ${routeLabel}`,
         `Estimated fare shown: ${formatYen(routeResult.estimateLowYen)} - ${formatYen(routeResult.estimateHighYen)}`,
@@ -405,7 +425,7 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
         "Pickup date and time:"
       ].join("\n")
     );
-  }, [address, airportName, direction, routeResult]);
+  }, [address, airportName, cityName, direction, routeResult]);
 
   const mapBlock = (() => {
     if (!apiKey) {
@@ -505,8 +525,11 @@ export default function RoutePickerInner({ locale, onRouteCalculated }: RoutePic
             onChange={(event) => handleAirportChange(event.target.value)}
             className="h-12 w-full rounded-lg border border-clay/60 bg-white px-4 text-base font-normal focus:border-ember focus:outline-none focus:ring-2 focus:ring-ember/30"
           >
-            <option value="narita">{t.narita}</option>
-            <option value="haneda">{t.haneda}</option>
+            {airportOptions.map((airport) => (
+              <option key={airport.id} value={airport.id}>
+                {airport.name[locale] ?? airport.name.en}
+              </option>
+            ))}
           </select>
         </label>
 

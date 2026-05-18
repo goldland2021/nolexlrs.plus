@@ -11,7 +11,7 @@ export type SeoFaq = {
   answer: string;
 };
 
-type HomeSeoContent = {
+export type HomeSeoContent = {
   routesTitle: string;
   routesSubtitle: string;
   routes: SeoRoute[];
@@ -45,6 +45,18 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         title: "Haneda Airport to central Tokyo",
         description:
           "Fast Haneda Airport pickup for Ginza, Tsukiji, Shinagawa, Shinjuku, Shibuya, and Tokyo cruise terminals.",
+        href: "/haneda-airport-transfer"
+      },
+      {
+        title: "Narita or Haneda to Tokyo Disney Resort",
+        description:
+          "Private airport transfer for families going to Tokyo Disneyland, DisneySea, Maihama hotels, and resort-area hotels with luggage.",
+        href: "/narita-airport-transfer"
+      },
+      {
+        title: "Tokyo cruise terminal transfer",
+        description:
+          "Pickup and drop-off for Tokyo International Cruise Terminal, Harumi, hotels, and airport connections.",
         href: "/haneda-airport-transfer"
       },
       {
@@ -132,6 +144,18 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/haneda-airport-transfer"
       },
       {
+        title: "成田・羽田から東京ディズニーリゾートへ",
+        description:
+          "東京ディズニーランド、ディズニーシー、舞浜ホテル、リゾート周辺ホテルへ荷物付きで移動できます。",
+        href: "/narita-airport-transfer"
+      },
+      {
+        title: "東京クルーズターミナル送迎",
+        description:
+          "東京国際クルーズターミナル、晴海、ホテル、空港接続に対応するプライベート送迎です。",
+        href: "/haneda-airport-transfer"
+      },
+      {
         title: "東京ホテルから成田・羽田へ",
         description:
           "フライト時刻と交通状況をもとに出発時間を提案し、東京ホテルから空港までお送りします。",
@@ -198,85 +222,97 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
     ]
   },
   zh: {
-    routesTitle: "东京热门机场接送路线",
+    routesTitle: "東京熱門機場接送路線",
     routesSubtitle:
-      "提供成田机场、羽田机场、东京酒店移动、新干线站接送和富士山一日游之间的私人接送。报价会参考路线距离、车型、行李数量和到达时间。",
+      "提供成田機場、羽田機場、東京酒店移動、新幹線站接送和富士山一日遊之間的私人接送。報價會參考路線距離、車型、行李數量和到達時間。",
     routes: [
       {
-        title: "成田机场到东京酒店",
+        title: "成田機場到東京酒店",
         description:
-          "成田机场到新宿、涩谷、银座、浅草、品川等东京市区的点对点私人接送。",
+          "成田機場到新宿、澀谷、銀座、淺草、品川等東京市區的點對點私人接送。",
         href: "/narita-airport-transfer"
       },
       {
-        title: "羽田机场到东京市区",
+        title: "羽田機場到東京市區",
         description:
-          "适合羽田机场到银座、筑地、品川、新宿、涩谷、东京邮轮码头等目的地。",
+          "適合羽田機場到銀座、築地、品川、新宿、澀谷、東京郵輪碼頭等目的地。",
         href: "/haneda-airport-transfer"
       },
       {
-        title: "东京酒店送机到成田或羽田",
+        title: "成田或羽田到東京迪士尼",
         description:
-          "根据航班时间和路况建议出发时间，适合从东京酒店、民宿或公寓前往机场。",
+          "適合前往東京迪士尼樂園、迪士尼海洋、舞濱酒店和迪士尼周邊酒店的家庭旅客。",
         href: "/narita-airport-transfer"
       },
       {
-        title: "东京酒店到酒店移动",
+        title: "東京郵輪碼頭接送",
         description:
-          "适合新宿、银座、涩谷、东京站、品川等区域之间的酒店换酒店、民宿、公寓点对点移动。",
+          "可安排東京國際郵輪碼頭、晴海、酒店與機場之間的點對點私人接送。",
+        href: "/haneda-airport-transfer"
+      },
+      {
+        title: "東京酒店送機到成田或羽田",
+        description:
+          "根據航班時間和路況建議出發時間，適合從東京酒店、民宿或公寓前往機場。",
+        href: "/narita-airport-transfer"
+      },
+      {
+        title: "東京酒店到酒店移動",
+        description:
+          "適合新宿、銀座、澀谷、東京站、品川等區域之間的酒店換酒店、民宿、公寓點對點移動。",
         href: "/tokyo-private-driver"
       },
       {
-        title: "东京站、品川站新干线接送",
+        title: "東京站、品川站新幹線接送",
         description:
-          "适合搭乘新干线抵达东京站、品川站后的酒店接送，也可安排从东京酒店前往新干线车站。",
+          "適合搭乘新幹線抵達東京站、品川站後的酒店接送，也可安排從東京酒店前往新幹線車站。",
         href: "/tokyo-private-driver"
       },
       {
-        title: "Toyota Alphard 机场接送",
+        title: "Toyota Alphard 機場接送",
         description:
-          "适合情侣、亲子家庭和携带多件行李的旅客，也可根据人数和行李安排海狮等车型。",
+          "適合情侶、親子家庭和攜帶多件行李的旅客，也可根據人數和行李安排海獅等車型。",
         href: "/tokyo-private-driver"
       },
       {
-        title: "富士山一日游英文司机",
+        title: "富士山一日遊英文司機",
         description:
-          "东京酒店出发的富士山一日游包车，可安排中文或英文沟通，适合家庭、朋友和多人团队。",
+          "東京酒店出發的富士山一日遊包車，可安排中文或英文溝通，適合家庭、朋友和多人團隊。",
         href: "/tokyo-private-driver"
       }
     ],
-    faqTitle: "东京机场接送常见问题",
-    faqSubtitle: "帮助旅客在成田机场、羽田机场和东京酒店之间预约私人专车。",
+    faqTitle: "東京機場接送常見問題",
+    faqSubtitle: "幫助旅客在成田機場、羽田機場和東京酒店之間預約私人專車。",
     faqs: [
       {
-        question: "成田机场和羽田机场都可以接送吗？",
+        question: "成田機場和羽田機場都可以接送嗎？",
         answer:
-          "可以。我们提供成田机场、羽田机场、东京酒店、民宿、公寓以及东京迪士尼周边等目的地的私人接送。"
+          "可以。我們提供成田機場、羽田機場、東京酒店、民宿、公寓以及東京迪士尼周邊等目的地的私人接送。"
       },
       {
-        question: "怎样获得更准确的报价？",
+        question: "怎樣獲得更準確的報價？",
         answer:
-          "先在地图报价工具里选择机场和目的地，再通过 WhatsApp 发送航班号、落地时间、人数和行李数量。"
+          "先在地圖報價工具裡選擇機場和目的地，再透過 WhatsApp 發送航班號、落地時間、人數和行李數量。"
       },
       {
-        question: "可以举牌接机吗？",
+        question: "可以舉牌接機嗎？",
         answer:
-          "可以。到达口举牌接机是可选服务，需要时另加 2,000 日元，请在确认订单前说明。"
+          "可以。到達口舉牌接機是可選服務，需要時另加 2,000 日元，請在確認訂單前說明。"
       },
       {
-        question: "免费等待时间多久？",
+        question: "免費等待時間多久？",
         answer:
-          "接机从航班实际落地时间起免费等待90分钟，送机从预约时间起免费等待30分钟。"
+          "接機從航班實際落地時間起免費等待90分鐘，送機從預約時間起免費等待30分鐘。"
       },
       {
-        question: "可以安排哪些车型？",
+        question: "可以安排哪些車型？",
         answer:
-          "常用车型包括轿车、Toyota Alphard 和 Toyota Hiace。我们会根据人数、行李、儿童座椅和舒适度需求推荐车型。"
+          "常用車型包括轎車、Toyota Alphard 和 Toyota Hiace。我們會根據人數、行李、兒童座椅和舒適度需求推薦車型。"
       },
       {
-        question: "可以预约酒店移动、新干线接送或富士山一日游吗？",
+        question: "可以預約酒店移動、新幹線接送或富士山一日遊嗎？",
         answer:
-          "可以。除了成田机场和羽田机场接送，也可以安排东京酒店到酒店移动、东京站或品川站新干线接送，以及富士山一日游包车，可中文和英文沟通。"
+          "可以。除了成田機場和羽田機場接送，也可以安排東京酒店到酒店移動、東京站或品川站新幹線接送，以及富士山一日遊包車，可中文和英文溝通。"
       }
     ]
   }
@@ -393,55 +429,55 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
   },
   zh: {
     narita: {
-      title: "成田机场接送指南",
+      title: "成田機場接送指南",
       subtitle:
-        "成田机场距离东京市区较远，合理报价需要考虑高速费、路况、人数、行李，以及是接机还是酒店送机。",
-      destinationsTitle: "常见成田机场接送目的地",
+        "成田機場距離東京市區較遠，合理報價需要考慮高速費、路況、人數、行李，以及是接機還是酒店送機。",
+      destinationsTitle: "常見成田機場接送目的地",
       destinations: [
         {
-          name: "成田到新宿或涩谷",
-          description: "适合入住热门酒店、车站周边和市区观光区域的旅客。"
+          name: "成田到新宿或澀谷",
+          description: "適合入住熱門酒店、車站周邊和市區觀光區域的旅客。"
         },
         {
-          name: "成田到银座、东京站或日本桥",
-          description: "适合商务客人和入住东京中心区域酒店的旅客。"
+          name: "成田到銀座、東京站或日本橋",
+          description: "適合商務客人和入住東京中心區域酒店的旅客。"
         },
         {
-          name: "成田到品川或东京迪士尼",
-          description: "适合长途飞行后带行李、婴儿车和儿童的家庭。"
+          name: "成田到品川或東京迪士尼",
+          description: "適合長途飛行後帶行李、嬰兒車和兒童的家庭。"
         }
       ],
-      tipsTitle: "预约前建议提供",
+      tipsTitle: "預約前建議提供",
       tips: [
-        "发送航班号，司机可以查看实际落地时间。",
-        "提前说明是否需要到达口举牌接机。",
-        "告诉我们行李数量，方便确认 Alphard 或 Hiace 是否更合适。"
+        "發送航班號，司機可以查看實際落地時間。",
+        "提前說明是否需要到達口舉牌接機。",
+        "告訴我們行李數量，方便確認 Alphard 或 Hiace 是否更合適。"
       ]
     },
     haneda: {
-      title: "羽田机场接送指南",
+      title: "羽田機場接送指南",
       subtitle:
-        "羽田机场离东京市区更近，接送通常更快。深夜到达、儿童座椅和大件行李仍会影响车型选择。",
-      destinationsTitle: "常见羽田机场接送目的地",
+        "羽田機場離東京市區更近，接送通常更快。深夜到達、兒童座椅和大件行李仍會影響車型選擇。",
+      destinationsTitle: "常見羽田機場接送目的地",
       destinations: [
         {
-          name: "羽田到银座、筑地或东京站",
-          description: "适合东京中心区域酒店和商务出行的短途私人接送。"
+          name: "羽田到銀座、築地或東京站",
+          description: "適合東京中心區域酒店和商務出行的短途私人接送。"
         },
         {
-          name: "羽田到新宿或涩谷",
-          description: "适合热门酒店、公寓和民宿区域的点对点接送。"
+          name: "羽田到新宿或澀谷",
+          description: "適合熱門酒店、公寓和民宿區域的點對點接送。"
         },
         {
-          name: "羽田到品川或横滨",
-          description: "适合早班机、邮轮衔接和家庭出行。"
+          name: "羽田到品川或橫濱",
+          description: "適合早班機、郵輪銜接和家庭出行。"
         }
       ],
-      tipsTitle: "预约前建议提供",
+      tipsTitle: "預約前建議提供",
       tips: [
-        "接机等待时间从航班实际落地开始计算。",
-        "深夜或清晨用车建议提前确认司机排班。",
-        "确认订单前请提供托运行李和随身行李数量。"
+        "接機等待時間從航班實際落地開始計算。",
+        "深夜或清晨用車建議提前確認司機排班。",
+        "確認訂單前請提供托運行李和隨身行李數量。"
       ]
     }
   }

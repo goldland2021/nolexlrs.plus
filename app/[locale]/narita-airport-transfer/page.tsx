@@ -40,6 +40,8 @@ export default async function NaritaPage({ params }: { params: LocaleParams }) {
         imageSrc="/images/narita-airport.jpg"
         imageAlt="Narita airport transfer to Tokyo"
         ctaLabel={dict.hero.cta}
+        locale={locale}
+        citySlug="tokyo"
       />
       <section className="section">
         <div className="container mx-auto px-4">

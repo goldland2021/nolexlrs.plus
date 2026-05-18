@@ -15,7 +15,7 @@ export default function Services({
 }: ServicesProps) {
   const waitingNote =
     locale === "zh"
-      ? "接机免费等待90分钟，送机免费等待30分钟"
+      ? "接機免費等待90分鐘，送機免費等待30分鐘"
       : locale === "ja"
         ? "お迎え90分無料待機、お送り30分無料待機"
         : "90 min free waiting for pickup, 30 min for drop-off";

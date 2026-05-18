@@ -21,10 +21,10 @@ const footerCopy: Record<Locale, { tagline: string; serviceNote: string; reply: 
     links: ["成田空港送迎", "羽田空港送迎", "東京プライベートドライバー"]
   },
   zh: {
-    tagline: "东京私人机场接送服务。",
-    serviceNote: "24小时服务，可安排英文司机。",
-    reply: "WhatsApp 快速回复。",
-    links: ["成田机场接送", "羽田机场接送", "东京包车司机"]
+    tagline: "東京私人機場接送服務。",
+    serviceNote: "24小時服務，可安排英文司機。",
+    reply: "WhatsApp 快速回復。",
+    links: ["成田機場接送", "羽田機場接送", "東京包車司機"]
   }
 };
 

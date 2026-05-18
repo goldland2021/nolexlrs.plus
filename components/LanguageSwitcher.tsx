@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { locales } from "@/lib/i18n";
 
 const labels: Record<string, string> = {
   en: "EN",
   ja: "JP",
-  zh: "中"
+  zh: "繁"
 };
 
 export default function LanguageSwitcher() {
@@ -23,7 +22,7 @@ export default function LanguageSwitcher() {
         const label = labels[locale] ?? locale.toUpperCase();
 
         return (
-          <Link
+          <a
             key={locale}
             href={href}
             className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition ${
@@ -35,7 +34,7 @@ export default function LanguageSwitcher() {
             aria-current={locale === currentLocale ? "page" : undefined}
           >
             {label}
-          </Link>
+          </a>
         );
       })}
     </div>

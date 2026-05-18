@@ -8,13 +8,13 @@ export const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Tokyo Airport Tran
 export const localeNames: Record<Locale, string> = {
   en: "en_US",
   ja: "ja_JP",
-  zh: "zh_CN"
+  zh: "zh_TW"
 };
 
 export const htmlLanguages: Record<Locale, string> = {
   en: "en",
   ja: "ja",
-  zh: "zh-CN"
+  zh: "zh-TW"
 };
 
 export function localizedPath(locale: Locale, path = "") {

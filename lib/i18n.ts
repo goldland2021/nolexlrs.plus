@@ -113,9 +113,9 @@ const commonVehicles = [
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      homeTitle: "Tokyo Airport Transfer | Narita & Haneda Private Car",
+      homeTitle: "Tokyo Airport Transfer | Narita & Haneda to Hotels, Disney & Fuji",
       homeDescription:
-        "Book a private Tokyo airport transfer from Narita or Haneda, Tokyo hotel transfers, and Mt Fuji day trips with English-speaking drivers. Fixed yen quotes, Toyota Alphard and Hiace options, 24/7 WhatsApp support.",
+        "Private Tokyo airport transfer from Narita or Haneda to Shinjuku, Ginza, Tokyo Station, Shinagawa, Disney, cruise terminals, and Mt Fuji day trips. English driver and WhatsApp quote.",
       keywords: [
         "Tokyo airport transfer",
         "Narita airport transfer",
@@ -136,7 +136,13 @@ const dictionaries: Record<Locale, Dictionary> = {
         "Toyota Alphard airport transfer Tokyo",
         "Tokyo airport transfer English driver",
         "Narita Airport to Shinjuku transfer",
+        "Narita Airport to Tokyo Disney transfer",
         "Haneda Airport to Ginza transfer",
+        "Haneda Airport to Tokyo Station transfer",
+        "Haneda Airport to Shinagawa transfer",
+        "Tokyo cruise terminal transfer",
+        "Tokyo Disney Resort airport transfer",
+        "Tokyo to Mt Fuji private driver",
         "Tokyo hotel to Narita airport"
       ],
       naritaTitle: "Narita Airport Transfer to Tokyo | Private Car Pickup",
@@ -245,9 +251,9 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   ja: {
     meta: {
-      homeTitle: "東京空港送迎 | 成田・羽田のプライベート送迎",
+      homeTitle: "東京空港送迎 | 成田・羽田からホテル・ディズニー・富士山へ",
       homeDescription:
-        "成田空港・羽田空港から東京市内ホテルまでの空港送迎、ホテル間移動、富士山日帰り観光に対応。固定料金、英語対応ドライバー、WhatsAppで簡単予約。",
+        "成田空港・羽田空港から新宿、銀座、東京駅、品川、東京ディズニー、クルーズターミナル、富士山日帰りまで対応するプライベート送迎。",
       keywords: [
         "東京 空港送迎",
         "成田空港 送迎",
@@ -264,6 +270,12 @@ const dictionaries: Record<Locale, Dictionary> = {
         "富士山 日帰り",
         "富士山 日帰り 英語ドライバー",
         "成田 東京 ハイヤー",
+        "成田空港 新宿 送迎",
+        "成田空港 ディズニー 送迎",
+        "羽田空港 銀座 送迎",
+        "羽田空港 品川 送迎",
+        "東京 クルーズターミナル 送迎",
+        "東京ディズニー 空港送迎",
         "羽田 東京 ハイヤー"
       ],
       naritaTitle: "成田空港から東京への送迎 | プライベート空港ピックアップ",
@@ -372,100 +384,107 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   zh: {
     meta: {
-      homeTitle: "东京机场接送 | 成田与羽田机场中文包车",
+      homeTitle: "東京機場接送 | 成田羽田到酒店迪士尼富士山包車",
       homeDescription:
-        "东京机场接送服务，覆盖成田机场、羽田机场、东京酒店移动、新干线站接送和富士山一日游。固定报价、WhatsApp 快速联系，可中文和英文沟通。",
+        "東京機場接送服務，覆蓋成田機場、羽田機場到新宿、銀座、東京站、品川、迪士尼、郵輪碼頭和富士山一日遊。固定報價，可中文英文溝通。",
       keywords: [
-        "东京机场接送",
-        "东京接机",
-        "成田机场接送",
-        "羽田机场接送",
-        "东京包车",
-        "东京中文司机",
-        "东京英文司机",
-        "东京酒店移动",
-        "东京酒店接送",
-        "东京酒店换酒店",
-        "东京酒店到酒店接送",
-        "东京新干线接送",
-        "东京站接送",
+        "東京機場接送",
+        "東京接機",
+        "成田機場接送",
+        "羽田機場接送",
+        "東京包車",
+        "東京中文司機",
+        "東京英文司機",
+        "東京酒店移動",
+        "東京酒店接送",
+        "東京酒店換酒店",
+        "東京酒店到酒店接送",
+        "東京新幹線接送",
+        "東京站接送",
         "品川站接送",
-        "富士山一日游",
-        "富士山一日游包车",
-        "富士山一日游英文司机",
-        "成田到东京包车",
-        "羽田到东京包车"
+        "富士山一日遊",
+        "富士山一日遊包車",
+        "富士山一日遊英文司機",
+        "成田到東京包車",
+        "成田機場到新宿接送",
+        "成田機場到迪士尼接送",
+        "羽田機場到銀座接送",
+        "羽田機場到品川接送",
+        "東京迪士尼機場接送",
+        "東京郵輪碼頭接送",
+        "東京到富士山包車",
+        "羽田到東京包車"
       ],
-      naritaTitle: "成田机场到东京接送 | 东京中文包车接机",
+      naritaTitle: "成田機場到東京接送 | 東京中文包車接機",
       naritaDescription:
-        "成田机场到东京酒店、新宿、涩谷、银座、迪士尼的专车接送服务。固定报价，WhatsApp 快速预约。到达口举牌接机为可选，另加 2,000 日元。",
-      hanedaTitle: "羽田机场到东京接送 | 私人专车接机",
+        "成田機場到東京酒店、新宿、澀谷、銀座、迪士尼的專車接送服務。固定報價，WhatsApp 快速預約。到達口舉牌接機為可選，另加 2,000 日元。",
+      hanedaTitle: "羽田機場到東京接送 | 私人專車接機",
       hanedaDescription:
-        "羽田机场到东京市区酒店的专车接送服务。准时接机、价格透明，可通过 WhatsApp 预约。到达口举牌接机为可选，另加 2,000 日元。",
-      driverTitle: "东京中文包车司机 | 接送机、旅游与小时包车",
+        "羽田機場到東京市區酒店的專車接送服務。準時接機、價格透明，可透過 WhatsApp 預約。到達口舉牌接機為可選，另加 2,000 日元。",
+      driverTitle: "東京中文包車司機 | 接送機、旅遊與小時包車",
       driverDescription:
-        "东京私人包车司机服务，适合机场接送、酒店移动、新干线站接送、市区观光、富士山一日游和小时包车。可中文和英文沟通，WhatsApp 快速联系。"
+        "東京私人包車司機服務，適合機場接送、酒店移動、新幹線站接送、市區觀光、富士山一日遊和小時包車。可中文和英文溝通，WhatsApp 快速聯絡。"
     },
     hero: {
-      title: "东京机场接送",
-      subtitle: "成田机场、羽田机场到东京酒店、民宿、邮轮码头的私人专车接送服务。",
+      title: "東京機場接送",
+      subtitle: "成田機場、羽田機場到東京酒店、民宿、郵輪碼頭的私人專車接送服務。",
       features: [
-        "24小时机场接送",
-        "可中文和英文沟通",
-        "到达口举牌接机为可选（+2,000 日元）",
-        "固定报价，价格透明",
-        "接机免费等待90分钟，从航班落地算起",
-        "送机免费等待30分钟"
+        "24小時機場接送",
+        "可中文和英文溝通",
+        "到達口舉牌接機為可選（+2,000 日元）",
+        "固定報價，價格透明",
+        "接機免費等待90分鐘，從航班落地算起",
+        "送機免費等待30分鐘"
       ],
-      cta: "WhatsApp 获取报价",
-      imageAlt: "东京机场接送私人专车"
+      cta: "WhatsApp 獲取報價",
+      imageAlt: "東京機場接送私人專車"
     },
     services: {
-      title: "机场接送服务",
-      subtitle: "提供东京、成田机场、羽田机场之间的专车接送。",
+      title: "機場接送服務",
+      subtitle: "提供東京、成田機場、羽田機場之間的專車接送。",
       items: [
-        "成田机场到东京酒店",
-        "羽田机场到东京酒店",
-        "东京酒店到成田机场",
-        "东京酒店到羽田机场",
-        "东京酒店到酒店移动",
-        "东京站、品川站新干线接送"
+        "成田機場到東京酒店",
+        "羽田機場到東京酒店",
+        "東京酒店到成田機場",
+        "東京酒店到羽田機場",
+        "東京酒店到酒店移動",
+        "東京站、品川站新幹線接送"
       ],
-      itemNote: "点对点直达，准时省心。"
+      itemNote: "點對點直達，準時省心。"
     },
     pricing: {
-      title: "价格参考",
-      subtitle: "固定透明报价，无隐藏费用。",
+      title: "價格參考",
+      subtitle: "固定透明報價，無隱藏費用。",
       items: [
-        { route: "成田到东京", price: "$120+" },
-        { route: "羽田到东京", price: "$80+" }
+        { route: "成田到東京", price: "$120+" },
+        { route: "羽田到東京", price: "$80+" }
       ],
-      itemNote: "到达口举牌接机为可选服务，需要时另加 2,000 日元（不含在上述参考价内）。"
+      itemNote: "到達口舉牌接機為可選服務，需要時另加 2,000 日元（不含在上述參考價內）。"
     },
     vehicles: {
-      title: "车型",
-      subtitle: "适合个人、家庭和多人团队出行。",
+      title: "車型",
+      subtitle: "適合個人、家庭和多人團隊出行。",
       items: commonVehicles
     },
     reviews: {
-      title: "用户评价",
-      subtitle: "来自海外旅客的真实好评。",
+      title: "用戶評價",
+      subtitle: "來自海外旅客的真實好評。",
       items: [
-        "司机举着姓名牌在出口等待。",
-        "从机场到酒店非常顺利。",
-        "车辆干净，司机很专业。"
+        "司機舉著姓名牌在出口等待。",
+        "從機場到酒店非常順利。",
+        "車輛乾淨，司機很專業。"
       ]
     },
     booking: {
-      title: "预约接送",
+      title: "預約接送",
       subtitle:
-        "发送航班、落地时间、酒店和乘客人数信息，我们会通过 WhatsApp 快速报价。如需到达口举牌接机，为可选服务另加 2,000 日元，请在留言中说明。",
+        "發送航班、落地時間、酒店和乘客人數資訊，我們會透過 WhatsApp 快速報價。如需到達口舉牌接機，為可選服務另加 2,000 日元，請在留言中說明。",
       fields: {
-        airport: "机场",
-        flight: "航班号",
-        landingTime: "落地时间",
+        airport: "機場",
+        flight: "航班號",
+        landingTime: "落地時間",
         hotel: "酒店或地址",
-        passengers: "乘客人数",
+        passengers: "乘客人數",
         luggage: "行李"
       },
       placeholders: {
@@ -474,30 +493,30 @@ const dictionaries: Record<Locale, Dictionary> = {
         landingTime: "5月3日 16:30",
         hotel: "新宿酒店",
         passengers: "2人",
-        luggage: "3个行李箱"
+        luggage: "3個行李箱"
       },
-      button: "通过 WhatsApp 发送",
-      messageHeader: "您好，我需要东京机场接送报价。"
+      button: "透過 WhatsApp 發送",
+      messageHeader: "您好，我需要東京機場接送報價。"
     },
     narita: {
-      heroTitle: "成田机场到东京接送",
+      heroTitle: "成田機場到東京接送",
       heroSubtitle:
-        "成田机场私人接机，固定报价，适合家庭、商务和多人行李。到达口举牌接机为可选，另加 2,000 日元。",
-      sectionTitle: "成田机场接送",
-      travelTime: "成田机场到东京市区通常需要60到90分钟，具体时间取决于路况。"
+        "成田機場私人接機，固定報價，適合家庭、商務和多人行李。到達口舉牌接機為可選，另加 2,000 日元。",
+      sectionTitle: "成田機場接送",
+      travelTime: "成田機場到東京市區通常需要60到90分鐘，具體時間取決於路況。"
     },
     haneda: {
-      heroTitle: "羽田机场到东京接送",
+      heroTitle: "羽田機場到東京接送",
       heroSubtitle:
-        "羽田机场到东京酒店的快速专车接送，司机准时等候，WhatsApp 即时沟通。到达口举牌接机为可选，另加 2,000 日元。",
-      sectionTitle: "羽田机场接送",
-      travelTime: "羽田机场到东京市区通常需要30到60分钟，具体时间取决于路况。"
+        "羽田機場到東京酒店的快速專車接送，司機準時等候，WhatsApp 即時溝通。到達口舉牌接機為可選，另加 2,000 日元。",
+      sectionTitle: "羽田機場接送",
+      travelTime: "羽田機場到東京市區通常需要30到60分鐘，具體時間取決於路況。"
     },
     driver: {
-      heroTitle: "东京中文包车司机",
-      heroSubtitle: "适合机场接送、酒店移动、新干线站接送、东京市区观光、富士山一日游和小时包车，可中文和英文沟通。",
-      servicesTitle: "私人司机服务",
-      services: ["东京市区观光", "富士山一日游", "酒店移动", "新干线站接送", "小时包车"]
+      heroTitle: "東京中文包車司機",
+      heroSubtitle: "適合機場接送、酒店移動、新幹線站接送、東京市區觀光、富士山一日遊和小時包車，可中文和英文溝通。",
+      servicesTitle: "私人司機服務",
+      services: ["東京市區觀光", "富士山一日遊", "酒店移動", "新幹線站接送", "小時包車"]
     }
   }
 };

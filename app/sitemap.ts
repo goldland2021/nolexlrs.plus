@@ -1,8 +1,15 @@
 import type { MetadataRoute } from "next";
+import { cityPageSlugs, cityPath } from "@/lib/city-routes";
 import { locales } from "@/lib/i18n";
 import { buildLanguageAlternates, localizedPath, siteUrl } from "@/lib/seo";
 
-const routes = ["", "/narita-airport-transfer", "/haneda-airport-transfer", "/tokyo-private-driver"];
+const routes = [
+  "",
+  ...cityPageSlugs.map((slug) => cityPath(slug)),
+  "/narita-airport-transfer",
+  "/haneda-airport-transfer",
+  "/tokyo-private-driver"
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

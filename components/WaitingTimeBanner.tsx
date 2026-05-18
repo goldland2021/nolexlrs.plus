@@ -14,13 +14,13 @@ export default function WaitingTimeBanner({ locale = "en" }: WaitingTimeBannerPr
       note: "Transparent and fair service terms"
     },
     zh: {
-      title: "免费等候时间政策",
-      pickup: "机场接机",
-      pickupTime: "90分钟免费等候",
-      pickupNote: "从飞机降落时间算起",
-      dropoff: "机场送机",
-      dropoffTime: "30分钟免费等候",
-      note: "透明公平的服务条款"
+      title: "免費等候時間政策",
+      pickup: "機場接機",
+      pickupTime: "90分鐘免費等候",
+      pickupNote: "從飛機降落時間算起",
+      dropoff: "機場送機",
+      dropoffTime: "30分鐘免費等候",
+      note: "透明公平的服務條款"
     },
     ja: {
       title: "無料待機時間ポリシー",

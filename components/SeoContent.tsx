@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
-import { homeSeoContent } from "@/lib/seo-content";
+import { homeSeoContent, type HomeSeoContent } from "@/lib/seo-content";
 import { localizedPath } from "@/lib/seo";
 
 type SeoContentProps = {
   locale: Locale;
+  content?: HomeSeoContent;
 };
 
-export default function SeoContent({ locale }: SeoContentProps) {
-  const content = homeSeoContent[locale] ?? homeSeoContent.en;
+export default function SeoContent({ locale, content: customContent }: SeoContentProps) {
+  const content = customContent ?? homeSeoContent[locale] ?? homeSeoContent.en;
 
   return (
     <section className="section bg-white">

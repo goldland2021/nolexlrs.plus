@@ -40,6 +40,8 @@ export default async function PrivateDriverPage({ params }: { params: LocalePara
         imageSrc="/images/tokyo-driver.jpg"
         imageAlt="Tokyo private driver service"
         ctaLabel={dict.hero.cta}
+        locale={locale}
+        citySlug="tokyo"
       />
       <Services
         title={dict.driver.servicesTitle}
