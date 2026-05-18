@@ -4,7 +4,13 @@ import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
 import AirportTransferGuide from "@/components/AirportTransferGuide";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
-import { breadcrumbHomeName, breadcrumbJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
+import {
+  breadcrumbHomeName,
+  breadcrumbJsonLd,
+  buildPageMetadata,
+  serviceJsonLd,
+  serviceJsonLdProfiles
+} from "@/lib/seo";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -51,7 +57,13 @@ export default async function HanedaPage({ params }: { params: LocaleParams }) {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            serviceJsonLd(locale, dict.haneda.sectionTitle, dict.meta.hanedaDescription, "/haneda-airport-transfer")
+            serviceJsonLd(
+              locale,
+              dict.haneda.sectionTitle,
+              dict.meta.hanedaDescription,
+              "/haneda-airport-transfer",
+              serviceJsonLdProfiles.haneda
+            )
           )
         }}
       />

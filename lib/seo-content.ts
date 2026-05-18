@@ -31,7 +31,7 @@ type AirportGuideContent = {
 
 export const homeSeoContent: Record<Locale, HomeSeoContent> = {
   en: {
-    routesTitle: "Popular Tokyo Airport Transfer Routes",
+    routesTitle: "Popular Tokyo Airport Routes",
     routesSubtitle:
       "Private airport pickup, Tokyo hotel transfers, Shinkansen station pickup, and Mt Fuji day trips for hotels, homes, apartments, and family travel. Quotes are based on route distance, vehicle size, luggage, and arrival time.",
     routes: [
@@ -90,7 +90,7 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/tokyo-private-driver"
       }
     ],
-    faqTitle: "Tokyo Airport Transfer FAQ",
+    faqTitle: "JP Airport Transfer FAQ",
     faqSubtitle:
       "Clear answers for travelers booking a private car from Narita Airport, Haneda Airport, or Tokyo hotels.",
     faqs: [

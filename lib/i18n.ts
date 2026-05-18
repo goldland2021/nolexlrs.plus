@@ -113,7 +113,7 @@ const commonVehicles = [
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      homeTitle: "Tokyo Airport Transfer | Narita & Haneda to Hotels, Disney & Fuji",
+      homeTitle: "JP Airport Transfer | Narita & Haneda to Hotels, Disney & Fuji",
       homeDescription:
         "Private Tokyo airport transfer from Narita or Haneda to Shinjuku, Ginza, Tokyo Station, Shinagawa, Disney, cruise terminals, and Mt Fuji day trips. English driver and WhatsApp quote.",
       keywords: [
@@ -156,7 +156,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "Hire a Tokyo private driver for airport transfers, hotel transfers, Shinkansen station pickup, city tours, Mt Fuji day trips, hourly charters, Toyota Alphard rides, and WhatsApp booking."
     },
     hero: {
-      title: "Tokyo Airport Transfer",
+      title: "JP Airport Transfer",
       subtitle: "Private airport pickup from Narita Airport and Haneda Airport to Tokyo hotels, homes, and cruise terminals.",
       features: [
         "24 hour airport transfer service",

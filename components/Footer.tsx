@@ -42,7 +42,7 @@ export default function Footer({ locale = "en" }: FooterProps) {
       <div className="container mx-auto px-4 py-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="text-lg font-semibold">Tokyo Airport Transfer</p>
+            <p className="text-lg font-semibold">JP Airport Transfer</p>
             <p className="text-sm text-ink/60">{copy.tagline}</p>
             <nav aria-label="Footer" className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
               {footerLinks.map((href, index) => (

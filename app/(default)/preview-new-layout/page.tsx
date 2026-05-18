@@ -69,7 +69,7 @@ export default function PreviewNewLayoutPage() {
     },
     en: {
       hero: {
-        title: "Tokyo Airport Transfer",
+        title: "JP Airport Transfer",
         subtitle: "Private airport pickup from Narita Airport and Haneda Airport.",
         features: [
           "24 hour service",

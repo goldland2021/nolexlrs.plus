@@ -3,7 +3,7 @@ import { locales, type Locale } from "./i18n";
 import { whatsAppDisplayPhone, whatsAppPhoneNumber } from "./whatsapp";
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.jpairport.com").replace(/\/$/, "");
-export const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Tokyo Airport Transfer";
+export const siteName = "JP Airport Transfer";
 
 export const localeNames: Record<Locale, string> = {
   en: "en_US",
@@ -108,7 +108,231 @@ export function buildPageMetadata({
   };
 }
 
-export function serviceJsonLd(locale: Locale, title: string, description: string, path?: string) {
+export type ServiceJsonLdProfile = {
+  areaServed: string[];
+  serviceType: string[];
+  offerCatalogName: string;
+  offers: string[];
+};
+
+export const serviceJsonLdProfiles = {
+  tokyo: {
+    areaServed: [
+      "Tokyo",
+      "Narita Airport",
+      "Haneda Airport",
+      "Shinjuku",
+      "Shibuya",
+      "Ginza",
+      "Shinagawa",
+      "Asakusa",
+      "Tokyo Disney Resort"
+    ],
+    serviceType: [
+      "Tokyo airport transfer",
+      "Narita Airport transfer",
+      "Haneda Airport transfer",
+      "Tokyo private driver",
+      "Toyota Alphard airport pickup"
+    ],
+    offerCatalogName: "Tokyo airport transfer services",
+    offers: [
+      "Narita Airport to Tokyo private transfer",
+      "Haneda Airport to Tokyo private transfer",
+      "Tokyo hotel to airport drop-off"
+    ]
+  },
+  narita: {
+    areaServed: [
+      "Narita Airport",
+      "Tokyo",
+      "Shinjuku",
+      "Shibuya",
+      "Ginza",
+      "Shinagawa",
+      "Asakusa",
+      "Tokyo Disney Resort",
+      "Chiba"
+    ],
+    serviceType: [
+      "Narita Airport transfer",
+      "Narita Airport pickup",
+      "Narita to Tokyo private car",
+      "Narita Airport to hotel transfer"
+    ],
+    offerCatalogName: "Narita Airport transfer services",
+    offers: [
+      "Narita Airport to Tokyo hotel private transfer",
+      "Narita Airport to Shinjuku private car",
+      "Narita Airport to Tokyo Disney Resort transfer"
+    ]
+  },
+  haneda: {
+    areaServed: [
+      "Haneda Airport",
+      "Tokyo",
+      "Ginza",
+      "Shinagawa",
+      "Shinjuku",
+      "Shibuya",
+      "Tokyo Station",
+      "Tokyo Cruise Terminal",
+      "Yokohama"
+    ],
+    serviceType: [
+      "Haneda Airport transfer",
+      "Haneda Airport pickup",
+      "Haneda to Tokyo private car",
+      "Haneda Airport to hotel transfer"
+    ],
+    offerCatalogName: "Haneda Airport transfer services",
+    offers: [
+      "Haneda Airport to Tokyo hotel private transfer",
+      "Haneda Airport to Ginza private car",
+      "Haneda Airport to Shinagawa transfer"
+    ]
+  },
+  tokyoPrivateDriver: {
+    areaServed: [
+      "Tokyo",
+      "Shinjuku",
+      "Shibuya",
+      "Ginza",
+      "Tokyo Station",
+      "Shinagawa",
+      "Mt Fuji",
+      "Hakone",
+      "Kamakura",
+      "Yokohama"
+    ],
+    serviceType: [
+      "Tokyo private driver",
+      "Tokyo hourly charter",
+      "Tokyo hotel transfer",
+      "Mt Fuji private day trip",
+      "Shinkansen station transfer"
+    ],
+    offerCatalogName: "Tokyo private driver services",
+    offers: [
+      "Tokyo hotel to hotel private transfer",
+      "Tokyo Station or Shinagawa Shinkansen pickup",
+      "Mt Fuji day trip with English driver"
+    ]
+  },
+  osaka: {
+    areaServed: [
+      "Osaka",
+      "Kansai International Airport",
+      "Osaka Itami Airport",
+      "Namba",
+      "Umeda",
+      "Kyoto",
+      "Nara",
+      "Kobe",
+      "Universal Studios Japan"
+    ],
+    serviceType: [
+      "Osaka airport transfer",
+      "Kansai Airport transfer",
+      "Itami Airport transfer",
+      "Osaka to Kyoto private car",
+      "Osaka private driver"
+    ],
+    offerCatalogName: "Osaka airport transfer services",
+    offers: [
+      "Kansai Airport to Osaka private transfer",
+      "Kansai Airport to Kyoto private car",
+      "Osaka hotel to Universal Studios Japan transfer"
+    ]
+  },
+  hokkaido: {
+    areaServed: [
+      "Hokkaido",
+      "New Chitose Airport",
+      "Sapporo",
+      "Niseko",
+      "Otaru",
+      "Furano",
+      "Biei",
+      "Noboribetsu",
+      "Lake Toya"
+    ],
+    serviceType: [
+      "Hokkaido airport transfer",
+      "New Chitose Airport transfer",
+      "Sapporo private driver",
+      "Niseko ski transfer",
+      "Hokkaido sightseeing charter"
+    ],
+    offerCatalogName: "Hokkaido airport transfer services",
+    offers: [
+      "New Chitose Airport to Sapporo transfer",
+      "New Chitose Airport to Niseko ski transfer",
+      "Sapporo to Furano and Biei private car"
+    ]
+  },
+  fukuoka: {
+    areaServed: [
+      "Fukuoka",
+      "Fukuoka Airport",
+      "Hakata",
+      "Tenjin",
+      "Hakata Port",
+      "Fukuoka Cruise Terminal",
+      "Dazaifu",
+      "Itoshima",
+      "Yufuin",
+      "Beppu"
+    ],
+    serviceType: [
+      "Fukuoka airport transfer",
+      "Fukuoka Airport pickup",
+      "Fukuoka cruise terminal transfer",
+      "Fukuoka private driver",
+      "Kyushu private car"
+    ],
+    offerCatalogName: "Fukuoka airport transfer services",
+    offers: [
+      "Fukuoka Airport to Hakata transfer",
+      "Fukuoka Airport to Tenjin private car",
+      "Fukuoka cruise terminal transfer"
+    ]
+  },
+  okinawa: {
+    areaServed: [
+      "Okinawa",
+      "Naha Airport",
+      "Naha",
+      "Kokusai Street",
+      "Chatan",
+      "American Village",
+      "Onna Village",
+      "Motobu",
+      "Churaumi Aquarium"
+    ],
+    serviceType: [
+      "Okinawa airport transfer",
+      "Naha Airport transfer",
+      "Okinawa private driver",
+      "Okinawa hotel transfer",
+      "Okinawa sightseeing charter"
+    ],
+    offerCatalogName: "Okinawa airport transfer services",
+    offers: [
+      "Naha Airport to Naha hotel transfer",
+      "Naha Airport to Onna Village private car",
+      "Okinawa Churaumi Aquarium private driver"
+    ]
+  }
+} satisfies Record<string, ServiceJsonLdProfile>;
+
+export function serviceJsonLd(
+  locale: Locale,
+  title: string,
+  description: string,
+  path?: string,
+  profile: ServiceJsonLdProfile = serviceJsonLdProfiles.tokyo
+) {
   const currentUrl = path ? `${siteUrl}${localizedPath(locale, path)}` : `${siteUrl}${localizedPath(locale)}`;
 
   return {
@@ -142,7 +366,7 @@ export function serviceJsonLd(locale: Locale, title: string, description: string
       },
       {
         "@type": "TaxiService",
-        "@id": `${siteUrl}/#airport-transfer-service`,
+        "@id": `${currentUrl}#airport-transfer-service`,
         name: title,
         url: currentUrl,
         image: `${siteUrl}/images/tokyo-airport-transfer.jpg`,
@@ -150,23 +374,9 @@ export function serviceJsonLd(locale: Locale, title: string, description: string
         provider: {
           "@id": `${siteUrl}/#organization`
         },
-        areaServed: [
-          "Tokyo",
-          "Narita Airport",
-          "Haneda Airport",
-          "Shinjuku",
-          "Shibuya",
-          "Ginza",
-          "Shinagawa",
-          "Asakusa",
-          "Tokyo Disney Resort"
-        ],
-        serviceType: [
-          "Narita Airport transfer",
-          "Haneda Airport transfer",
-          "Tokyo private driver",
-          "Toyota Alphard airport pickup"
-        ],
+        areaServed: profile.areaServed,
+        serviceType: profile.serviceType,
+        priceRange: "¥¥",
         availableLanguage: ["English", "Chinese", "Japanese"],
         availableChannel: {
           "@type": "ServiceChannel",
@@ -178,30 +388,15 @@ export function serviceJsonLd(locale: Locale, title: string, description: string
         },
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Tokyo airport transfer services",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Narita Airport to Tokyo private transfer"
-              }
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Haneda Airport to Tokyo private transfer"
-              }
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Tokyo hotel to airport drop-off"
-              }
+          name: profile.offerCatalogName,
+          itemListElement: profile.offers.map((offerName) => ({
+            "@type": "Offer",
+            priceCurrency: "JPY",
+            itemOffered: {
+              "@type": "Service",
+              name: offerName
             }
-          ]
+          }))
         }
       }
     ]
@@ -234,9 +429,9 @@ export type BreadcrumbJsonLdItem = {
 };
 
 const breadcrumbHomeNames: Record<Locale, string> = {
-  en: "Japan Airport Transfer",
-  ja: "日本空港送迎",
-  zh: "日本機場接送"
+  en: "JP Airport Transfer",
+  ja: "JP Airport Transfer",
+  zh: "JP Airport Transfer"
 };
 
 export function breadcrumbHomeName(locale: Locale) {

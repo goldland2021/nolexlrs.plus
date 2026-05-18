@@ -4,7 +4,13 @@ import Services from "@/components/Services";
 import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
-import { breadcrumbHomeName, breadcrumbJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
+import {
+  breadcrumbHomeName,
+  breadcrumbJsonLd,
+  buildPageMetadata,
+  serviceJsonLd,
+  serviceJsonLdProfiles
+} from "@/lib/seo";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -51,7 +57,13 @@ export default async function PrivateDriverPage({ params }: { params: LocalePara
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            serviceJsonLd(locale, dict.driver.heroTitle, dict.meta.driverDescription, "/tokyo-private-driver")
+            serviceJsonLd(
+              locale,
+              dict.driver.heroTitle,
+              dict.meta.driverDescription,
+              "/tokyo-private-driver",
+              serviceJsonLdProfiles.tokyoPrivateDriver
+            )
           )
         }}
       />
