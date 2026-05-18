@@ -23,6 +23,28 @@ export default function Vehicles({
   vehicles
 }: VehiclesProps) {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const galleryImages = selectedVehicle?.galleryImages ?? [];
+  const selectedImage = galleryImages[selectedImageIndex] ?? galleryImages[0];
+
+  function openVehicle(vehicle: Vehicle) {
+    setSelectedVehicle(vehicle);
+    setSelectedImageIndex(0);
+  }
+
+  function closeVehicle() {
+    setSelectedVehicle(null);
+    setSelectedImageIndex(0);
+  }
+
+  function showPreviousImage() {
+    setSelectedImageIndex((index) => (index === 0 ? galleryImages.length - 1 : index - 1));
+  }
+
+  function showNextImage() {
+    setSelectedImageIndex((index) => (index + 1) % galleryImages.length);
+  }
 
   return (
     <section className="section bg-sand">
@@ -36,43 +58,73 @@ export default function Vehicles({
             <VehicleCard
               key={vehicle.name}
               vehicle={vehicle}
-              onOpen={vehicle.galleryImages?.length ? () => setSelectedVehicle(vehicle) : undefined}
+              onOpen={vehicle.galleryImages?.length ? () => openVehicle(vehicle) : undefined}
             />
           ))}
         </div>
       </div>
 
-      {selectedVehicle?.galleryImages?.length ? (
+      {selectedVehicle && selectedImage ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-ink/70 px-4 py-6 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label={selectedVehicle.name}
-          onClick={() => setSelectedVehicle(null)}
+          onClick={closeVehicle}
         >
           <div
-            className="relative w-full max-w-5xl overflow-hidden rounded-lg bg-white shadow-lift"
+            className="relative w-full max-w-4xl overflow-hidden rounded-lg bg-white shadow-lift"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               aria-label="Close"
-              className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-2xl leading-none text-ink shadow-soft transition hover:bg-white"
-              onClick={() => setSelectedVehicle(null)}
+              className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-2xl leading-none text-ink shadow-soft transition hover:bg-white"
+              onClick={closeVehicle}
             >
-              ×
+              &times;
             </button>
-            <div className="grid gap-3 p-3 sm:grid-cols-2">
-              {selectedVehicle.galleryImages.map((image, index) => (
-                <Image
-                  key={image}
-                  src={image}
-                  alt={`${selectedVehicle.name} photo ${index + 1}`}
-                  width={900}
-                  height={650}
-                  className="h-[320px] w-full rounded-lg object-cover sm:h-[520px]"
-                />
-              ))}
+            <div className="relative p-3">
+              <Image
+                src={selectedImage}
+                alt={`${selectedVehicle.name} photo ${selectedImageIndex + 1}`}
+                width={1100}
+                height={760}
+                className="h-[68vh] max-h-[680px] w-full rounded-lg bg-sand object-contain"
+              />
+              {galleryImages.length > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Previous photo"
+                    className="absolute left-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-3xl leading-none text-ink shadow-soft transition hover:bg-white"
+                    onClick={showPreviousImage}
+                  >
+                    &lsaquo;
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Next photo"
+                    className="absolute right-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-3xl leading-none text-ink shadow-soft transition hover:bg-white"
+                    onClick={showNextImage}
+                  >
+                    &rsaquo;
+                  </button>
+                </>
+              ) : null}
+              <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/90 px-3 py-2 shadow-soft">
+                {galleryImages.map((image, index) => (
+                  <button
+                    key={image}
+                    type="button"
+                    aria-label={`Show photo ${index + 1}`}
+                    className={`h-2.5 w-2.5 rounded-full transition ${
+                      index === selectedImageIndex ? "bg-ember" : "bg-clay"
+                    }`}
+                    onClick={() => setSelectedImageIndex(index)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
