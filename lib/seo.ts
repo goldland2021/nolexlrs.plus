@@ -108,8 +108,8 @@ export function buildPageMetadata({
   };
 }
 
-export function serviceJsonLd(locale: Locale, title: string, description: string) {
-  const currentUrl = `${siteUrl}${localizedPath(locale)}`;
+export function serviceJsonLd(locale: Locale, title: string, description: string, path?: string) {
+  const currentUrl = path ? `${siteUrl}${localizedPath(locale, path)}` : `${siteUrl}${localizedPath(locale)}`;
 
   return {
     "@context": "https://schema.org",

@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -38,13 +39,24 @@ export default async function LocaleLayout({
   const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
 
+  // 获取当前请求路径，用于 TaxiService 结构化数据的 url
+  let requestPath = "";
+  try {
+    const h = await headers();
+    requestPath = h.get("x-invoke-path") ?? h.get("next-url") ?? "";
+  } catch {
+    requestPath = "";
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceJsonLd(locale, dict.hero.title, dict.meta.homeDescription))
+          __html: JSON.stringify(
+            serviceJsonLd(locale, dict.hero.title, dict.meta.homeDescription, requestPath)
+          )
         }}
       />
       {children}
