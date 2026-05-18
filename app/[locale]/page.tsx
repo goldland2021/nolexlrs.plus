@@ -4,7 +4,7 @@ import QuoteBookingSection from "@/components/QuoteBookingSection";
 import WaitingTimeBanner from "@/components/WaitingTimeBanner";
 import SeoContent from "@/components/SeoContent";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
-import { breadcrumbJsonLd, faqJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
+import { breadcrumbHomeName, breadcrumbJsonLd, faqJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
 import { homeSeoContent } from "@/lib/seo-content";
 
 type LocaleParams = Promise<{ locale: string }>;
@@ -15,7 +15,7 @@ const pageLabels = {
     quoteTitle: "Book Your Transfer Now",
     quoteCopy: "Fill in your trip details and get an instant quote on WhatsApp.",
     directNote:
-      "Opens in WhatsApp after submission to chat directly with the driver. Optional name-sign meet-and-greet at the arrival gate: +¥2,000—please mention it if you want this service.",
+      "Opens in WhatsApp after submission so you can chat directly with the driver. Optional name-sign meet-and-greet at the arrival gate: +2,000 JPY. Please mention it if you want this service.",
     waitTitle: "Free Waiting Time Policy",
     pickupNote: "Waiting time starts from flight landing for pickup, or scheduled time for drop-off.",
     delayNote: "No worries about flight delays. The driver adjusts based on the actual landing time.",
@@ -29,7 +29,7 @@ const pageLabels = {
   },
   ja: {
     eyebrow: "すぐに見積もり",
-    quoteTitle: "送迎を今すぐ予約",
+    quoteTitle: "今すぐ送迎を予約",
     quoteCopy: "旅程情報を入力すると、WhatsAppですぐに見積もりできます。",
     directNote:
       "送信後、WhatsAppでドライバーと直接やり取りできます。到着ゲートでのネームプレートお迎えはオプション（+2,000円）です。ご希望の場合はメッセージでお知らせください。",
@@ -41,7 +41,7 @@ const pageLabels = {
       ["時間厳守", "ドライバーが早めに到着し、指定場所でお待ちします。"],
       ["明朗料金", "固定料金で、隠れた追加費用はありません。"],
       ["英語対応", "英語対応ドライバーでスムーズに連絡できます。"],
-      ["迅速返信", "WhatsAppで素早く返信、24時間対応します。"]
+      ["迅速な返信", "WhatsAppですばやく返信し、24時間対応します。"]
     ]
   },
   zh: {
@@ -50,7 +50,7 @@ const pageLabels = {
     quoteCopy: "填寫行程資訊，透過 WhatsApp 快速獲取報價。",
     directNote:
       "提交後會打開 WhatsApp，方便直接和司機溝通。到達口舉牌接機為可選服務，需要時另加 2,000 日元，請在溝通時說明。",
-    waitTitle: "免費等待時間政策",
+    waitTitle: "免費等候時間政策",
     pickupNote: "接機等待時間從航班實際落地算起，送機從預約時間算起。",
     delayNote: "航班延誤不用擔心，司機會根據實際落地時間調整接機。",
     promiseTitle: "我們的服務承諾",
@@ -58,7 +58,7 @@ const pageLabels = {
       ["準時到達", "司機會提前到達，在約定地點等待。"],
       ["價格透明", "固定報價，無隱藏費用。"],
       ["英文司機", "專業英文司機，溝通順暢。"],
-      ["即時回覆", "WhatsApp 快速響應，24小時服務。"]
+      ["即時回覆", "WhatsApp 快速回應，24小時服務。"]
     ]
   }
 };
@@ -100,7 +100,7 @@ export default async function HomePage({ params }: { params: LocaleParams }) {
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbJsonLd(locale, [{ name: dict.hero.title }]))
+          __html: JSON.stringify(breadcrumbJsonLd(locale, [{ name: breadcrumbHomeName(locale) }]))
         }}
       />
       <script

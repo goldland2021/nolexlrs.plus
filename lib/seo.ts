@@ -233,6 +233,16 @@ export type BreadcrumbJsonLdItem = {
   path?: string;
 };
 
+const breadcrumbHomeNames: Record<Locale, string> = {
+  en: "Japan Airport Transfer",
+  ja: "日本空港送迎",
+  zh: "日本機場接送"
+};
+
+export function breadcrumbHomeName(locale: Locale) {
+  return breadcrumbHomeNames[locale] ?? breadcrumbHomeNames.en;
+}
+
 export function breadcrumbJsonLd(locale: Locale, items: BreadcrumbJsonLdItem[]) {
   return {
     "@context": "https://schema.org",

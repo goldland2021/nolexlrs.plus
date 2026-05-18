@@ -4,7 +4,7 @@ import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
 import AirportTransferGuide from "@/components/AirportTransferGuide";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
-import { breadcrumbJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
+import { breadcrumbHomeName, breadcrumbJsonLd, buildPageMetadata, serviceJsonLd } from "@/lib/seo";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -40,7 +40,7 @@ export default async function HanedaPage({ params }: { params: LocaleParams }) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd(locale, [
-              { name: dict.hero.title },
+              { name: breadcrumbHomeName(locale) },
               { name: dict.haneda.sectionTitle, path: "/haneda-airport-transfer" }
             ])
           )
