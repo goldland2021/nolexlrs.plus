@@ -42,10 +42,22 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/narita-airport-to-shinjuku"
       },
       {
-        title: "Haneda Airport to central Tokyo",
+        title: "Haneda Airport to Ginza",
         description:
-          "Fast Haneda Airport pickup for Ginza, Tsukiji, Shinagawa, Shinjuku, Shibuya, and Tokyo cruise terminals.",
-        href: "/haneda-airport-transfer"
+          "Fast Haneda Airport pickup for Ginza hotels, Tsukiji, Yurakucho, Nihonbashi, and central Tokyo stays.",
+        href: "/haneda-airport-to-ginza"
+      },
+      {
+        title: "Haneda Airport to Shinjuku",
+        description:
+          "Door-to-door Haneda transfer for Shinjuku Station hotels, Nishi-Shinjuku, Kabukicho, and apartments.",
+        href: "/haneda-airport-to-shinjuku"
+      },
+      {
+        title: "Haneda Airport to Shinagawa",
+        description:
+          "Quick private transfer from Haneda Airport to Shinagawa Station hotels, Takanawa, and Shinkansen connections.",
+        href: "/haneda-airport-to-shinagawa"
       },
       {
         title: "Narita Airport to Tokyo Disney Resort",
@@ -138,10 +150,22 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/narita-airport-to-shinjuku"
       },
       {
-        title: "羽田空港から東京中心部へ",
+        title: "羽田空港から銀座へ",
         description:
-          "銀座、築地、品川、新宿、渋谷、東京のクルーズターミナルへのスムーズな羽田空港送迎です。",
-        href: "/haneda-airport-transfer"
+          "銀座ホテル、築地、有楽町、日本橋、東京中心部へのスムーズな羽田空港送迎です。",
+        href: "/haneda-airport-to-ginza"
+      },
+      {
+        title: "羽田空港から新宿へ",
+        description:
+          "新宿駅周辺、西新宿、歌舞伎町、周辺ホテルへのドアツードア羽田空港送迎です。",
+        href: "/haneda-airport-to-shinjuku"
+      },
+      {
+        title: "羽田空港から品川へ",
+        description:
+          "品川駅周辺ホテル、高輪、新幹線接続に便利な短距離羽田空港送迎です。",
+        href: "/haneda-airport-to-shinagawa"
       },
       {
         title: "成田空港から東京ディズニーリゾートへ",
@@ -233,10 +257,22 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/narita-airport-to-shinjuku"
       },
       {
-        title: "羽田機場到東京市區",
+        title: "羽田機場到銀座",
         description:
-          "適合羽田機場到銀座、築地、品川、新宿、澀谷、東京郵輪碼頭等目的地。",
-        href: "/haneda-airport-transfer"
+          "適合羽田機場到銀座酒店、築地、有樂町、日本橋和東京中心區住宿。",
+        href: "/haneda-airport-to-ginza"
+      },
+      {
+        title: "羽田機場到新宿",
+        description:
+          "羽田機場到新宿站周邊、西新宿、歌舞伎町和附近酒店的點對點私人接送。",
+        href: "/haneda-airport-to-shinjuku"
+      },
+      {
+        title: "羽田機場到品川",
+        description:
+          "羽田機場到品川站周邊酒店、高輪和新幹線轉乘的快速私人接送。",
+        href: "/haneda-airport-to-shinagawa"
       },
       {
         title: "成田機場到東京迪士尼",
@@ -355,16 +391,19 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
       destinationsTitle: "Common Haneda transfer destinations",
       destinations: [
         {
-          name: "Haneda to Ginza, Tsukiji, or Tokyo Station",
-          description: "A short private transfer for central Tokyo hotels and business trips."
+          name: "Haneda to Ginza",
+          description: "A short private transfer for Ginza, Tsukiji, Yurakucho, Nihonbashi, and business trips.",
+          href: "/haneda-airport-to-ginza"
         },
         {
-          name: "Haneda to Shinjuku or Shibuya",
-          description: "Reliable door-to-door pickup for popular hotel and apartment areas."
+          name: "Haneda to Shinjuku",
+          description: "Reliable door-to-door pickup for Shinjuku hotels, apartments, Nishi-Shinjuku, and Kabukicho.",
+          href: "/haneda-airport-to-shinjuku"
         },
         {
-          name: "Haneda to Shinagawa or Yokohama",
-          description: "Useful for early flights, cruise connections, and family travel."
+          name: "Haneda to Shinagawa",
+          description: "Useful for Shinagawa Station hotels, Takanawa, Shinkansen connections, and quick city access.",
+          href: "/haneda-airport-to-shinagawa"
         }
       ],
       tipsTitle: "Before you book",
@@ -411,16 +450,19 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
       destinationsTitle: "よくある羽田空港送迎先",
       destinations: [
         {
-          name: "羽田から銀座・築地・東京駅",
-          description: "東京中心部のホテルやビジネス利用に便利な短距離送迎です。"
+          name: "羽田から銀座",
+          description: "銀座、築地、有楽町、日本橋、東京中心部ホテルに便利な短距離送迎です。",
+          href: "/haneda-airport-to-ginza"
         },
         {
-          name: "羽田から新宿・渋谷",
-          description: "ホテルや民泊エリアまで安心のドアツードア送迎です。"
+          name: "羽田から新宿",
+          description: "新宿ホテル、民泊、西新宿、歌舞伎町まで安心のドアツードア送迎です。",
+          href: "/haneda-airport-to-shinjuku"
         },
         {
-          name: "羽田から品川・横浜",
-          description: "早朝便、クルーズ接続、家族旅行にも使いやすいルートです。"
+          name: "羽田から品川",
+          description: "品川駅周辺ホテル、高輪、新幹線接続に便利な短距離ルートです。",
+          href: "/haneda-airport-to-shinagawa"
         }
       ],
       tipsTitle: "予約前に確認すること",
@@ -467,16 +509,19 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
       destinationsTitle: "常見羽田機場接送目的地",
       destinations: [
         {
-          name: "羽田到銀座、築地或東京站",
-          description: "適合東京中心區域酒店和商務出行的短途私人接送。"
+          name: "羽田到銀座",
+          description: "適合銀座、築地、有樂町、日本橋和東京中心區酒店的短途私人接送。",
+          href: "/haneda-airport-to-ginza"
         },
         {
-          name: "羽田到新宿或澀谷",
-          description: "適合熱門酒店、公寓和民宿區域的點對點接送。"
+          name: "羽田到新宿",
+          description: "適合新宿酒店、公寓、西新宿和歌舞伎町區域的點對點接送。",
+          href: "/haneda-airport-to-shinjuku"
         },
         {
-          name: "羽田到品川或橫濱",
-          description: "適合早班機、郵輪銜接和家庭出行。"
+          name: "羽田到品川",
+          description: "適合品川站周邊酒店、高輪和新幹線轉乘的快速私人接送。",
+          href: "/haneda-airport-to-shinagawa"
         }
       ],
       tipsTitle: "預約前建議提供",

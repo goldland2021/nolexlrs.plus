@@ -4,11 +4,19 @@ import type { HomeSeoContent } from "./seo-content";
 import type { ServiceJsonLdProfile } from "./seo";
 import { AIRPORTS } from "./toll-routes";
 
-export type RoutePageSlug = "narita-airport-to-shinjuku" | "narita-airport-to-tokyo-disney-resort";
+export type RoutePageSlug =
+  | "narita-airport-to-shinjuku"
+  | "narita-airport-to-tokyo-disney-resort"
+  | "haneda-airport-to-ginza"
+  | "haneda-airport-to-shinjuku"
+  | "haneda-airport-to-shinagawa";
 
 export const routePageSlugs: RoutePageSlug[] = [
   "narita-airport-to-shinjuku",
-  "narita-airport-to-tokyo-disney-resort"
+  "narita-airport-to-tokyo-disney-resort",
+  "haneda-airport-to-ginza",
+  "haneda-airport-to-shinjuku",
+  "haneda-airport-to-shinagawa"
 ];
 
 export type RoutePageContent = {
@@ -76,6 +84,12 @@ const naritaAirport: CityAirport = {
   latlng: AIRPORTS.narita.latlng
 };
 
+const hanedaAirport: CityAirport = {
+  id: "haneda",
+  name: AIRPORTS.haneda.name as Record<Locale, string>,
+  latlng: AIRPORTS.haneda.latlng
+};
+
 const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
   "narita-airport-to-shinjuku": {
     areaServed: ["Narita Airport", "Shinjuku", "Nishi-Shinjuku", "Kabukicho", "Tokyo"],
@@ -114,6 +128,51 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
       "Narita Airport to Tokyo DisneySea private car",
       "Tokyo Disney Resort hotel to Narita Airport drop-off"
     ]
+  },
+  "haneda-airport-to-ginza": {
+    areaServed: ["Haneda Airport", "Ginza", "Tsukiji", "Yurakucho", "Nihonbashi", "Tokyo"],
+    serviceType: [
+      "Haneda Airport to Ginza transfer",
+      "Haneda Airport pickup",
+      "Ginza hotel airport transfer",
+      "Private car from Haneda to Ginza"
+    ],
+    offerCatalogName: "Haneda Airport to Ginza transfer services",
+    offers: [
+      "Haneda Airport to Ginza hotel private transfer",
+      "Haneda Airport to Tsukiji private car",
+      "Ginza hotel to Haneda Airport drop-off"
+    ]
+  },
+  "haneda-airport-to-shinjuku": {
+    areaServed: ["Haneda Airport", "Shinjuku", "Nishi-Shinjuku", "Kabukicho", "Tokyo"],
+    serviceType: [
+      "Haneda Airport to Shinjuku transfer",
+      "Haneda Airport pickup",
+      "Shinjuku hotel airport transfer",
+      "Private car from Haneda to Shinjuku"
+    ],
+    offerCatalogName: "Haneda Airport to Shinjuku transfer services",
+    offers: [
+      "Haneda Airport to Shinjuku hotel private transfer",
+      "Haneda Airport to Nishi-Shinjuku private car",
+      "Shinjuku hotel to Haneda Airport drop-off"
+    ]
+  },
+  "haneda-airport-to-shinagawa": {
+    areaServed: ["Haneda Airport", "Shinagawa", "Takanawa", "Gotanda", "Tokyo"],
+    serviceType: [
+      "Haneda Airport to Shinagawa transfer",
+      "Haneda Airport pickup",
+      "Shinagawa hotel airport transfer",
+      "Private car from Haneda to Shinagawa"
+    ],
+    offerCatalogName: "Haneda Airport to Shinagawa transfer services",
+    offers: [
+      "Haneda Airport to Shinagawa hotel private transfer",
+      "Haneda Airport to Takanawa private car",
+      "Shinagawa hotel to Haneda Airport drop-off"
+    ]
   }
 };
 
@@ -123,6 +182,879 @@ export function routePagePath(slug: RoutePageSlug) {
 
 export function isRoutePageSlug(value: string): value is RoutePageSlug {
   return (routePageSlugs as readonly string[]).includes(value);
+}
+
+type HanedaRouteSlug = Extract<
+  RoutePageSlug,
+  "haneda-airport-to-ginza" | "haneda-airport-to-shinjuku" | "haneda-airport-to-shinagawa"
+>;
+
+type HanedaRouteConfig = {
+  title: string;
+  destination: string;
+  nearbyAreas: string;
+  metaTitle: string;
+  metaDescription: string;
+  keywords: string[];
+  cityName: string;
+  citySearchName: string;
+  heroSubtitle: string;
+  imageAlt: string;
+  overviewSubtitle: string;
+  driveTime: string;
+  bestFor: string;
+  bestForDescription: string;
+  vehicleFit: string;
+  vehicleDescription: string;
+  notes: string[];
+  quoteTitle: string;
+  quoteSubtitle: string;
+  bookingTitle: string;
+  bookingSubtitle: string;
+  hotelExample: string;
+  passengersExample: string;
+  luggageExample: string;
+  messageHeader: string;
+  faqTitle: string;
+  faqSubtitle: string;
+  faqs: { question: string; answer: string }[];
+};
+
+const hanedaLocaleCopy = {
+  en: {
+    airportPlaceholder: "Haneda Airport (HND)",
+    flightPlaceholder: "JL123",
+    landingTimePlaceholder: "May 3, 4:30 PM",
+    notesTitle: "Before You Book",
+    pickupNote: "For Haneda Airport pickup, waiting time starts from the actual flight landing time.",
+    delayNote:
+      "Haneda is close to central Tokyo, but late-night arrivals and busy city traffic can still affect pickup timing.",
+    promiseTitle: "Why Book This Route",
+    features: (destination: string) => [
+      "Haneda pickup with flight tracking",
+      `Direct transfer to ${destination}`,
+      "Toyota Alphard or Hiace available",
+      "90 min free airport waiting",
+      "Optional name-sign meet-and-greet",
+      "Fixed quote confirmed on WhatsApp"
+    ],
+    promises: (destination: string): [string, string][] => [
+      ["Fast city access", `Travel directly from Haneda Airport to ${destination} without station transfers.`],
+      ["Clear pickup support", "Driver timing follows your actual landing time and arrival progress."],
+      ["Vehicle advice", "We confirm sedan, Alphard, or Hiace based on passengers, suitcases, and comfort needs."],
+      ["Return route available", `${destination} hotel to Haneda Airport drop-off can also be arranged.`]
+    ],
+    directNote:
+      "Opens in WhatsApp after submission. Arrival-gate name-sign meet-and-greet is optional and costs +2,000 JPY when requested.",
+    routesTitle: "Related Haneda Airport Routes",
+    routesSubtitle:
+      "Private airport transfer pages for Haneda pickup, Tokyo hotels, Shinjuku, Ginza, Shinagawa, and return airport drop-off.",
+    overviewTitle: (destination: string) => `Route Details for Haneda to ${destination}`,
+    relatedRoutes: [
+      {
+        title: "Haneda Airport to Ginza",
+        description: "Private airport pickup for Ginza, Tsukiji, Yurakucho, Nihonbashi, and central Tokyo hotels.",
+        href: "/haneda-airport-to-ginza"
+      },
+      {
+        title: "Haneda Airport to Shinjuku",
+        description: "Door-to-door Haneda transfer for Shinjuku Station hotels, Nishi-Shinjuku, and Kabukicho.",
+        href: "/haneda-airport-to-shinjuku"
+      },
+      {
+        title: "Haneda Airport to Shinagawa",
+        description: "Fast private transfer to Shinagawa Station, Takanawa hotels, and Shinkansen connections.",
+        href: "/haneda-airport-to-shinagawa"
+      },
+      {
+        title: "Haneda Airport to Tokyo",
+        description: "General Haneda transfer page for central Tokyo hotels, apartments, and cruise terminals.",
+        href: "/haneda-airport-transfer"
+      },
+      {
+        title: "Tokyo private driver",
+        description: "Hotel transfers, Shinkansen station pickup, Mt Fuji day trips, and hourly private car service.",
+        href: "/tokyo-private-driver"
+      }
+    ]
+  },
+  ja: {
+    airportPlaceholder: "羽田空港 (HND)",
+    flightPlaceholder: "JL123",
+    landingTimePlaceholder: "5月3日 16:30",
+    notesTitle: "予約前の確認",
+    pickupNote: "羽田空港お迎えの待機時間は、実際のフライト到着時刻から計算します。",
+    delayNote: "羽田は都心に近い空港ですが、深夜到着や市内の混雑により所要時間が変わることがあります。",
+    promiseTitle: "このルートのメリット",
+    features: (destination: string) => [
+      "羽田空港お迎えとフライト確認",
+      `${destination}まで直行`,
+      "アルファードまたはハイエース対応",
+      "空港お迎え90分無料待機",
+      "ネームプレートお迎えオプション",
+      "WhatsAppで固定料金を確認"
+    ],
+    promises: (destination: string): [string, string][] => [
+      ["都心へスムーズ", `羽田空港から${destination}まで、荷物を持って乗り換える必要がありません。`],
+      ["お迎え時間を調整", "実際の到着時刻と入国状況に合わせてドライバーが待機します。"],
+      ["車種相談", "人数、荷物、快適性に合わせてセダン、アルファード、ハイエースを確認します。"],
+      ["復路も対応", `${destination}のホテルから羽田空港への送機も予約できます。`]
+    ],
+    directNote:
+      "送信後、WhatsAppで直接やり取りできます。到着ゲートでのネームプレートお迎えはオプション（+2,000円）です。",
+    routesTitle: "関連する羽田空港送迎ルート",
+    routesSubtitle: "羽田空港から東京ホテル、新宿、銀座、品川、空港送迎に関連する専用車ルートです。",
+    overviewTitle: (destination: string) => `羽田から${destination}へのルート詳細`,
+    relatedRoutes: [
+      {
+        title: "羽田空港から銀座へ",
+        description: "銀座、築地、有楽町、日本橋、東京中心部ホテルへの羽田空港送迎です。",
+        href: "/haneda-airport-to-ginza"
+      },
+      {
+        title: "羽田空港から新宿へ",
+        description: "新宿駅周辺、西新宿、歌舞伎町エリアへのドアツードア送迎です。",
+        href: "/haneda-airport-to-shinjuku"
+      },
+      {
+        title: "羽田空港から品川へ",
+        description: "品川駅、高輪ホテル、新幹線接続に便利な短距離送迎です。",
+        href: "/haneda-airport-to-shinagawa"
+      },
+      {
+        title: "羽田空港から東京へ",
+        description: "東京中心部ホテル、民泊、クルーズターミナルへの羽田空港送迎ページです。",
+        href: "/haneda-airport-transfer"
+      },
+      {
+        title: "東京プライベートドライバー",
+        description: "ホテル間移動、新幹線駅送迎、富士山日帰り、時間貸切に対応します。",
+        href: "/tokyo-private-driver"
+      }
+    ]
+  },
+  zh: {
+    airportPlaceholder: "羽田機場 (HND)",
+    flightPlaceholder: "JL123",
+    landingTimePlaceholder: "5月3日 16:30",
+    notesTitle: "預約前建議",
+    pickupNote: "羽田機場接機等待時間從航班實際落地時間開始計算。",
+    delayNote: "羽田機場離東京市區較近，但深夜到達和市區路況仍可能影響實際車程。",
+    promiseTitle: "這條路線的優點",
+    features: (destination: string) => [
+      "羽田機場接機與航班跟蹤",
+      `直達${destination}`,
+      "可選 Alphard 或 Hiace",
+      "接機90分鐘免費等待",
+      "可選到達口舉牌接機",
+      "WhatsApp 確認固定報價"
+    ],
+    promises: (destination: string): [string, string][] => [
+      ["快速進市區", `從羽田機場直達${destination}，不用拖著行李轉車。`],
+      ["接機時間清楚", "司機會根據航班實際落地和入境進度安排等待。"],
+      ["車型建議", "根據人數、行李和舒適度需求確認轎車、Alphard 或 Hiace。"],
+      ["可安排回程", `也可以預約${destination}酒店到羽田機場送機。`]
+    ],
+    directNote:
+      "提交後會打開 WhatsApp，方便直接和司機溝通。到達口舉牌接機為可選服務，需要時另加 2,000 日元。",
+    routesTitle: "相關羽田機場接送路線",
+    routesSubtitle: "羽田機場到東京酒店、新宿、銀座、品川和送機相關的私人專車路線。",
+    overviewTitle: (destination: string) => `羽田到${destination}路線詳情`,
+    relatedRoutes: [
+      {
+        title: "羽田機場到銀座",
+        description: "適合銀座、築地、有樂町、日本橋和東京中心區酒店的羽田機場接送。",
+        href: "/haneda-airport-to-ginza"
+      },
+      {
+        title: "羽田機場到新宿",
+        description: "羽田機場到新宿站周邊、西新宿和歌舞伎町區域的點對點接送。",
+        href: "/haneda-airport-to-shinjuku"
+      },
+      {
+        title: "羽田機場到品川",
+        description: "羽田機場到品川站、高輪酒店和新幹線轉乘的快速私人接送。",
+        href: "/haneda-airport-to-shinagawa"
+      },
+      {
+        title: "羽田機場到東京",
+        description: "覆蓋東京市區酒店、民宿和郵輪碼頭的羽田機場接送頁面。",
+        href: "/haneda-airport-transfer"
+      },
+      {
+        title: "東京包車司機",
+        description: "酒店到酒店移動、新幹線接送、富士山一日遊和小時包車。",
+        href: "/tokyo-private-driver"
+      }
+    ]
+  }
+} satisfies Record<
+  Locale,
+  {
+    airportPlaceholder: string;
+    flightPlaceholder: string;
+    landingTimePlaceholder: string;
+    notesTitle: string;
+    pickupNote: string;
+    delayNote: string;
+    promiseTitle: string;
+    features: (destination: string) => string[];
+    promises: (destination: string) => [string, string][];
+    directNote: string;
+    routesTitle: string;
+    routesSubtitle: string;
+    overviewTitle: (destination: string) => string;
+    relatedRoutes: { title: string; description: string; href: string }[];
+  }
+>;
+
+const hanedaRouteConfigs: Record<Locale, Record<HanedaRouteSlug, HanedaRouteConfig>> = {
+  en: {
+    "haneda-airport-to-ginza": {
+      title: "Haneda Airport to Ginza Transfer",
+      destination: "Ginza",
+      nearbyAreas: "Ginza, Tsukiji, Yurakucho, Nihonbashi, and central Tokyo hotels",
+      metaTitle: "Haneda Airport to Ginza Transfer | Private Car to Tokyo Hotels",
+      metaDescription:
+        "Private Haneda Airport to Ginza transfer for Ginza hotels, Tsukiji, Yurakucho and Nihonbashi. English driver, fixed quote, Alphard and Hiace options.",
+      keywords: [
+        "Haneda Airport to Ginza transfer",
+        "Haneda to Ginza private car",
+        "Haneda Airport to Ginza hotel",
+        "Ginza airport pickup",
+        "Haneda Airport transfer English driver",
+        "Haneda to Tsukiji transfer",
+        "Ginza hotel to Haneda Airport"
+      ],
+      cityName: "Tokyo",
+      citySearchName: "Ginza, Tokyo, Japan",
+      heroSubtitle:
+        "Private door-to-door airport pickup from Haneda Airport to Ginza hotels, Tsukiji, Yurakucho, and Nihonbashi.",
+      imageAlt: "Private Haneda Airport to Ginza transfer",
+      overviewSubtitle:
+        "Ginza is a popular Haneda transfer destination for luxury hotels, shopping, dining, and business stays in central Tokyo.",
+      driveTime: "20-40 min",
+      bestFor: "Luxury hotels and shopping",
+      bestForDescription: "Useful for Ginza hotels, Tsukiji stays, business meetings, dining, and shopping trips.",
+      vehicleFit: "Sedan or Alphard",
+      vehicleDescription: "A sedan works for light luggage; Alphard or Hiace is better for families and larger bags.",
+      notes: [
+        "Send your flight number so pickup timing follows the actual landing time.",
+        "Share the exact hotel name because Ginza and Tsukiji have many narrow streets and one-way roads.",
+        "Tell us if you are going to a hotel, restaurant, apartment, or office building."
+      ],
+      quoteTitle: "Get a Haneda to Ginza Quote",
+      quoteSubtitle:
+        "Search your Ginza hotel or address on the map, then send passenger count, luggage, and flight details on WhatsApp for the final fixed price.",
+      bookingTitle: "Book Haneda to Ginza",
+      bookingSubtitle: "Send your flight, landing time, Ginza address, passengers, and luggage details for a fast WhatsApp quote.",
+      hotelExample: "Mitsui Garden Hotel Ginza Premier",
+      passengersExample: "2",
+      luggageExample: "2 suitcases",
+      messageHeader: "Hello, I need a Haneda Airport to Ginza transfer quote.",
+      faqTitle: "Haneda to Ginza FAQ",
+      faqSubtitle: "Common questions before booking a private car from Haneda Airport to Ginza.",
+      faqs: [
+        {
+          question: "How long does Haneda Airport to Ginza take by private car?",
+          answer: "It usually takes about 20 to 40 minutes, depending on traffic and the exact hotel entrance in Ginza."
+        },
+        {
+          question: "Can you drop off at Tsukiji or Yurakucho?",
+          answer: "Yes. Ginza, Tsukiji, Yurakucho, Nihonbashi, and nearby central Tokyo hotels can be arranged."
+        },
+        {
+          question: "Is a sedan enough for Haneda to Ginza?",
+          answer: "A sedan can work for light luggage, while Alphard or Hiace is better for families, multiple suitcases, or child seats."
+        },
+        {
+          question: "Can I book Ginza hotel to Haneda Airport drop-off?",
+          answer: "Yes. The same route can be booked in reverse for Ginza hotel to Haneda Airport drop-off."
+        }
+      ]
+    },
+    "haneda-airport-to-shinjuku": {
+      title: "Haneda Airport to Shinjuku Transfer",
+      destination: "Shinjuku",
+      nearbyAreas: "Shinjuku Station hotels, Nishi-Shinjuku, Kabukicho, and nearby apartments",
+      metaTitle: "Haneda Airport to Shinjuku Transfer | Private Car to Tokyo Hotels",
+      metaDescription:
+        "Private Haneda Airport to Shinjuku transfer for hotels near Shinjuku Station, Nishi-Shinjuku and Kabukicho. English driver, fixed quote, Alphard and Hiace options.",
+      keywords: [
+        "Haneda Airport to Shinjuku transfer",
+        "Haneda to Shinjuku private car",
+        "Haneda Airport to Shinjuku hotel",
+        "Shinjuku airport pickup",
+        "Haneda Airport transfer English driver",
+        "Toyota Alphard Haneda to Shinjuku",
+        "Shinjuku hotel to Haneda Airport"
+      ],
+      cityName: "Tokyo",
+      citySearchName: "Shinjuku, Tokyo, Japan",
+      heroSubtitle:
+        "Private door-to-door airport pickup from Haneda Airport to Shinjuku hotels, apartments, Nishi-Shinjuku, and Kabukicho.",
+      imageAlt: "Private Haneda Airport to Shinjuku transfer",
+      overviewSubtitle:
+        "Shinjuku is a common Haneda transfer destination for first-time Tokyo visitors, families, and travelers staying on the west side of Tokyo.",
+      driveTime: "35-60 min",
+      bestFor: "Hotels and nightlife areas",
+      bestForDescription: "Useful for Shinjuku Station hotels, Nishi-Shinjuku, Kabukicho, apartments, and family arrivals.",
+      vehicleFit: "Alphard or Hiace",
+      vehicleDescription: "Alphard works well for comfort; Hiace is better for groups with larger luggage.",
+      notes: [
+        "Send the flight number so pickup time follows the actual landing time.",
+        "Share the hotel name or full address because Shinjuku has many entrances and one-way streets.",
+        "Tell us suitcase count and stroller needs before choosing Alphard or Hiace."
+      ],
+      quoteTitle: "Get a Haneda to Shinjuku Quote",
+      quoteSubtitle:
+        "Search your Shinjuku hotel or address on the map, then send passenger count, luggage, and flight details on WhatsApp for the final fixed price.",
+      bookingTitle: "Book Haneda to Shinjuku",
+      bookingSubtitle:
+        "Send your flight, landing time, Shinjuku address, passengers, and luggage details for a fast WhatsApp quote.",
+      hotelExample: "Shinjuku Washington Hotel",
+      passengersExample: "2",
+      luggageExample: "3 suitcases",
+      messageHeader: "Hello, I need a Haneda Airport to Shinjuku transfer quote.",
+      faqTitle: "Haneda to Shinjuku FAQ",
+      faqSubtitle: "Common questions before booking a private car from Haneda Airport to Shinjuku.",
+      faqs: [
+        {
+          question: "How long does Haneda Airport to Shinjuku take by private car?",
+          answer: "It usually takes about 35 to 60 minutes, depending on traffic and the exact hotel entrance in Shinjuku."
+        },
+        {
+          question: "Can the driver wait if my flight is delayed?",
+          answer: "Yes. Airport pickup includes flight tracking, and free waiting starts from the actual landing time."
+        },
+        {
+          question: "Is Alphard enough for Haneda to Shinjuku?",
+          answer: "Toyota Alphard is comfortable for smaller families with moderate luggage. For more passengers, large suitcases, strollers, or golf bags, Toyota Hiace may be better."
+        },
+        {
+          question: "Can I book Shinjuku hotel to Haneda Airport drop-off too?",
+          answer: "Yes. The same route can be booked in reverse for Shinjuku hotel to Haneda Airport drop-off."
+        }
+      ]
+    },
+    "haneda-airport-to-shinagawa": {
+      title: "Haneda Airport to Shinagawa Transfer",
+      destination: "Shinagawa",
+      nearbyAreas: "Shinagawa Station, Takanawa hotels, Gotanda, and Shinkansen connections",
+      metaTitle: "Haneda Airport to Shinagawa Transfer | Private Car to Station Hotels",
+      metaDescription:
+        "Private Haneda Airport to Shinagawa transfer for Shinagawa Station, Takanawa hotels and Shinkansen connections. English driver, fixed quote, Alphard and Hiace options.",
+      keywords: [
+        "Haneda Airport to Shinagawa transfer",
+        "Haneda to Shinagawa private car",
+        "Haneda Airport to Shinagawa Station",
+        "Shinagawa airport pickup",
+        "Haneda Airport transfer English driver",
+        "Haneda to Takanawa hotel transfer",
+        "Shinagawa hotel to Haneda Airport"
+      ],
+      cityName: "Tokyo",
+      citySearchName: "Shinagawa, Tokyo, Japan",
+      heroSubtitle:
+        "Private door-to-door airport pickup from Haneda Airport to Shinagawa Station hotels, Takanawa, Gotanda, and nearby addresses.",
+      imageAlt: "Private Haneda Airport to Shinagawa transfer",
+      overviewSubtitle:
+        "Shinagawa is one of the fastest Haneda transfer destinations and works well for Shinkansen travelers, station hotels, and business trips.",
+      driveTime: "20-35 min",
+      bestFor: "Station hotels and Shinkansen",
+      bestForDescription: "Useful for Shinagawa Station hotels, Takanawa stays, business travelers, and Shinkansen connections.",
+      vehicleFit: "Sedan or Alphard",
+      vehicleDescription: "Sedan is good for light luggage; Alphard or Hiace is better for families and groups.",
+      notes: [
+        "Send your flight number and Shinkansen time if you have a same-day train connection.",
+        "Share the exact hotel entrance because Shinagawa Station has east and west-side pickup points.",
+        "Tell us luggage details so we can confirm the best vehicle size."
+      ],
+      quoteTitle: "Get a Haneda to Shinagawa Quote",
+      quoteSubtitle:
+        "Search your Shinagawa hotel or station-area address on the map, then send flight details and luggage on WhatsApp for the final fixed quote.",
+      bookingTitle: "Book Haneda to Shinagawa",
+      bookingSubtitle:
+        "Send your flight, landing time, Shinagawa address, passengers, and luggage details for a fast WhatsApp quote.",
+      hotelExample: "Shinagawa Prince Hotel",
+      passengersExample: "2",
+      luggageExample: "2 suitcases",
+      messageHeader: "Hello, I need a Haneda Airport to Shinagawa transfer quote.",
+      faqTitle: "Haneda to Shinagawa FAQ",
+      faqSubtitle: "Common questions before booking a private car from Haneda Airport to Shinagawa.",
+      faqs: [
+        {
+          question: "How long does Haneda Airport to Shinagawa take by private car?",
+          answer: "It usually takes about 20 to 35 minutes, depending on traffic and whether you are going to the station or a nearby hotel."
+        },
+        {
+          question: "Can you pick up or drop off near Shinagawa Station?",
+          answer: "Yes. Shinagawa Station, Takanawa hotels, Gotanda, and nearby addresses can be arranged."
+        },
+        {
+          question: "Is this route good for Shinkansen travelers?",
+          answer: "Yes. Please share your train time if you have a Shinkansen connection so we can suggest a safe pickup time."
+        },
+        {
+          question: "Can I book Shinagawa hotel to Haneda Airport drop-off?",
+          answer: "Yes. The same route can be booked in reverse for Shinagawa hotel to Haneda Airport drop-off."
+        }
+      ]
+    }
+  },
+  ja: {
+    "haneda-airport-to-ginza": {
+      title: "羽田空港から銀座への送迎",
+      destination: "銀座",
+      nearbyAreas: "銀座、築地、有楽町、日本橋、東京中心部ホテル",
+      metaTitle: "羽田空港から銀座への送迎 | 東京ホテルまでのプライベートカー",
+      metaDescription:
+        "羽田空港から銀座ホテル、築地、有楽町、日本橋までのプライベート送迎。英語対応ドライバー、固定料金、アルファードとハイエース対応。",
+      keywords: [
+        "羽田空港 銀座 送迎",
+        "羽田 銀座 ハイヤー",
+        "羽田空港から銀座ホテル",
+        "銀座 空港送迎",
+        "羽田空港 英語ドライバー",
+        "羽田 築地 送迎",
+        "銀座ホテル 羽田空港"
+      ],
+      cityName: "東京",
+      citySearchName: "銀座, 東京, 日本",
+      heroSubtitle: "羽田空港から銀座ホテル、築地、有楽町、日本橋までのドアツードア専用車送迎。",
+      imageAlt: "羽田空港から銀座へのプライベート送迎",
+      overviewSubtitle: "銀座は高級ホテル、ショッピング、食事、ビジネス滞在で人気の羽田空港送迎先です。",
+      driveTime: "20-40分",
+      bestFor: "高級ホテル・買い物",
+      bestForDescription: "銀座ホテル、築地、有楽町、日本橋、ビジネス、食事、ショッピングに便利です。",
+      vehicleFit: "セダン / アルファード",
+      vehicleDescription: "荷物が少ない場合はセダン、ご家族や荷物が多い場合はアルファードまたはハイエースがおすすめです。",
+      notes: [
+        "フライト番号を送ると、実際の到着時刻に合わせてお迎えできます。",
+        "銀座や築地は細い道と一方通行が多いため、正確なホテル名をお知らせください。",
+        "ホテル、レストラン、民泊、オフィスビルのどちらへ向かうか共有してください。"
+      ],
+      quoteTitle: "羽田から銀座の見積もり",
+      quoteSubtitle: "地図で銀座のホテルや住所を検索し、人数、荷物、フライト情報をWhatsAppで送ると最終固定料金を確認できます。",
+      bookingTitle: "羽田から銀座を予約",
+      bookingSubtitle: "フライト、到着時刻、銀座の住所、人数、荷物情報を送ると、WhatsAppですぐに見積もりできます。",
+      hotelExample: "三井ガーデンホテル銀座プレミア",
+      passengersExample: "2名",
+      luggageExample: "スーツケース2個",
+      messageHeader: "こんにちは。羽田空港から銀座への送迎見積もりをお願いします。",
+      faqTitle: "羽田から銀座 FAQ",
+      faqSubtitle: "羽田空港から銀座まで専用車を予約する前によくある質問です。",
+      faqs: [
+        {
+          question: "羽田空港から銀座まで車でどのくらいですか？",
+          answer: "通常は20分から40分ほどです。交通状況と銀座のホテル入口により変わります。"
+        },
+        {
+          question: "築地や有楽町でも降車できますか？",
+          answer: "はい。銀座、築地、有楽町、日本橋、東京中心部ホテルに対応できます。"
+        },
+        {
+          question: "羽田から銀座はセダンで大丈夫ですか？",
+          answer: "荷物が少ない場合はセダンでも可能です。ご家族、複数のスーツケース、チャイルドシートがある場合はアルファードやハイエースがおすすめです。"
+        },
+        {
+          question: "銀座ホテルから羽田空港への送機もできますか？",
+          answer: "はい。銀座ホテルから羽田空港への逆方向の送迎も予約できます。"
+        }
+      ]
+    },
+    "haneda-airport-to-shinjuku": {
+      title: "羽田空港から新宿への送迎",
+      destination: "新宿",
+      nearbyAreas: "新宿駅周辺ホテル、西新宿、歌舞伎町、周辺アパート",
+      metaTitle: "羽田空港から新宿への送迎 | 東京ホテルまでのプライベートカー",
+      metaDescription:
+        "羽田空港から新宿駅周辺、西新宿、歌舞伎町エリアのホテルまでのプライベート送迎。英語対応ドライバー、固定料金、アルファードとハイエース対応。",
+      keywords: [
+        "羽田空港 新宿 送迎",
+        "羽田 新宿 ハイヤー",
+        "羽田空港から新宿ホテル",
+        "新宿 空港送迎",
+        "羽田空港 英語ドライバー",
+        "アルファード 羽田 新宿",
+        "新宿ホテル 羽田空港"
+      ],
+      cityName: "東京",
+      citySearchName: "新宿, 東京, 日本",
+      heroSubtitle: "羽田空港から新宿のホテル、民泊、西新宿、歌舞伎町エリアまでのドアツードア専用車送迎。",
+      imageAlt: "羽田空港から新宿へのプライベート送迎",
+      overviewSubtitle: "新宿は初めて東京に来る旅行者、ご家族、東京西側に滞在するお客様に多い羽田空港送迎先です。",
+      driveTime: "35-60分",
+      bestFor: "ホテル・繁華街エリア",
+      bestForDescription: "新宿駅周辺ホテル、西新宿、歌舞伎町、民泊、ご家族の到着に便利です。",
+      vehicleFit: "アルファード / ハイエース",
+      vehicleDescription: "快適性重視はアルファード、人数や荷物が多い場合はハイエースがおすすめです。",
+      notes: [
+        "フライト番号を送ると、実際の到着時刻に合わせてお迎えできます。",
+        "新宿は入口が多いため、ホテル名または住所を正確にお知らせください。",
+        "スーツケース数、ベビーカー、チャイルドシートの有無を事前に共有してください。"
+      ],
+      quoteTitle: "羽田から新宿の見積もり",
+      quoteSubtitle: "地図で新宿のホテルや住所を検索し、人数、荷物、フライト情報をWhatsAppで送ると最終固定料金を確認できます。",
+      bookingTitle: "羽田から新宿を予約",
+      bookingSubtitle: "フライト、到着時刻、新宿の住所、人数、荷物情報を送ると、WhatsAppですぐに見積もりできます。",
+      hotelExample: "新宿ワシントンホテル",
+      passengersExample: "2名",
+      luggageExample: "スーツケース3個",
+      messageHeader: "こんにちは。羽田空港から新宿への送迎見積もりをお願いします。",
+      faqTitle: "羽田から新宿 FAQ",
+      faqSubtitle: "羽田空港から新宿まで専用車を予約する前によくある質問です。",
+      faqs: [
+        {
+          question: "羽田空港から新宿まで車でどのくらいですか？",
+          answer: "通常は35分から60分ほどです。交通状況と新宿のホテル入口により変わります。"
+        },
+        {
+          question: "フライトが遅れた場合も待ってもらえますか？",
+          answer: "はい。空港お迎えはフライト情報を確認し、実際の到着時刻から無料待機時間を計算します。"
+        },
+        {
+          question: "羽田から新宿はアルファードで大丈夫ですか？",
+          answer: "少人数で荷物が通常量ならアルファードが快適です。人数、スーツケース、ベビーカーが多い場合はハイエースがおすすめです。"
+        },
+        {
+          question: "新宿ホテルから羽田空港への送機もできますか？",
+          answer: "はい。新宿ホテルから羽田空港への逆方向の送迎も予約できます。"
+        }
+      ]
+    },
+    "haneda-airport-to-shinagawa": {
+      title: "羽田空港から品川への送迎",
+      destination: "品川",
+      nearbyAreas: "品川駅、高輪ホテル、五反田、新幹線接続",
+      metaTitle: "羽田空港から品川への送迎 | 品川駅ホテルまでのプライベートカー",
+      metaDescription:
+        "羽田空港から品川駅、高輪ホテル、新幹線接続に便利なプライベート送迎。英語対応ドライバー、固定料金、アルファードとハイエース対応。",
+      keywords: [
+        "羽田空港 品川 送迎",
+        "羽田 品川 ハイヤー",
+        "羽田空港から品川駅",
+        "品川 空港送迎",
+        "羽田空港 英語ドライバー",
+        "羽田 高輪ホテル 送迎",
+        "品川ホテル 羽田空港"
+      ],
+      cityName: "東京",
+      citySearchName: "品川, 東京, 日本",
+      heroSubtitle: "羽田空港から品川駅周辺ホテル、高輪、五反田、周辺住所までのドアツードア専用車送迎。",
+      imageAlt: "羽田空港から品川へのプライベート送迎",
+      overviewSubtitle: "品川は羽田空港から近く、新幹線利用、駅周辺ホテル、ビジネス移動に便利なルートです。",
+      driveTime: "20-35分",
+      bestFor: "駅ホテル・新幹線",
+      bestForDescription: "品川駅周辺ホテル、高輪エリア、ビジネス利用、新幹線接続に便利です。",
+      vehicleFit: "セダン / アルファード",
+      vehicleDescription: "荷物が少ない場合はセダン、ご家族やグループはアルファードまたはハイエースがおすすめです。",
+      notes: [
+        "当日新幹線に乗り継ぐ場合は、フライト番号と列車時刻をお知らせください。",
+        "品川駅は高輪口・港南口など複数の乗降場所があるため、正確な目的地を共有してください。",
+        "荷物数を共有いただくと、最適な車種を確認しやすくなります。"
+      ],
+      quoteTitle: "羽田から品川の見積もり",
+      quoteSubtitle: "地図で品川のホテルや駅周辺住所を検索し、フライトと荷物情報をWhatsAppで送ると最終固定料金を確認できます。",
+      bookingTitle: "羽田から品川を予約",
+      bookingSubtitle: "フライト、到着時刻、品川の住所、人数、荷物情報を送ると、WhatsAppですぐに見積もりできます。",
+      hotelExample: "品川プリンスホテル",
+      passengersExample: "2名",
+      luggageExample: "スーツケース2個",
+      messageHeader: "こんにちは。羽田空港から品川への送迎見積もりをお願いします。",
+      faqTitle: "羽田から品川 FAQ",
+      faqSubtitle: "羽田空港から品川まで専用車を予約する前によくある質問です。",
+      faqs: [
+        {
+          question: "羽田空港から品川まで車でどのくらいですか？",
+          answer: "通常は20分から35分ほどです。駅周辺かホテルか、交通状況により変わります。"
+        },
+        {
+          question: "品川駅周辺で乗降できますか？",
+          answer: "はい。品川駅、高輪ホテル、五反田、周辺住所に対応できます。"
+        },
+        {
+          question: "新幹線に乗り継ぐ場合にも使えますか？",
+          answer: "はい。新幹線の時刻を共有いただくと、余裕を持った到着時間を提案できます。"
+        },
+        {
+          question: "品川ホテルから羽田空港への送機もできますか？",
+          answer: "はい。品川ホテルから羽田空港への逆方向の送迎も予約できます。"
+        }
+      ]
+    }
+  },
+  zh: {
+    "haneda-airport-to-ginza": {
+      title: "羽田機場到銀座接送",
+      destination: "銀座",
+      nearbyAreas: "銀座、築地、有樂町、日本橋和東京中心區酒店",
+      metaTitle: "羽田機場到銀座接送 | 東京酒店私人專車",
+      metaDescription:
+        "羽田機場到銀座酒店、築地、有樂町和日本橋的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+      keywords: [
+        "羽田機場到銀座接送",
+        "羽田到銀座包車",
+        "羽田機場到銀座酒店",
+        "銀座接機",
+        "羽田機場英文司機",
+        "羽田到築地接送",
+        "銀座酒店到羽田機場"
+      ],
+      cityName: "東京",
+      citySearchName: "銀座, 東京, 日本",
+      heroSubtitle: "羽田機場到銀座酒店、築地、有樂町和日本橋的點對點私人專車接送。",
+      imageAlt: "羽田機場到銀座私人專車接送",
+      overviewSubtitle: "銀座是羽田機場到東京市區很常見的目的地，適合高級酒店、購物、美食和商務停留。",
+      driveTime: "20-40分鐘",
+      bestFor: "高級酒店和購物",
+      bestForDescription: "適合銀座酒店、築地、有樂町、日本橋、商務會議、餐廳和購物行程。",
+      vehicleFit: "轎車或 Alphard",
+      vehicleDescription: "行李少可選轎車，親子家庭或行李多時建議 Alphard 或 Hiace。",
+      notes: [
+        "提供航班號，司機可以根據實際落地時間安排接機。",
+        "銀座和築地周邊窄路與單行道多，請提供準確酒店名稱。",
+        "請說明目的地是酒店、餐廳、民宿還是辦公樓。"
+      ],
+      quoteTitle: "獲取羽田到銀座報價",
+      quoteSubtitle: "在地圖中搜尋銀座酒店或地址，再透過 WhatsApp 發送人數、行李和航班資訊，確認最終固定價格。",
+      bookingTitle: "預約羽田到銀座",
+      bookingSubtitle: "發送航班、落地時間、銀座地址、人數和行李資訊，即可透過 WhatsApp 快速報價。",
+      hotelExample: "三井花園飯店銀座普米爾",
+      passengersExample: "2人",
+      luggageExample: "2個行李箱",
+      messageHeader: "您好，我需要羽田機場到銀座接送報價。",
+      faqTitle: "羽田到銀座常見問題",
+      faqSubtitle: "預約羽田機場到銀座私人專車前常見的問題。",
+      faqs: [
+        {
+          question: "羽田機場到銀座包車需要多久？",
+          answer: "通常約20到40分鐘，具體取決於路況和銀座酒店入口位置。"
+        },
+        {
+          question: "可以在築地或有樂町下車嗎？",
+          answer: "可以。銀座、築地、有樂町、日本橋和東京中心區酒店都可以安排。"
+        },
+        {
+          question: "羽田到銀座轎車夠用嗎？",
+          answer: "行李少時轎車可以；如果是家庭、行李箱多或需要兒童座椅，建議 Alphard 或 Hiace。"
+        },
+        {
+          question: "可以預約銀座酒店到羽田機場送機嗎？",
+          answer: "可以，同一條路線也可以反向預約銀座酒店到羽田機場送機。"
+        }
+      ]
+    },
+    "haneda-airport-to-shinjuku": {
+      title: "羽田機場到新宿接送",
+      destination: "新宿",
+      nearbyAreas: "新宿站周邊酒店、西新宿、歌舞伎町和附近公寓",
+      metaTitle: "羽田機場到新宿接送 | 東京酒店私人專車",
+      metaDescription:
+        "羽田機場到新宿站周邊、西新宿、歌舞伎町酒店的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+      keywords: [
+        "羽田機場到新宿接送",
+        "羽田到新宿包車",
+        "羽田機場到新宿酒店",
+        "新宿接機",
+        "羽田機場英文司機",
+        "Alphard 羽田到新宿",
+        "新宿酒店到羽田機場"
+      ],
+      cityName: "東京",
+      citySearchName: "新宿, 東京, 日本",
+      heroSubtitle: "羽田機場到新宿酒店、民宿、西新宿和歌舞伎町區域的點對點私人專車接送。",
+      imageAlt: "羽田機場到新宿私人專車接送",
+      overviewSubtitle: "新宿是第一次到東京旅客、家庭和入住東京西側旅客很常見的羽田機場接送目的地。",
+      driveTime: "35-60分鐘",
+      bestFor: "酒店和繁華區",
+      bestForDescription: "適合新宿站周邊酒店、西新宿、歌舞伎町、民宿和親子家庭。",
+      vehicleFit: "Alphard 或 Hiace",
+      vehicleDescription: "Alphard 舒適度高，行李或人數較多時 Hiace 更合適。",
+      notes: [
+        "提供航班號，司機可以根據實際落地時間安排接機。",
+        "新宿酒店入口多、單行道多，請提供準確酒店名稱或完整地址。",
+        "請提前告訴我們行李箱數量、嬰兒車和兒童座椅需求。"
+      ],
+      quoteTitle: "獲取羽田到新宿報價",
+      quoteSubtitle: "在地圖中搜尋新宿酒店或地址，再透過 WhatsApp 發送人數、行李和航班資訊，確認最終固定價格。",
+      bookingTitle: "預約羽田到新宿",
+      bookingSubtitle: "發送航班、落地時間、新宿地址、人數和行李資訊，即可透過 WhatsApp 快速報價。",
+      hotelExample: "新宿華盛頓酒店",
+      passengersExample: "2人",
+      luggageExample: "3個行李箱",
+      messageHeader: "您好，我需要羽田機場到新宿接送報價。",
+      faqTitle: "羽田到新宿常見問題",
+      faqSubtitle: "預約羽田機場到新宿私人專車前常見的問題。",
+      faqs: [
+        {
+          question: "羽田機場到新宿包車需要多久？",
+          answer: "通常約35到60分鐘，具體取決於路況和新宿酒店入口位置。"
+        },
+        {
+          question: "航班延誤司機會等嗎？",
+          answer: "會。接機會跟蹤航班，免費等待時間從航班實際落地開始計算。"
+        },
+        {
+          question: "羽田到新宿 Alphard 夠用嗎？",
+          answer: "少人且行李適中時 Alphard 很舒適；如果人數、行李箱、嬰兒車較多，建議選 Hiace。"
+        },
+        {
+          question: "可以預約新宿酒店到羽田機場送機嗎？",
+          answer: "可以，同一條路線也可以反向預約新宿酒店到羽田機場送機。"
+        }
+      ]
+    },
+    "haneda-airport-to-shinagawa": {
+      title: "羽田機場到品川接送",
+      destination: "品川",
+      nearbyAreas: "品川站、高輪酒店、五反田和新幹線轉乘",
+      metaTitle: "羽田機場到品川接送 | 品川站酒店私人專車",
+      metaDescription:
+        "羽田機場到品川站、高輪酒店和新幹線轉乘的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+      keywords: [
+        "羽田機場到品川接送",
+        "羽田到品川包車",
+        "羽田機場到品川站",
+        "品川接機",
+        "羽田機場英文司機",
+        "羽田到高輪酒店接送",
+        "品川酒店到羽田機場"
+      ],
+      cityName: "東京",
+      citySearchName: "品川, 東京, 日本",
+      heroSubtitle: "羽田機場到品川站周邊酒店、高輪、五反田和附近地址的點對點私人專車接送。",
+      imageAlt: "羽田機場到品川私人專車接送",
+      overviewSubtitle: "品川是羽田機場進東京最快的常見路線之一，適合新幹線轉乘、站區酒店和商務旅客。",
+      driveTime: "20-35分鐘",
+      bestFor: "站區酒店和新幹線",
+      bestForDescription: "適合品川站周邊酒店、高輪住宿、商務客人和新幹線轉乘。",
+      vehicleFit: "轎車或 Alphard",
+      vehicleDescription: "行李少可選轎車，親子家庭或多人團隊建議 Alphard 或 Hiace。",
+      notes: [
+        "如果當天要轉乘新幹線，請提供航班號和列車時間。",
+        "品川站有高輪口、港南口等多個上下車點，請提供準確目的地。",
+        "請提前告訴我們行李數量，方便確認合適車型。"
+      ],
+      quoteTitle: "獲取羽田到品川報價",
+      quoteSubtitle: "搜尋品川酒店或車站周邊地址，再透過 WhatsApp 發送航班和行李資訊，確認最終固定報價。",
+      bookingTitle: "預約羽田到品川",
+      bookingSubtitle: "發送航班、落地時間、品川地址、人數和行李資訊，即可透過 WhatsApp 快速報價。",
+      hotelExample: "品川王子大飯店",
+      passengersExample: "2人",
+      luggageExample: "2個行李箱",
+      messageHeader: "您好，我需要羽田機場到品川接送報價。",
+      faqTitle: "羽田到品川常見問題",
+      faqSubtitle: "預約羽田機場到品川私人專車前常見的問題。",
+      faqs: [
+        {
+          question: "羽田機場到品川包車需要多久？",
+          answer: "通常約20到35分鐘，具體取決於路況和目的地是車站還是附近酒店。"
+        },
+        {
+          question: "可以在品川站周邊上下車嗎？",
+          answer: "可以。品川站、高輪酒店、五反田和附近地址都可以安排。"
+        },
+        {
+          question: "這條路線適合轉新幹線嗎？",
+          answer: "適合。請提供新幹線時間，我們可以建議更安全的接送時間。"
+        },
+        {
+          question: "可以預約品川酒店到羽田機場送機嗎？",
+          answer: "可以，同一條路線也可以反向預約品川酒店到羽田機場送機。"
+        }
+      ]
+    }
+  }
+};
+
+function buildHanedaRoutePage(locale: Locale, slug: HanedaRouteSlug): RoutePageContent {
+  const config = hanedaRouteConfigs[locale][slug];
+  const copy = hanedaLocaleCopy[locale];
+  const path = routePagePath(slug);
+
+  return {
+    slug,
+    path,
+    cityName: config.cityName,
+    citySearchName: config.citySearchName,
+    routeAirports: [hanedaAirport],
+    defaultAirportId: "haneda",
+    serviceProfile: routeServiceProfiles[slug],
+    meta: {
+      title: config.metaTitle,
+      description: config.metaDescription,
+      keywords: config.keywords,
+      image: "/images/haneda-airport.jpg"
+    },
+    hero: {
+      title: config.title,
+      subtitle: config.heroSubtitle,
+      features: copy.features(config.destination),
+      imageSrc: "/images/haneda-airport.jpg",
+      imageAlt: config.imageAlt
+    },
+    overview: {
+      title: copy.overviewTitle(config.destination),
+      subtitle: config.overviewSubtitle,
+      facts: [
+        {
+          label: locale === "en" ? "Typical drive time" : locale === "ja" ? "通常の所要時間" : "通常車程",
+          value: config.driveTime,
+          description:
+            locale === "en"
+              ? `Traffic and the exact entrance around ${config.destination} can change the final timing.`
+              : locale === "ja"
+                ? "道路状況と目的地の入口により実際の所要時間は変わります。"
+                : "實際時間會依路況和目的地入口位置而變化。"
+        },
+        {
+          label: locale === "en" ? "Best for" : locale === "ja" ? "おすすめ利用" : "適合場景",
+          value: config.bestFor,
+          description: config.bestForDescription
+        },
+        {
+          label: locale === "en" ? "Vehicle fit" : locale === "ja" ? "車種の目安" : "車型建議",
+          value: config.vehicleFit,
+          description: config.vehicleDescription
+        }
+      ],
+      notesTitle: copy.notesTitle,
+      notes: config.notes
+    },
+    quote: {
+      title: config.quoteTitle,
+      subtitle: config.quoteSubtitle,
+      directNote: copy.directNote
+    },
+    waiting: {
+      pickupNote: copy.pickupNote,
+      delayNote: copy.delayNote,
+      promiseTitle: copy.promiseTitle,
+      promises: copy.promises(config.destination)
+    },
+    booking: {
+      title: config.bookingTitle,
+      subtitle: config.bookingSubtitle,
+      placeholders: {
+        airport: copy.airportPlaceholder,
+        flight: copy.flightPlaceholder,
+        landingTime: copy.landingTimePlaceholder,
+        hotel: config.hotelExample,
+        passengers: config.passengersExample,
+        luggage: config.luggageExample
+      },
+      messageHeader: config.messageHeader
+    },
+    seo: {
+      routesTitle: copy.routesTitle,
+      routesSubtitle: copy.routesSubtitle,
+      routes: copy.relatedRoutes.filter((route) => route.href !== path).slice(0, 4),
+      faqTitle: config.faqTitle,
+      faqSubtitle: config.faqSubtitle,
+      faqs: config.faqs
+    }
+  };
 }
 
 const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> = {
@@ -425,7 +1357,10 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           }
         ]
       }
-    }
+    },
+    "haneda-airport-to-ginza": buildHanedaRoutePage("en", "haneda-airport-to-ginza"),
+    "haneda-airport-to-shinjuku": buildHanedaRoutePage("en", "haneda-airport-to-shinjuku"),
+    "haneda-airport-to-shinagawa": buildHanedaRoutePage("en", "haneda-airport-to-shinagawa")
   },
   ja: {
     "narita-airport-to-shinjuku": {
@@ -715,7 +1650,10 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           }
         ]
       }
-    }
+    },
+    "haneda-airport-to-ginza": buildHanedaRoutePage("ja", "haneda-airport-to-ginza"),
+    "haneda-airport-to-shinjuku": buildHanedaRoutePage("ja", "haneda-airport-to-shinjuku"),
+    "haneda-airport-to-shinagawa": buildHanedaRoutePage("ja", "haneda-airport-to-shinagawa")
   },
   zh: {
     "narita-airport-to-shinjuku": {
@@ -999,7 +1937,10 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           }
         ]
       }
-    }
+    },
+    "haneda-airport-to-ginza": buildHanedaRoutePage("zh", "haneda-airport-to-ginza"),
+    "haneda-airport-to-shinjuku": buildHanedaRoutePage("zh", "haneda-airport-to-shinjuku"),
+    "haneda-airport-to-shinagawa": buildHanedaRoutePage("zh", "haneda-airport-to-shinagawa")
   }
 };
 
