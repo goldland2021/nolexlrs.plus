@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
 import { cityPageSlugs, cityPath } from "@/lib/city-routes";
 import { locales } from "@/lib/i18n";
+import { routePagePath, routePageSlugs } from "@/lib/route-pages";
 import { buildLanguageAlternates, localizedPath, siteUrl } from "@/lib/seo";
 
 const routes = [
   "",
   ...cityPageSlugs.map((slug) => cityPath(slug)),
   "/narita-airport-transfer",
+  ...routePageSlugs.map((slug) => routePagePath(slug)),
   "/haneda-airport-transfer",
   "/tokyo-private-driver"
 ];

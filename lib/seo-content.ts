@@ -24,7 +24,7 @@ type AirportGuideContent = {
   title: string;
   subtitle: string;
   destinationsTitle: string;
-  destinations: { name: string; description: string }[];
+  destinations: { name: string; description: string; href?: string }[];
   tipsTitle: string;
   tips: string[];
 };
@@ -36,10 +36,10 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
       "Private airport pickup, Tokyo hotel transfers, Shinkansen station pickup, and Mt Fuji day trips for hotels, homes, apartments, and family travel. Quotes are based on route distance, vehicle size, luggage, and arrival time.",
     routes: [
       {
-        title: "Narita Airport to Tokyo hotels",
+        title: "Narita Airport to Shinjuku",
         description:
-          "Door-to-door Narita Airport transfer to Shinjuku, Shibuya, Ginza, Asakusa, Shinagawa, and other central Tokyo areas.",
-        href: "/narita-airport-transfer"
+          "Door-to-door Narita Airport transfer to Shinjuku Station hotels, Nishi-Shinjuku, Kabukicho, and nearby apartments.",
+        href: "/narita-airport-to-shinjuku"
       },
       {
         title: "Haneda Airport to central Tokyo",
@@ -48,10 +48,10 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/haneda-airport-transfer"
       },
       {
-        title: "Narita or Haneda to Tokyo Disney Resort",
+        title: "Narita Airport to Tokyo Disney Resort",
         description:
           "Private airport transfer for families going to Tokyo Disneyland, DisneySea, Maihama hotels, and resort-area hotels with luggage.",
-        href: "/narita-airport-transfer"
+        href: "/narita-airport-to-tokyo-disney-resort"
       },
       {
         title: "Tokyo cruise terminal transfer",
@@ -132,10 +132,10 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
       "成田空港・羽田空港の送迎、東京ホテル間移動、新幹線駅送迎、富士山日帰り観光に対応するプライベート送迎です。料金は距離、車種、荷物、到着時間をもとに見積もります。",
     routes: [
       {
-        title: "成田空港から東京のホテルへ",
+        title: "成田空港から新宿へ",
         description:
-          "新宿、渋谷、銀座、浅草、品川など、東京中心部へのドアツードア成田空港送迎です。",
-        href: "/narita-airport-transfer"
+          "新宿駅周辺、西新宿、歌舞伎町、周辺ホテルへのドアツードア成田空港送迎です。",
+        href: "/narita-airport-to-shinjuku"
       },
       {
         title: "羽田空港から東京中心部へ",
@@ -144,10 +144,10 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/haneda-airport-transfer"
       },
       {
-        title: "成田・羽田から東京ディズニーリゾートへ",
+        title: "成田空港から東京ディズニーリゾートへ",
         description:
           "東京ディズニーランド、ディズニーシー、舞浜ホテル、リゾート周辺ホテルへ荷物付きで移動できます。",
-        href: "/narita-airport-transfer"
+        href: "/narita-airport-to-tokyo-disney-resort"
       },
       {
         title: "東京クルーズターミナル送迎",
@@ -227,10 +227,10 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
       "提供成田機場、羽田機場、東京酒店移動、新幹線站接送和富士山一日遊之間的私人接送。報價會參考路線距離、車型、行李數量和到達時間。",
     routes: [
       {
-        title: "成田機場到東京酒店",
+        title: "成田機場到新宿",
         description:
-          "成田機場到新宿、澀谷、銀座、淺草、品川等東京市區的點對點私人接送。",
-        href: "/narita-airport-transfer"
+          "成田機場到新宿站周邊、西新宿、歌舞伎町和附近酒店的點對點私人接送。",
+        href: "/narita-airport-to-shinjuku"
       },
       {
         title: "羽田機場到東京市區",
@@ -239,10 +239,10 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/haneda-airport-transfer"
       },
       {
-        title: "成田或羽田到東京迪士尼",
+        title: "成田機場到東京迪士尼",
         description:
           "適合前往東京迪士尼樂園、迪士尼海洋、舞濱酒店和迪士尼周邊酒店的家庭旅客。",
-        href: "/narita-airport-transfer"
+        href: "/narita-airport-to-tokyo-disney-resort"
       },
       {
         title: "東京郵輪碼頭接送",
@@ -327,16 +327,18 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
       destinationsTitle: "Common Narita transfer destinations",
       destinations: [
         {
-          name: "Narita to Shinjuku or Shibuya",
-          description: "Popular for first-time visitors staying near major hotels, stations, and nightlife areas."
+          name: "Narita to Shinjuku",
+          description: "Popular for first-time visitors staying near major hotels, stations, and nightlife areas.",
+          href: "/narita-airport-to-shinjuku"
         },
         {
           name: "Narita to Ginza, Tokyo Station, or Nihonbashi",
           description: "Convenient for business travelers and central Tokyo hotel stays."
         },
         {
-          name: "Narita to Shinagawa or Tokyo Disney Resort",
-          description: "Good for families with luggage, strollers, and children after a long flight."
+          name: "Narita to Tokyo Disney Resort",
+          description: "Good for families with luggage, strollers, and children after a long flight.",
+          href: "/narita-airport-to-tokyo-disney-resort"
         }
       ],
       tipsTitle: "Before you book",
@@ -381,16 +383,18 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
       destinationsTitle: "よくある成田空港送迎先",
       destinations: [
         {
-          name: "成田から新宿・渋谷",
-          description: "ホテル、駅、観光エリアに滞在する初めての旅行者に人気です。"
+          name: "成田から新宿",
+          description: "ホテル、駅、観光エリアに滞在する初めての旅行者に人気です。",
+          href: "/narita-airport-to-shinjuku"
         },
         {
           name: "成田から銀座・東京駅・日本橋",
           description: "ビジネス利用や東京中心部のホテル滞在に便利です。"
         },
         {
-          name: "成田から品川・東京ディズニーリゾート",
-          description: "長距離フライト後のご家族、荷物、ベビーカーがある場合に便利です。"
+          name: "成田から東京ディズニーリゾート",
+          description: "長距離フライト後のご家族、荷物、ベビーカーがある場合に便利です。",
+          href: "/narita-airport-to-tokyo-disney-resort"
         }
       ],
       tipsTitle: "予約前に確認すること",
@@ -435,16 +439,18 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
       destinationsTitle: "常見成田機場接送目的地",
       destinations: [
         {
-          name: "成田到新宿或澀谷",
-          description: "適合入住熱門酒店、車站周邊和市區觀光區域的旅客。"
+          name: "成田到新宿",
+          description: "適合入住熱門酒店、車站周邊和市區觀光區域的旅客。",
+          href: "/narita-airport-to-shinjuku"
         },
         {
           name: "成田到銀座、東京站或日本橋",
           description: "適合商務客人和入住東京中心區域酒店的旅客。"
         },
         {
-          name: "成田到品川或東京迪士尼",
-          description: "適合長途飛行後帶行李、嬰兒車和兒童的家庭。"
+          name: "成田到東京迪士尼",
+          description: "適合長途飛行後帶行李、嬰兒車和兒童的家庭。",
+          href: "/narita-airport-to-tokyo-disney-resort"
         }
       ],
       tipsTitle: "預約前建議提供",

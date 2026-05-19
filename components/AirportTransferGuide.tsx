@@ -1,5 +1,7 @@
+import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { airportGuideContent } from "@/lib/seo-content";
+import { localizedPath } from "@/lib/seo";
 
 type AirportTransferGuideProps = {
   airport: "narita" | "haneda";
@@ -22,14 +24,30 @@ export default function AirportTransferGuide({ airport, locale }: AirportTransfe
             <div className="rounded-lg border border-clay/60 bg-sand/40 p-5 sm:p-6">
               <h3 className="text-lg font-semibold">{content.destinationsTitle}</h3>
               <div className="mt-5 grid gap-4 md:grid-cols-3">
-                {content.destinations.map((destination) => (
-                  <article key={destination.name} className="rounded-lg bg-white p-4 shadow-soft">
-                    <h4 className="font-semibold text-ink">{destination.name}</h4>
-                    <p className="mt-2 text-sm leading-6 text-ink/65">
-                      {destination.description}
-                    </p>
-                  </article>
-                ))}
+                {content.destinations.map((destination) => {
+                  const card = (
+                    <>
+                      <h4 className="font-semibold text-ink">{destination.name}</h4>
+                      <p className="mt-2 text-sm leading-6 text-ink/65">
+                        {destination.description}
+                      </p>
+                    </>
+                  );
+
+                  return destination.href ? (
+                    <Link
+                      key={destination.name}
+                      href={localizedPath(locale, destination.href)}
+                      className="rounded-lg bg-white p-4 shadow-soft transition hover:-translate-y-0.5 hover:text-ember"
+                    >
+                      {card}
+                    </Link>
+                  ) : (
+                    <article key={destination.name} className="rounded-lg bg-white p-4 shadow-soft">
+                      {card}
+                    </article>
+                  );
+                })}
               </div>
             </div>
 
