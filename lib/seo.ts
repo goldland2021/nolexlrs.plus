@@ -429,9 +429,9 @@ export type BreadcrumbJsonLdItem = {
 };
 
 const breadcrumbHomeNames: Record<Locale, string> = {
-  en: "Tokyo Airport Transfer",
-  ja: "東京空港送迎",
-  zh: "東京機場接送"
+  en: siteName,
+  ja: siteName,
+  zh: siteName
 };
 
 export function breadcrumbHomeName(locale: Locale) {

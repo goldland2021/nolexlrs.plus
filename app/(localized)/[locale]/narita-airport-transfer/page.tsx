@@ -3,14 +3,17 @@ import Hero from "@/components/Hero";
 import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
 import AirportTransferGuide from "@/components/AirportTransferGuide";
+import SeoContent from "@/components/SeoContent";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import {
   breadcrumbHomeName,
   breadcrumbJsonLd,
   buildPageMetadata,
+  faqJsonLd,
   serviceJsonLd,
   serviceJsonLdProfiles
 } from "@/lib/seo";
+import { serviceSeoContent } from "@/lib/seo-content";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -37,9 +40,17 @@ export default async function NaritaPage({ params }: { params: LocaleParams }) {
   const { locale: requestedLocale } = await params;
   const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
+  const seoContent = serviceSeoContent[locale].naritaAirportTransfer;
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd(seoContent.faqs))
+        }}
+      />
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -85,6 +96,7 @@ export default async function NaritaPage({ params }: { params: LocaleParams }) {
         </div>
       </section>
       <AirportTransferGuide airport="narita" locale={locale} />
+      <SeoContent locale={locale} content={seoContent} />
       <Vehicles
         title={dict.vehicles.title}
         subtitle={dict.vehicles.subtitle}

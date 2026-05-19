@@ -1,8 +1,16 @@
-﻿import Hero from "@/components/Hero";
+﻿import type { Metadata } from "next";
+import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import WaitingTimeBanner from "@/components/WaitingTimeBanner";
 import ServicePolicy from "@/components/ServicePolicy";
 import Booking from "@/components/Booking";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 export default function TestWaitingTimePage() {
   const services = [

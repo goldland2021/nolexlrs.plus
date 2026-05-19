@@ -3,14 +3,17 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Vehicles from "@/components/Vehicles";
 import Booking from "@/components/Booking";
+import SeoContent from "@/components/SeoContent";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import {
   breadcrumbHomeName,
   breadcrumbJsonLd,
   buildPageMetadata,
+  faqJsonLd,
   serviceJsonLd,
   serviceJsonLdProfiles
 } from "@/lib/seo";
+import { serviceSeoContent } from "@/lib/seo-content";
 
 type LocaleParams = Promise<{ locale: string }>;
 
@@ -37,9 +40,17 @@ export default async function PrivateDriverPage({ params }: { params: LocalePara
   const { locale: requestedLocale } = await params;
   const locale = isLocale(requestedLocale) ? requestedLocale : "en";
   const dict = getDictionary(locale);
+  const seoContent = serviceSeoContent[locale].tokyoPrivateDriver;
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd(seoContent.faqs))
+        }}
+      />
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -83,6 +94,7 @@ export default async function PrivateDriverPage({ params }: { params: LocalePara
         itemNote={dict.services.itemNote}
         locale={locale}
       />
+      <SeoContent locale={locale} content={seoContent} />
       <Vehicles
         title={dict.vehicles.title}
         subtitle={dict.vehicles.subtitle}

@@ -1,8 +1,16 @@
-﻿import Hero from "@/components/Hero";
+﻿import type { Metadata } from "next";
+import Hero from "@/components/Hero";
 import Booking from "@/components/Booking";
 import ContactInfo from "@/components/ContactInfo";
 import Footer from "@/components/Footer";
 import { whatsAppDisplayPhone, whatsAppPhoneNumber } from "@/lib/whatsapp";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 export default function TestContactPage() {
   return (
