@@ -67,7 +67,9 @@ const UI = {
     toll: "Toll estimate",
     total: "Estimated private transfer",
     included: "Usually includes",
-    includedItems: ["Private door-to-door ride", "Toll estimate", "Flight delay tracking", "90 min airport pickup waiting"],
+    includedCommonItems: ["Private door-to-door ride", "Toll estimate"],
+    pickupIncludedItems: ["Flight delay tracking", "90 min airport pickup waiting"],
+    dropoffIncludedItems: ["30 min hotel pickup waiting"],
     note: "This is a planning estimate. The final fixed quote is confirmed by WhatsApp after vehicle size, luggage, and pickup time are checked.",
     drag: "Fine-tune the red marker if the pin is not exactly on your hotel.",
     empty: "Enter a hotel name or address to see a reference fare before you message us.",
@@ -94,7 +96,9 @@ const UI = {
     toll: "高速代目安",
     total: "プライベート送迎の目安",
     included: "通常含まれるもの",
-    includedItems: ["ドアツードア送迎", "高速代目安", "フライト遅延確認", "空港お迎え90分無料待機"],
+    includedCommonItems: ["ドアツードア送迎", "高速代目安"],
+    pickupIncludedItems: ["フライト遅延確認", "空港お迎え90分無料待機"],
+    dropoffIncludedItems: ["ホテルお迎え30分無料待機"],
     note: "車種、荷物、出発時刻を確認後、WhatsAppで最終固定料金をご案内します。",
     drag: "ピンの位置がずれている場合は、赤いマーカーを調整できます。",
     empty: "ホテル名または住所を入力すると、問い合わせ前に参考料金を確認できます。",
@@ -121,7 +125,9 @@ const UI = {
     toll: "高速費預估",
     total: "私人接送預估價",
     included: "通常包含",
-    includedItems: ["點對點專車接送", "高速費預估", "航班延誤跟蹤", "機場接機90分鐘免費等待"],
+    includedCommonItems: ["點對點專車接送", "高速費預估"],
+    pickupIncludedItems: ["航班延誤跟蹤", "機場接機90分鐘免費等待"],
+    dropoffIncludedItems: ["酒店上車30分鐘免費等待"],
     note: "最終固定報價會在確認車型、行李和接送時間後透過 WhatsApp 確認。",
     drag: "如果紅色定位點不準確，可以拖動微調。",
     empty: "輸入酒店名或地址，就可以先查看參考價格。",
@@ -145,6 +151,13 @@ function formatYen(amount: number) {
 function formatDuration(minutes: number) {
   if (minutes < 60) return `${minutes} min`;
   return `${Math.floor(minutes / 60)} hr ${minutes % 60} min`;
+}
+
+function getIncludedItems(t: (typeof UI)["en"], direction: RouteResult["direction"]) {
+  return [
+    ...t.includedCommonItems,
+    ...(direction === "pickup" ? t.pickupIncludedItems : t.dropoffIncludedItems)
+  ];
 }
 
 const blueDotIcon: google.maps.Icon = {
@@ -610,7 +623,7 @@ export default function RoutePickerInner({
             <div className="mt-5 border-t border-clay/50 pt-4">
               <p className="text-sm font-semibold text-ink">{t.included}</p>
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                {t.includedItems.map((item) => (
+                {getIncludedItems(t, routeResult.direction).map((item) => (
                   <div key={item} className="flex items-center gap-2 text-sm text-ink/70">
                     <span className="h-1.5 w-1.5 rounded-full bg-ember" />
                     <span>{item}</span>
