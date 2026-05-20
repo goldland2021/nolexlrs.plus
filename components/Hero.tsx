@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { trackAnalyticsEvent } from "@/lib/analytics";
-import { cityLabels, citySlugs, localizedCityPath, type CitySlug } from "@/lib/city-routes";
+import { cityLabels, localizedCityPath, type CitySlug } from "@/lib/city-routes";
 import type { Locale } from "@/lib/i18n";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
 
@@ -18,6 +18,16 @@ type HeroProps = {
   locale?: Locale;
   citySlug?: CitySlug;
 };
+
+const primaryCitySlugs: CitySlug[] = ["tokyo", "osaka", "fukuoka"];
+
+function cityButtonClass(active: boolean) {
+  return `inline-flex h-10 items-center justify-center rounded-full border px-4 text-sm font-semibold transition ${
+    active
+      ? "border-ember bg-ember text-white shadow-soft"
+      : "border-clay/70 bg-white/85 text-ink/70 hover:border-ember/50 hover:text-ember"
+  }`;
+}
 
 export default function Hero({
   title,
@@ -39,18 +49,14 @@ export default function Hero({
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap gap-3">
-              {citySlugs.map((slug) => {
+              {primaryCitySlugs.map((slug) => {
                 const active = slug === citySlug;
 
                 return (
                   <Link
                     key={slug}
                     href={localizedCityPath(locale, slug)}
-                    className={`inline-flex h-10 items-center justify-center rounded-full border px-4 text-sm font-semibold transition ${
-                      active
-                        ? "border-ember bg-ember text-white shadow-soft"
-                        : "border-clay/70 bg-white/85 text-ink/70 hover:border-ember/50 hover:text-ember"
-                    }`}
+                    className={cityButtonClass(active)}
                   >
                     {labels[slug]}
                   </Link>
@@ -83,7 +89,6 @@ export default function Hero({
               >
                 {ctaLabel}
               </a>
-              <span className="badge">Email: jpairport.com@gmail.com</span>
             </div>
           </div>
           <div className="relative reveal">

@@ -8,7 +8,6 @@ type ContactInfoProps = {
 
 export default function ContactInfo({
   showPhone = true,
-  showName = true,
   compact = false
 }: ContactInfoProps) {
   const href = buildWhatsAppLink(defaultWhatsAppMessage);
@@ -26,8 +25,6 @@ export default function ContactInfo({
           rel="noreferrer"
         >
           {showPhone && whatsAppDisplayPhone}
-          {showPhone && showName && " • "}
-          {showName && "ハヤシ"}
         </a>
       </div>
     );
@@ -51,7 +48,6 @@ export default function ContactInfo({
           >
             {whatsAppDisplayPhone}
           </a>
-          {showName && " • ハヤシ (Hayashi)"}
         </p>
         <p className="text-xs text-ink/50 mt-1">Instant response • 24/7 available</p>
       </div>
