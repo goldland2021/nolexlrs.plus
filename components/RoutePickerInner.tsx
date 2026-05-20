@@ -64,10 +64,9 @@ const UI = {
     search: "Get estimate",
     distance: "Distance",
     time: "Drive time",
-    toll: "Toll estimate",
     total: "Estimated private transfer",
     included: "Usually includes",
-    includedCommonItems: ["Private door-to-door ride", "Toll estimate"],
+    includedCommonItems: ["Private door-to-door ride"],
     pickupIncludedItems: ["Flight delay tracking", "90 min airport pickup waiting"],
     dropoffIncludedItems: ["30 min hotel pickup waiting"],
     note: "This is a planning estimate. The final fixed quote is confirmed by WhatsApp after vehicle size, luggage, and pickup time are checked.",
@@ -93,10 +92,9 @@ const UI = {
     search: "見積もり",
     distance: "距離",
     time: "所要時間",
-    toll: "高速代目安",
     total: "プライベート送迎の目安",
     included: "通常含まれるもの",
-    includedCommonItems: ["ドアツードア送迎", "高速代目安"],
+    includedCommonItems: ["ドアツードア送迎"],
     pickupIncludedItems: ["フライト遅延確認", "空港お迎え90分無料待機"],
     dropoffIncludedItems: ["ホテルお迎え30分無料待機"],
     note: "車種、荷物、出発時刻を確認後、WhatsAppで最終固定料金をご案内します。",
@@ -122,10 +120,9 @@ const UI = {
     search: "獲取預估",
     distance: "距離",
     time: "車程",
-    toll: "高速費預估",
     total: "私人接送預估價",
     included: "通常包含",
-    includedCommonItems: ["點對點專車接送", "高速費預估"],
+    includedCommonItems: ["點對點專車接送"],
     pickupIncludedItems: ["航班延誤跟蹤", "機場接機90分鐘免費等待"],
     dropoffIncludedItems: ["酒店上車30分鐘免費等待"],
     note: "最終固定報價會在確認車型、行李和接送時間後透過 WhatsApp 確認。",
@@ -430,7 +427,6 @@ export default function RoutePickerInner({
         `Estimated fare shown: ${formatYen(routeResult.estimateLowYen)} - ${formatYen(routeResult.estimateHighYen)}`,
         `Distance: ${routeResult.distanceKm} km`,
         `Estimated drive time: ${formatDuration(routeResult.durationMin)}`,
-        `Toll estimate: ${formatYen(routeResult.tollYen)}`,
         "",
         "Passenger count:",
         "Luggage:",
@@ -605,7 +601,7 @@ export default function RoutePickerInner({
           </div>
 
           <div className="rounded-lg border border-clay/60 bg-white p-5 shadow-soft">
-            <div className="grid grid-cols-3 gap-3 text-center">
+            <div className="grid grid-cols-2 gap-3 text-center">
               <div>
                 <p className="text-xs font-medium text-ink/50">{t.distance}</p>
                 <p className="mt-1 text-lg font-semibold text-ink">{routeResult.distanceKm} km</p>
@@ -613,10 +609,6 @@ export default function RoutePickerInner({
               <div>
                 <p className="text-xs font-medium text-ink/50">{t.time}</p>
                 <p className="mt-1 text-lg font-semibold text-ink">{formatDuration(routeResult.durationMin)}</p>
-              </div>
-              <div>
-                <p className="text-xs font-medium text-ink/50">{t.toll}</p>
-                <p className="mt-1 text-lg font-semibold text-ink">{formatYen(routeResult.tollYen)}</p>
               </div>
             </div>
 

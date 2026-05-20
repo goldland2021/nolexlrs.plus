@@ -102,7 +102,6 @@ export default function Booking({
           `Estimated fare: ${formatYen(routeQuote.estimateLowYen)} - ${formatYen(routeQuote.estimateHighYen)}`,
           `Distance: ${routeQuote.distanceKm} km`,
           `Estimated drive time: ${routeQuote.durationMin} min`,
-          `Toll estimate: ${formatYen(routeQuote.tollYen)}`,
           `Map destination: ${routeQuote.destName || `${routeQuote.destLat}, ${routeQuote.destLng}`}`
         ]
       : [];

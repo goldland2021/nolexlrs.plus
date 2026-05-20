@@ -359,7 +359,7 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
     narita: {
       title: "Narita Airport Transfer Guide",
       subtitle:
-        "Narita is farther from central Tokyo than Haneda, so the best quote should account for tolls, traffic, passenger count, luggage, and whether it is airport pickup or hotel drop-off.",
+        "Narita is farther from central Tokyo than Haneda, so the fixed quote should account for traffic, passenger count, luggage, and whether it is airport pickup or hotel drop-off.",
       destinationsTitle: "Common Narita transfer destinations",
       destinations: [
         {
@@ -477,7 +477,7 @@ export const airportGuideContent: Record<Locale, Record<"narita" | "haneda", Air
     narita: {
       title: "成田機場接送指南",
       subtitle:
-        "成田機場距離東京市區較遠，合理報價需要考慮高速費、路況、人數、行李，以及是接機還是酒店送機。",
+        "成田機場距離東京市區較遠，固定報價會根據路況、人數、行李，以及是接機還是酒店送機來確認。",
       destinationsTitle: "常見成田機場接送目的地",
       destinations: [
         {
