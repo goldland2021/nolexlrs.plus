@@ -7,3 +7,7 @@
 tsconfig.tsbuildinfo
 
 .vercel
+
+# Private pricing data. Keep costs and real quote samples out of public GitHub.
+data/*.csv
+lib/quote-samples.ts
