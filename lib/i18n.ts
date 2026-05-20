@@ -165,8 +165,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "English-speaking driver",
         "Optional name-sign meet-and-greet at gate (+¥2,000)",
         "Fixed transparent pricing",
-        "Pickup: 90 min free waiting from flight landing",
-        "Drop-off: 30 min free waiting"
+        "Free waiting: 90 min for pickup from flight landing, 30 min for drop-off"
       ],
       cta: "Get Quote on WhatsApp",
       imageAlt: "Tokyo airport transfer private pickup vehicle"
@@ -298,8 +297,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "英語対応ドライバー",
         "到着ゲートでのネームプレートお迎えはオプション（+2,000円）",
         "明朗な固定料金",
-        "お迎え: 到着後90分まで無料待機",
-        "お送り: 30分まで無料待機"
+        "無料待機: お迎え90分（到着時刻から）、お送り30分"
       ],
       cta: "WhatsAppで見積もり",
       imageAlt: "東京空港送迎のプライベート車両"
@@ -435,8 +433,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "可中文和英文溝通",
         "到達口舉牌接機為可選（+2,000 日元）",
         "固定報價，價格透明",
-        "接機免費等待90分鐘，從航班落地算起",
-        "送機免費等待30分鐘"
+        "免費等待：接機90分鐘（從航班落地算起），送機30分鐘"
       ],
       cta: "WhatsApp 獲取報價",
       imageAlt: "東京機場接送私人專車"

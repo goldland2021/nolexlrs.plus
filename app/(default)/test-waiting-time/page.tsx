@@ -36,8 +36,7 @@ export default function TestWaitingTimePage() {
                 "英文司機", 
                 "到達口舉牌接機",
                 "透明固定價格",
-                "接機免費等候90分鐘（從飛機降落算起）",
-                "送機免費等候30分鐘"
+                "免費等候：接機90分鐘（從飛機降落算起），送機30分鐘"
               ]}
               imageSrc="/images/tokyo-airport-transfer.jpg"
               imageAlt="東京機場接送"

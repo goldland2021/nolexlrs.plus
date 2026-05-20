@@ -20,8 +20,7 @@ export default function PreviewNewLayoutPage() {
           "英文司機",
           "到達口舉牌接機",
           "透明固定價格",
-          "接機免費等候90分鐘（從飛機降落算起）",
-          "送機免費等候30分鐘"
+          "免費等候：接機90分鐘（從飛機降落算起），送機30分鐘"
         ],
         cta: "WhatsApp 獲取報價",
         imageAlt: "東京機場接送專車服務"
@@ -76,8 +75,7 @@ export default function PreviewNewLayoutPage() {
           "English speaking driver",
           "Meet and greet at arrival gate",
           "Fixed transparent pricing",
-          "Pickup: 90 min free waiting (from flight landing)",
-          "Drop-off: 30 min free waiting"
+          "Free waiting: 90 min for pickup from flight landing, 30 min for drop-off"
         ],
         cta: "Get Quote on WhatsApp",
         imageAlt: "Tokyo airport transfer luxury pickup"
@@ -132,8 +130,7 @@ export default function PreviewNewLayoutPage() {
           "英語対応ドライバー",
           "到着ゲートでお出迎え",
           "明朗な固定料金",
-          "空港お迎え: 90分無料待機（飛行機着陸時から）",
-          "空港お見送り: 30分無料待機"
+          "無料待機: お迎え90分（飛行機着陸時から）、お送り30分"
         ],
         cta: "WhatsAppで見積もり",
         imageAlt: "東京 空港送迎のプライベートピックアップ"
