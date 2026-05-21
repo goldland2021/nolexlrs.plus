@@ -878,7 +878,7 @@ const hanedaRouteConfigs: Record<Locale, Record<HanedaRouteSlug, HanedaRouteConf
       nearbyAreas: "銀座、築地、有樂町、日本橋和東京中心區酒店",
       metaTitle: "羽田機場到銀座接送 | 東京酒店私人專車",
       metaDescription:
-        "羽田機場到銀座酒店、築地、有樂町和日本橋的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+        "羽田機場到銀座酒店、築地、有樂町和日本橋的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
       keywords: [
         "羽田機場到銀座接送",
         "羽田到銀座包車",
@@ -938,7 +938,7 @@ const hanedaRouteConfigs: Record<Locale, Record<HanedaRouteSlug, HanedaRouteConf
       nearbyAreas: "新宿站周邊酒店、西新宿、歌舞伎町和附近公寓",
       metaTitle: "羽田機場到新宿接送 | 東京酒店私人專車",
       metaDescription:
-        "羽田機場到新宿站周邊、西新宿、歌舞伎町酒店的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+        "羽田機場到新宿站周邊、西新宿、歌舞伎町酒店的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
       keywords: [
         "羽田機場到新宿接送",
         "羽田到新宿包車",
@@ -998,7 +998,7 @@ const hanedaRouteConfigs: Record<Locale, Record<HanedaRouteSlug, HanedaRouteConf
       nearbyAreas: "品川站、高輪酒店、五反田和新幹線轉乘",
       metaTitle: "羽田機場到品川接送 | 品川站酒店私人專車",
       metaDescription:
-        "羽田機場到品川站、高輪酒店和新幹線轉乘的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+        "羽田機場到品川站、高輪酒店和新幹線轉乘的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
       keywords: [
         "羽田機場到品川接送",
         "羽田到品川包車",
@@ -1573,7 +1573,7 @@ const kansaiRouteConfigs: Record<Locale, Record<KansaiRouteSlug, KansaiRouteConf
       destination: "京都",
       metaTitle: "關西機場到京都接送 | 酒店旅館私人專車",
       metaDescription:
-        "關西機場到京都站、祇園、河原町、嵐山酒店和旅館的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+        "關西機場到京都站、祇園、河原町、嵐山酒店和旅館的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
       keywords: [
         "關西機場到京都接送",
         "KIX 到京都包車",
@@ -1645,7 +1645,7 @@ const kansaiRouteConfigs: Record<Locale, Record<KansaiRouteSlug, KansaiRouteConf
       destination: "大阪難波",
       metaTitle: "關西機場到大阪難波接送 | 酒店私人專車",
       metaDescription:
-        "關西機場到大阪難波、道頓堀、心齋橋和大阪市區酒店的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+        "關西機場到大阪難波、道頓堀、心齋橋和大阪市區酒店的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
       keywords: [
         "關西機場到大阪難波接送",
         "KIX 到難波包車",
@@ -2292,7 +2292,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
       destination: "博多",
       metaTitle: "福岡機場到博多接送 | 酒店私人專車",
       metaDescription:
-        "福岡機場到博多站、博多酒店、天神、中洲和福岡市區的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+        "福岡機場到博多站、博多酒店、天神、中洲和福岡市區的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
       keywords: [
         "福岡機場到博多接送",
         "FUK 到博多包車",
@@ -2399,7 +2399,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
       destination: "恩納村",
       metaTitle: "那霸機場到恩納村接送 | 沖繩度假酒店私人專車",
       metaDescription:
-        "那霸機場到恩納村度假酒店、海灘住宿、親子家庭和行李移動的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+        "那霸機場到恩納村度假酒店、海灘住宿、親子家庭和行李移動的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
       keywords: [
         "那霸機場到恩納村接送",
         "OKA 到恩納村包車",
@@ -3211,7 +3211,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
       meta: {
         title: "成田機場到新宿接送 | 東京酒店私人專車",
         description:
-          "成田機場到新宿站周邊、西新宿、歌舞伎町酒店的私人專車接送。可中文英文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
+          "成田機場到新宿站周邊、西新宿、歌舞伎町酒店的私人專車接送。可英文和中文溝通，固定報價，Toyota Alphard 和 Hiace 可選。",
         keywords: [
           "成田機場到新宿接送",
           "成田到新宿包車",

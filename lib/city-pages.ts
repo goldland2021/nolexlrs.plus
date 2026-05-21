@@ -740,7 +740,7 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
     osaka: {
       metaTitle: "大阪機場接送 | 關西機場到大阪京都環球影城包車",
       metaDescription:
-        "大阪機場接送，覆蓋關西機場、伊丹機場、難波、梅田、京都、奈良、神戶和日本環球影城。私人專車固定報價，可中文英文溝通。",
+        "大阪機場接送，覆蓋關西機場、伊丹機場、難波、梅田、京都、奈良、神戶和日本環球影城。私人專車固定報價，可英文和中文溝通。",
       keywords: [
         "關西機場到大阪接送",
         "關西機場到京都包車",
@@ -860,7 +860,7 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
     fukuoka: {
       metaTitle: "福岡機場接送 | 福岡機場到博多天神郵輪九州包車",
       metaDescription:
-        "福岡機場接送，覆蓋博多、天神、福岡郵輪碼頭、太宰府、糸島、由布院、別府和九州周邊。私人專車，可中文英文溝通。",
+        "福岡機場接送，覆蓋博多、天神、福岡郵輪碼頭、太宰府、糸島、由布院、別府和九州周邊。私人專車，可英文和中文溝通。",
       keywords: [
         "福岡機場接送",
         "福岡機場到博多接送",
@@ -1195,9 +1195,8 @@ function buildChineseContent(slug: CityPageSlug, basicsItem: LocalizedCityBasics
       subtitle: `${basicsItem.airportPhrase}到${basicsItem.areaPhrase}的私人專車接送服務。`,
       features: [
         "24小時機場接送",
-        "可中文和英文溝通",
+        "可英文和中文溝通",
         "酒店到酒店移動",
-        "固定報價，價格透明",
         basicsItem.dayTripPhrase,
         "WhatsApp 快速預約"
       ],

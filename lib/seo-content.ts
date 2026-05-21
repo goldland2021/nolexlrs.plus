@@ -246,7 +246,7 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
     ]
   },
   zh: {
-    routesTitle: "東京熱門機場接送路線",
+    routesTitle: "東京機場熱門路線接送",
     routesSubtitle:
       "提供成田機場、羽田機場、東京酒店移動、新幹線站接送和富士山一日遊之間的私人接送。報價會參考路線距離、車型、行李數量和到達時間。",
     routes: [
@@ -348,7 +348,7 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
       {
         question: "可以預約酒店移動、新幹線接送或富士山一日遊嗎？",
         answer:
-          "可以。除了成田機場和羽田機場接送，也可以安排東京酒店到酒店移動、東京站或品川站新幹線接送，以及富士山一日遊包車，可中文和英文溝通。"
+          "可以。除了成田機場和羽田機場接送，也可以安排東京酒店到酒店移動、東京站或品川站新幹線接送，以及富士山一日遊包車，可英文和中文溝通。"
       }
     ]
   }
