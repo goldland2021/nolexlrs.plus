@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { trackAnalyticsEvent } from "@/lib/analytics";
+import { trackWhatsAppLeadConversion } from "@/lib/analytics";
 import { cityLabels, localizedCityPath, type CitySlug } from "@/lib/city-routes";
 import type { Locale } from "@/lib/i18n";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
@@ -85,7 +85,7 @@ export default function Hero({
                 className="inline-flex items-center justify-center rounded-full bg-ember px-6 py-3 text-white shadow-lift transition hover:translate-y-[-2px]"
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackAnalyticsEvent("whatsapp_click", { location: "hero_cta" })}
+                onClick={() => trackWhatsAppLeadConversion("hero_cta")}
               >
                 {ctaLabel}
               </a>

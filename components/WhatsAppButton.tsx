@@ -1,7 +1,7 @@
 "use client";
 
 import { buildWhatsAppLink, defaultWhatsAppMessage, whatsAppDisplayPhone } from "@/lib/whatsapp";
-import { trackAnalyticsEvent } from "@/lib/analytics";
+import { trackWhatsAppLeadConversion } from "@/lib/analytics";
 
 export default function WhatsAppButton() {
   const href = buildWhatsAppLink(defaultWhatsAppMessage);
@@ -14,7 +14,7 @@ export default function WhatsAppButton() {
       rel="noreferrer"
       aria-label={`Chat on WhatsApp ${whatsAppDisplayPhone}`}
       title={`WhatsApp ${whatsAppDisplayPhone}`}
-      onClick={() => trackAnalyticsEvent("whatsapp_click", { location: "floating_button" })}
+      onClick={() => trackWhatsAppLeadConversion("floating_button")}
     >
       WhatsApp
     </a>

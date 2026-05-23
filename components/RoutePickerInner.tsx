@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { calculateAirportFareEstimate } from "@/lib/airport-pricing";
-import { trackAnalyticsEvent } from "@/lib/analytics";
+import { trackAnalyticsEvent, trackWhatsAppLeadConversion } from "@/lib/analytics";
 import type { CityAirport } from "@/lib/city-routes";
 import { AIRPORTS, type LatLng, findNearestTollZone } from "@/lib/toll-routes";
 import { geocodeAddressGoogleMaps, getDrivingRouteGoogleMaps } from "@/lib/google-maps-routing";
@@ -587,14 +587,17 @@ export default function RoutePickerInner({
               target="_blank"
               rel="noreferrer"
               className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-lg bg-ink px-4 text-sm font-semibold text-white transition hover:bg-ink/90"
-              onClick={() =>
-                trackAnalyticsEvent("route_quote_confirm", {
+              onClick={() => {
+                const eventParams = {
                   route_airport: routeResult.airportId,
                   route_direction: routeResult.direction,
                   estimate_low_yen: routeResult.estimateLowYen,
                   estimate_high_yen: routeResult.estimateHighYen
-                })
-              }
+                };
+
+                trackAnalyticsEvent("route_quote_confirm", eventParams);
+                trackWhatsAppLeadConversion("route_quote_confirm", eventParams);
+              }}
             >
               {t.confirm}
             </a>

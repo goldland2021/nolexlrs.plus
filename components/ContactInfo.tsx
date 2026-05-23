@@ -1,3 +1,6 @@
+"use client";
+
+import { trackWhatsAppLeadConversion } from "@/lib/analytics";
 import { buildWhatsAppLink, defaultWhatsAppMessage, whatsAppDisplayPhone } from "@/lib/whatsapp";
 
 type ContactInfoProps = {
@@ -23,6 +26,7 @@ export default function ContactInfo({
           className="text-ember hover:text-ember/80 transition-colors"
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackWhatsAppLeadConversion("contact_info_compact")}
         >
           {showPhone && whatsAppDisplayPhone}
         </a>
@@ -45,6 +49,7 @@ export default function ContactInfo({
             className="text-ember hover:text-ember/80 transition-colors"
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackWhatsAppLeadConversion("contact_info")}
           >
             {whatsAppDisplayPhone}
           </a>
