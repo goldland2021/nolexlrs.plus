@@ -10,6 +10,7 @@ export type RoutePageSlug =
   | "haneda-airport-to-ginza"
   | "haneda-airport-to-shinjuku"
   | "haneda-airport-to-shinagawa"
+  | "yokohama-port-transfer"
   | "kansai-airport-to-kyoto"
   | "kansai-airport-to-osaka-namba"
   | "fukuoka-airport-to-hakata"
@@ -20,6 +21,7 @@ export const routePageSlugs: RoutePageSlug[] = [
   "haneda-airport-to-ginza",
   "haneda-airport-to-shinjuku",
   "haneda-airport-to-shinagawa",
+  "yokohama-port-transfer",
   "kansai-airport-to-kyoto",
   "kansai-airport-to-osaka-namba",
   "fukuoka-airport-to-hakata",
@@ -198,6 +200,29 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
       "Haneda Airport to Shinagawa hotel private transfer",
       "Haneda Airport to Takanawa private car",
       "Shinagawa hotel to Haneda Airport drop-off"
+    ]
+  },
+  "yokohama-port-transfer": {
+    areaServed: [
+      "Yokohama Port",
+      "Osanbashi Yokohama International Passenger Terminal",
+      "Daikoku Pier",
+      "Yokohama",
+      "Haneda Airport",
+      "Narita Airport",
+      "Tokyo"
+    ],
+    serviceType: [
+      "Yokohama port transfer",
+      "Yokohama cruise terminal pickup",
+      "Airport to Yokohama port transfer",
+      "Private car to Yokohama cruise terminal"
+    ],
+    offerCatalogName: "Yokohama port transfer services",
+    offers: [
+      "Haneda Airport to Yokohama port private transfer",
+      "Narita Airport to Yokohama cruise terminal private car",
+      "Tokyo hotel to Yokohama port drop-off"
     ]
   },
   "kansai-airport-to-kyoto": {
@@ -1830,7 +1855,10 @@ function buildKansaiRoutePage(locale: Locale, slug: KansaiRouteSlug): RoutePageC
   };
 }
 
-type RegionalRouteSlug = Extract<RoutePageSlug, "fukuoka-airport-to-hakata" | "naha-airport-to-onna-village">;
+type RegionalRouteSlug = Extract<
+  RoutePageSlug,
+  "yokohama-port-transfer" | "fukuoka-airport-to-hakata" | "naha-airport-to-onna-village"
+>;
 
 type RegionalRouteConfig = KansaiRouteConfig & {
   routeAirports: CityAirport[];
@@ -1956,6 +1984,125 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
         }
       ]
     },
+    "yokohama-port-transfer": {
+      title: "Yokohama Port Transfer",
+      destination: "Yokohama Port",
+      metaTitle: "Yokohama Port Transfer | Private Car to Cruise Terminal",
+      metaDescription:
+        "Private Yokohama port transfer for Osanbashi cruise terminal, Daikoku Pier, Tokyo hotels, Haneda Airport and Narita Airport. Alphard and Hiace options.",
+      keywords: [
+        "Yokohama port transfer",
+        "Yokohama cruise terminal transfer",
+        "Haneda Airport to Yokohama port",
+        "Narita Airport to Yokohama port",
+        "Tokyo hotel to Yokohama cruise terminal",
+        "Osanbashi port private transfer",
+        "Daikoku Pier transfer"
+      ],
+      citySlug: "tokyo",
+      cityName: "Yokohama",
+      citySearchName: "Osanbashi Yokohama International Passenger Terminal, Yokohama, Japan",
+      routeAirports: [hanedaAirport, naritaAirport],
+      defaultAirportId: "haneda",
+      airportPlaceholder: "Haneda or Narita Airport",
+      heroSubtitle:
+        "Private transfer for Yokohama cruise passengers between Osanbashi terminal, Daikoku Pier, Tokyo hotels, Haneda Airport, and Narita Airport.",
+      heroFeatures: [
+        "Cruise terminal pickup and drop-off",
+        "Haneda or Narita airport connection",
+        "Tokyo hotel to Yokohama port transfer",
+        "Toyota Alphard or Hiace available",
+        "Luggage-friendly private vehicle",
+        "Fixed quote confirmed on WhatsApp"
+      ],
+      imageAlt: "Private Yokohama port transfer for cruise passengers",
+      overviewTitle: "Route Details for Yokohama Port Transfer",
+      overviewSubtitle:
+        "Yokohama port transfers are useful for cruise passengers carrying luggage between Tokyo hotels, airports, Osanbashi terminal, and Daikoku Pier.",
+      driveTime: "30-120 min",
+      bestFor: "Cruise passengers with luggage",
+      bestForDescription:
+        "Useful for Osanbashi terminal, Daikoku Pier, Yokohama hotels, Tokyo hotel pickup, and same-day airport connections.",
+      vehicleFit: "Alphard or Hiace",
+      vehicleDescription:
+        "Alphard works for smaller groups with moderate luggage; Hiace is better for cruise passengers with multiple large suitcases.",
+      notesTitle: "Before You Book",
+      notes: [
+        "Send the ship name, terminal name, and boarding or disembarkation time.",
+        "Yokohama cruise calls may use Osanbashi or Daikoku Pier, so please confirm the exact terminal.",
+        "Share passenger and suitcase count so we can confirm whether Alphard or Hiace is better."
+      ],
+      quoteTitle: "Get a Yokohama Port Transfer Quote",
+      quoteSubtitle:
+        "Search Yokohama port, your cruise terminal, hotel, or airport route on the map, then send passenger, luggage, and timing details on WhatsApp.",
+      directNote:
+        "Opens in WhatsApp after submission. For cruise pickup, please include ship name, terminal, pickup time, passengers, and luggage.",
+      pickupNote: "For airport pickup, waiting time starts from actual flight landing. For port or hotel pickup, waiting starts from the scheduled pickup time.",
+      delayNote: "For cruise arrivals, tell us the expected disembarkation time so the driver can plan the pickup window.",
+      promiseTitle: "Why Book This Route",
+      promises: [
+        ["Port-specific pickup", "We confirm Osanbashi, Daikoku Pier, or your Yokohama hotel before the ride."],
+        ["Luggage support", "Private vehicles are easier for large cruise suitcases and multi-person groups."],
+        ["Airport connection", "Haneda and Narita airport pickup or drop-off can be arranged with the same route page."],
+        ["Tokyo hotel transfer", "Tokyo hotel to Yokohama port and Yokohama port to Tokyo hotel are both available."]
+      ],
+      bookingTitle: "Book Yokohama Port Transfer",
+      bookingSubtitle:
+        "Send your terminal, pickup time, hotel or airport, passengers, and luggage details for a fast WhatsApp quote.",
+      hotelExample: "Osanbashi Yokohama International Passenger Terminal",
+      passengersExample: "2",
+      luggageExample: "4 suitcases",
+      messageHeader: "Hello, I need a Yokohama port transfer quote.",
+      relatedRoutesTitle: "Related Tokyo Port and Airport Routes",
+      relatedRoutesSubtitle:
+        "Private transfer routes for Yokohama cruise terminal, Tokyo hotels, Haneda Airport, Narita Airport, and Tokyo private driver service.",
+      relatedRoutes: [
+        {
+          title: "Yokohama Port Transfer",
+          description: "Private pickup and drop-off for Osanbashi, Daikoku Pier, Tokyo hotels, and airports.",
+          href: "/yokohama-port-transfer"
+        },
+        {
+          title: "Haneda Airport Transfer",
+          description: "Haneda pickup and drop-off for Tokyo hotels, Shinagawa, Ginza, Shinjuku, and cruise connections.",
+          href: "/haneda-airport-transfer"
+        },
+        {
+          title: "Narita Airport Transfer",
+          description: "Narita pickup and drop-off for Tokyo hotels, Shinjuku, Ginza, Shinagawa, and long-distance transfers.",
+          href: "/narita-airport-transfer"
+        },
+        {
+          title: "Tokyo Private Driver",
+          description: "Hotel transfers, Shinkansen station pickup, city routes, hourly charter, and day trips.",
+          href: "/tokyo-private-driver"
+        }
+      ],
+      faqTitle: "Yokohama Port Transfer FAQ",
+      faqSubtitle: "Common questions before booking a private car for Yokohama cruise terminal transfer.",
+      faqs: [
+        {
+          question: "Which Yokohama cruise terminals can you pick up from?",
+          answer:
+            "We can arrange pickup and drop-off for Osanbashi Yokohama International Passenger Terminal, Daikoku Pier, Yokohama hotels, and nearby port areas."
+        },
+        {
+          question: "Can I book Haneda Airport to Yokohama Port?",
+          answer:
+            "Yes. Haneda Airport to Yokohama Port is a common route and usually takes about 30 to 60 minutes depending on traffic and terminal location."
+        },
+        {
+          question: "Can I book Narita Airport to Yokohama Port?",
+          answer:
+            "Yes. Narita Airport to Yokohama Port can be arranged. Please allow more travel time because the route is much longer than Haneda."
+        },
+        {
+          question: "Which vehicle is better for cruise luggage?",
+          answer:
+            "Toyota Hiace is usually better for multiple large cruise suitcases. Alphard works well for smaller groups with lighter luggage."
+        }
+      ]
+    },
     "naha-airport-to-onna-village": {
       title: "Naha Airport to Onna Village Transfer",
       destination: "Onna Village",
@@ -2070,6 +2217,126 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
     }
   },
   ja: {
+    "yokohama-port-transfer": {
+      title: "横浜港送迎",
+      destination: "横浜港",
+      metaTitle: "横浜港送迎 | クルーズターミナル専用車",
+      metaDescription:
+        "大さん橋、横浜港、横浜クルーズターミナル、東京ホテル、羽田空港、成田空港を結ぶ専用車送迎。アルファード、ハイエース対応。",
+      keywords: [
+        "横浜港送迎",
+        "横浜クルーズターミナル送迎",
+        "羽田空港 横浜港 送迎",
+        "成田空港 横浜港 送迎",
+        "東京ホテル 横浜港 送迎",
+        "大さん橋 送迎",
+        "大黒ふ頭 送迎"
+      ],
+      citySlug: "tokyo",
+      cityName: "横浜",
+      citySearchName: "大さん橋 横浜国際客船ターミナル, 横浜, 日本",
+      routeAirports: [hanedaAirport, naritaAirport],
+      defaultAirportId: "haneda",
+      airportPlaceholder: "羽田空港または成田空港",
+      heroSubtitle:
+        "大さん橋、大黒ふ頭、横浜ホテル、東京ホテル、羽田空港、成田空港を結ぶクルーズ利用者向けの専用車送迎。",
+      heroFeatures: [
+        "クルーズターミナル送迎",
+        "羽田空港・成田空港接続",
+        "東京ホテルから横浜港へ",
+        "アルファードまたはハイエース対応",
+        "大きな荷物にも対応",
+        "WhatsAppで固定料金を確認"
+      ],
+      imageAlt: "横浜港クルーズターミナル専用車送迎",
+      overviewTitle: "横浜港送迎ルート詳細",
+      overviewSubtitle:
+        "横浜港送迎は、東京ホテル、空港、大さん橋、大黒ふ頭の間を荷物付きで移動するクルーズ利用者に便利です。",
+      driveTime: "30-120分",
+      bestFor: "クルーズ利用者と大きな荷物",
+      bestForDescription:
+        "大さん橋、大黒ふ頭、横浜ホテル、東京ホテル発着、同日空港移動に便利です。",
+      vehicleFit: "アルファードまたはハイエース",
+      vehicleDescription:
+        "少人数で荷物が通常量ならアルファード、クルーズの大型スーツケースが多い場合はハイエースがおすすめです。",
+      notesTitle: "予約前の確認",
+      notes: [
+        "船名、ターミナル名、乗船または下船予定時刻をお知らせください。",
+        "横浜港は大さん橋または大黒ふ頭になる場合があるため、正確なターミナルを確認してください。",
+        "人数とスーツケース数を共有いただくと、最適な車種を確認できます。"
+      ],
+      quoteTitle: "横浜港送迎の見積もり",
+      quoteSubtitle:
+        "地図で横浜港、クルーズターミナル、ホテル、空港ルートを検索し、人数、荷物、時間をWhatsAppで送ってください。",
+      directNote:
+        "送信後、WhatsAppで直接やり取りできます。クルーズ送迎は船名、ターミナル、時間、人数、荷物数をお知らせください。",
+      pickupNote:
+        "空港お迎えは実際のフライト到着時刻から、港またはホテルのお迎えは予約時刻から待機時間を計算します。",
+      delayNote: "クルーズ下船の場合は、下船予定時刻を共有いただくとお迎え時間を調整しやすくなります。",
+      promiseTitle: "このルートのメリット",
+      promises: [
+        ["港に合わせた送迎", "大さん橋、大黒ふ頭、横浜ホテルなど正確な乗降場所を事前に確認します。"],
+        ["荷物に便利", "クルーズの大型スーツケースや複数人数の移動に専用車が便利です。"],
+        ["空港接続", "羽田空港、成田空港から横浜港までの送迎に対応します。"],
+        ["東京ホテル送迎", "東京ホテルから横浜港、横浜港から東京ホテルの移動も手配できます。"]
+      ],
+      bookingTitle: "横浜港送迎を予約",
+      bookingSubtitle:
+        "ターミナル、送迎時刻、ホテルまたは空港、人数、荷物情報を送ると、WhatsAppですぐに見積もりできます。",
+      hotelExample: "大さん橋 横浜国際客船ターミナル",
+      passengersExample: "2名",
+      luggageExample: "スーツケース4個",
+      messageHeader: "こんにちは。横浜港送迎の見積もりをお願いします。",
+      relatedRoutesTitle: "関連する東京港・空港送迎ルート",
+      relatedRoutesSubtitle:
+        "横浜クルーズターミナル、東京ホテル、羽田空港、成田空港、東京専用ドライバーに関連する送迎ルートです。",
+      relatedRoutes: [
+        {
+          title: "横浜港送迎",
+          description: "大さん橋、大黒ふ頭、東京ホテル、空港に対応する専用車送迎です。",
+          href: "/yokohama-port-transfer"
+        },
+        {
+          title: "羽田空港送迎",
+          description: "羽田空港から東京ホテル、品川、銀座、新宿、港への移動に対応します。",
+          href: "/haneda-airport-transfer"
+        },
+        {
+          title: "成田空港送迎",
+          description: "成田空港から東京ホテル、新宿、銀座、品川、長距離移動に対応します。",
+          href: "/narita-airport-transfer"
+        },
+        {
+          title: "東京プライベートドライバー",
+          description: "ホテル間移動、新幹線駅送迎、時間貸切、日帰り観光に対応します。",
+          href: "/tokyo-private-driver"
+        }
+      ],
+      faqTitle: "横浜港送迎 FAQ",
+      faqSubtitle: "横浜クルーズターミナル送迎を予約する前によくある質問です。",
+      faqs: [
+        {
+          question: "横浜港のどのターミナルで送迎できますか？",
+          answer:
+            "大さん橋横浜国際客船ターミナル、大黒ふ頭、横浜ホテル、周辺港エリアで送迎できます。"
+        },
+        {
+          question: "羽田空港から横浜港まで予約できますか？",
+          answer:
+            "はい。羽田空港から横浜港はよくあるルートで、通常30分から60分ほどですが、交通状況とターミナルにより変わります。"
+        },
+        {
+          question: "成田空港から横浜港まで予約できますか？",
+          answer:
+            "はい。成田空港から横浜港も手配できます。羽田より距離が長いため、時間に余裕を持つことをおすすめします。"
+        },
+        {
+          question: "クルーズの荷物が多い場合はどの車が良いですか？",
+          answer:
+            "大型スーツケースが多い場合はハイエースがおすすめです。少人数で荷物が少なめならアルファードも快適です。"
+        }
+      ]
+    },
     "fukuoka-airport-to-hakata": {
       title: "福岡空港から博多への送迎",
       destination: "博多",
@@ -2286,6 +2553,126 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
     }
   },
   zh: {
+    "yokohama-port-transfer": {
+      title: "橫濱港接送",
+      destination: "橫濱港",
+      metaTitle: "橫濱港接送 | 郵輪碼頭私人專車",
+      metaDescription:
+        "橫濱港、大棧橋、大黑埠頭、東京酒店、羽田機場和成田機場之間的私人專車接送。適合郵輪旅客，可安排 Alphard 或 Hiace。",
+      keywords: [
+        "橫濱港接送",
+        "橫濱郵輪碼頭接送",
+        "羽田機場到橫濱港",
+        "成田機場到橫濱港",
+        "東京酒店到橫濱港",
+        "大棧橋接送",
+        "大黑埠頭接送"
+      ],
+      citySlug: "tokyo",
+      cityName: "橫濱",
+      citySearchName: "大棧橋橫濱國際客船碼頭, 橫濱, 日本",
+      routeAirports: [hanedaAirport, naritaAirport],
+      defaultAirportId: "haneda",
+      airportPlaceholder: "羽田機場或成田機場",
+      heroSubtitle:
+        "適合郵輪旅客的大棧橋、大黑埠頭、橫濱酒店、東京酒店、羽田機場和成田機場私人專車接送。",
+      heroFeatures: [
+        "郵輪碼頭接送",
+        "羽田或成田機場銜接",
+        "東京酒店到橫濱港",
+        "可選 Alphard 或 Hiace",
+        "適合大件行李",
+        "WhatsApp 確認固定報價"
+      ],
+      imageAlt: "橫濱港郵輪碼頭私人專車接送",
+      overviewTitle: "橫濱港接送路線詳情",
+      overviewSubtitle:
+        "橫濱港接送適合攜帶大件行李，在東京酒店、機場、大棧橋和大黑埠頭之間移動的郵輪旅客。",
+      driveTime: "30-120分鐘",
+      bestFor: "郵輪旅客和大件行李",
+      bestForDescription:
+        "適合大棧橋、大黑埠頭、橫濱酒店、東京酒店出發，以及同日機場銜接。",
+      vehicleFit: "Alphard 或 Hiace",
+      vehicleDescription:
+        "人數較少且行李適中可選 Alphard；郵輪大行李箱較多時建議選 Hiace。",
+      notesTitle: "預約前建議",
+      notes: [
+        "請提供船名、碼頭名稱，以及登船或下船預計時間。",
+        "橫濱郵輪可能使用大棧橋或大黑埠頭，請先確認準確碼頭。",
+        "請告訴我們人數和行李箱數量，方便確認 Alphard 或 Hiace 是否合適。"
+      ],
+      quoteTitle: "獲取橫濱港接送報價",
+      quoteSubtitle:
+        "在地圖中搜尋橫濱港、郵輪碼頭、酒店或機場路線，再透過 WhatsApp 發送人數、行李和時間資訊。",
+      directNote:
+        "提交後會打開 WhatsApp。郵輪接送請提供船名、碼頭、接送時間、人數和行李數量。",
+      pickupNote:
+        "機場接機等待時間從航班實際落地開始；港口或酒店接送則從預約時間開始計算。",
+      delayNote: "郵輪下船時請提供預計下船時間，方便司機安排合適的接送時間。",
+      promiseTitle: "這條路線的優點",
+      promises: [
+        ["確認碼頭位置", "上車前確認大棧橋、大黑埠頭或橫濱酒店的準確接送點。"],
+        ["適合大件行李", "郵輪大行李箱和多人同行時，私人專車比公共交通更方便。"],
+        ["可銜接機場", "可安排羽田機場或成田機場到橫濱港的接送。"],
+        ["東京酒店可接送", "東京酒店到橫濱港、橫濱港到東京酒店都可以安排。"]
+      ],
+      bookingTitle: "預約橫濱港接送",
+      bookingSubtitle:
+        "發送碼頭、接送時間、酒店或機場、人數和行李資訊，即可透過 WhatsApp 快速報價。",
+      hotelExample: "大棧橋橫濱國際客船碼頭",
+      passengersExample: "2人",
+      luggageExample: "4個行李箱",
+      messageHeader: "您好，我需要橫濱港接送報價。",
+      relatedRoutesTitle: "相關東京港口與機場接送路線",
+      relatedRoutesSubtitle:
+        "橫濱郵輪碼頭、東京酒店、羽田機場、成田機場和東京包車司機相關的私人專車路線。",
+      relatedRoutes: [
+        {
+          title: "橫濱港接送",
+          description: "適合大棧橋、大黑埠頭、東京酒店和機場之間的私人專車接送。",
+          href: "/yokohama-port-transfer"
+        },
+        {
+          title: "羽田機場接送",
+          description: "羽田機場到東京酒店、品川、銀座、新宿和港口相關路線。",
+          href: "/haneda-airport-transfer"
+        },
+        {
+          title: "成田機場接送",
+          description: "成田機場到東京酒店、新宿、銀座、品川和長距離接送。",
+          href: "/narita-airport-transfer"
+        },
+        {
+          title: "東京包車司機",
+          description: "酒店移動、新幹線接送、小時包車和一日遊行程。",
+          href: "/tokyo-private-driver"
+        }
+      ],
+      faqTitle: "橫濱港接送常見問題",
+      faqSubtitle: "預約橫濱郵輪碼頭私人專車前常見的問題。",
+      faqs: [
+        {
+          question: "橫濱港哪些碼頭可以接送？",
+          answer:
+            "可以安排大棧橋橫濱國際客船碼頭、大黑埠頭、橫濱酒店以及周邊港口區域接送。"
+        },
+        {
+          question: "可以預約羽田機場到橫濱港嗎？",
+          answer:
+            "可以。羽田機場到橫濱港是常見路線，通常約30到60分鐘，具體取決於路況和碼頭位置。"
+        },
+        {
+          question: "可以預約成田機場到橫濱港嗎？",
+          answer:
+            "可以。成田機場到橫濱港也可以安排，但距離比羽田遠，建議預留更充足時間。"
+        },
+        {
+          question: "郵輪行李多應該選什麼車？",
+          answer:
+            "大型郵輪行李箱較多時通常建議選 Hiace；人數少、行李較少時 Alphard 也很舒適。"
+        }
+      ]
+    },
     "fukuoka-airport-to-hakata": {
       title: "福岡機場到博多接送",
       destination: "博多",
@@ -2896,6 +3283,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "haneda-airport-to-ginza": buildHanedaRoutePage("en", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("en", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("en", "haneda-airport-to-shinagawa"),
+    "yokohama-port-transfer": buildRegionalRoutePage("en", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("en", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("en", "kansai-airport-to-osaka-namba"),
     "fukuoka-airport-to-hakata": buildRegionalRoutePage("en", "fukuoka-airport-to-hakata"),
@@ -3193,6 +3581,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "haneda-airport-to-ginza": buildHanedaRoutePage("ja", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("ja", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("ja", "haneda-airport-to-shinagawa"),
+    "yokohama-port-transfer": buildRegionalRoutePage("ja", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("ja", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("ja", "kansai-airport-to-osaka-namba"),
     "fukuoka-airport-to-hakata": buildRegionalRoutePage("ja", "fukuoka-airport-to-hakata"),
@@ -3484,6 +3873,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "haneda-airport-to-ginza": buildHanedaRoutePage("zh", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("zh", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("zh", "haneda-airport-to-shinagawa"),
+    "yokohama-port-transfer": buildRegionalRoutePage("zh", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("zh", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("zh", "kansai-airport-to-osaka-namba"),
     "fukuoka-airport-to-hakata": buildRegionalRoutePage("zh", "fukuoka-airport-to-hakata"),

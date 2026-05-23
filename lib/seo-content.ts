@@ -72,6 +72,12 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/haneda-airport-transfer"
       },
       {
+        title: "Yokohama port transfer",
+        description:
+          "Private transfer for Yokohama cruise passengers between Osanbashi, Daikoku Pier, Tokyo hotels, Haneda Airport, and Narita Airport.",
+        href: "/yokohama-port-transfer"
+      },
+      {
         title: "Tokyo hotel to Narita or Haneda",
         description:
           "Reliable airport drop-off from Tokyo hotels with recommended departure time based on traffic and flight schedule.",
@@ -180,6 +186,12 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/haneda-airport-transfer"
       },
       {
+        title: "横浜港送迎",
+        description:
+          "大さん橋、大黒ふ頭、東京ホテル、羽田空港、成田空港を結ぶクルーズ利用者向けの専用車送迎です。",
+        href: "/yokohama-port-transfer"
+      },
+      {
         title: "東京ホテルから成田・羽田へ",
         description:
           "フライト時刻と交通状況をもとに出発時間を提案し、東京ホテルから空港までお送りします。",
@@ -285,6 +297,12 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         description:
           "可安排東京國際郵輪碼頭、晴海、酒店與機場之間的點對點私人接送。",
         href: "/haneda-airport-transfer"
+      },
+      {
+        title: "橫濱港接送",
+        description:
+          "適合大棧橋、大黑埠頭、東京酒店、羽田機場和成田機場之間移動的郵輪旅客私人專車接送。",
+        href: "/yokohama-port-transfer"
       },
       {
         title: "東京酒店送機到成田或羽田",
@@ -556,6 +574,12 @@ export const serviceSeoContent: Record<Locale, Record<ServiceSeoPage, HomeSeoCon
           href: "/narita-airport-to-tokyo-disney-resort"
         },
         {
+          title: "Narita Airport to Yokohama port",
+          description:
+            "Long-distance private transfer from Narita Airport to Osanbashi, Daikoku Pier, Yokohama hotels, and cruise terminal areas.",
+          href: "/yokohama-port-transfer"
+        },
+        {
           title: "Narita Airport to Tokyo hotels",
           description:
             "Fixed-quote Narita pickup for Tokyo Station, Ginza, Shibuya, Shinagawa, Asakusa, and central Tokyo hotels.",
@@ -615,6 +639,12 @@ export const serviceSeoContent: Record<Locale, Record<ServiceSeoPage, HomeSeoCon
           description:
             "Quick private transfer from Haneda Airport to Shinagawa Station hotels, Takanawa, and Shinkansen connections.",
           href: "/haneda-airport-to-shinagawa"
+        },
+        {
+          title: "Haneda Airport to Yokohama port",
+          description:
+            "Private transfer from Haneda Airport to Osanbashi, Daikoku Pier, Yokohama hotels, and cruise terminal areas.",
+          href: "/yokohama-port-transfer"
         },
         {
           title: "Tokyo hotel to Haneda Airport",
@@ -721,6 +751,11 @@ export const serviceSeoContent: Record<Locale, Record<ServiceSeoPage, HomeSeoCon
           href: "/narita-airport-to-tokyo-disney-resort"
         },
         {
+          title: "成田空港から横浜港へ",
+          description: "成田空港から大さん橋、大黒ふ頭、横浜ホテル、クルーズターミナル周辺へ向かう長距離専用車送迎です。",
+          href: "/yokohama-port-transfer"
+        },
+        {
           title: "成田空港から東京ホテルへ",
           description: "東京駅、銀座、渋谷、品川、浅草、東京中心部ホテルへの固定料金の成田空港送迎です。",
           href: "/narita-airport-transfer"
@@ -771,6 +806,11 @@ export const serviceSeoContent: Record<Locale, Record<ServiceSeoPage, HomeSeoCon
           title: "羽田空港から品川へ",
           description: "品川駅周辺ホテル、高輪、新幹線接続に便利な羽田空港から品川への短距離送迎です。",
           href: "/haneda-airport-to-shinagawa"
+        },
+        {
+          title: "羽田空港から横浜港へ",
+          description: "羽田空港から大さん橋、大黒ふ頭、横浜ホテル、クルーズターミナル周辺へ向かう専用車送迎です。",
+          href: "/yokohama-port-transfer"
         },
         {
           title: "東京ホテルから羽田空港へ",
@@ -864,6 +904,11 @@ export const serviceSeoContent: Record<Locale, Record<ServiceSeoPage, HomeSeoCon
           href: "/narita-airport-to-tokyo-disney-resort"
         },
         {
+          title: "成田機場到橫濱港",
+          description: "成田機場前往大棧橋、大黑埠頭、橫濱酒店和郵輪碼頭區域的長距離私人專車接送。",
+          href: "/yokohama-port-transfer"
+        },
+        {
           title: "成田機場到東京酒店",
           description: "成田機場到東京站、銀座、澀谷、品川、淺草和東京市中心酒店的固定報價接送。",
           href: "/narita-airport-transfer"
@@ -914,6 +959,11 @@ export const serviceSeoContent: Record<Locale, Record<ServiceSeoPage, HomeSeoCon
           title: "羽田機場到品川",
           description: "羽田機場到品川站周邊酒店、高輪和新幹線轉乘的短途私人接送。",
           href: "/haneda-airport-to-shinagawa"
+        },
+        {
+          title: "羽田機場到橫濱港",
+          description: "羽田機場前往大棧橋、大黑埠頭、橫濱酒店和郵輪碼頭區域的私人專車接送。",
+          href: "/yokohama-port-transfer"
         },
         {
           title: "東京酒店到羽田機場",
