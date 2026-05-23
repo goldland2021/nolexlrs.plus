@@ -8,8 +8,11 @@ type SeoContentProps = {
   content?: HomeSeoContent;
 };
 
+const retiredRouteHrefs = new Set(["/narita-airport-to-tokyo-disney-resort"]);
+
 export default function SeoContent({ locale, content: customContent }: SeoContentProps) {
   const content = customContent ?? homeSeoContent[locale] ?? homeSeoContent.en;
+  const visibleRoutes = content.routes.filter((route) => !retiredRouteHrefs.has(route.href));
 
   return (
     <section className="section bg-white">
@@ -21,7 +24,7 @@ export default function SeoContent({ locale, content: customContent }: SeoConten
           </div>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {content.routes.map((route) => (
+            {visibleRoutes.map((route) => (
               <Link
                 key={route.title}
                 href={localizedPath(locale, route.href)}

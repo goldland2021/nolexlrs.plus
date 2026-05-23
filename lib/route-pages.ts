@@ -17,7 +17,6 @@ export type RoutePageSlug =
 
 export const routePageSlugs: RoutePageSlug[] = [
   "narita-airport-to-shinjuku",
-  "narita-airport-to-tokyo-disney-resort",
   "haneda-airport-to-ginza",
   "haneda-airport-to-shinjuku",
   "haneda-airport-to-shinagawa",
