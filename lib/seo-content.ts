@@ -96,12 +96,6 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/tokyo-private-driver"
       },
       {
-        title: "Toyota Alphard airport transfer",
-        description:
-          "Comfortable private car service for couples, families with children, and travelers carrying multiple suitcases.",
-        href: "/tokyo-private-driver"
-      },
-      {
         title: "Mt Fuji day trip with English driver",
         description:
           "Private Mt Fuji day trip from Tokyo with an English-speaking driver, flexible pickup from hotels, and comfortable Toyota Alphard or Hiace options.",
@@ -210,12 +204,6 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/tokyo-private-driver"
       },
       {
-        title: "アルファード空港送迎",
-        description:
-          "カップル、お子様連れのご家族、スーツケースが多い旅行者に使いやすいプライベートカーです。",
-        href: "/tokyo-private-driver"
-      },
-      {
         title: "英語ドライバーの富士山日帰り",
         description:
           "東京ホテル発着の富士山日帰りプライベートツアー。英語対応ドライバーとアルファード、ハイエースなどを手配できます。",
@@ -320,12 +308,6 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         title: "東京站、品川站新幹線接送",
         description:
           "適合搭乘新幹線抵達東京站、品川站後的酒店接送，也可安排從東京酒店前往新幹線車站。",
-        href: "/tokyo-private-driver"
-      },
-      {
-        title: "Toyota Alphard 機場接送",
-        description:
-          "適合情侶、親子家庭和攜帶多件行李的旅客，也可根據人數和行李安排海獅等車型。",
         href: "/tokyo-private-driver"
       },
       {
