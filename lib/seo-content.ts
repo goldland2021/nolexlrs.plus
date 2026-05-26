@@ -31,9 +31,9 @@ type AirportGuideContent = {
 
 export const homeSeoContent: Record<Locale, HomeSeoContent> = {
   en: {
-    routesTitle: "Popular Tokyo Airport Routes",
+    routesTitle: "Popular Airport Transfer Routes",
     routesSubtitle:
-      "Private airport pickup, Tokyo hotel transfers, Shinkansen station pickup, and Mt Fuji day trips for hotels, homes, apartments, and family travel. Quotes are based on route distance, vehicle size, luggage, and arrival time.",
+      "Private airport pickup, Tokyo hotel transfers, Hokkaido ski resort transfers, Okinawa resort routes, Shinkansen station pickup, and Mt Fuji day trips. Quotes are based on route distance, vehicle size, luggage, and arrival time.",
     routes: [
       {
         title: "Narita Airport to Shinjuku",
@@ -102,6 +102,36 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/yokohama-port-transfer"
       },
       {
+        title: "New Chitose Airport to Sapporo",
+        description:
+          "Private Hokkaido airport transfer to Sapporo Station hotels, Susukino, Odori Park, and central Sapporo.",
+        href: "/new-chitose-airport-to-sapporo"
+      },
+      {
+        title: "New Chitose Airport to Niseko",
+        description:
+          "Ski resort transfer for Hirafu, Hanazono, Niseko Village, Kutchan, ski bags, snowboards, and family luggage.",
+        href: "/new-chitose-airport-to-niseko"
+      },
+      {
+        title: "Naha Airport to Kokusai-dori",
+        description:
+          "Short Okinawa airport transfer for Naha hotels, Kokusai-dori, Kencho-mae, Makishi, and late-night arrivals.",
+        href: "/naha-airport-to-naha-kokusai-dori"
+      },
+      {
+        title: "Naha Airport to Chatan",
+        description:
+          "Private transfer for Chatan hotels, American Village, Mihama, beach stays, and Okinawa family resorts.",
+        href: "/naha-airport-to-chatan-american-village"
+      },
+      {
+        title: "Naha Airport to Onna Village",
+        description:
+          "Private resort transfer from Naha Airport to Onna Village hotels, beaches, Cape Manzamo, and northern Okinawa.",
+        href: "/naha-airport-to-onna-village"
+      },
+      {
         title: "Tokyo hotel to Narita or Haneda",
         description:
           "Reliable airport drop-off from Tokyo hotels with recommended departure time based on traffic and flight schedule.",
@@ -163,9 +193,9 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
     ]
   },
   ja: {
-    routesTitle: "東京の人気空港送迎ルート",
+    routesTitle: "人気空港送迎ルート",
     routesSubtitle:
-      "成田空港・羽田空港の送迎、東京ホテル間移動、新幹線駅送迎、富士山日帰り観光に対応するプライベート送迎です。料金は距離、車種、荷物、到着時間をもとに見積もります。",
+      "成田空港・羽田空港の送迎、北海道スキーリゾート送迎、沖縄リゾート送迎、東京ホテル間移動、新幹線駅送迎、富士山日帰り観光に対応するプライベート送迎です。",
     routes: [
       {
         title: "成田空港から新宿へ",
@@ -234,6 +264,36 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         href: "/yokohama-port-transfer"
       },
       {
+        title: "新千歳空港から札幌へ",
+        description:
+          "札幌駅周辺ホテル、すすきの、大通公園、札幌市内中心部への北海道空港送迎です。",
+        href: "/new-chitose-airport-to-sapporo"
+      },
+      {
+        title: "新千歳空港からニセコへ",
+        description:
+          "ヒラフ、花園、ニセコビレッジ、倶知安、スキー荷物、家族旅行に便利なスキーリゾート送迎です。",
+        href: "/new-chitose-airport-to-niseko"
+      },
+      {
+        title: "那覇空港から国際通りへ",
+        description:
+          "那覇ホテル、国際通り、県庁前、牧志、深夜到着に便利な沖縄空港送迎です。",
+        href: "/naha-airport-to-naha-kokusai-dori"
+      },
+      {
+        title: "那覇空港から北谷へ",
+        description:
+          "北谷ホテル、アメリカンビレッジ、美浜、ビーチ滞在、家族向けリゾートへの送迎です。",
+        href: "/naha-airport-to-chatan-american-village"
+      },
+      {
+        title: "那覇空港から恩納村へ",
+        description:
+          "恩納村リゾートホテル、ビーチ、万座毛、沖縄北部へのプライベート送迎です。",
+        href: "/naha-airport-to-onna-village"
+      },
+      {
         title: "東京ホテルから成田・羽田へ",
         description:
           "フライト時刻と交通状況をもとに出発時間を提案し、東京ホテルから空港までお送りします。",
@@ -294,9 +354,9 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
     ]
   },
   zh: {
-    routesTitle: "東京機場熱門路線接送",
+    routesTitle: "熱門機場接送路線",
     routesSubtitle:
-      "提供成田機場、羽田機場、東京酒店移動、新幹線站接送和富士山一日遊之間的私人接送。報價會參考路線距離、車型、行李數量和到達時間。",
+      "提供成田機場、羽田機場、北海道滑雪度假村、沖繩度假酒店、東京酒店移動、新幹線站接送和富士山一日遊之間的私人接送。",
     routes: [
       {
         title: "成田機場到新宿",
@@ -363,6 +423,36 @@ export const homeSeoContent: Record<Locale, HomeSeoContent> = {
         description:
           "適合大棧橋、大黑埠頭、東京酒店、羽田機場和成田機場之間移動的郵輪旅客私人專車接送。",
         href: "/yokohama-port-transfer"
+      },
+      {
+        title: "新千歲機場到札幌",
+        description:
+          "北海道機場接送，覆蓋札幌站周邊酒店、薄野、大通公園和札幌市中心。",
+        href: "/new-chitose-airport-to-sapporo"
+      },
+      {
+        title: "新千歲機場到二世谷",
+        description:
+          "適合比羅夫、花園、二世谷村、俱知安、滑雪裝備和家庭大件行李的滑雪接送。",
+        href: "/new-chitose-airport-to-niseko"
+      },
+      {
+        title: "那霸機場到國際通",
+        description:
+          "沖繩短途接送，適合那霸酒店、國際通、縣廳前、牧志和深夜到達。",
+        href: "/naha-airport-to-naha-kokusai-dori"
+      },
+      {
+        title: "那霸機場到北谷",
+        description:
+          "適合北谷酒店、美國村、美濱、海灘住宿和沖繩親子度假酒店的私人接送。",
+        href: "/naha-airport-to-chatan-american-village"
+      },
+      {
+        title: "那霸機場到恩納村",
+        description:
+          "那霸機場到恩納村度假酒店、海灘、萬座毛和沖繩北部的私人接送。",
+        href: "/naha-airport-to-onna-village"
       },
       {
         title: "東京酒店送機到成田或羽田",
