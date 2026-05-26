@@ -301,12 +301,14 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
         {
           title: "New Chitose Airport to Sapporo hotels",
           description:
-            "Comfortable airport transfer to central Sapporo, Susukino, Odori, and hotel areas after a long flight."
+            "Comfortable airport transfer to central Sapporo, Susukino, Odori, and hotel areas after a long flight.",
+          href: "/new-chitose-airport-to-sapporo"
         },
         {
           title: "New Chitose Airport to Niseko ski resorts",
           description:
-            "Private ski transfer for Hirafu, Hanazono, Niseko Village, ski bags, snowboards, and family luggage."
+            "Private ski transfer for Hirafu, Hanazono, Niseko Village, ski bags, snowboards, and family luggage.",
+          href: "/new-chitose-airport-to-niseko"
         },
         {
           title: "Sapporo to Otaru, Furano, or Biei",
@@ -440,12 +442,14 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
         {
           title: "Naha Airport to Naha or Kokusai-dori",
           description:
-            "Short private airport pickup for Naha hotels, shopping areas, restaurants, and late-night arrivals."
+            "Short private airport pickup for Naha hotels, shopping areas, restaurants, and late-night arrivals.",
+          href: "/naha-airport-to-naha-kokusai-dori"
         },
         {
           title: "Naha Airport to Chatan or American Village",
           description:
-            "Comfortable transfer for families, beach stays, shopping, and hotel areas on Okinawa's central coast."
+            "Comfortable transfer for families, beach stays, shopping, and hotel areas on Okinawa's central coast.",
+          href: "/naha-airport-to-chatan-american-village"
         },
         {
           title: "Naha Airport to Onna Village resort hotels",
@@ -573,11 +577,13 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
       routes: [
         {
           title: "新千歳空港から札幌ホテルへ",
-          description: "札幌中心部、すすきの、大通、ホテルエリアまで快適に移動できます。"
+          description: "札幌中心部、すすきの、大通、ホテルエリアまで快適に移動できます。",
+          href: "/new-chitose-airport-to-sapporo"
         },
         {
           title: "新千歳空港からニセコスキーリゾートへ",
-          description: "ヒラフ、花園、ニセコビレッジ、スキー板、スノーボード、家族旅行の荷物に対応します。"
+          description: "ヒラフ、花園、ニセコビレッジ、スキー板、スノーボード、家族旅行の荷物に対応します。",
+          href: "/new-chitose-airport-to-niseko"
         },
         {
           title: "札幌から小樽・富良野・美瑛へ",
@@ -694,11 +700,13 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
       routes: [
         {
           title: "那覇空港から那覇・国際通りへ",
-          description: "那覇ホテル、買い物、食事エリア、深夜到着に便利な短距離送迎です。"
+          description: "那覇ホテル、買い物、食事エリア、深夜到着に便利な短距離送迎です。",
+          href: "/naha-airport-to-naha-kokusai-dori"
         },
         {
           title: "那覇空港から北谷・アメリカンビレッジへ",
-          description: "沖縄中部のホテル、ビーチ、ショッピング、家族旅行に使いやすい送迎です。"
+          description: "沖縄中部のホテル、ビーチ、ショッピング、家族旅行に使いやすい送迎です。",
+          href: "/naha-airport-to-chatan-american-village"
         },
         {
           title: "那覇空港から恩納村リゾートホテルへ",
@@ -817,11 +825,13 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
       routes: [
         {
           title: "新千歲機場到札幌酒店",
-          description: "適合前往札幌市區、薄野、大通公園和酒店區域的舒適機場接送。"
+          description: "適合前往札幌市區、薄野、大通公園和酒店區域的舒適機場接送。",
+          href: "/new-chitose-airport-to-sapporo"
         },
         {
           title: "新千歲機場到二世谷滑雪度假村",
-          description: "適合 Hirafu、Hanazono、Niseko Village、滑雪板、雪具和家庭大件行李。"
+          description: "適合 Hirafu、Hanazono、Niseko Village、滑雪板、雪具和家庭大件行李。",
+          href: "/new-chitose-airport-to-niseko"
         },
         {
           title: "札幌到小樽、富良野或美瑛",
@@ -936,11 +946,13 @@ const seoProfiles: Record<Locale, Record<CityPageSlug, CitySeoProfile>> = {
       routes: [
         {
           title: "那霸機場到那霸或國際通",
-          description: "適合那霸市區酒店、購物美食區域和深夜到達的短途私人接送。"
+          description: "適合那霸市區酒店、購物美食區域和深夜到達的短途私人接送。",
+          href: "/naha-airport-to-naha-kokusai-dori"
         },
         {
           title: "那霸機場到北谷或美國村",
-          description: "適合沖繩中部酒店、海灘、購物和親子家庭出行。"
+          description: "適合沖繩中部酒店、海灘、購物和親子家庭出行。",
+          href: "/naha-airport-to-chatan-american-village"
         },
         {
           title: "那霸機場到恩納村度假酒店",

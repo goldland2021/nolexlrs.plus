@@ -7,24 +7,56 @@ import { AIRPORTS } from "./toll-routes";
 export type RoutePageSlug =
   | "narita-airport-to-shinjuku"
   | "narita-airport-to-tokyo-disney-resort"
+  | "narita-airport-to-ginza"
+  | "narita-airport-to-shibuya"
+  | "narita-airport-to-shinagawa"
+  | "narita-airport-to-asakusa-ueno"
+  | "narita-airport-to-tokyo-station"
+  | "narita-airport-to-roppongi-akasaka"
+  | "narita-airport-to-ikebukuro"
   | "haneda-airport-to-ginza"
   | "haneda-airport-to-shinjuku"
   | "haneda-airport-to-shinagawa"
+  | "haneda-airport-to-shibuya"
+  | "haneda-airport-to-asakusa-ueno"
+  | "haneda-airport-to-tokyo-station"
+  | "haneda-airport-to-roppongi-akasaka"
+  | "haneda-airport-to-ikebukuro"
   | "yokohama-port-transfer"
   | "kansai-airport-to-kyoto"
   | "kansai-airport-to-osaka-namba"
+  | "new-chitose-airport-to-sapporo"
+  | "new-chitose-airport-to-niseko"
   | "fukuoka-airport-to-hakata"
+  | "naha-airport-to-naha-kokusai-dori"
+  | "naha-airport-to-chatan-american-village"
   | "naha-airport-to-onna-village";
 
 export const routePageSlugs: RoutePageSlug[] = [
   "narita-airport-to-shinjuku",
+  "narita-airport-to-ginza",
+  "narita-airport-to-shibuya",
+  "narita-airport-to-shinagawa",
+  "narita-airport-to-asakusa-ueno",
+  "narita-airport-to-tokyo-station",
+  "narita-airport-to-roppongi-akasaka",
+  "narita-airport-to-ikebukuro",
   "haneda-airport-to-ginza",
   "haneda-airport-to-shinjuku",
   "haneda-airport-to-shinagawa",
+  "haneda-airport-to-shibuya",
+  "haneda-airport-to-asakusa-ueno",
+  "haneda-airport-to-tokyo-station",
+  "haneda-airport-to-roppongi-akasaka",
+  "haneda-airport-to-ikebukuro",
   "yokohama-port-transfer",
   "kansai-airport-to-kyoto",
   "kansai-airport-to-osaka-namba",
+  "new-chitose-airport-to-sapporo",
+  "new-chitose-airport-to-niseko",
   "fukuoka-airport-to-hakata",
+  "naha-airport-to-naha-kokusai-dori",
+  "naha-airport-to-chatan-american-village",
   "naha-airport-to-onna-village"
 ];
 
@@ -106,6 +138,12 @@ const kansaiAirport: CityAirport = {
   latlng: AIRPORTS.kansai.latlng
 };
 
+const newChitoseAirport: CityAirport = {
+  id: "newChitose",
+  name: AIRPORTS.newChitose.name as Record<Locale, string>,
+  latlng: AIRPORTS.newChitose.latlng
+};
+
 const fukuokaAirport: CityAirport = {
   id: "fukuoka",
   name: AIRPORTS.fukuoka.name as Record<Locale, string>,
@@ -117,6 +155,28 @@ const nahaAirport: CityAirport = {
   name: AIRPORTS.naha.name as Record<Locale, string>,
   latlng: AIRPORTS.naha.latlng
 };
+
+function airportRouteServiceProfile(
+  airportName: string,
+  destination: string,
+  areas: string[]
+): ServiceJsonLdProfile {
+  return {
+    areaServed: [airportName, destination, ...areas, "Tokyo"],
+    serviceType: [
+      `${airportName} to ${destination} transfer`,
+      `${airportName} pickup`,
+      `${destination} hotel airport transfer`,
+      `Private car from ${airportName} to ${destination}`
+    ],
+    offerCatalogName: `${airportName} to ${destination} transfer services`,
+    offers: [
+      `${airportName} to ${destination} hotel private transfer`,
+      `${airportName} to ${areas[0] ?? destination} private car`,
+      `${destination} hotel to ${airportName} drop-off`
+    ]
+  };
+}
 
 const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
   "narita-airport-to-shinjuku": {
@@ -157,6 +217,48 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
       "Tokyo Disney Resort hotel to Narita Airport drop-off"
     ]
   },
+  "narita-airport-to-ginza": airportRouteServiceProfile("Narita Airport", "Ginza", [
+    "Tsukiji",
+    "Yurakucho",
+    "Nihonbashi",
+    "Tokyo Station"
+  ]),
+  "narita-airport-to-shibuya": airportRouteServiceProfile("Narita Airport", "Shibuya", [
+    "Ebisu",
+    "Harajuku",
+    "Aoyama",
+    "Omotesando"
+  ]),
+  "narita-airport-to-shinagawa": airportRouteServiceProfile("Narita Airport", "Shinagawa", [
+    "Takanawa",
+    "Gotanda",
+    "Shinagawa Station",
+    "Shinkansen"
+  ]),
+  "narita-airport-to-asakusa-ueno": airportRouteServiceProfile("Narita Airport", "Asakusa and Ueno", [
+    "Taito",
+    "Ueno Station",
+    "Sensoji",
+    "Akihabara"
+  ]),
+  "narita-airport-to-tokyo-station": airportRouteServiceProfile("Narita Airport", "Tokyo Station", [
+    "Marunouchi",
+    "Otemachi",
+    "Nihonbashi",
+    "Chiyoda"
+  ]),
+  "narita-airport-to-roppongi-akasaka": airportRouteServiceProfile("Narita Airport", "Roppongi and Akasaka", [
+    "Minato",
+    "Azabu",
+    "Toranomon",
+    "Tokyo Midtown"
+  ]),
+  "narita-airport-to-ikebukuro": airportRouteServiceProfile("Narita Airport", "Ikebukuro", [
+    "Toshima",
+    "Sunshine City",
+    "Ikebukuro Station",
+    "Mejiro"
+  ]),
   "haneda-airport-to-ginza": {
     areaServed: ["Haneda Airport", "Ginza", "Tsukiji", "Yurakucho", "Nihonbashi", "Tokyo"],
     serviceType: [
@@ -202,6 +304,36 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
       "Shinagawa hotel to Haneda Airport drop-off"
     ]
   },
+  "haneda-airport-to-shibuya": airportRouteServiceProfile("Haneda Airport", "Shibuya", [
+    "Ebisu",
+    "Harajuku",
+    "Aoyama",
+    "Omotesando"
+  ]),
+  "haneda-airport-to-asakusa-ueno": airportRouteServiceProfile("Haneda Airport", "Asakusa and Ueno", [
+    "Taito",
+    "Ueno Station",
+    "Sensoji",
+    "Akihabara"
+  ]),
+  "haneda-airport-to-tokyo-station": airportRouteServiceProfile("Haneda Airport", "Tokyo Station", [
+    "Marunouchi",
+    "Otemachi",
+    "Nihonbashi",
+    "Chiyoda"
+  ]),
+  "haneda-airport-to-roppongi-akasaka": airportRouteServiceProfile("Haneda Airport", "Roppongi and Akasaka", [
+    "Minato",
+    "Azabu",
+    "Toranomon",
+    "Tokyo Midtown"
+  ]),
+  "haneda-airport-to-ikebukuro": airportRouteServiceProfile("Haneda Airport", "Ikebukuro", [
+    "Toshima",
+    "Sunshine City",
+    "Ikebukuro Station",
+    "Mejiro"
+  ]),
   "yokohama-port-transfer": {
     areaServed: [
       "Yokohama Port",
@@ -255,6 +387,18 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
       "Osaka Namba hotel to Kansai Airport drop-off"
     ]
   },
+  "new-chitose-airport-to-sapporo": airportRouteServiceProfile("New Chitose Airport", "Sapporo", [
+    "Susukino",
+    "Odori Park",
+    "Sapporo Station",
+    "Hokkaido"
+  ]),
+  "new-chitose-airport-to-niseko": airportRouteServiceProfile("New Chitose Airport", "Niseko", [
+    "Hirafu",
+    "Hanazono",
+    "Niseko Village",
+    "Kutchan"
+  ]),
   "fukuoka-airport-to-hakata": {
     areaServed: ["Fukuoka Airport", "Hakata", "Hakata Station", "Tenjin", "Nakasu", "Fukuoka"],
     serviceType: [
@@ -270,6 +414,18 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
       "Hakata hotel to Fukuoka Airport drop-off"
     ]
   },
+  "naha-airport-to-naha-kokusai-dori": airportRouteServiceProfile("Naha Airport", "Naha and Kokusai-dori", [
+    "Naha",
+    "Kokusai-dori",
+    "Kencho-mae",
+    "Naha hotels"
+  ]),
+  "naha-airport-to-chatan-american-village": airportRouteServiceProfile("Naha Airport", "Chatan and American Village", [
+    "Chatan",
+    "American Village",
+    "Mihama",
+    "Okinawa"
+  ]),
   "naha-airport-to-onna-village": {
     areaServed: ["Naha Airport", "Onna Village", "Okinawa", "Chatan", "American Village", "Motobu"],
     serviceType: [
@@ -1231,7 +1387,7 @@ const kansaiCommonRoutes = {
       },
       {
         title: "Tokyo Airport Transfer",
-        description: "Narita and Haneda airport pickup for Tokyo hotels, Disney, Shinjuku, Ginza, and Shinagawa.",
+        description: "Narita and Haneda airport pickup for Tokyo hotels, Shinjuku, Ginza, Shibuya, and Shinagawa.",
         href: ""
       }
     ]
@@ -1257,7 +1413,7 @@ const kansaiCommonRoutes = {
       },
       {
         title: "東京空港送迎",
-        description: "成田空港・羽田空港から東京ホテル、ディズニー、新宿、銀座、品川への送迎です。",
+        description: "成田空港・羽田空港から東京ホテル、新宿、銀座、渋谷、品川への送迎です。",
         href: ""
       }
     ]
@@ -1283,7 +1439,7 @@ const kansaiCommonRoutes = {
       },
       {
         title: "東京機場接送",
-        description: "成田機場、羽田機場到東京酒店、迪士尼、新宿、銀座和品川的接送。",
+        description: "成田機場、羽田機場到東京酒店、新宿、銀座、澀谷和品川的接送。",
         href: ""
       }
     ]
@@ -1959,7 +2115,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
         },
         {
           title: "Tokyo Airport Transfer",
-          description: "Narita and Haneda airport pickup for Tokyo hotels, Disney, Shinjuku, Ginza, and Shinagawa.",
+          description: "Narita and Haneda airport pickup for Tokyo hotels, Shinjuku, Ginza, Shibuya, and Shinagawa.",
           href: ""
         }
       ],
@@ -2179,6 +2335,16 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
           href: "/naha-airport-to-onna-village"
         },
         {
+          title: "Naha Airport to Naha and Kokusai-dori",
+          description: "Short private pickup for Naha hotels, Kokusai-dori, Kencho-mae, Makishi, and late arrivals.",
+          href: "/naha-airport-to-naha-kokusai-dori"
+        },
+        {
+          title: "Naha Airport to Chatan and American Village",
+          description: "Private transfer for Chatan hotels, American Village, Mihama, beach stays, and family resorts.",
+          href: "/naha-airport-to-chatan-american-village"
+        },
+        {
           title: "Okinawa Airport Transfer",
           description: "General Okinawa transfer page for Naha Airport, Chatan, American Village, Onna Village, Motobu, and Churaumi.",
           href: "/okinawa"
@@ -2190,7 +2356,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
         },
         {
           title: "Tokyo Airport Transfer",
-          description: "Narita and Haneda airport pickup for Tokyo hotels, Disney, Shinjuku, Ginza, and Shinagawa.",
+          description: "Narita and Haneda airport pickup for Tokyo hotels, Shinjuku, Ginza, Shibuya, and Shinagawa.",
           href: ""
         }
       ],
@@ -2419,7 +2585,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
         },
         {
           title: "東京空港送迎",
-          description: "成田空港・羽田空港から東京ホテル、ディズニー、新宿、銀座、品川への送迎です。",
+          description: "成田空港・羽田空港から東京ホテル、新宿、銀座、渋谷、品川への送迎です。",
           href: ""
         }
       ],
@@ -2515,6 +2681,16 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
           href: "/naha-airport-to-onna-village"
         },
         {
+          title: "那覇空港から那覇・国際通りへ",
+          description: "那覇ホテル、国際通り、県庁前、牧志、深夜到着に便利な短距離送迎です。",
+          href: "/naha-airport-to-naha-kokusai-dori"
+        },
+        {
+          title: "那覇空港から北谷・アメリカンビレッジへ",
+          description: "北谷ホテル、アメリカンビレッジ、美浜、ビーチ滞在、家族向けリゾートへの送迎です。",
+          href: "/naha-airport-to-chatan-american-village"
+        },
+        {
           title: "沖縄空港送迎",
           description: "那覇空港、北谷、アメリカンビレッジ、恩納村、本部、美ら海水族館に対応する沖縄送迎ページです。",
           href: "/okinawa"
@@ -2526,7 +2702,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
         },
         {
           title: "東京空港送迎",
-          description: "成田空港・羽田空港から東京ホテル、ディズニー、新宿、銀座、品川への送迎です。",
+          description: "成田空港・羽田空港から東京ホテル、新宿、銀座、渋谷、品川への送迎です。",
           href: ""
         }
       ],
@@ -2755,7 +2931,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
         },
         {
           title: "東京機場接送",
-          description: "成田機場、羽田機場到東京酒店、迪士尼、新宿、銀座和品川的接送。",
+          description: "成田機場、羽田機場到東京酒店、新宿、銀座、澀谷和品川的接送。",
           href: ""
         }
       ],
@@ -2851,6 +3027,16 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
           href: "/naha-airport-to-onna-village"
         },
         {
+          title: "那霸機場到那霸和國際通",
+          description: "那霸酒店、國際通、縣廳前、牧志和深夜到達使用的短途私人接送。",
+          href: "/naha-airport-to-naha-kokusai-dori"
+        },
+        {
+          title: "那霸機場到北谷和美國村",
+          description: "北谷酒店、美國村、美濱、海灘住宿和親子度假酒店的私人接送。",
+          href: "/naha-airport-to-chatan-american-village"
+        },
+        {
           title: "沖繩機場接送",
           description: "覆蓋那霸機場、北谷、美國村、恩納村、本部和美麗海水族館的沖繩接送頁面。",
           href: "/okinawa"
@@ -2862,7 +3048,7 @@ const regionalRouteConfigs: Record<Locale, Record<RegionalRouteSlug, RegionalRou
         },
         {
           title: "東京機場接送",
-          description: "成田機場、羽田機場到東京酒店、迪士尼、新宿、銀座和品川的接送。",
+          description: "成田機場、羽田機場到東京酒店、新宿、銀座、澀谷和品川的接送。",
           href: ""
         }
       ],
@@ -2979,6 +3165,1230 @@ function buildRegionalRoutePage(locale: Locale, slug: RegionalRouteSlug): RouteP
   };
 }
 
+type TokyoAirportRouteSlug = Extract<
+  RoutePageSlug,
+  | "narita-airport-to-ginza"
+  | "narita-airport-to-shibuya"
+  | "narita-airport-to-shinagawa"
+  | "narita-airport-to-asakusa-ueno"
+  | "narita-airport-to-tokyo-station"
+  | "narita-airport-to-roppongi-akasaka"
+  | "narita-airport-to-ikebukuro"
+  | "haneda-airport-to-shibuya"
+  | "haneda-airport-to-asakusa-ueno"
+  | "haneda-airport-to-tokyo-station"
+  | "haneda-airport-to-roppongi-akasaka"
+  | "haneda-airport-to-ikebukuro"
+>;
+
+type TokyoAirportId = "narita" | "haneda";
+type LocalizedRouteText = Record<Locale, string>;
+
+type TokyoAirportRouteConfig = {
+  airport: TokyoAirportId;
+  destination: LocalizedRouteText;
+  nearbyAreas: LocalizedRouteText;
+  citySearchName: string;
+  driveTime: string;
+  hotelExample: string;
+  passengersExample: string;
+  luggageExample: string;
+  keywords: string[];
+};
+
+const tokyoAirportRoutes: Record<TokyoAirportRouteSlug, TokyoAirportRouteConfig> = {
+  "narita-airport-to-ginza": {
+    airport: "narita",
+    destination: { en: "Ginza", ja: "銀座", zh: "銀座" },
+    nearbyAreas: {
+      en: "Ginza hotels, Tsukiji, Yurakucho, Nihonbashi, and Tokyo Station area",
+      ja: "銀座ホテル、築地、有楽町、日本橋、東京駅周辺",
+      zh: "銀座酒店、築地、有樂町、日本橋和東京站周邊"
+    },
+    citySearchName: "Ginza, Tokyo, Japan",
+    driveTime: "60-90 min",
+    hotelExample: "Mitsui Garden Hotel Ginza Premier",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Narita Airport to Ginza transfer",
+      "Narita to Ginza private car",
+      "Narita Airport to Tsukiji",
+      "Narita to Tokyo Station hotel"
+    ]
+  },
+  "narita-airport-to-shibuya": {
+    airport: "narita",
+    destination: { en: "Shibuya", ja: "渋谷", zh: "澀谷" },
+    nearbyAreas: {
+      en: "Shibuya Station hotels, Ebisu, Harajuku, Aoyama, and Omotesando",
+      ja: "渋谷駅周辺ホテル、恵比寿、原宿、青山、表参道",
+      zh: "澀谷站周邊酒店、惠比壽、原宿、青山和表參道"
+    },
+    citySearchName: "Shibuya, Tokyo, Japan",
+    driveTime: "70-100 min",
+    hotelExample: "Shibuya Stream Excel Hotel Tokyu",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Narita Airport to Shibuya transfer",
+      "Narita to Shibuya private car",
+      "Narita Airport to Ebisu",
+      "Narita to Harajuku transfer"
+    ]
+  },
+  "narita-airport-to-shinagawa": {
+    airport: "narita",
+    destination: { en: "Shinagawa", ja: "品川", zh: "品川" },
+    nearbyAreas: {
+      en: "Shinagawa Station hotels, Takanawa, Gotanda, and Shinkansen connections",
+      ja: "品川駅周辺ホテル、高輪、五反田、新幹線接続",
+      zh: "品川站周邊酒店、高輪、五反田和新幹線轉乘"
+    },
+    citySearchName: "Shinagawa, Tokyo, Japan",
+    driveTime: "65-95 min",
+    hotelExample: "Shinagawa Prince Hotel",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Narita Airport to Shinagawa transfer",
+      "Narita to Shinagawa private car",
+      "Narita Airport to Shinagawa Station",
+      "Narita to Takanawa hotel"
+    ]
+  },
+  "narita-airport-to-asakusa-ueno": {
+    airport: "narita",
+    destination: { en: "Asakusa and Ueno", ja: "浅草・上野", zh: "淺草和上野" },
+    nearbyAreas: {
+      en: "Asakusa hotels, Ueno Station, Taito, Sensoji, and nearby apartment stays",
+      ja: "浅草ホテル、上野駅、台東区、浅草寺、周辺民泊",
+      zh: "淺草酒店、上野站、台東區、淺草寺和周邊民宿"
+    },
+    citySearchName: "Asakusa, Tokyo, Japan",
+    driveTime: "60-90 min",
+    hotelExample: "Asakusa View Hotel",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Narita Airport to Asakusa transfer",
+      "Narita Airport to Ueno private car",
+      "Narita to Taito hotel",
+      "Narita Airport to Sensoji"
+    ]
+  },
+  "narita-airport-to-tokyo-station": {
+    airport: "narita",
+    destination: { en: "Tokyo Station", ja: "東京駅", zh: "東京站" },
+    nearbyAreas: {
+      en: "Tokyo Station, Marunouchi, Otemachi, Nihonbashi, and Chiyoda hotels",
+      ja: "東京駅、丸の内、大手町、日本橋、千代田区ホテル",
+      zh: "東京站、丸之內、大手町、日本橋和千代田區酒店"
+    },
+    citySearchName: "Tokyo Station, Tokyo, Japan",
+    driveTime: "60-85 min",
+    hotelExample: "The Tokyo Station Hotel",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Narita Airport to Tokyo Station transfer",
+      "Narita to Tokyo Station private car",
+      "Narita Airport to Marunouchi",
+      "Narita to Nihonbashi hotel"
+    ]
+  },
+  "narita-airport-to-roppongi-akasaka": {
+    airport: "narita",
+    destination: { en: "Roppongi and Akasaka", ja: "六本木・赤坂", zh: "六本木和赤坂" },
+    nearbyAreas: {
+      en: "Roppongi hotels, Akasaka, Azabu, Toranomon, Tokyo Midtown, and Minato",
+      ja: "六本木ホテル、赤坂、麻布、虎ノ門、東京ミッドタウン、港区",
+      zh: "六本木酒店、赤坂、麻布、虎之門、東京中城和港區"
+    },
+    citySearchName: "Roppongi, Tokyo, Japan",
+    driveTime: "70-100 min",
+    hotelExample: "The Ritz-Carlton Tokyo",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Narita Airport to Roppongi transfer",
+      "Narita Airport to Akasaka private car",
+      "Narita to Minato hotel",
+      "Narita to Tokyo Midtown transfer"
+    ]
+  },
+  "narita-airport-to-ikebukuro": {
+    airport: "narita",
+    destination: { en: "Ikebukuro", ja: "池袋", zh: "池袋" },
+    nearbyAreas: {
+      en: "Ikebukuro Station hotels, Sunshine City, Toshima, Mejiro, and northwest Tokyo",
+      ja: "池袋駅周辺ホテル、サンシャインシティ、豊島区、目白、東京北西部",
+      zh: "池袋站周邊酒店、Sunshine City、豐島區、目白和東京西北部"
+    },
+    citySearchName: "Ikebukuro, Tokyo, Japan",
+    driveTime: "75-105 min",
+    hotelExample: "Hotel Metropolitan Tokyo Ikebukuro",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Narita Airport to Ikebukuro transfer",
+      "Narita to Ikebukuro private car",
+      "Narita Airport to Sunshine City",
+      "Narita to Toshima hotel"
+    ]
+  },
+  "haneda-airport-to-shibuya": {
+    airport: "haneda",
+    destination: { en: "Shibuya", ja: "渋谷", zh: "澀谷" },
+    nearbyAreas: {
+      en: "Shibuya Station hotels, Ebisu, Harajuku, Aoyama, and Omotesando",
+      ja: "渋谷駅周辺ホテル、恵比寿、原宿、青山、表参道",
+      zh: "澀谷站周邊酒店、惠比壽、原宿、青山和表參道"
+    },
+    citySearchName: "Shibuya, Tokyo, Japan",
+    driveTime: "35-60 min",
+    hotelExample: "Shibuya Stream Excel Hotel Tokyu",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Haneda Airport to Shibuya transfer",
+      "Haneda to Shibuya private car",
+      "Haneda Airport to Ebisu",
+      "Haneda to Harajuku transfer"
+    ]
+  },
+  "haneda-airport-to-asakusa-ueno": {
+    airport: "haneda",
+    destination: { en: "Asakusa and Ueno", ja: "浅草・上野", zh: "淺草和上野" },
+    nearbyAreas: {
+      en: "Asakusa hotels, Ueno Station, Taito, Sensoji, and nearby apartment stays",
+      ja: "浅草ホテル、上野駅、台東区、浅草寺、周辺民泊",
+      zh: "淺草酒店、上野站、台東區、淺草寺和周邊民宿"
+    },
+    citySearchName: "Asakusa, Tokyo, Japan",
+    driveTime: "35-60 min",
+    hotelExample: "Asakusa View Hotel",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Haneda Airport to Asakusa transfer",
+      "Haneda Airport to Ueno private car",
+      "Haneda to Taito hotel",
+      "Haneda Airport to Sensoji"
+    ]
+  },
+  "haneda-airport-to-tokyo-station": {
+    airport: "haneda",
+    destination: { en: "Tokyo Station", ja: "東京駅", zh: "東京站" },
+    nearbyAreas: {
+      en: "Tokyo Station, Marunouchi, Otemachi, Nihonbashi, Akihabara, and Chiyoda hotels",
+      ja: "東京駅、丸の内、大手町、日本橋、秋葉原、千代田区ホテル",
+      zh: "東京站、丸之內、大手町、日本橋、秋葉原和千代田區酒店"
+    },
+    citySearchName: "Tokyo Station, Tokyo, Japan",
+    driveTime: "25-45 min",
+    hotelExample: "The Tokyo Station Hotel",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Haneda Airport to Tokyo Station transfer",
+      "Haneda to Tokyo Station private car",
+      "Haneda Airport to Akihabara",
+      "Haneda to Nihonbashi hotel"
+    ]
+  },
+  "haneda-airport-to-roppongi-akasaka": {
+    airport: "haneda",
+    destination: { en: "Roppongi and Akasaka", ja: "六本木・赤坂", zh: "六本木和赤坂" },
+    nearbyAreas: {
+      en: "Roppongi hotels, Akasaka, Azabu, Toranomon, Tokyo Midtown, and Minato",
+      ja: "六本木ホテル、赤坂、麻布、虎ノ門、東京ミッドタウン、港区",
+      zh: "六本木酒店、赤坂、麻布、虎之門、東京中城和港區"
+    },
+    citySearchName: "Roppongi, Tokyo, Japan",
+    driveTime: "25-45 min",
+    hotelExample: "The Ritz-Carlton Tokyo",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Haneda Airport to Roppongi transfer",
+      "Haneda Airport to Akasaka private car",
+      "Haneda to Minato hotel",
+      "Haneda to Tokyo Midtown transfer"
+    ]
+  },
+  "haneda-airport-to-ikebukuro": {
+    airport: "haneda",
+    destination: { en: "Ikebukuro", ja: "池袋", zh: "池袋" },
+    nearbyAreas: {
+      en: "Ikebukuro Station hotels, Sunshine City, Toshima, Mejiro, and northwest Tokyo",
+      ja: "池袋駅周辺ホテル、サンシャインシティ、豊島区、目白、東京北西部",
+      zh: "池袋站周邊酒店、Sunshine City、豐島區、目白和東京西北部"
+    },
+    citySearchName: "Ikebukuro, Tokyo, Japan",
+    driveTime: "45-70 min",
+    hotelExample: "Hotel Metropolitan Tokyo Ikebukuro",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Haneda Airport to Ikebukuro transfer",
+      "Haneda to Ikebukuro private car",
+      "Haneda Airport to Sunshine City",
+      "Haneda to Toshima hotel"
+    ]
+  }
+};
+
+const tokyoAirportCopy = {
+  en: {
+    airport: {
+      narita: { name: "Narita Airport", short: "Narita", placeholder: "Narita Airport (NRT)" },
+      haneda: { name: "Haneda Airport", short: "Haneda", placeholder: "Haneda Airport (HND)" }
+    },
+    cityName: "Tokyo",
+    flightPlaceholder: "JL123",
+    landingTimePlaceholder: "May 3, 4:30 PM",
+    title: (airportName: string, destination: string) => `${airportName} to ${destination} Transfer`,
+    metaTitle: (airportName: string, destination: string) =>
+      `${airportName} to ${destination} Transfer | Private Car`,
+    metaDescription: (airportName: string, destination: string, areas: string) =>
+      `Private ${airportName} to ${destination} transfer for ${areas}. English and Chinese support, WhatsApp quote, Alphard and Hiace options.`,
+    heroSubtitle: (airportName: string, destination: string, areas: string) =>
+      `Private door-to-door pickup from ${airportName} to ${destination}, covering ${areas}.`,
+    features: (airportName: string, destination: string) => [
+      `${airportName} pickup with flight tracking`,
+      `Direct transfer to ${destination}`,
+      "Toyota Alphard or Hiace available",
+      "90 min free airport waiting",
+      "Optional name-sign meet-and-greet",
+      "WhatsApp quote before booking"
+    ],
+    imageAlt: (airportName: string, destination: string) => `Private ${airportName} to ${destination} transfer`,
+    overviewTitle: (airportShort: string, destination: string) => `Route Details for ${airportShort} to ${destination}`,
+    overviewSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${destination} is a high-demand private transfer route for travelers going from ${airportName} to ${areas} with suitcases, children, or late arrivals.`,
+    driveLabel: "Typical drive time",
+    driveDescription: "Traffic, arrival time, and the exact hotel entrance can change the final timing.",
+    bestForLabel: "Best for",
+    bestForValue: (destination: string) => `${destination} hotels and apartments`,
+    bestForDescription: (areas: string) => `Useful for direct drop-off at ${areas}, especially with luggage or family travel.`,
+    vehicleLabel: "Vehicle fit",
+    vehicleValue: (airport: TokyoAirportId) => (airport === "narita" ? "Alphard or Hiace" : "Sedan, Alphard, or Hiace"),
+    vehicleDescription:
+      "We suggest the vehicle after checking passengers, suitcases, carry-ons, child seats, and comfort needs.",
+    notesTitle: "Before You Book",
+    notes: (airportName: string, destination: string, areas: string) => [
+      `Send your flight number so pickup timing follows the actual ${airportName} landing time.`,
+      `Share the exact ${destination} hotel or address because pickup entrances can differ around ${areas}.`,
+      "Tell us passenger count, suitcase count, strollers, and child seat requests before confirming the vehicle."
+    ],
+    quoteTitle: (airportShort: string, destination: string) => `Get a ${airportShort} to ${destination} Quote`,
+    quoteSubtitle: (destination: string) =>
+      `Search your ${destination} hotel or address on the map, then send flight, passenger, and luggage details on WhatsApp for the final quote.`,
+    directNote:
+      "Opens in WhatsApp after submission. Arrival-gate name-sign meet-and-greet is optional and costs +2,000 JPY when requested.",
+    pickupNote: (airportName: string) =>
+      `For ${airportName} pickup, waiting time starts from the actual flight landing time.`,
+    delayNote:
+      "If the flight is delayed, the driver adjusts pickup timing based on updated arrival information.",
+    promiseTitle: "Why Book This Route",
+    promises: (airportName: string, destination: string): [string, string][] => [
+      ["Direct to your door", `Travel from ${airportName} to ${destination} without changing trains with luggage.`],
+      ["Flight-aware pickup", "Driver timing follows the actual landing time and arrival progress."],
+      ["Vehicle advice", "Alphard and Hiace options help match passengers, suitcases, and comfort needs."],
+      ["Return trip available", `${destination} hotel to the airport can also be arranged for departure.`]
+    ],
+    bookingTitle: (airportShort: string, destination: string) => `Book ${airportShort} to ${destination}`,
+    bookingSubtitle: (destination: string) =>
+      `Send your flight, landing time, ${destination} address, passengers, and luggage details for a fast WhatsApp quote.`,
+    messageHeader: (airportName: string, destination: string) =>
+      `Hello, I need a ${airportName} to ${destination} transfer quote.`,
+    relatedTitle: (airportName: string, destination: string) => `${airportName} to ${destination}`,
+    relatedDescription: (airportName: string, destination: string) =>
+      `Private ${airportName} pickup and drop-off for ${destination} hotels, apartments, and nearby areas.`,
+    relatedRoutesTitle: (airportName: string) => `Related ${airportName} Routes`,
+    relatedRoutesSubtitle: (airportName: string) =>
+      `High-intent private transfer pages for ${airportName}, Tokyo hotels, popular visitor areas, and airport drop-off.`,
+    airportTransferTitle: (airportName: string) => `${airportName} Transfer`,
+    airportTransferDescription: (airportName: string) =>
+      `General ${airportName} pickup and drop-off page for Tokyo hotels, apartments, and flexible routes.`,
+    faqTitle: (airportShort: string, destination: string) => `${airportShort} to ${destination} FAQ`,
+    faqSubtitle: (airportName: string, destination: string) =>
+      `Common questions before booking a private car from ${airportName} to ${destination}.`,
+    faqs: (airportName: string, destination: string, driveTime: string, areas: string) => [
+      {
+        question: `How long does ${airportName} to ${destination} take by private car?`,
+        answer: `It usually takes about ${driveTime}, depending on traffic, arrival time, and the exact hotel or apartment entrance.`
+      },
+      {
+        question: `Can you drop off at hotels around ${destination}?`,
+        answer: `Yes. We can arrange drop-off for ${areas}. Please send the hotel name or full address before booking.`
+      },
+      {
+        question: "Which vehicle should I choose?",
+        answer:
+          "Toyota Alphard is comfortable for smaller groups with moderate luggage. Toyota Hiace is better for more passengers, large suitcases, strollers, or golf bags."
+      },
+      {
+        question: `Can I book ${destination} to the airport for departure?`,
+        answer: `Yes. The same route can be booked in reverse for ${destination} hotel to airport drop-off.`
+      }
+    ]
+  },
+  ja: {
+    airport: {
+      narita: { name: "成田空港", short: "成田", placeholder: "成田空港 (NRT)" },
+      haneda: { name: "羽田空港", short: "羽田", placeholder: "羽田空港 (HND)" }
+    },
+    cityName: "東京",
+    flightPlaceholder: "JL123",
+    landingTimePlaceholder: "5月3日 16:30",
+    title: (airportName: string, destination: string) => `${airportName}から${destination}への送迎`,
+    metaTitle: (airportName: string, destination: string) =>
+      `${airportName}から${destination}への送迎 | プライベートカー`,
+    metaDescription: (airportName: string, destination: string, areas: string) =>
+      `${airportName}から${destination}、${areas}までのプライベート送迎。英語と中国語で相談でき、WhatsAppで見積もり、アルファードとハイエース対応。`,
+    heroSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${airportName}から${destination}まで、${areas}をカバーするドアツードアの専用車送迎です。`,
+    features: (airportName: string, destination: string) => [
+      `${airportName}お迎えとフライト確認`,
+      `${destination}まで直行`,
+      "アルファードまたはハイエース対応",
+      "空港お迎え90分無料待機",
+      "ネームプレートお迎えオプション",
+      "WhatsAppで事前見積もり"
+    ],
+    imageAlt: (airportName: string, destination: string) => `${airportName}から${destination}への専用車送迎`,
+    overviewTitle: (airportShort: string, destination: string) => `${airportShort}から${destination}へのルート詳細`,
+    overviewSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${destination}は、${airportName}から${areas}へ向かう旅行者に需要の高い空港送迎ルートです。荷物が多い場合や家族旅行にも便利です。`,
+    driveLabel: "通常の所要時間",
+    driveDescription: "道路状況、到着時間、ホテル入口により実際の所要時間は変わります。",
+    bestForLabel: "おすすめ利用",
+    bestForValue: (destination: string) => `${destination}周辺ホテル・民泊`,
+    bestForDescription: (areas: string) => `${areas}への直接移動に便利で、荷物が多い旅行や家族旅行にも向いています。`,
+    vehicleLabel: "車種の目安",
+    vehicleValue: (airport: TokyoAirportId) => (airport === "narita" ? "アルファード / ハイエース" : "セダン / アルファード / ハイエース"),
+    vehicleDescription: "人数、スーツケース、手荷物、チャイルドシート、快適性を確認して車種を提案します。",
+    notesTitle: "予約前の確認",
+    notes: (airportName: string, destination: string, areas: string) => [
+      `フライト番号を送ると、実際の${airportName}到着時刻に合わせてお迎えできます。`,
+      `${areas}周辺はホテル入口や車寄せが分かれるため、正確な${destination}の住所を共有してください。`,
+      "人数、スーツケース数、ベビーカー、チャイルドシートの有無を予約前にお知らせください。"
+    ],
+    quoteTitle: (airportShort: string, destination: string) => `${airportShort}から${destination}の見積もり`,
+    quoteSubtitle: (destination: string) =>
+      `地図で${destination}のホテルや住所を検索し、フライト、人数、荷物情報をWhatsAppで送ると最終見積もりを確認できます。`,
+    directNote:
+      "送信後、WhatsAppで直接やり取りできます。到着ゲートでのネームプレートお迎えはオプション（+2,000円）です。",
+    pickupNote: (airportName: string) => `${airportName}お迎えの待機時間は、実際のフライト到着時刻から計算します。`,
+    delayNote: "フライト遅延時は、最新の到着情報に合わせてドライバーがお迎え時間を調整します。",
+    promiseTitle: "このルートのメリット",
+    promises: (airportName: string, destination: string): [string, string][] => [
+      ["ドアツードア", `${airportName}から${destination}まで、荷物を持って乗り換える必要がありません。`],
+      ["フライト確認", "実際の到着時刻と入国状況に合わせてドライバーが待機します。"],
+      ["車種相談", "アルファードとハイエースを人数、荷物、快適性に合わせて確認します。"],
+      ["復路も対応", `${destination}のホテルから空港への送機も予約できます。`]
+    ],
+    bookingTitle: (airportShort: string, destination: string) => `${airportShort}から${destination}を予約`,
+    bookingSubtitle: (destination: string) =>
+      `フライト、到着時間、${destination}の住所、人数、荷物情報を送るとWhatsAppですぐに見積もりできます。`,
+    messageHeader: (airportName: string, destination: string) =>
+      `こんにちは。${airportName}から${destination}までの送迎見積もりをお願いします。`,
+    relatedTitle: (airportName: string, destination: string) => `${airportName}から${destination}へ`,
+    relatedDescription: (airportName: string, destination: string) =>
+      `${airportName}から${destination}周辺ホテル、民泊、近隣エリアまでの専用車送迎です。`,
+    relatedRoutesTitle: (airportName: string) => `関連する${airportName}送迎ルート`,
+    relatedRoutesSubtitle: (airportName: string) =>
+      `${airportName}、東京ホテル、人気滞在エリア、空港送迎に関連する専用車ページです。`,
+    airportTransferTitle: (airportName: string) => `${airportName}送迎`,
+    airportTransferDescription: (airportName: string) =>
+      `${airportName}から東京ホテル、民泊、自由な目的地までの総合空港送迎ページです。`,
+    faqTitle: (airportShort: string, destination: string) => `${airportShort}から${destination} FAQ`,
+    faqSubtitle: (airportName: string, destination: string) =>
+      `${airportName}から${destination}まで専用車を予約する前によくある質問です。`,
+    faqs: (airportName: string, destination: string, driveTime: string, areas: string) => [
+      {
+        question: `${airportName}から${destination}まで車でどのくらいですか？`,
+        answer: `通常は約${driveTime}です。道路状況、到着時間、ホテルや民泊の入口により変わります。`
+      },
+      {
+        question: `${destination}周辺ホテルで降車できますか？`,
+        answer: `はい。${areas}に対応できます。予約前にホテル名または住所をお知らせください。`
+      },
+      {
+        question: "どの車種を選べばよいですか？",
+        answer: "少人数で荷物が標準的な場合はアルファード、人数や大型スーツケース、ベビーカーが多い場合はハイエースがおすすめです。"
+      },
+      {
+        question: `${destination}から空港への送機も予約できますか？`,
+        answer: `はい。同じルートを逆方向で、${destination}ホテルから空港への送機として予約できます。`
+      }
+    ]
+  },
+  zh: {
+    airport: {
+      narita: { name: "成田機場", short: "成田", placeholder: "成田機場 (NRT)" },
+      haneda: { name: "羽田機場", short: "羽田", placeholder: "羽田機場 (HND)" }
+    },
+    cityName: "東京",
+    flightPlaceholder: "JL123",
+    landingTimePlaceholder: "5月3日 16:30",
+    title: (airportName: string, destination: string) => `${airportName}到${destination}接送`,
+    metaTitle: (airportName: string, destination: string) => `${airportName}到${destination}接送 | 私人專車`,
+    metaDescription: (airportName: string, destination: string, areas: string) =>
+      `${airportName}到${destination}、${areas}的私人專車接送。可英文和中文溝通，WhatsApp 報價，Toyota Alphard 和 Hiace 可選。`,
+    heroSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${airportName}到${destination}點對點私人接送，覆蓋${areas}。`,
+    features: (airportName: string, destination: string) => [
+      `${airportName}接機與航班跟蹤`,
+      `直達${destination}`,
+      "可選 Alphard 或 Hiace",
+      "接機90分鐘免費等待",
+      "可選到達口舉牌接機",
+      "WhatsApp 預先報價"
+    ],
+    imageAlt: (airportName: string, destination: string) => `${airportName}到${destination}私人專車接送`,
+    overviewTitle: (airportShort: string, destination: string) => `${airportShort}到${destination}路線詳情`,
+    overviewSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${destination}是${airportName}前往${areas}的高需求接送路線，適合帶行李、親子旅行和深夜到達。`,
+    driveLabel: "通常車程",
+    driveDescription: "實際時間會依路況、到達時間和酒店入口位置而變化。",
+    bestForLabel: "適合場景",
+    bestForValue: (destination: string) => `${destination}酒店和民宿`,
+    bestForDescription: (areas: string) => `適合直接送到${areas}，尤其適合行李多或家庭出行。`,
+    vehicleLabel: "車型建議",
+    vehicleValue: (airport: TokyoAirportId) => (airport === "narita" ? "Alphard 或 Hiace" : "轎車 / Alphard / Hiace"),
+    vehicleDescription: "我們會根據人數、行李箱、隨身行李、兒童座椅和舒適度需求建議車型。",
+    notesTitle: "預約前建議",
+    notes: (airportName: string, destination: string, areas: string) => [
+      `提供航班號後，司機可以根據${airportName}實際落地時間安排接機。`,
+      `${areas}周邊酒店入口可能不同，請提供準確的${destination}酒店名或完整地址。`,
+      "確認車型前請告訴我們人數、行李箱數量、嬰兒車和兒童座椅需求。"
+    ],
+    quoteTitle: (airportShort: string, destination: string) => `取得${airportShort}到${destination}報價`,
+    quoteSubtitle: (destination: string) =>
+      `在地圖中搜尋${destination}酒店或地址，再透過 WhatsApp 發送航班、人數和行李資訊確認報價。`,
+    directNote:
+      "提交後會打開 WhatsApp，方便直接溝通。到達口舉牌接機為可選服務，需要時另加 2,000 日元。",
+    pickupNote: (airportName: string) => `${airportName}接機等待時間從航班實際落地時間開始計算。`,
+    delayNote: "航班延誤時，司機會根據最新到達資訊調整接機時間。",
+    promiseTitle: "這條路線的優點",
+    promises: (airportName: string, destination: string): [string, string][] => [
+      ["點對點直達", `從${airportName}直達${destination}，不用拖著行李轉車。`],
+      ["根據航班安排", "司機會根據航班實際落地和入境進度等待。"],
+      ["車型建議", "可依照人數、行李和舒適度確認 Alphard 或 Hiace。"],
+      ["可安排回程", `也可以預約${destination}酒店到機場送機。`]
+    ],
+    bookingTitle: (airportShort: string, destination: string) => `預約${airportShort}到${destination}`,
+    bookingSubtitle: (destination: string) =>
+      `發送航班、落地時間、${destination}地址、人數和行李資訊，即可透過 WhatsApp 快速報價。`,
+    messageHeader: (airportName: string, destination: string) =>
+      `您好，我需要${airportName}到${destination}接送報價。`,
+    relatedTitle: (airportName: string, destination: string) => `${airportName}到${destination}`,
+    relatedDescription: (airportName: string, destination: string) =>
+      `${airportName}到${destination}酒店、民宿和周邊區域的私人專車接送。`,
+    relatedRoutesTitle: (airportName: string) => `相關${airportName}接送路線`,
+    relatedRoutesSubtitle: (airportName: string) =>
+      `${airportName}、東京酒店、熱門住宿區域和送機相關的高意圖私人接送頁面。`,
+    airportTransferTitle: (airportName: string) => `${airportName}接送`,
+    airportTransferDescription: (airportName: string) =>
+      `${airportName}到東京酒店、民宿和彈性目的地的綜合機場接送頁面。`,
+    faqTitle: (airportShort: string, destination: string) => `${airportShort}到${destination}常見問題`,
+    faqSubtitle: (airportName: string, destination: string) =>
+      `預約${airportName}到${destination}私人專車前常見的問題。`,
+    faqs: (airportName: string, destination: string, driveTime: string, areas: string) => [
+      {
+        question: `${airportName}到${destination}包車需要多久？`,
+        answer: `通常約${driveTime}，實際時間取決於路況、到達時間和酒店或民宿入口位置。`
+      },
+      {
+        question: `可以送到${destination}周邊酒店嗎？`,
+        answer: `可以。${areas}都可以安排，預約前請提供酒店名稱或完整地址。`
+      },
+      {
+        question: "應該選哪種車型？",
+        answer: "少人且行李適中時 Alphard 很舒適；如果人數、行李箱、嬰兒車或高爾夫球袋較多，建議選 Hiace。"
+      },
+      {
+        question: `可以預約${destination}到機場送機嗎？`,
+        answer: `可以，同一條路線也可以反向預約${destination}酒店到機場送機。`
+      }
+    ]
+  }
+};
+
+const naritaTokyoRelatedRouteSlugs: RoutePageSlug[] = [
+  "narita-airport-to-shinjuku",
+  "narita-airport-to-ginza",
+  "narita-airport-to-shibuya",
+  "narita-airport-to-asakusa-ueno",
+  "narita-airport-to-tokyo-station",
+  "narita-airport-to-roppongi-akasaka",
+  "narita-airport-to-shinagawa",
+  "narita-airport-to-ikebukuro"
+];
+
+const hanedaTokyoRelatedRouteSlugs: RoutePageSlug[] = [
+  "haneda-airport-to-ginza",
+  "haneda-airport-to-shinjuku",
+  "haneda-airport-to-shinagawa",
+  "haneda-airport-to-shibuya",
+  "haneda-airport-to-asakusa-ueno",
+  "haneda-airport-to-tokyo-station",
+  "haneda-airport-to-roppongi-akasaka",
+  "haneda-airport-to-ikebukuro"
+];
+
+const knownTokyoRouteDestinations: Partial<Record<RoutePageSlug, LocalizedRouteText>> = {
+  "narita-airport-to-shinjuku": { en: "Shinjuku", ja: "新宿", zh: "新宿" },
+  "haneda-airport-to-ginza": { en: "Ginza", ja: "銀座", zh: "銀座" },
+  "haneda-airport-to-shinjuku": { en: "Shinjuku", ja: "新宿", zh: "新宿" },
+  "haneda-airport-to-shinagawa": { en: "Shinagawa", ja: "品川", zh: "品川" },
+  ...Object.fromEntries(
+    Object.entries(tokyoAirportRoutes).map(([slug, config]) => [slug, config.destination])
+  )
+};
+
+function buildTokyoRouteRelatedRoutes(locale: Locale, airportId: TokyoAirportId, currentSlug: RoutePageSlug) {
+  const copy = tokyoAirportCopy[locale];
+  const airport = copy.airport[airportId];
+  const relatedSlugs = airportId === "narita" ? naritaTokyoRelatedRouteSlugs : hanedaTokyoRelatedRouteSlugs;
+  const routeCards = relatedSlugs
+    .filter((slug) => slug !== currentSlug)
+    .slice(0, 6)
+    .map((slug) => {
+      const destination = knownTokyoRouteDestinations[slug]?.[locale] ?? knownTokyoRouteDestinations[slug]?.en ?? "Tokyo";
+
+      return {
+        title: copy.relatedTitle(airport.name, destination),
+        description: copy.relatedDescription(airport.name, destination),
+        href: routePagePath(slug)
+      };
+    });
+
+  routeCards.push({
+    title: copy.airportTransferTitle(airport.name),
+    description: copy.airportTransferDescription(airport.name),
+    href: airportId === "narita" ? "/narita-airport-transfer" : "/haneda-airport-transfer"
+  });
+
+  return routeCards;
+}
+
+function buildTokyoAirportRoutePage(locale: Locale, slug: TokyoAirportRouteSlug): RoutePageContent {
+  const config = tokyoAirportRoutes[slug];
+  const copy = tokyoAirportCopy[locale];
+  const airport = copy.airport[config.airport];
+  const destination = config.destination[locale];
+  const destinationEn = config.destination.en;
+  const nearbyAreas = config.nearbyAreas[locale];
+  const nearbyAreasEn = config.nearbyAreas.en;
+  const routeAirport = config.airport === "narita" ? naritaAirport : hanedaAirport;
+  const image = config.airport === "narita" ? "/images/narita-airport.jpg" : "/images/haneda-airport.jpg";
+  const path = routePagePath(slug);
+
+  return {
+    slug,
+    path,
+    cityName: copy.cityName,
+    citySearchName: config.citySearchName,
+    routeAirports: [routeAirport],
+    defaultAirportId: config.airport,
+    serviceProfile: routeServiceProfiles[slug],
+    meta: {
+      title: copy.metaTitle(airport.name, destination),
+      description: copy.metaDescription(airport.name, destination, nearbyAreas),
+      keywords: [
+        `${airport.name} ${destination} transfer`,
+        `${airport.short} ${destination} private car`,
+        `${destination} airport pickup`,
+        `${destination} hotel airport transfer`,
+        ...config.keywords
+      ],
+      image
+    },
+    hero: {
+      title: copy.title(airport.name, destination),
+      subtitle: copy.heroSubtitle(airport.name, destination, nearbyAreas),
+      features: copy.features(airport.name, destination),
+      imageSrc: image,
+      imageAlt: copy.imageAlt(airport.name, destination)
+    },
+    overview: {
+      title: copy.overviewTitle(airport.short, destination),
+      subtitle: copy.overviewSubtitle(airport.name, destination, nearbyAreas),
+      facts: [
+        {
+          label: copy.driveLabel,
+          value: config.driveTime,
+          description: copy.driveDescription
+        },
+        {
+          label: copy.bestForLabel,
+          value: copy.bestForValue(destination),
+          description: copy.bestForDescription(nearbyAreas)
+        },
+        {
+          label: copy.vehicleLabel,
+          value: copy.vehicleValue(config.airport),
+          description: copy.vehicleDescription
+        }
+      ],
+      notesTitle: copy.notesTitle,
+      notes: copy.notes(airport.name, destination, nearbyAreas)
+    },
+    quote: {
+      title: copy.quoteTitle(airport.short, destination),
+      subtitle: copy.quoteSubtitle(destination),
+      directNote: copy.directNote
+    },
+    waiting: {
+      pickupNote: copy.pickupNote(airport.name),
+      delayNote: copy.delayNote,
+      promiseTitle: copy.promiseTitle,
+      promises: copy.promises(airport.name, destination)
+    },
+    booking: {
+      title: copy.bookingTitle(airport.short, destination),
+      subtitle: copy.bookingSubtitle(destination),
+      placeholders: {
+        airport: airport.placeholder,
+        flight: copy.flightPlaceholder,
+        landingTime: copy.landingTimePlaceholder,
+        hotel: config.hotelExample,
+        passengers: config.passengersExample,
+        luggage: config.luggageExample
+      },
+      messageHeader: copy.messageHeader(airport.name, destination)
+    },
+    seo: {
+      routesTitle: copy.relatedRoutesTitle(airport.name),
+      routesSubtitle: copy.relatedRoutesSubtitle(airport.name),
+      routes: buildTokyoRouteRelatedRoutes(locale, config.airport, slug),
+      faqTitle: copy.faqTitle(airport.short, destination),
+      faqSubtitle: copy.faqSubtitle(airport.name, destination),
+      faqs: copy.faqs(airport.name, destination, config.driveTime, locale === "en" ? nearbyAreasEn : nearbyAreas)
+    }
+  };
+}
+
+type RegionalAdRouteSlug = Extract<
+  RoutePageSlug,
+  | "new-chitose-airport-to-sapporo"
+  | "new-chitose-airport-to-niseko"
+  | "naha-airport-to-naha-kokusai-dori"
+  | "naha-airport-to-chatan-american-village"
+>;
+
+type RegionalAdRouteConfig = {
+  citySlug: CitySlug;
+  airportId: string;
+  routeAirport: CityAirport;
+  airportName: LocalizedRouteText;
+  airportShort: LocalizedRouteText;
+  airportPlaceholder: LocalizedRouteText;
+  destination: LocalizedRouteText;
+  nearbyAreas: LocalizedRouteText;
+  citySearchName: string;
+  driveTime: string;
+  bestFor: LocalizedRouteText;
+  hotelExample: string;
+  passengersExample: string;
+  luggageExample: string;
+  keywords: string[];
+  relatedSlugs: RoutePageSlug[];
+};
+
+const regionalAdRoutes: Record<RegionalAdRouteSlug, RegionalAdRouteConfig> = {
+  "new-chitose-airport-to-sapporo": {
+    citySlug: "hokkaido",
+    airportId: "newChitose",
+    routeAirport: newChitoseAirport,
+    airportName: { en: "New Chitose Airport", ja: "新千歳空港", zh: "新千歲機場" },
+    airportShort: { en: "New Chitose", ja: "新千歳", zh: "新千歲" },
+    airportPlaceholder: { en: "New Chitose Airport (CTS)", ja: "新千歳空港 (CTS)", zh: "新千歲機場 (CTS)" },
+    destination: { en: "Sapporo", ja: "札幌", zh: "札幌" },
+    nearbyAreas: {
+      en: "Sapporo Station hotels, Susukino, Odori Park, Nakajima Park, and central Sapporo",
+      ja: "札幌駅周辺ホテル、すすきの、大通公園、中島公園、札幌市内中心部",
+      zh: "札幌站周邊酒店、薄野、大通公園、中島公園和札幌市中心"
+    },
+    citySearchName: "Sapporo, Hokkaido, Japan",
+    driveTime: "60-90 min",
+    bestFor: { en: "Sapporo city hotels", ja: "札幌市内ホテル", zh: "札幌市區酒店" },
+    hotelExample: "JR Tower Hotel Nikko Sapporo",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "New Chitose Airport to Sapporo transfer",
+      "CTS to Sapporo private car",
+      "New Chitose to Susukino hotel",
+      "Sapporo airport transfer English driver"
+    ],
+    relatedSlugs: ["new-chitose-airport-to-niseko", "naha-airport-to-onna-village"]
+  },
+  "new-chitose-airport-to-niseko": {
+    citySlug: "hokkaido",
+    airportId: "newChitose",
+    routeAirport: newChitoseAirport,
+    airportName: { en: "New Chitose Airport", ja: "新千歳空港", zh: "新千歲機場" },
+    airportShort: { en: "New Chitose", ja: "新千歳", zh: "新千歲" },
+    airportPlaceholder: { en: "New Chitose Airport (CTS)", ja: "新千歳空港 (CTS)", zh: "新千歲機場 (CTS)" },
+    destination: { en: "Niseko", ja: "ニセコ", zh: "二世谷" },
+    nearbyAreas: {
+      en: "Hirafu, Hanazono, Niseko Village, Kutchan, ski resorts, ski bags, and family luggage",
+      ja: "ひらふ、花園、ニセコビレッジ、倶知安、スキーリゾート、スキー荷物、家族旅行",
+      zh: "比羅夫、花園、二世谷村、俱知安、滑雪度假村、雪具行李和家庭旅行"
+    },
+    citySearchName: "Niseko, Hokkaido, Japan",
+    driveTime: "2.5-3.5 hr",
+    bestFor: { en: "Ski resorts and winter luggage", ja: "スキーリゾートと冬の荷物", zh: "滑雪度假村和冬季行李" },
+    hotelExample: "Niseko Hirafu hotel",
+    passengersExample: "4",
+    luggageExample: "4 suitcases and ski bags",
+    keywords: [
+      "New Chitose Airport to Niseko transfer",
+      "CTS to Niseko private car",
+      "New Chitose to Hirafu transfer",
+      "Niseko ski resort transfer"
+    ],
+    relatedSlugs: ["new-chitose-airport-to-sapporo", "naha-airport-to-onna-village"]
+  },
+  "naha-airport-to-naha-kokusai-dori": {
+    citySlug: "okinawa",
+    airportId: "naha",
+    routeAirport: nahaAirport,
+    airportName: { en: "Naha Airport", ja: "那覇空港", zh: "那霸機場" },
+    airportShort: { en: "Naha", ja: "那覇", zh: "那霸" },
+    airportPlaceholder: { en: "Naha Airport (OKA)", ja: "那覇空港 (OKA)", zh: "那霸機場 (OKA)" },
+    destination: { en: "Naha and Kokusai-dori", ja: "那覇・国際通り", zh: "那霸和國際通" },
+    nearbyAreas: {
+      en: "Naha hotels, Kokusai-dori, Kencho-mae, Makishi, cruise pre-stays, and late-night arrivals",
+      ja: "那覇ホテル、国際通り、県庁前、牧志、クルーズ前泊、深夜到着",
+      zh: "那霸酒店、國際通、縣廳前、牧志、郵輪前住宿和深夜到達"
+    },
+    citySearchName: "Kokusai-dori, Naha, Okinawa, Japan",
+    driveTime: "10-25 min",
+    bestFor: { en: "Naha city hotels", ja: "那覇市内ホテル", zh: "那霸市區酒店" },
+    hotelExample: "Kokusai-dori hotel",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Naha Airport to Kokusai-dori transfer",
+      "Naha Airport to Naha hotel",
+      "OKA to Naha private car",
+      "Naha airport pickup English driver"
+    ],
+    relatedSlugs: ["naha-airport-to-chatan-american-village", "naha-airport-to-onna-village"]
+  },
+  "naha-airport-to-chatan-american-village": {
+    citySlug: "okinawa",
+    airportId: "naha",
+    routeAirport: nahaAirport,
+    airportName: { en: "Naha Airport", ja: "那覇空港", zh: "那霸機場" },
+    airportShort: { en: "Naha", ja: "那覇", zh: "那霸" },
+    airportPlaceholder: { en: "Naha Airport (OKA)", ja: "那覇空港 (OKA)", zh: "那霸機場 (OKA)" },
+    destination: { en: "Chatan and American Village", ja: "北谷・アメリカンビレッジ", zh: "北谷和美國村" },
+    nearbyAreas: {
+      en: "Chatan hotels, American Village, Mihama, beach stays, shopping areas, and family resorts",
+      ja: "北谷ホテル、アメリカンビレッジ、美浜、ビーチ滞在、ショッピング、家族向けリゾート",
+      zh: "北谷酒店、美國村、美濱、海灘住宿、購物區和親子度假酒店"
+    },
+    citySearchName: "American Village, Chatan, Okinawa, Japan",
+    driveTime: "40-70 min",
+    bestFor: { en: "Central Okinawa beach hotels", ja: "沖縄中部ビーチホテル", zh: "沖繩中部海灘酒店" },
+    hotelExample: "American Village hotel",
+    passengersExample: "3",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Naha Airport to Chatan transfer",
+      "Naha Airport to American Village",
+      "OKA to Chatan private car",
+      "Okinawa central hotel transfer"
+    ],
+    relatedSlugs: ["naha-airport-to-naha-kokusai-dori", "naha-airport-to-onna-village"]
+  }
+};
+
+const regionalAdCopy = {
+  en: {
+    title: (airportName: string, destination: string) => `${airportName} to ${destination} Transfer`,
+    metaTitle: (airportName: string, destination: string) => `${airportName} to ${destination} Transfer | Private Car`,
+    metaDescription: (airportName: string, destination: string, areas: string) =>
+      `Private ${airportName} to ${destination} transfer for ${areas}. English and Chinese support, WhatsApp quote, Alphard and Hiace options.`,
+    heroSubtitle: (airportName: string, destination: string, areas: string) =>
+      `Private door-to-door airport pickup from ${airportName} to ${destination}, covering ${areas}.`,
+    features: (airportName: string, destination: string) => [
+      `${airportName} pickup with flight tracking`,
+      `Direct transfer to ${destination}`,
+      "Toyota Alphard or Hiace available",
+      "90 min free airport waiting",
+      "Luggage-friendly private vehicle",
+      "WhatsApp quote before booking"
+    ],
+    overviewTitle: (airportShort: string, destination: string) => `Route Details for ${airportShort} to ${destination}`,
+    overviewSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${destination} is a high-intent private transfer route for travelers going from ${airportName} to ${areas}.`,
+    labels: ["Typical drive time", "Best for", "Vehicle fit"] as const,
+    driveDescription: "Traffic, weather, arrival time, and the exact hotel entrance can change the final timing.",
+    bestForDescription: (areas: string) => `Useful for direct hotel drop-off around ${areas}, especially with luggage or family travel.`,
+    vehicleValue: "Alphard or Hiace",
+    vehicleDescription:
+      "We confirm the best vehicle after checking passengers, suitcases, ski bags, strollers, and child seat requests.",
+    notesTitle: "Before You Book",
+    notes: (airportName: string, destination: string, areas: string) => [
+      `Send your flight number so pickup timing follows the actual ${airportName} landing time.`,
+      `Share the exact ${destination} hotel or address because pickup entrances can differ around ${areas}.`,
+      "Tell us passenger count, suitcase count, and special luggage before confirming the vehicle."
+    ],
+    quoteTitle: (airportShort: string, destination: string) => `Get a ${airportShort} to ${destination} Quote`,
+    quoteSubtitle: (destination: string) =>
+      `Search your ${destination} hotel or address on the map, then send flight, passenger, and luggage details on WhatsApp for the final quote.`,
+    directNote:
+      "Opens in WhatsApp after submission. Arrival-gate name-sign meet-and-greet is optional and costs +2,000 JPY when requested.",
+    pickupNote: (airportName: string) =>
+      `For ${airportName} pickup, waiting time starts from the actual flight landing time.`,
+    delayNote: "If the flight is delayed, the driver adjusts pickup timing based on updated arrival information.",
+    promiseTitle: "Why Book This Route",
+    promises: (airportName: string, destination: string): [string, string][] => [
+      ["Direct to your door", `Travel from ${airportName} to ${destination} without station transfers with luggage.`],
+      ["Route-specific support", "We confirm airport, hotel entrance, luggage, and pickup timing before the ride."],
+      ["Vehicle advice", "Alphard and Hiace options help match passengers, suitcases, and comfort needs."],
+      ["Return trip available", `${destination} hotel to the airport can also be arranged for departure.`]
+    ],
+    bookingTitle: (airportShort: string, destination: string) => `Book ${airportShort} to ${destination}`,
+    bookingSubtitle: (destination: string) =>
+      `Send your flight, landing time, ${destination} address, passengers, and luggage details for a fast WhatsApp quote.`,
+    messageHeader: (airportName: string, destination: string) =>
+      `Hello, I need a ${airportName} to ${destination} transfer quote.`,
+    relatedRoutesTitle: (airportName: string) => `Related ${airportName} Routes`,
+    relatedRoutesSubtitle: (airportName: string) =>
+      `Private transfer pages for ${airportName}, hotels, resort areas, luggage-friendly routes, and airport drop-off.`,
+    cityPageTitle: (citySlug: CitySlug) => (citySlug === "hokkaido" ? "Hokkaido Airport Transfer" : "Okinawa Airport Transfer"),
+    cityPageDescription: (citySlug: CitySlug) =>
+      citySlug === "hokkaido"
+        ? "General Hokkaido transfer page for Sapporo, Niseko, Otaru, Furano, Biei, Noboribetsu, and Lake Toya."
+        : "General Okinawa transfer page for Naha, Chatan, American Village, Onna Village, Motobu, and Churaumi Aquarium.",
+    faqTitle: (airportShort: string, destination: string) => `${airportShort} to ${destination} FAQ`,
+    faqSubtitle: (airportName: string, destination: string) =>
+      `Common questions before booking a private car from ${airportName} to ${destination}.`,
+    faqs: (airportName: string, destination: string, driveTime: string, areas: string) => [
+      {
+        question: `How long does ${airportName} to ${destination} take by private car?`,
+        answer: `It usually takes about ${driveTime}, depending on traffic, weather, arrival time, and the exact hotel entrance.`
+      },
+      {
+        question: `Can you drop off around ${destination}?`,
+        answer: `Yes. We can arrange drop-off for ${areas}. Please send the hotel name or full address before booking.`
+      },
+      {
+        question: "Which vehicle should I choose?",
+        answer:
+          "Toyota Alphard is comfortable for smaller groups with moderate luggage. Toyota Hiace is better for more passengers, large suitcases, ski bags, strollers, or beach luggage."
+      },
+      {
+        question: `Can I book ${destination} to the airport for departure?`,
+        answer: `Yes. The same route can be booked in reverse for ${destination} hotel to airport drop-off.`
+      }
+    ]
+  },
+  ja: {
+    title: (airportName: string, destination: string) => `${airportName}から${destination}への送迎`,
+    metaTitle: (airportName: string, destination: string) => `${airportName}から${destination}への送迎 | プライベートカー`,
+    metaDescription: (airportName: string, destination: string, areas: string) =>
+      `${airportName}から${destination}、${areas}までのプライベート送迎。英語と中国語で相談でき、WhatsAppで見積もり、アルファードとハイエース対応。`,
+    heroSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${airportName}から${destination}まで、${areas}をカバーするドアツードアの専用車送迎です。`,
+    features: (airportName: string, destination: string) => [
+      `${airportName}お迎えとフライト確認`,
+      `${destination}まで直行`,
+      "アルファードまたはハイエース対応",
+      "空港お迎え90分無料待機",
+      "荷物に合わせた専用車",
+      "WhatsAppで事前見積もり"
+    ],
+    overviewTitle: (airportShort: string, destination: string) => `${airportShort}から${destination}へのルート詳細`,
+    overviewSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${destination}は、${airportName}から${areas}へ向かう旅行者に需要の高い専用車ルートです。`,
+    labels: ["通常の所要時間", "おすすめ利用", "車種の目安"] as const,
+    driveDescription: "道路状況、天候、到着時間、ホテル入口により実際の所要時間は変わります。",
+    bestForDescription: (areas: string) => `${areas}への直接移動に便利で、荷物が多い旅行や家族旅行にも向いています。`,
+    vehicleValue: "アルファード / ハイエース",
+    vehicleDescription: "人数、スーツケース、スキー荷物、ベビーカー、チャイルドシートを確認して車種を提案します。",
+    notesTitle: "予約前の確認",
+    notes: (airportName: string, destination: string, areas: string) => [
+      `フライト番号を送ると、実際の${airportName}到着時刻に合わせてお迎えできます。`,
+      `${areas}周辺はホテル入口や車寄せが分かれるため、正確な${destination}の住所を共有してください。`,
+      "人数、スーツケース数、特別な荷物を予約前にお知らせください。"
+    ],
+    quoteTitle: (airportShort: string, destination: string) => `${airportShort}から${destination}の見積もり`,
+    quoteSubtitle: (destination: string) =>
+      `地図で${destination}のホテルや住所を検索し、フライト、人数、荷物情報をWhatsAppで送ると最終見積もりを確認できます。`,
+    directNote:
+      "送信後、WhatsAppで直接やり取りできます。到着ゲートでのネームプレートお迎えはオプション（+2,000円）です。",
+    pickupNote: (airportName: string) => `${airportName}お迎えの待機時間は、実際のフライト到着時刻から計算します。`,
+    delayNote: "フライト遅延時は、最新の到着情報に合わせてドライバーがお迎え時間を調整します。",
+    promiseTitle: "このルートのメリット",
+    promises: (airportName: string, destination: string): [string, string][] => [
+      ["ドアツードア", `${airportName}から${destination}まで、荷物を持って乗り換える必要がありません。`],
+      ["ルート別サポート", "空港、ホテル入口、荷物、お迎え時間を事前に確認します。"],
+      ["車種相談", "アルファードとハイエースを人数、荷物、快適性に合わせて確認します。"],
+      ["復路も対応", `${destination}のホテルから空港への送機も予約できます。`]
+    ],
+    bookingTitle: (airportShort: string, destination: string) => `${airportShort}から${destination}を予約`,
+    bookingSubtitle: (destination: string) =>
+      `フライト、到着時間、${destination}の住所、人数、荷物情報を送るとWhatsAppですぐに見積もりできます。`,
+    messageHeader: (airportName: string, destination: string) =>
+      `こんにちは。${airportName}から${destination}までの送迎見積もりをお願いします。`,
+    relatedRoutesTitle: (airportName: string) => `関連する${airportName}送迎ルート`,
+    relatedRoutesSubtitle: (airportName: string) =>
+      `${airportName}、ホテル、リゾートエリア、荷物の多い移動、空港送迎に関連する専用車ページです。`,
+    cityPageTitle: (citySlug: CitySlug) => (citySlug === "hokkaido" ? "北海道空港送迎" : "沖縄空港送迎"),
+    cityPageDescription: (citySlug: CitySlug) =>
+      citySlug === "hokkaido"
+        ? "札幌、ニセコ、小樽、富良野、美瑛、登別、洞爺湖に対応する北海道送迎ページです。"
+        : "那覇、北谷、アメリカンビレッジ、恩納村、本部、美ら海水族館に対応する沖縄送迎ページです。",
+    faqTitle: (airportShort: string, destination: string) => `${airportShort}から${destination} FAQ`,
+    faqSubtitle: (airportName: string, destination: string) =>
+      `${airportName}から${destination}まで専用車を予約する前によくある質問です。`,
+    faqs: (airportName: string, destination: string, driveTime: string, areas: string) => [
+      {
+        question: `${airportName}から${destination}まで車でどのくらいですか？`,
+        answer: `通常は約${driveTime}です。道路状況、天候、到着時間、ホテル入口により変わります。`
+      },
+      {
+        question: `${destination}周辺ホテルで降車できますか？`,
+        answer: `はい。${areas}に対応できます。予約前にホテル名または住所をお知らせください。`
+      },
+      {
+        question: "どの車種を選べばよいですか？",
+        answer: "少人数で荷物が標準的な場合はアルファード、人数や大型スーツケース、スキー荷物、ベビーカーが多い場合はハイエースがおすすめです。"
+      },
+      {
+        question: `${destination}から空港への送機も予約できますか？`,
+        answer: `はい。同じルートを逆方向で、${destination}ホテルから空港への送機として予約できます。`
+      }
+    ]
+  },
+  zh: {
+    title: (airportName: string, destination: string) => `${airportName}到${destination}接送`,
+    metaTitle: (airportName: string, destination: string) => `${airportName}到${destination}接送 | 私人專車`,
+    metaDescription: (airportName: string, destination: string, areas: string) =>
+      `${airportName}到${destination}、${areas}的私人專車接送。可英文和中文溝通，WhatsApp 報價，Toyota Alphard 和 Hiace 可選。`,
+    heroSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${airportName}到${destination}點對點私人接送，覆蓋${areas}。`,
+    features: (airportName: string, destination: string) => [
+      `${airportName}接機與航班跟蹤`,
+      `直達${destination}`,
+      "可選 Alphard 或 Hiace",
+      "接機90分鐘免費等待",
+      "適合多行李的私人專車",
+      "WhatsApp 預先報價"
+    ],
+    overviewTitle: (airportShort: string, destination: string) => `${airportShort}到${destination}路線詳情`,
+    overviewSubtitle: (airportName: string, destination: string, areas: string) =>
+      `${destination}是${airportName}前往${areas}的高需求私人接送路線。`,
+    labels: ["通常車程", "適合場景", "車型建議"] as const,
+    driveDescription: "實際時間會依路況、天氣、到達時間和酒店入口位置而變化。",
+    bestForDescription: (areas: string) => `適合直接送到${areas}，尤其適合行李多或家庭出行。`,
+    vehicleValue: "Alphard 或 Hiace",
+    vehicleDescription: "我們會根據人數、行李箱、滑雪裝備、嬰兒車和兒童座椅需求建議車型。",
+    notesTitle: "預約前建議",
+    notes: (airportName: string, destination: string, areas: string) => [
+      `提供航班號後，司機可以根據${airportName}實際落地時間安排接機。`,
+      `${areas}周邊酒店入口可能不同，請提供準確的${destination}酒店名或完整地址。`,
+      "確認車型前請告訴我們人數、行李箱數量和特殊行李。"
+    ],
+    quoteTitle: (airportShort: string, destination: string) => `取得${airportShort}到${destination}報價`,
+    quoteSubtitle: (destination: string) =>
+      `在地圖中搜尋${destination}酒店或地址，再透過 WhatsApp 發送航班、人數和行李資訊確認報價。`,
+    directNote:
+      "提交後會打開 WhatsApp，方便直接溝通。到達口舉牌接機為可選服務，需要時另加 2,000 日元。",
+    pickupNote: (airportName: string) => `${airportName}接機等待時間從航班實際落地時間開始計算。`,
+    delayNote: "航班延誤時，司機會根據最新到達資訊調整接機時間。",
+    promiseTitle: "這條路線的優點",
+    promises: (airportName: string, destination: string): [string, string][] => [
+      ["點對點直達", `從${airportName}直達${destination}，不用拖著行李轉車。`],
+      ["路線細節確認", "上車前會確認機場、酒店入口、行李和接機時間。"],
+      ["車型建議", "可依照人數、行李和舒適度確認 Alphard 或 Hiace。"],
+      ["可安排回程", `也可以預約${destination}酒店到機場送機。`]
+    ],
+    bookingTitle: (airportShort: string, destination: string) => `預約${airportShort}到${destination}`,
+    bookingSubtitle: (destination: string) =>
+      `發送航班、落地時間、${destination}地址、人數和行李資訊，即可透過 WhatsApp 快速報價。`,
+    messageHeader: (airportName: string, destination: string) =>
+      `您好，我需要${airportName}到${destination}接送報價。`,
+    relatedRoutesTitle: (airportName: string) => `相關${airportName}接送路線`,
+    relatedRoutesSubtitle: (airportName: string) =>
+      `${airportName}、酒店、度假區、多行李移動和送機相關的私人專車頁面。`,
+    cityPageTitle: (citySlug: CitySlug) => (citySlug === "hokkaido" ? "北海道機場接送" : "沖繩機場接送"),
+    cityPageDescription: (citySlug: CitySlug) =>
+      citySlug === "hokkaido"
+        ? "覆蓋札幌、二世谷、小樽、富良野、美瑛、登別和洞爺湖的北海道接送頁面。"
+        : "覆蓋那霸、北谷、美國村、恩納村、本部和美麗海水族館的沖繩接送頁面。",
+    faqTitle: (airportShort: string, destination: string) => `${airportShort}到${destination}常見問題`,
+    faqSubtitle: (airportName: string, destination: string) =>
+      `預約${airportName}到${destination}私人專車前常見的問題。`,
+    faqs: (airportName: string, destination: string, driveTime: string, areas: string) => [
+      {
+        question: `${airportName}到${destination}包車需要多久？`,
+        answer: `通常約${driveTime}，實際時間取決於路況、天氣、到達時間和酒店入口位置。`
+      },
+      {
+        question: `可以送到${destination}周邊酒店嗎？`,
+        answer: `可以。${areas}都可以安排，預約前請提供酒店名稱或完整地址。`
+      },
+      {
+        question: "應該選哪種車型？",
+        answer: "少人且行李適中時 Alphard 很舒適；如果人數、行李箱、滑雪裝備、嬰兒車或海灘行李較多，建議選 Hiace。"
+      },
+      {
+        question: `可以預約${destination}到機場送機嗎？`,
+        answer: `可以，同一條路線也可以反向預約${destination}酒店到機場送機。`
+      }
+    ]
+  }
+};
+
+function buildRegionalAdRoutePage(locale: Locale, slug: RegionalAdRouteSlug): RoutePageContent {
+  const config = regionalAdRoutes[slug];
+  const copy = regionalAdCopy[locale];
+  const airportName = config.airportName[locale];
+  const airportShort = config.airportShort[locale];
+  const destination = config.destination[locale];
+  const nearbyAreas = config.nearbyAreas[locale];
+  const image = "/images/tokyo-airport-transfer.jpg";
+  const path = routePagePath(slug);
+  const relatedRoutes = config.relatedSlugs
+    .filter((relatedSlug) => relatedSlug !== slug)
+    .map((relatedSlug) => {
+      const relatedConfig = regionalAdRoutes[relatedSlug as RegionalAdRouteSlug];
+      if (relatedConfig) {
+        const relatedAirportName = relatedConfig.airportName[locale];
+        const relatedDestination = relatedConfig.destination[locale];
+        return {
+          title: copy.title(relatedAirportName, relatedDestination),
+          description: copy.metaDescription(
+            relatedAirportName,
+            relatedDestination,
+            relatedConfig.nearbyAreas[locale]
+          ),
+          href: routePagePath(relatedSlug)
+        };
+      }
+
+      if (relatedSlug === "naha-airport-to-onna-village") {
+        return {
+          title: copy.title(config.airportName[locale], locale === "en" ? "Onna Village" : locale === "ja" ? "恩納村" : "恩納村"),
+          description:
+            locale === "en"
+              ? "Private resort transfer from Naha Airport to Onna Village hotels, beaches, and northern Okinawa."
+              : locale === "ja"
+                ? "那覇空港から恩納村リゾートホテル、ビーチ、沖縄北部への専用車送迎です。"
+                : "那霸機場到恩納村度假酒店、海灘和沖繩北部的私人專車接送。",
+          href: "/naha-airport-to-onna-village"
+        };
+      }
+
+      return {
+        title: copy.cityPageTitle(config.citySlug),
+        description: copy.cityPageDescription(config.citySlug),
+        href: `/${config.citySlug}`
+      };
+    });
+
+  relatedRoutes.push({
+    title: copy.cityPageTitle(config.citySlug),
+    description: copy.cityPageDescription(config.citySlug),
+    href: `/${config.citySlug}`
+  });
+
+  return {
+    slug,
+    path,
+    citySlug: config.citySlug,
+    cityName: config.citySlug === "hokkaido" ? (locale === "en" ? "Hokkaido" : "北海道") : locale === "en" ? "Okinawa" : locale === "ja" ? "沖縄" : "沖繩",
+    citySearchName: config.citySearchName,
+    routeAirports: [config.routeAirport],
+    defaultAirportId: config.airportId,
+    serviceProfile: routeServiceProfiles[slug],
+    meta: {
+      title: copy.metaTitle(airportName, destination),
+      description: copy.metaDescription(airportName, destination, nearbyAreas),
+      keywords: [
+        `${airportName} ${destination} transfer`,
+        `${airportShort} ${destination} private car`,
+        `${destination} airport pickup`,
+        ...config.keywords
+      ],
+      image
+    },
+    hero: {
+      title: copy.title(airportName, destination),
+      subtitle: copy.heroSubtitle(airportName, destination, nearbyAreas),
+      features: copy.features(airportName, destination),
+      imageSrc: image,
+      imageAlt: copy.title(airportName, destination)
+    },
+    overview: {
+      title: copy.overviewTitle(airportShort, destination),
+      subtitle: copy.overviewSubtitle(airportName, destination, nearbyAreas),
+      facts: [
+        {
+          label: copy.labels[0],
+          value: config.driveTime,
+          description: copy.driveDescription
+        },
+        {
+          label: copy.labels[1],
+          value: config.bestFor[locale],
+          description: copy.bestForDescription(nearbyAreas)
+        },
+        {
+          label: copy.labels[2],
+          value: copy.vehicleValue,
+          description: copy.vehicleDescription
+        }
+      ],
+      notesTitle: copy.notesTitle,
+      notes: copy.notes(airportName, destination, nearbyAreas)
+    },
+    quote: {
+      title: copy.quoteTitle(airportShort, destination),
+      subtitle: copy.quoteSubtitle(destination),
+      directNote: copy.directNote
+    },
+    waiting: {
+      pickupNote: copy.pickupNote(airportName),
+      delayNote: copy.delayNote,
+      promiseTitle: copy.promiseTitle,
+      promises: copy.promises(airportName, destination)
+    },
+    booking: {
+      title: copy.bookingTitle(airportShort, destination),
+      subtitle: copy.bookingSubtitle(destination),
+      placeholders: {
+        airport: config.airportPlaceholder[locale],
+        flight: "JL123",
+        landingTime: locale === "en" ? "May 3, 4:30 PM" : "5月3日 16:30",
+        hotel: config.hotelExample,
+        passengers: config.passengersExample,
+        luggage: config.luggageExample
+      },
+      messageHeader: copy.messageHeader(airportName, destination)
+    },
+    seo: {
+      routesTitle: copy.relatedRoutesTitle(airportName),
+      routesSubtitle: copy.relatedRoutesSubtitle(airportName),
+      routes: relatedRoutes,
+      faqTitle: copy.faqTitle(airportShort, destination),
+      faqSubtitle: copy.faqSubtitle(airportName, destination),
+      faqs: copy.faqs(airportName, destination, config.driveTime, nearbyAreas)
+    }
+  };
+}
+
 const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> = {
   en: {
     "narita-airport-to-shinjuku": {
@@ -3081,12 +4491,22 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
       seo: {
         routesTitle: "Related Narita Airport Routes",
         routesSubtitle:
-          "Other private airport transfer routes for Tokyo hotels, Tokyo Disney Resort, and onward travel after arrival at Narita.",
+          "Other private airport transfer routes for Tokyo hotels, central visitor areas, and onward travel after arrival at Narita.",
         routes: [
           {
-            title: "Narita Airport to Tokyo Disney Resort",
-            description: "Private family transfer to Tokyo Disneyland, DisneySea, Maihama hotels, and resort-area hotels.",
-            href: "/narita-airport-to-tokyo-disney-resort"
+            title: "Narita Airport to Ginza",
+            description: "Private airport transfer to Ginza hotels, Tsukiji, Yurakucho, Nihonbashi, and Tokyo Station area.",
+            href: "/narita-airport-to-ginza"
+          },
+          {
+            title: "Narita Airport to Shibuya",
+            description: "Direct private pickup for Shibuya hotels, Ebisu, Harajuku, Aoyama, and Omotesando.",
+            href: "/narita-airport-to-shibuya"
+          },
+          {
+            title: "Narita Airport to Asakusa and Ueno",
+            description: "Door-to-door transfer for Asakusa hotels, Ueno Station, Taito, and Sensoji.",
+            href: "/narita-airport-to-asakusa-ueno"
           },
           {
             title: "Narita Airport to Tokyo hotels",
@@ -3280,13 +4700,29 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
         ]
       }
     },
+    "narita-airport-to-ginza": buildTokyoAirportRoutePage("en", "narita-airport-to-ginza"),
+    "narita-airport-to-shibuya": buildTokyoAirportRoutePage("en", "narita-airport-to-shibuya"),
+    "narita-airport-to-shinagawa": buildTokyoAirportRoutePage("en", "narita-airport-to-shinagawa"),
+    "narita-airport-to-asakusa-ueno": buildTokyoAirportRoutePage("en", "narita-airport-to-asakusa-ueno"),
+    "narita-airport-to-tokyo-station": buildTokyoAirportRoutePage("en", "narita-airport-to-tokyo-station"),
+    "narita-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("en", "narita-airport-to-roppongi-akasaka"),
+    "narita-airport-to-ikebukuro": buildTokyoAirportRoutePage("en", "narita-airport-to-ikebukuro"),
     "haneda-airport-to-ginza": buildHanedaRoutePage("en", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("en", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("en", "haneda-airport-to-shinagawa"),
+    "haneda-airport-to-shibuya": buildTokyoAirportRoutePage("en", "haneda-airport-to-shibuya"),
+    "haneda-airport-to-asakusa-ueno": buildTokyoAirportRoutePage("en", "haneda-airport-to-asakusa-ueno"),
+    "haneda-airport-to-tokyo-station": buildTokyoAirportRoutePage("en", "haneda-airport-to-tokyo-station"),
+    "haneda-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("en", "haneda-airport-to-roppongi-akasaka"),
+    "haneda-airport-to-ikebukuro": buildTokyoAirportRoutePage("en", "haneda-airport-to-ikebukuro"),
     "yokohama-port-transfer": buildRegionalRoutePage("en", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("en", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("en", "kansai-airport-to-osaka-namba"),
+    "new-chitose-airport-to-sapporo": buildRegionalAdRoutePage("en", "new-chitose-airport-to-sapporo"),
+    "new-chitose-airport-to-niseko": buildRegionalAdRoutePage("en", "new-chitose-airport-to-niseko"),
     "fukuoka-airport-to-hakata": buildRegionalRoutePage("en", "fukuoka-airport-to-hakata"),
+    "naha-airport-to-naha-kokusai-dori": buildRegionalAdRoutePage("en", "naha-airport-to-naha-kokusai-dori"),
+    "naha-airport-to-chatan-american-village": buildRegionalAdRoutePage("en", "naha-airport-to-chatan-american-village"),
     "naha-airport-to-onna-village": buildRegionalRoutePage("en", "naha-airport-to-onna-village")
   },
   ja: {
@@ -3387,12 +4823,22 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
       },
       seo: {
         routesTitle: "関連する成田空港送迎ルート",
-        routesSubtitle: "東京ホテル、東京ディズニーリゾート、羽田空港、東京市内移動に関連する専用車ルートです。",
+        routesSubtitle: "東京ホテル、主要滞在エリア、羽田空港、東京市内移動に関連する専用車ルートです。",
         routes: [
           {
-            title: "成田空港から東京ディズニーリゾートへ",
-            description: "東京ディズニーランド、ディズニーシー、舞浜ホテルへの家族向け送迎です。",
-            href: "/narita-airport-to-tokyo-disney-resort"
+            title: "成田空港から銀座へ",
+            description: "銀座ホテル、築地、有楽町、日本橋、東京駅周辺への空港送迎です。",
+            href: "/narita-airport-to-ginza"
+          },
+          {
+            title: "成田空港から渋谷へ",
+            description: "渋谷、恵比寿、原宿、青山、表参道周辺ホテルへの専用車送迎です。",
+            href: "/narita-airport-to-shibuya"
+          },
+          {
+            title: "成田空港から浅草・上野へ",
+            description: "浅草ホテル、上野駅、台東区、浅草寺周辺へのドアツードア送迎です。",
+            href: "/narita-airport-to-asakusa-ueno"
           },
           {
             title: "成田空港から東京ホテルへ",
@@ -3578,13 +5024,29 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
         ]
       }
     },
+    "narita-airport-to-ginza": buildTokyoAirportRoutePage("ja", "narita-airport-to-ginza"),
+    "narita-airport-to-shibuya": buildTokyoAirportRoutePage("ja", "narita-airport-to-shibuya"),
+    "narita-airport-to-shinagawa": buildTokyoAirportRoutePage("ja", "narita-airport-to-shinagawa"),
+    "narita-airport-to-asakusa-ueno": buildTokyoAirportRoutePage("ja", "narita-airport-to-asakusa-ueno"),
+    "narita-airport-to-tokyo-station": buildTokyoAirportRoutePage("ja", "narita-airport-to-tokyo-station"),
+    "narita-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("ja", "narita-airport-to-roppongi-akasaka"),
+    "narita-airport-to-ikebukuro": buildTokyoAirportRoutePage("ja", "narita-airport-to-ikebukuro"),
     "haneda-airport-to-ginza": buildHanedaRoutePage("ja", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("ja", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("ja", "haneda-airport-to-shinagawa"),
+    "haneda-airport-to-shibuya": buildTokyoAirportRoutePage("ja", "haneda-airport-to-shibuya"),
+    "haneda-airport-to-asakusa-ueno": buildTokyoAirportRoutePage("ja", "haneda-airport-to-asakusa-ueno"),
+    "haneda-airport-to-tokyo-station": buildTokyoAirportRoutePage("ja", "haneda-airport-to-tokyo-station"),
+    "haneda-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("ja", "haneda-airport-to-roppongi-akasaka"),
+    "haneda-airport-to-ikebukuro": buildTokyoAirportRoutePage("ja", "haneda-airport-to-ikebukuro"),
     "yokohama-port-transfer": buildRegionalRoutePage("ja", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("ja", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("ja", "kansai-airport-to-osaka-namba"),
+    "new-chitose-airport-to-sapporo": buildRegionalAdRoutePage("ja", "new-chitose-airport-to-sapporo"),
+    "new-chitose-airport-to-niseko": buildRegionalAdRoutePage("ja", "new-chitose-airport-to-niseko"),
     "fukuoka-airport-to-hakata": buildRegionalRoutePage("ja", "fukuoka-airport-to-hakata"),
+    "naha-airport-to-naha-kokusai-dori": buildRegionalAdRoutePage("ja", "naha-airport-to-naha-kokusai-dori"),
+    "naha-airport-to-chatan-american-village": buildRegionalAdRoutePage("ja", "naha-airport-to-chatan-american-village"),
     "naha-airport-to-onna-village": buildRegionalRoutePage("ja", "naha-airport-to-onna-village")
   },
   zh: {
@@ -3684,12 +5146,22 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
       },
       seo: {
         routesTitle: "相關成田機場接送路線",
-        routesSubtitle: "東京酒店、東京迪士尼、羽田機場和東京市內移動相關的私人專車路線。",
+        routesSubtitle: "東京酒店、熱門住宿區域、羽田機場和東京市內移動相關的私人專車路線。",
         routes: [
           {
-            title: "成田機場到東京迪士尼",
-            description: "適合東京迪士尼樂園、迪士尼海洋、舞濱酒店和親子家庭的私人接送。",
-            href: "/narita-airport-to-tokyo-disney-resort"
+            title: "成田機場到銀座",
+            description: "成田機場到銀座酒店、築地、有樂町、日本橋和東京站周邊的接送。",
+            href: "/narita-airport-to-ginza"
+          },
+          {
+            title: "成田機場到澀谷",
+            description: "成田機場到澀谷、惠比壽、原宿、青山和表參道周邊酒店的接送。",
+            href: "/narita-airport-to-shibuya"
+          },
+          {
+            title: "成田機場到淺草和上野",
+            description: "成田機場到淺草酒店、上野站、台東區和淺草寺周邊的接送。",
+            href: "/narita-airport-to-asakusa-ueno"
           },
           {
             title: "成田機場到東京酒店",
@@ -3870,13 +5342,29 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
         ]
       }
     },
+    "narita-airport-to-ginza": buildTokyoAirportRoutePage("zh", "narita-airport-to-ginza"),
+    "narita-airport-to-shibuya": buildTokyoAirportRoutePage("zh", "narita-airport-to-shibuya"),
+    "narita-airport-to-shinagawa": buildTokyoAirportRoutePage("zh", "narita-airport-to-shinagawa"),
+    "narita-airport-to-asakusa-ueno": buildTokyoAirportRoutePage("zh", "narita-airport-to-asakusa-ueno"),
+    "narita-airport-to-tokyo-station": buildTokyoAirportRoutePage("zh", "narita-airport-to-tokyo-station"),
+    "narita-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("zh", "narita-airport-to-roppongi-akasaka"),
+    "narita-airport-to-ikebukuro": buildTokyoAirportRoutePage("zh", "narita-airport-to-ikebukuro"),
     "haneda-airport-to-ginza": buildHanedaRoutePage("zh", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("zh", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("zh", "haneda-airport-to-shinagawa"),
+    "haneda-airport-to-shibuya": buildTokyoAirportRoutePage("zh", "haneda-airport-to-shibuya"),
+    "haneda-airport-to-asakusa-ueno": buildTokyoAirportRoutePage("zh", "haneda-airport-to-asakusa-ueno"),
+    "haneda-airport-to-tokyo-station": buildTokyoAirportRoutePage("zh", "haneda-airport-to-tokyo-station"),
+    "haneda-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("zh", "haneda-airport-to-roppongi-akasaka"),
+    "haneda-airport-to-ikebukuro": buildTokyoAirportRoutePage("zh", "haneda-airport-to-ikebukuro"),
     "yokohama-port-transfer": buildRegionalRoutePage("zh", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("zh", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("zh", "kansai-airport-to-osaka-namba"),
+    "new-chitose-airport-to-sapporo": buildRegionalAdRoutePage("zh", "new-chitose-airport-to-sapporo"),
+    "new-chitose-airport-to-niseko": buildRegionalAdRoutePage("zh", "new-chitose-airport-to-niseko"),
     "fukuoka-airport-to-hakata": buildRegionalRoutePage("zh", "fukuoka-airport-to-hakata"),
+    "naha-airport-to-naha-kokusai-dori": buildRegionalAdRoutePage("zh", "naha-airport-to-naha-kokusai-dori"),
+    "naha-airport-to-chatan-american-village": buildRegionalAdRoutePage("zh", "naha-airport-to-chatan-american-village"),
     "naha-airport-to-onna-village": buildRegionalRoutePage("zh", "naha-airport-to-onna-village")
   }
 };
