@@ -101,7 +101,7 @@ const commonVehicles = [
     passengers: "Up to 5 passengers",
     image: "/images/alphard.jpg",
     alt: "Toyota Alphard private airport pickup in Tokyo",
-    galleryImages: ["/images/Alphard1.jpg", "/images/Alphard2.jpg"]
+    galleryImages: ["/images/Alphard1.jpg", "/images/Alphard3.jpg"]
   },
   {
     name: "Toyota Hiace",

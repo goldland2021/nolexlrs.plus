@@ -117,16 +117,16 @@ const PRICING: Record<AirportId, AirportPricingProfile> = {
     fallbackTollYen: 800
   },
   fukuoka: {
-    baseFareYen: 6500,
-    referenceKm: 5,
-    perKmAfterReference: 280,
-    pickupSurchargeYen: 500,
-    dropoffSurchargeYen: 0,
-    pickupRangeYen: 1200,
-    dropoffRangeYen: 1000,
-    minimumPickupFareYen: 7500,
-    minimumDropoffFareYen: 6500,
-    fallbackTollYen: 700
+    baseFareYen: 14500,
+    referenceKm: 6,
+    perKmAfterReference: 350,
+    pickupSurchargeYen: 1000,
+    dropoffSurchargeYen: 500,
+    pickupRangeYen: 1500,
+    dropoffRangeYen: 1500,
+    minimumPickupFareYen: 15500,
+    minimumDropoffFareYen: 15000,
+    fallbackTollYen: 0
   },
   naha: {
     baseFareYen: 7000,
