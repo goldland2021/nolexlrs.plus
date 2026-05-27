@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { airportGuideContent } from "@/lib/seo-content";
 import { localizedPath } from "@/lib/seo";
+import { compareByRoutePopularity } from "@/lib/route-popularity";
 
 type AirportTransferGuideProps = {
   airport: "narita" | "haneda";
@@ -10,6 +11,7 @@ type AirportTransferGuideProps = {
 
 export default function AirportTransferGuide({ airport, locale }: AirportTransferGuideProps) {
   const content = (airportGuideContent[locale] ?? airportGuideContent.en)[airport];
+  const destinations = [...content.destinations].sort(compareByRoutePopularity);
 
   return (
     <section className="section bg-white">
@@ -24,7 +26,7 @@ export default function AirportTransferGuide({ airport, locale }: AirportTransfe
             <div className="rounded-lg border border-clay/60 bg-sand/40 p-5 sm:p-6">
               <h3 className="text-lg font-semibold">{content.destinationsTitle}</h3>
               <div className="mt-5 grid gap-4 md:grid-cols-3">
-                {content.destinations.map((destination) => {
+                {destinations.map((destination) => {
                   const card = (
                     <>
                       <h4 className="font-semibold text-ink">{destination.name}</h4>

@@ -14,6 +14,9 @@ export type RoutePageSlug =
   | "narita-airport-to-tokyo-station"
   | "narita-airport-to-roppongi-akasaka"
   | "narita-airport-to-ikebukuro"
+  | "narita-airport-to-odaiba-toyosu-ariake"
+  | "narita-airport-to-sumida-skytree"
+  | "narita-airport-to-setagaya"
   | "haneda-airport-to-ginza"
   | "haneda-airport-to-shinjuku"
   | "haneda-airport-to-shinagawa"
@@ -22,6 +25,9 @@ export type RoutePageSlug =
   | "haneda-airport-to-tokyo-station"
   | "haneda-airport-to-roppongi-akasaka"
   | "haneda-airport-to-ikebukuro"
+  | "haneda-airport-to-odaiba-toyosu-ariake"
+  | "haneda-airport-to-sumida-skytree"
+  | "haneda-airport-to-setagaya"
   | "yokohama-port-transfer"
   | "kansai-airport-to-kyoto"
   | "kansai-airport-to-osaka-namba"
@@ -41,6 +47,9 @@ export const routePageSlugs: RoutePageSlug[] = [
   "narita-airport-to-tokyo-station",
   "narita-airport-to-roppongi-akasaka",
   "narita-airport-to-ikebukuro",
+  "narita-airport-to-odaiba-toyosu-ariake",
+  "narita-airport-to-sumida-skytree",
+  "narita-airport-to-setagaya",
   "haneda-airport-to-ginza",
   "haneda-airport-to-shinjuku",
   "haneda-airport-to-shinagawa",
@@ -49,6 +58,9 @@ export const routePageSlugs: RoutePageSlug[] = [
   "haneda-airport-to-tokyo-station",
   "haneda-airport-to-roppongi-akasaka",
   "haneda-airport-to-ikebukuro",
+  "haneda-airport-to-odaiba-toyosu-ariake",
+  "haneda-airport-to-sumida-skytree",
+  "haneda-airport-to-setagaya",
   "yokohama-port-transfer",
   "kansai-airport-to-kyoto",
   "kansai-airport-to-osaka-namba",
@@ -259,6 +271,22 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
     "Ikebukuro Station",
     "Mejiro"
   ]),
+  "narita-airport-to-odaiba-toyosu-ariake": airportRouteServiceProfile(
+    "Narita Airport",
+    "Odaiba, Toyosu, and Ariake",
+    ["Tokyo Big Sight", "Toyosu Market", "Ariake Garden", "Tokyo Bay"]
+  ),
+  "narita-airport-to-sumida-skytree": airportRouteServiceProfile(
+    "Narita Airport",
+    "Sumida, Kinshicho, and Tokyo Skytree",
+    ["Kinshicho", "Tokyo Skytree", "Oshiage", "Ryogoku"]
+  ),
+  "narita-airport-to-setagaya": airportRouteServiceProfile("Narita Airport", "Setagaya", [
+    "Futako-Tamagawa",
+    "Sangenjaya",
+    "Shimokitazawa",
+    "Yoga"
+  ]),
   "haneda-airport-to-ginza": {
     areaServed: ["Haneda Airport", "Ginza", "Tsukiji", "Yurakucho", "Nihonbashi", "Tokyo"],
     serviceType: [
@@ -333,6 +361,22 @@ const routeServiceProfiles: Record<RoutePageSlug, ServiceJsonLdProfile> = {
     "Sunshine City",
     "Ikebukuro Station",
     "Mejiro"
+  ]),
+  "haneda-airport-to-odaiba-toyosu-ariake": airportRouteServiceProfile(
+    "Haneda Airport",
+    "Odaiba, Toyosu, and Ariake",
+    ["Tokyo Big Sight", "Toyosu Market", "Ariake Garden", "Tokyo Bay"]
+  ),
+  "haneda-airport-to-sumida-skytree": airportRouteServiceProfile(
+    "Haneda Airport",
+    "Sumida, Kinshicho, and Tokyo Skytree",
+    ["Kinshicho", "Tokyo Skytree", "Oshiage", "Ryogoku"]
+  ),
+  "haneda-airport-to-setagaya": airportRouteServiceProfile("Haneda Airport", "Setagaya", [
+    "Futako-Tamagawa",
+    "Sangenjaya",
+    "Shimokitazawa",
+    "Yoga"
   ]),
   "yokohama-port-transfer": {
     areaServed: [
@@ -3174,11 +3218,17 @@ type TokyoAirportRouteSlug = Extract<
   | "narita-airport-to-tokyo-station"
   | "narita-airport-to-roppongi-akasaka"
   | "narita-airport-to-ikebukuro"
+  | "narita-airport-to-odaiba-toyosu-ariake"
+  | "narita-airport-to-sumida-skytree"
+  | "narita-airport-to-setagaya"
   | "haneda-airport-to-shibuya"
   | "haneda-airport-to-asakusa-ueno"
   | "haneda-airport-to-tokyo-station"
   | "haneda-airport-to-roppongi-akasaka"
   | "haneda-airport-to-ikebukuro"
+  | "haneda-airport-to-odaiba-toyosu-ariake"
+  | "haneda-airport-to-sumida-skytree"
+  | "haneda-airport-to-setagaya"
 >;
 
 type TokyoAirportId = "narita" | "haneda";
@@ -3337,6 +3387,74 @@ const tokyoAirportRoutes: Record<TokyoAirportRouteSlug, TokyoAirportRouteConfig>
       "Narita to Toshima hotel"
     ]
   },
+  "narita-airport-to-odaiba-toyosu-ariake": {
+    airport: "narita",
+    destination: {
+      en: "Odaiba, Toyosu, and Ariake",
+      ja: "お台場・豊洲・有明",
+      zh: "台場、豐洲和有明"
+    },
+    nearbyAreas: {
+      en: "Odaiba hotels, Toyosu, Ariake Garden, Tokyo Big Sight, Toyosu Market, and Tokyo Bay apartments",
+      ja: "お台場ホテル、豊洲、有明ガーデン、東京ビッグサイト、豊洲市場、湾岸エリアの滞在先",
+      zh: "台場酒店、豐洲、有明花園、東京 Big Sight、豐洲市場和灣岸區住宿"
+    },
+    citySearchName: "Odaiba, Tokyo, Japan",
+    driveTime: "65-95 min",
+    hotelExample: "Hilton Tokyo Odaiba",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Narita Airport to Odaiba transfer",
+      "Narita to Toyosu private car",
+      "Narita Airport to Ariake",
+      "Narita to Tokyo Big Sight transfer"
+    ]
+  },
+  "narita-airport-to-sumida-skytree": {
+    airport: "narita",
+    destination: {
+      en: "Sumida, Kinshicho, and Tokyo Skytree",
+      ja: "墨田・錦糸町・東京スカイツリー",
+      zh: "墨田、錦糸町和東京晴空塔"
+    },
+    nearbyAreas: {
+      en: "Tokyo Skytree hotels, Kinshicho, Oshiage, Ryogoku, Sumida apartments, and east Tokyo stays",
+      ja: "東京スカイツリー周辺ホテル、錦糸町、押上、両国、墨田区の民泊や滞在先",
+      zh: "東京晴空塔周邊酒店、錦糸町、押上、兩國、墨田區民宿和東東京住宿"
+    },
+    citySearchName: "Tokyo Skytree, Sumida, Tokyo, Japan",
+    driveTime: "60-90 min",
+    hotelExample: "Richmond Hotel Premier Tokyo Schole",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Narita Airport to Tokyo Skytree transfer",
+      "Narita to Kinshicho private car",
+      "Narita Airport to Sumida",
+      "Narita to Oshiage hotel"
+    ]
+  },
+  "narita-airport-to-setagaya": {
+    airport: "narita",
+    destination: { en: "Setagaya", ja: "世田谷", zh: "世田谷" },
+    nearbyAreas: {
+      en: "Setagaya apartment stays, Futako-Tamagawa, Sangenjaya, Shimokitazawa, Yoga, and residential hotels",
+      ja: "世田谷区の民泊、二子玉川、三軒茶屋、下北沢、用賀、住宅地の滞在先",
+      zh: "世田谷區民宿、二子玉川、三軒茶屋、下北澤、用賀和住宅區住宿"
+    },
+    citySearchName: "Setagaya, Tokyo, Japan",
+    driveTime: "80-110 min",
+    hotelExample: "Futako-Tamagawa Excel Hotel Tokyu",
+    passengersExample: "2",
+    luggageExample: "3 suitcases",
+    keywords: [
+      "Narita Airport to Setagaya transfer",
+      "Narita to Futako Tamagawa private car",
+      "Narita Airport to Sangenjaya",
+      "Narita to Shimokitazawa transfer"
+    ]
+  },
   "haneda-airport-to-shibuya": {
     airport: "haneda",
     destination: { en: "Shibuya", ja: "渋谷", zh: "澀谷" },
@@ -3435,6 +3553,74 @@ const tokyoAirportRoutes: Record<TokyoAirportRouteSlug, TokyoAirportRouteConfig>
       "Haneda to Ikebukuro private car",
       "Haneda Airport to Sunshine City",
       "Haneda to Toshima hotel"
+    ]
+  },
+  "haneda-airport-to-odaiba-toyosu-ariake": {
+    airport: "haneda",
+    destination: {
+      en: "Odaiba, Toyosu, and Ariake",
+      ja: "お台場・豊洲・有明",
+      zh: "台場、豐洲和有明"
+    },
+    nearbyAreas: {
+      en: "Odaiba hotels, Toyosu, Ariake Garden, Tokyo Big Sight, Toyosu Market, and Tokyo Bay apartments",
+      ja: "お台場ホテル、豊洲、有明ガーデン、東京ビッグサイト、豊洲市場、湾岸エリアの滞在先",
+      zh: "台場酒店、豐洲、有明花園、東京 Big Sight、豐洲市場和灣岸區住宿"
+    },
+    citySearchName: "Odaiba, Tokyo, Japan",
+    driveTime: "25-45 min",
+    hotelExample: "Hilton Tokyo Odaiba",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Haneda Airport to Odaiba transfer",
+      "Haneda to Toyosu private car",
+      "Haneda Airport to Ariake",
+      "Haneda to Tokyo Big Sight transfer"
+    ]
+  },
+  "haneda-airport-to-sumida-skytree": {
+    airport: "haneda",
+    destination: {
+      en: "Sumida, Kinshicho, and Tokyo Skytree",
+      ja: "墨田・錦糸町・東京スカイツリー",
+      zh: "墨田、錦糸町和東京晴空塔"
+    },
+    nearbyAreas: {
+      en: "Tokyo Skytree hotels, Kinshicho, Oshiage, Ryogoku, Sumida apartments, and east Tokyo stays",
+      ja: "東京スカイツリー周辺ホテル、錦糸町、押上、両国、墨田区の民泊や滞在先",
+      zh: "東京晴空塔周邊酒店、錦糸町、押上、兩國、墨田區民宿和東東京住宿"
+    },
+    citySearchName: "Tokyo Skytree, Sumida, Tokyo, Japan",
+    driveTime: "35-60 min",
+    hotelExample: "Richmond Hotel Premier Tokyo Schole",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Haneda Airport to Tokyo Skytree transfer",
+      "Haneda to Kinshicho private car",
+      "Haneda Airport to Sumida",
+      "Haneda to Oshiage hotel"
+    ]
+  },
+  "haneda-airport-to-setagaya": {
+    airport: "haneda",
+    destination: { en: "Setagaya", ja: "世田谷", zh: "世田谷" },
+    nearbyAreas: {
+      en: "Setagaya apartment stays, Futako-Tamagawa, Sangenjaya, Shimokitazawa, Yoga, and residential hotels",
+      ja: "世田谷区の民泊、二子玉川、三軒茶屋、下北沢、用賀、住宅地の滞在先",
+      zh: "世田谷區民宿、二子玉川、三軒茶屋、下北澤、用賀和住宅區住宿"
+    },
+    citySearchName: "Setagaya, Tokyo, Japan",
+    driveTime: "40-70 min",
+    hotelExample: "Futako-Tamagawa Excel Hotel Tokyu",
+    passengersExample: "2",
+    luggageExample: "2 suitcases",
+    keywords: [
+      "Haneda Airport to Setagaya transfer",
+      "Haneda to Futako Tamagawa private car",
+      "Haneda Airport to Sangenjaya",
+      "Haneda to Shimokitazawa transfer"
     ]
   }
 };
@@ -3720,24 +3906,30 @@ const tokyoAirportCopy = {
 
 const naritaTokyoRelatedRouteSlugs: RoutePageSlug[] = [
   "narita-airport-to-shinjuku",
-  "narita-airport-to-ginza",
-  "narita-airport-to-shibuya",
-  "narita-airport-to-asakusa-ueno",
-  "narita-airport-to-tokyo-station",
   "narita-airport-to-roppongi-akasaka",
+  "narita-airport-to-ginza",
+  "narita-airport-to-asakusa-ueno",
+  "narita-airport-to-shibuya",
+  "narita-airport-to-tokyo-station",
+  "narita-airport-to-odaiba-toyosu-ariake",
   "narita-airport-to-shinagawa",
-  "narita-airport-to-ikebukuro"
+  "narita-airport-to-ikebukuro",
+  "narita-airport-to-setagaya",
+  "narita-airport-to-sumida-skytree"
 ];
 
 const hanedaTokyoRelatedRouteSlugs: RoutePageSlug[] = [
-  "haneda-airport-to-ginza",
   "haneda-airport-to-shinjuku",
-  "haneda-airport-to-shinagawa",
-  "haneda-airport-to-shibuya",
-  "haneda-airport-to-asakusa-ueno",
-  "haneda-airport-to-tokyo-station",
   "haneda-airport-to-roppongi-akasaka",
-  "haneda-airport-to-ikebukuro"
+  "haneda-airport-to-asakusa-ueno",
+  "haneda-airport-to-ginza",
+  "haneda-airport-to-tokyo-station",
+  "haneda-airport-to-shibuya",
+  "haneda-airport-to-ikebukuro",
+  "haneda-airport-to-sumida-skytree",
+  "haneda-airport-to-setagaya",
+  "haneda-airport-to-shinagawa",
+  "haneda-airport-to-odaiba-toyosu-ariake"
 ];
 
 const knownTokyoRouteDestinations: Partial<Record<RoutePageSlug, LocalizedRouteText>> = {
@@ -4707,6 +4899,9 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "narita-airport-to-tokyo-station": buildTokyoAirportRoutePage("en", "narita-airport-to-tokyo-station"),
     "narita-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("en", "narita-airport-to-roppongi-akasaka"),
     "narita-airport-to-ikebukuro": buildTokyoAirportRoutePage("en", "narita-airport-to-ikebukuro"),
+    "narita-airport-to-odaiba-toyosu-ariake": buildTokyoAirportRoutePage("en", "narita-airport-to-odaiba-toyosu-ariake"),
+    "narita-airport-to-sumida-skytree": buildTokyoAirportRoutePage("en", "narita-airport-to-sumida-skytree"),
+    "narita-airport-to-setagaya": buildTokyoAirportRoutePage("en", "narita-airport-to-setagaya"),
     "haneda-airport-to-ginza": buildHanedaRoutePage("en", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("en", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("en", "haneda-airport-to-shinagawa"),
@@ -4715,6 +4910,9 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "haneda-airport-to-tokyo-station": buildTokyoAirportRoutePage("en", "haneda-airport-to-tokyo-station"),
     "haneda-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("en", "haneda-airport-to-roppongi-akasaka"),
     "haneda-airport-to-ikebukuro": buildTokyoAirportRoutePage("en", "haneda-airport-to-ikebukuro"),
+    "haneda-airport-to-odaiba-toyosu-ariake": buildTokyoAirportRoutePage("en", "haneda-airport-to-odaiba-toyosu-ariake"),
+    "haneda-airport-to-sumida-skytree": buildTokyoAirportRoutePage("en", "haneda-airport-to-sumida-skytree"),
+    "haneda-airport-to-setagaya": buildTokyoAirportRoutePage("en", "haneda-airport-to-setagaya"),
     "yokohama-port-transfer": buildRegionalRoutePage("en", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("en", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("en", "kansai-airport-to-osaka-namba"),
@@ -5031,6 +5229,9 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "narita-airport-to-tokyo-station": buildTokyoAirportRoutePage("ja", "narita-airport-to-tokyo-station"),
     "narita-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("ja", "narita-airport-to-roppongi-akasaka"),
     "narita-airport-to-ikebukuro": buildTokyoAirportRoutePage("ja", "narita-airport-to-ikebukuro"),
+    "narita-airport-to-odaiba-toyosu-ariake": buildTokyoAirportRoutePage("ja", "narita-airport-to-odaiba-toyosu-ariake"),
+    "narita-airport-to-sumida-skytree": buildTokyoAirportRoutePage("ja", "narita-airport-to-sumida-skytree"),
+    "narita-airport-to-setagaya": buildTokyoAirportRoutePage("ja", "narita-airport-to-setagaya"),
     "haneda-airport-to-ginza": buildHanedaRoutePage("ja", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("ja", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("ja", "haneda-airport-to-shinagawa"),
@@ -5039,6 +5240,9 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "haneda-airport-to-tokyo-station": buildTokyoAirportRoutePage("ja", "haneda-airport-to-tokyo-station"),
     "haneda-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("ja", "haneda-airport-to-roppongi-akasaka"),
     "haneda-airport-to-ikebukuro": buildTokyoAirportRoutePage("ja", "haneda-airport-to-ikebukuro"),
+    "haneda-airport-to-odaiba-toyosu-ariake": buildTokyoAirportRoutePage("ja", "haneda-airport-to-odaiba-toyosu-ariake"),
+    "haneda-airport-to-sumida-skytree": buildTokyoAirportRoutePage("ja", "haneda-airport-to-sumida-skytree"),
+    "haneda-airport-to-setagaya": buildTokyoAirportRoutePage("ja", "haneda-airport-to-setagaya"),
     "yokohama-port-transfer": buildRegionalRoutePage("ja", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("ja", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("ja", "kansai-airport-to-osaka-namba"),
@@ -5349,6 +5553,9 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "narita-airport-to-tokyo-station": buildTokyoAirportRoutePage("zh", "narita-airport-to-tokyo-station"),
     "narita-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("zh", "narita-airport-to-roppongi-akasaka"),
     "narita-airport-to-ikebukuro": buildTokyoAirportRoutePage("zh", "narita-airport-to-ikebukuro"),
+    "narita-airport-to-odaiba-toyosu-ariake": buildTokyoAirportRoutePage("zh", "narita-airport-to-odaiba-toyosu-ariake"),
+    "narita-airport-to-sumida-skytree": buildTokyoAirportRoutePage("zh", "narita-airport-to-sumida-skytree"),
+    "narita-airport-to-setagaya": buildTokyoAirportRoutePage("zh", "narita-airport-to-setagaya"),
     "haneda-airport-to-ginza": buildHanedaRoutePage("zh", "haneda-airport-to-ginza"),
     "haneda-airport-to-shinjuku": buildHanedaRoutePage("zh", "haneda-airport-to-shinjuku"),
     "haneda-airport-to-shinagawa": buildHanedaRoutePage("zh", "haneda-airport-to-shinagawa"),
@@ -5357,6 +5564,9 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
     "haneda-airport-to-tokyo-station": buildTokyoAirportRoutePage("zh", "haneda-airport-to-tokyo-station"),
     "haneda-airport-to-roppongi-akasaka": buildTokyoAirportRoutePage("zh", "haneda-airport-to-roppongi-akasaka"),
     "haneda-airport-to-ikebukuro": buildTokyoAirportRoutePage("zh", "haneda-airport-to-ikebukuro"),
+    "haneda-airport-to-odaiba-toyosu-ariake": buildTokyoAirportRoutePage("zh", "haneda-airport-to-odaiba-toyosu-ariake"),
+    "haneda-airport-to-sumida-skytree": buildTokyoAirportRoutePage("zh", "haneda-airport-to-sumida-skytree"),
+    "haneda-airport-to-setagaya": buildTokyoAirportRoutePage("zh", "haneda-airport-to-setagaya"),
     "yokohama-port-transfer": buildRegionalRoutePage("zh", "yokohama-port-transfer"),
     "kansai-airport-to-kyoto": buildKansaiRoutePage("zh", "kansai-airport-to-kyoto"),
     "kansai-airport-to-osaka-namba": buildKansaiRoutePage("zh", "kansai-airport-to-osaka-namba"),
