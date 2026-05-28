@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { locales, type Locale } from "./i18n";
-import { whatsAppDisplayPhone, whatsAppPhoneNumber } from "./whatsapp";
+import { whatsAppDisplayPhone } from "./whatsapp";
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.jpairport.com").replace(/\/$/, "");
 export const siteName = "JP Airport Transfer";
@@ -380,7 +380,7 @@ export function serviceJsonLd(
         availableLanguage: ["English", "Chinese", "Japanese"],
         availableChannel: {
           "@type": "ServiceChannel",
-          serviceUrl: `https://wa.me/${whatsAppPhoneNumber}`,
+          serviceUrl: `${siteUrl}/api/whatsapp`,
           servicePhone: {
             "@type": "ContactPoint",
             telephone: whatsAppDisplayPhone

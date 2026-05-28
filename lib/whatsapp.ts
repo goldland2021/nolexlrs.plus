@@ -5,5 +5,5 @@ export const whatsAppPhoneNumber = "818092776072";
 
 export function buildWhatsAppLink(message: string) {
   const encoded = encodeURIComponent(message);
-  return `https://wa.me/${whatsAppPhoneNumber}?text=${encoded}`;
+  return `/api/whatsapp?text=${encoded}`;
 }

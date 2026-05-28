@@ -3,7 +3,8 @@ import Hero from "@/components/Hero";
 import Booking from "@/components/Booking";
 import ContactInfo from "@/components/ContactInfo";
 import Footer from "@/components/Footer";
-import { whatsAppDisplayPhone, whatsAppPhoneNumber } from "@/lib/whatsapp";
+import ActiveWhatsAppPhone from "@/components/ActiveWhatsAppPhone";
+import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   robots: {
@@ -56,7 +57,7 @@ export default function TestContactPage() {
               <p className="text-ink/70">點擊以下連結測試WhatsApp功能：</p>
               <div className="space-y-2">
                 <a 
-                  href={`https://wa.me/${whatsAppPhoneNumber}?text=Hello%20I%20need%20airport%20transfer`}
+                  href={buildWhatsAppLink(defaultWhatsAppMessage)}
                   className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
                   target="_blank"
                   rel="noreferrer"
@@ -64,10 +65,10 @@ export default function TestContactPage() {
                   測試預設消息連結
                 </a>
                 <p className="text-sm text-ink/50">
-                  連結格式: https://wa.me/{whatsAppPhoneNumber}?text=編碼後的消息
+                  連結格式: /api/whatsapp?text=編碼後的消息
                 </p>
                 <p className="text-sm text-ink/50">
-                  電話號碼: {whatsAppDisplayPhone} → WhatsApp格式: {whatsAppPhoneNumber}
+                  当前客服号码: <ActiveWhatsAppPhone />
                 </p>
               </div>
             </div>

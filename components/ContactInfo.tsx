@@ -1,7 +1,8 @@
 "use client";
 
 import { trackWhatsAppLeadConversion } from "@/lib/analytics";
-import { buildWhatsAppLink, defaultWhatsAppMessage, whatsAppDisplayPhone } from "@/lib/whatsapp";
+import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
+import ActiveWhatsAppPhone from "@/components/ActiveWhatsAppPhone";
 
 type ContactInfoProps = {
   showPhone?: boolean;
@@ -28,7 +29,7 @@ export default function ContactInfo({
           rel="noreferrer"
           onClick={() => trackWhatsAppLeadConversion("contact_info_compact")}
         >
-          {showPhone && whatsAppDisplayPhone}
+          {showPhone ? <ActiveWhatsAppPhone /> : null}
         </a>
       </div>
     );
@@ -51,7 +52,7 @@ export default function ContactInfo({
             rel="noreferrer"
             onClick={() => trackWhatsAppLeadConversion("contact_info")}
           >
-            {whatsAppDisplayPhone}
+            <ActiveWhatsAppPhone />
           </a>
         </p>
         <p className="text-xs text-ink/50 mt-1">Instant response • 24/7 available</p>
