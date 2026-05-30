@@ -50,14 +50,14 @@ function formatServiceDate(dateStr: string) {
 
 function formatFlightTime(timeStr: string | null) {
   if (!timeStr) return null;
-  return new Date(timeStr).toLocaleString("en-US", {
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    timeZone: "Asia/Tokyo"
-  });
+  const d = new Date(timeStr);
+  const jst = new Date(d.toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
+  const yyyy = jst.getFullYear();
+  const mm = String(jst.getMonth() + 1).padStart(2, "0");
+  const dd = String(jst.getDate()).padStart(2, "0");
+  const hh = String(jst.getHours()).padStart(2, "0");
+  const mi = String(jst.getMinutes()).padStart(2, "0");
+  return `${yyyy}/${mm}/${dd} ${hh}:${mi}`;
 }
 
 function formatFare(jpy: number | null) {
@@ -234,7 +234,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                           {t.flightNumber ? (
                             <p className="text-sm">
                               <span className="font-semibold">{t.flightNumber}</span>
-                              {flightTime ? <span className="ml-2 text-ink/50">{flightTime} JST</span> : null}
+                              {flightTime ? <span className="ml-2 text-ink/50">{flightTime}</span> : null}
                             </p>
                           ) : (
                             <p className="text-sm text-ink/40">无航班信息</p>
@@ -325,7 +325,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                             <td className="px-4 py-3">
                               <p className="font-medium">{t.flightNumber ?? "—"}</p>
                               {flightTime ? (
-                                <p className="mt-0.5 text-xs text-ink/50">{flightTime} JST</p>
+                                <p className="mt-0.5 text-xs text-ink/50">{flightTime}</p>
                               ) : null}
                             </td>
                             <td className="px-4 py-3 font-semibold">{formatFare(t.fareJpy)}</td>
