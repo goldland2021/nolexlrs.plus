@@ -61,6 +61,18 @@ function normalizeRow(row: Record<string, unknown>): TransferRecord {
   };
 }
 
+export async function updateTransferVehicleType(id: number, vehicleType: string | null): Promise<void> {
+  const res = await supabaseFetch(`/rest/v1/transfers?id=eq.${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Prefer: "return=minimal" },
+    body: JSON.stringify({ vehicle_type: vehicleType, updated_at: new Date().toISOString() })
+  });
+  if (!res.ok) {
+    const detail = await res.text();
+    throw new Error(detail || "Failed to update transfer vehicle type.");
+  }
+}
+
 export async function updateTransferStatus(id: number, status: string): Promise<void> {
   const res = await supabaseFetch(`/rest/v1/transfers?id=eq.${id}`, {
     method: "PATCH",

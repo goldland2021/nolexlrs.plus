@@ -239,6 +239,27 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                         </div>
 
 
+                        {/* 车型 */}
+                        <div className="flex gap-2 border-b border-clay/40 px-4 py-3">
+                          {(["hiace", "alphard"] as const).map((v) => (
+                            <form key={v} action="/api/admin/transfer-vehicle" method="post" className="flex-1">
+                              <input type="hidden" name="transferId" value={t.id} />
+                              <input type="hidden" name="vehicle" value={v} />
+                              <input type="hidden" name="returnFilter" value={filter} />
+                              <button
+                                type="submit"
+                                className={`h-9 w-full rounded-full text-xs font-semibold transition ${
+                                  t.vehicleType === v
+                                    ? "bg-ink text-white"
+                                    : "border border-clay/50 bg-white text-ink/40 active:bg-sand"
+                                }`}
+                              >
+                                {v === "hiace" ? "海狮" : "阿尔法"}
+                              </button>
+                            </form>
+                          ))}
+                        </div>
+
                         {/* 状态按钮 */}
                         <div className="flex gap-2 px-4 py-3">
                           {STATUS_KEYS.map((s) => (
@@ -272,6 +293,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                         <th className="px-4 py-3">接送 / 航班</th>
                         <th className="px-4 py-3">乘客</th>
                         <th className="px-4 py-3">路线</th>
+                        <th className="px-4 py-3">车型</th>
                         <th className="px-4 py-3">费用</th>
                         <th className="px-4 py-3">状态</th>
                       </tr>
@@ -311,6 +333,27 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                             <td className="max-w-[180px] px-4 py-3">
                               <p className="truncate text-xs"><span className="font-medium text-ink/40">起：</span>{t.pickupLocation}</p>
                               <p className="mt-0.5 truncate text-xs"><span className="font-medium text-ink/40">终：</span>{t.dropoffLocation}</p>
+                            </td>
+                            <td className="px-4 py-3">
+                              <div className="flex flex-col gap-1">
+                                {(["hiace", "alphard"] as const).map((v) => (
+                                  <form key={v} action="/api/admin/transfer-vehicle" method="post">
+                                    <input type="hidden" name="transferId" value={t.id} />
+                                    <input type="hidden" name="vehicle" value={v} />
+                                    <input type="hidden" name="returnFilter" value={filter} />
+                                    <button
+                                      type="submit"
+                                      className={`w-full rounded-full px-2 py-0.5 text-xs font-semibold transition ${
+                                        t.vehicleType === v
+                                          ? "bg-ink text-white"
+                                          : "border border-clay/50 bg-white text-ink/35 hover:text-ink/60"
+                                      }`}
+                                    >
+                                      {v === "hiace" ? "海狮" : "阿尔法"}
+                                    </button>
+                                  </form>
+                                ))}
+                              </div>
                             </td>
                             <td className="px-4 py-3 font-semibold">{formatFare(t.fareJpy)}</td>
                             <td className="px-4 py-3">
