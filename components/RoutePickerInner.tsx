@@ -10,7 +10,7 @@ import { geocodeAddressGoogleMaps, getDrivingRouteGoogleMaps } from "@/lib/googl
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 /** Keep this stable at module scope; a new array every render can reload Maps and break the map state. */
-const GOOGLE_MAPS_LIBRARIES: ("geometry" | "marker")[] = ["geometry", "marker"];
+const GOOGLE_MAPS_LIBRARIES: "geometry"[] = ["geometry"];
 
 declare global {
   interface Window {
@@ -368,47 +368,58 @@ export default function RoutePickerInner({
   const calculateAndRenderRef = useRef(calculateAndRender);
   useEffect(() => { calculateAndRenderRef.current = calculateAndRender; }, [calculateAndRender]);
 
-  // Airport marker (blue pin) — update position when airport changes, create on first load
+  // Airport marker (blue pin) — lazy-load marker library via importLibrary
   useEffect(() => {
     if (!isLoaded || !mapReady || !mapRef.current) return;
+    const map = mapRef.current;
     const pos = airportCenter;
+    let cancelled = false;
+
     if (airportMarkerRef.current) {
       airportMarkerRef.current.position = pos;
       return;
     }
-    const pin = new google.maps.marker.PinElement({ background: "#4285F4", borderColor: "#2563EB", glyphColor: "#fff" });
-    airportMarkerRef.current = new google.maps.marker.AdvancedMarkerElement({
-      map: mapRef.current,
-      position: pos,
-      title: airportName,
-      content: pin.element
+
+    google.maps.importLibrary("marker").then((lib) => {
+      if (cancelled || !map) return;
+      const { AdvancedMarkerElement, PinElement } = lib as google.maps.MarkerLibrary;
+      const pin = new PinElement({ background: "#4285F4", borderColor: "#2563EB", glyphColor: "#fff" });
+      airportMarkerRef.current = new AdvancedMarkerElement({ map, position: pos, title: airportName, content: pin.element });
     });
+
+    return () => { cancelled = true; };
   }, [isLoaded, mapReady, airportCenter, airportName]);
 
-  // Destination marker (red pin, draggable) — create when destLatLng set, remove when null
+  // Destination marker (red pin, draggable) — lazy-load marker library via importLibrary
   useEffect(() => {
     if (!isLoaded || !mapReady || !mapRef.current) return;
+    const map = mapRef.current;
+
     if (!destLatLng) {
       if (destMarkerRef.current) { destMarkerRef.current.map = null; destMarkerRef.current = null; }
       return;
     }
+
     const pos = { lat: destLatLng.lat, lng: destLatLng.lng };
     if (destMarkerRef.current) { destMarkerRef.current.position = pos; return; }
-    const pin = new google.maps.marker.PinElement({ background: "#EA4335", borderColor: "#C5221F", glyphColor: "#fff" });
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-      map: mapRef.current,
-      position: pos,
-      gmpDraggable: true,
-      content: pin.element
+
+    let cancelled = false;
+    google.maps.importLibrary("marker").then((lib) => {
+      if (cancelled || !map) return;
+      const { AdvancedMarkerElement, PinElement } = lib as google.maps.MarkerLibrary;
+      const pin = new PinElement({ background: "#EA4335", borderColor: "#C5221F", glyphColor: "#fff" });
+      const marker = new AdvancedMarkerElement({ map, position: pos, gmpDraggable: true, content: pin.element });
+      marker.addListener("dragend", () => {
+        const p = marker.position;
+        if (!p) return;
+        const lat = p instanceof google.maps.LatLng ? p.lat() : (p as google.maps.LatLngLiteral).lat;
+        const lng = p instanceof google.maps.LatLng ? p.lng() : (p as google.maps.LatLngLiteral).lng;
+        calculateAndRenderRef.current({ lat, lng });
+      });
+      destMarkerRef.current = marker;
     });
-    marker.addListener("dragend", () => {
-      const p = marker.position;
-      if (!p) return;
-      const lat = p instanceof google.maps.LatLng ? p.lat() : (p as google.maps.LatLngLiteral).lat;
-      const lng = p instanceof google.maps.LatLng ? p.lng() : (p as google.maps.LatLngLiteral).lng;
-      calculateAndRenderRef.current({ lat, lng });
-    });
-    destMarkerRef.current = marker;
+
+    return () => { cancelled = true; };
   }, [isLoaded, mapReady, destLatLng]);
 
   // Cleanup both markers on unmount
