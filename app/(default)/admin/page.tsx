@@ -195,12 +195,9 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                     const tripLabel = t.tripType === "airport_pickup" ? "↓ 接机" : t.tripType === "airport_dropoff" ? "↑ 送机" : t.tripType;
                     return (
                       <div key={t.id} className={`rounded-xl border border-clay/50 bg-white shadow-soft ${isServed ? "opacity-60" : ""}`}>
-                        {/* 卡片头部：日期 + 方向 + 费用 */}
+                        {/* 卡片头部：方向 + 费用 */}
                         <div className="flex items-center justify-between border-b border-clay/40 px-4 py-3">
-                          <div className="flex items-center gap-2">
-                            <span className="font-semibold">{formatServiceDate(t.serviceDate)}</span>
-                            <span className="rounded-full bg-sand px-2 py-0.5 text-xs text-ink/60">{tripLabel}</span>
-                          </div>
+                          <span className="rounded-full bg-sand px-3 py-0.5 text-sm font-semibold text-ink/70">{tripLabel}</span>
                           <span className="font-semibold text-ink">{formatFare(t.fareJpy)}</span>
                         </div>
 
@@ -225,28 +222,22 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
 
                         {/* 路线 */}
                         <div className="border-b border-clay/40 px-4 py-3">
-                          <p className="text-sm font-medium">{t.pickupLocation}</p>
-                          <p className="mt-0.5 text-sm text-ink/50">→ {t.dropoffLocation}</p>
+                          <p className="text-sm"><span className="font-medium text-ink/40">起：</span>{t.pickupLocation}</p>
+                          <p className="mt-0.5 text-sm"><span className="font-medium text-ink/40">终：</span>{t.dropoffLocation}</p>
                         </div>
 
-                        {/* 航班 */}
-                        <div className={`px-4 py-3 ${t.notes ? "border-b border-clay/40" : "border-b border-clay/40"}`}>
+                        {/* 航班 / 日期 */}
+                        <div className="border-b border-clay/40 px-4 py-3">
                           {t.flightNumber ? (
                             <p className="text-sm">
                               <span className="font-semibold">{t.flightNumber}</span>
                               {flightTime ? <span className="ml-2 text-ink/50">{flightTime}</span> : null}
                             </p>
                           ) : (
-                            <p className="text-sm text-ink/40">无航班信息</p>
+                            <p className="text-sm text-ink/50">{flightTime ?? formatServiceDate(t.serviceDate)}</p>
                           )}
                         </div>
 
-                        {/* 备注 */}
-                        {t.notes ? (
-                          <div className="border-b border-clay/40 px-4 py-3">
-                            <p className="text-xs leading-5 text-amber-700">{t.notes}</p>
-                          </div>
-                        ) : null}
 
                         {/* 状态按钮 */}
                         <div className="flex gap-2 px-4 py-3">
@@ -278,10 +269,9 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                   <table className="w-full min-w-[680px] text-left text-sm">
                     <thead className="bg-sand/70 text-xs uppercase tracking-[0.12em] text-ink/50">
                       <tr>
-                        <th className="px-4 py-3">日期</th>
-                        <th className="px-4 py-3">订单 / 乘客</th>
+                        <th className="px-4 py-3">接送 / 航班</th>
+                        <th className="px-4 py-3">乘客</th>
                         <th className="px-4 py-3">路线</th>
-                        <th className="px-4 py-3">航班</th>
                         <th className="px-4 py-3">费用</th>
                         <th className="px-4 py-3">状态</th>
                       </tr>
@@ -293,9 +283,12 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                         return (
                           <tr key={t.id} className={`hover:bg-sand/30 ${isServed ? "opacity-55" : ""}`}>
                             <td className="px-4 py-3">
-                              <p className="font-semibold">{formatServiceDate(t.serviceDate)}</p>
-                              <p className="mt-0.5 text-xs text-ink/50">
+                              <p className="text-xs text-ink/50">
                                 {t.tripType === "airport_pickup" ? "↓ 接机" : t.tripType === "airport_dropoff" ? "↑ 送机" : t.tripType}
+                              </p>
+                              <p className="mt-1 font-medium">{t.flightNumber ?? "—"}</p>
+                              <p className="mt-0.5 text-xs text-ink/50">
+                                {flightTime ?? formatServiceDate(t.serviceDate)}
                               </p>
                             </td>
                             <td className="max-w-[200px] px-4 py-3">
@@ -314,19 +307,10 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                                   {t.customerWhatsapp}
                                 </a>
                               ) : null}
-                              {t.notes ? (
-                                <p className="mt-1 text-xs leading-5 text-amber-700">{t.notes}</p>
-                              ) : null}
                             </td>
                             <td className="max-w-[180px] px-4 py-3">
-                              <p className="truncate text-xs">{t.pickupLocation}</p>
-                              <p className="truncate text-xs text-ink/50">→ {t.dropoffLocation}</p>
-                            </td>
-                            <td className="px-4 py-3">
-                              <p className="font-medium">{t.flightNumber ?? "—"}</p>
-                              {flightTime ? (
-                                <p className="mt-0.5 text-xs text-ink/50">{flightTime}</p>
-                              ) : null}
+                              <p className="truncate text-xs"><span className="font-medium text-ink/40">起：</span>{t.pickupLocation}</p>
+                              <p className="mt-0.5 truncate text-xs"><span className="font-medium text-ink/40">终：</span>{t.dropoffLocation}</p>
                             </td>
                             <td className="px-4 py-3 font-semibold">{formatFare(t.fareJpy)}</td>
                             <td className="px-4 py-3">
