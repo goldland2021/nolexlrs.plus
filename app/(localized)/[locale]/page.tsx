@@ -128,6 +128,7 @@ export default async function HomePage({ params }: { params: LocaleParams }) {
         ctaLabel={dict.hero.cta}
         locale={locale}
         citySlug="tokyo"
+        showRoamingButton
       />
 
       <QuoteBookingSection

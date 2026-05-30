@@ -6,7 +6,7 @@ import { locales } from "@/lib/i18n";
 const labels: Record<string, string> = {
   en: "EN",
   ja: "JP",
-  zh: "繁"
+  zh: "ZH"
 };
 
 export default function LanguageSwitcher() {
@@ -14,6 +14,10 @@ export default function LanguageSwitcher() {
   const currentLocaleMatch = pathname.match(/^\/(en|ja|zh)(?=\/|$)/);
   const currentLocale = currentLocaleMatch?.[1] ?? "en";
   const basePath = pathname.replace(/^\/(en|ja|zh)(?=\/|$)/, "");
+
+  if (basePath === "/tokyo-roaming") {
+    return null;
+  }
 
   return (
     <div className="fixed top-5 right-5 z-50 flex items-center gap-2 rounded-full border border-clay/60 bg-white/90 p-1 shadow-soft">

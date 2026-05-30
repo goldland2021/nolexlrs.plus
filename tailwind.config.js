@@ -11,6 +11,7 @@ module.exports = {
         sand: "#f6efe7",
         clay: "#d9c3ad",
         ember: "#c46b3b",
+        gold: "#cfa052",
         dusk: "#f1e2d2"
       },
       boxShadow: {

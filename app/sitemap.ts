@@ -10,7 +10,8 @@ const routes = [
   "/narita-airport-transfer",
   ...routePageSlugs.map((slug) => routePagePath(slug)),
   "/haneda-airport-transfer",
-  "/tokyo-private-driver"
+  "/tokyo-private-driver",
+  "/tokyo-roaming"
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

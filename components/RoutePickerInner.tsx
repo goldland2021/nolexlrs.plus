@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { calculateAirportFareEstimate } from "@/lib/airport-pricing";
 import { trackAnalyticsEvent, trackWhatsAppLeadConversion } from "@/lib/analytics";
 import type { CityAirport } from "@/lib/city-routes";
@@ -10,7 +10,7 @@ import { geocodeAddressGoogleMaps, getDrivingRouteGoogleMaps } from "@/lib/googl
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 /** Keep this stable at module scope; a new array every render can reload Maps and break the map state. */
-const GOOGLE_MAPS_LIBRARIES: "geometry"[] = ["geometry"];
+const GOOGLE_MAPS_LIBRARIES: ("geometry" | "marker")[] = ["geometry", "marker"];
 
 declare global {
   interface Window {
@@ -23,7 +23,8 @@ const mapOptions: google.maps.MapOptions = {
   mapTypeControl: false,
   streetViewControl: false,
   fullscreenControl: false,
-  gestureHandling: "greedy"
+  gestureHandling: "greedy",
+  mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID
 };
 
 interface RouteResult {
@@ -157,13 +158,6 @@ function getIncludedItems(t: (typeof UI)["en"], direction: RouteResult["directio
   ];
 }
 
-const blueDotIcon: google.maps.Icon = {
-  url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-};
-
-const redDotIcon: google.maps.Icon = {
-  url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
-};
 
 export default function RoutePickerInner({
   locale,
@@ -195,7 +189,10 @@ export default function RoutePickerInner({
   const mapRef = useRef<google.maps.Map | null>(null);
   const routePolylineRef = useRef<google.maps.Polyline | null>(null);
   const routeRequestIdRef = useRef(0);
+  const airportMarkerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
+  const destMarkerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
   const [mapAuthFailed, setMapAuthFailed] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
     const prev = window.gm_authFailure;
@@ -367,6 +364,59 @@ export default function RoutePickerInner({
     [address, airportOptions, isLoaded, locale, onRouteCalculated, removeRoutePolyline, t]
   );
 
+  // Keep a stable ref so dragend listeners don't capture stale closures
+  const calculateAndRenderRef = useRef(calculateAndRender);
+  useEffect(() => { calculateAndRenderRef.current = calculateAndRender; }, [calculateAndRender]);
+
+  // Airport marker (blue pin) — update position when airport changes, create on first load
+  useEffect(() => {
+    if (!isLoaded || !mapReady || !mapRef.current) return;
+    const pos = airportCenter;
+    if (airportMarkerRef.current) {
+      airportMarkerRef.current.position = pos;
+      return;
+    }
+    const pin = new google.maps.marker.PinElement({ background: "#4285F4", borderColor: "#2563EB", glyphColor: "#fff" });
+    airportMarkerRef.current = new google.maps.marker.AdvancedMarkerElement({
+      map: mapRef.current,
+      position: pos,
+      title: airportName,
+      content: pin.element
+    });
+  }, [isLoaded, mapReady, airportCenter, airportName]);
+
+  // Destination marker (red pin, draggable) — create when destLatLng set, remove when null
+  useEffect(() => {
+    if (!isLoaded || !mapReady || !mapRef.current) return;
+    if (!destLatLng) {
+      if (destMarkerRef.current) { destMarkerRef.current.map = null; destMarkerRef.current = null; }
+      return;
+    }
+    const pos = { lat: destLatLng.lat, lng: destLatLng.lng };
+    if (destMarkerRef.current) { destMarkerRef.current.position = pos; return; }
+    const pin = new google.maps.marker.PinElement({ background: "#EA4335", borderColor: "#C5221F", glyphColor: "#fff" });
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map: mapRef.current,
+      position: pos,
+      gmpDraggable: true,
+      content: pin.element
+    });
+    marker.addListener("dragend", () => {
+      const p = marker.position;
+      if (!p) return;
+      const lat = p instanceof google.maps.LatLng ? p.lat() : (p as google.maps.LatLngLiteral).lat;
+      const lng = p instanceof google.maps.LatLng ? p.lng() : (p as google.maps.LatLngLiteral).lng;
+      calculateAndRenderRef.current({ lat, lng });
+    });
+    destMarkerRef.current = marker;
+  }, [isLoaded, mapReady, destLatLng]);
+
+  // Cleanup both markers on unmount
+  useEffect(() => () => {
+    if (airportMarkerRef.current) { airportMarkerRef.current.map = null; airportMarkerRef.current = null; }
+    if (destMarkerRef.current) { destMarkerRef.current.map = null; destMarkerRef.current = null; }
+  }, []);
+
   const handleDirectionChange = (nextDirection: "pickup" | "dropoff") => {
     if (nextDirection === direction) return;
     latestSelectionRef.current = { airportId, direction: nextDirection };
@@ -475,27 +525,14 @@ export default function RoutePickerInner({
         options={mapOptions}
         onLoad={(map) => {
           mapRef.current = map;
+          setMapReady(true);
         }}
         onUnmount={() => {
           removeRoutePolyline();
           mapRef.current = null;
+          setMapReady(false);
         }}
-      >
-        <Marker key={airportId} position={airportCenter} title={airportName} icon={blueDotIcon} zIndex={200} />
-        {destLatLng && (
-          <Marker
-            position={{ lat: destLatLng.lat, lng: destLatLng.lng }}
-            draggable
-            icon={redDotIcon}
-            zIndex={500}
-            onDragEnd={(e) => {
-              const ll = e.latLng;
-              if (!ll) return;
-              calculateAndRender({ lat: ll.lat(), lng: ll.lng() });
-            }}
-          />
-        )}
-      </GoogleMap>
+      />
     );
   })();
 
