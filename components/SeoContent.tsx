@@ -46,7 +46,7 @@ function RouteCard({ locale, route }: { locale: Locale; route: HomeSeoContent["r
   return (
     <Link
       href={localizedPath(locale, route.href)}
-      className="rounded-lg border border-clay/60 bg-sand/40 p-5 transition hover:-translate-y-0.5 hover:border-ember/50 hover:bg-white hover:shadow-soft"
+      className="rounded-lg border border-ink/10 bg-white p-5 transition hover:-translate-y-0.5 hover:border-champagne hover:shadow-soft"
     >
       <h3 className="text-lg font-semibold text-ink">{route.title}</h3>
       <p className="mt-2 text-sm leading-6 text-ink/65">{route.description}</p>
@@ -66,7 +66,7 @@ export default function SeoContent({ locale, content: customContent }: SeoConten
   const serviceRoutes = visibleRoutes.filter((route) => !routePageHrefs.has(route.href));
 
   return (
-    <section className="section bg-white">
+    <section className="section bg-[#f3eee6]">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
@@ -82,7 +82,7 @@ export default function SeoContent({ locale, content: customContent }: SeoConten
 
           {collapsedRoutes.length > 0 ? (
             <details className="group mt-5">
-              <summary className="inline-flex cursor-pointer select-none items-center rounded-full border border-clay/70 bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-ember/50 hover:text-ember">
+              <summary className="inline-flex cursor-pointer select-none items-center rounded-md border border-ink/20 bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-champagne hover:text-ember">
                 <span className="group-open:hidden">{labels.moreRoutes(collapsedRoutes.length)}</span>
                 <span className="hidden group-open:inline">{labels.lessRoutes}</span>
               </summary>
@@ -118,7 +118,7 @@ export default function SeoContent({ locale, content: customContent }: SeoConten
               {content.faqs.map((faq) => (
                 <article
                   key={faq.question}
-                  className="rounded-lg border border-clay/60 bg-white p-5 shadow-soft"
+                  className="rounded-lg border border-ink/10 bg-white p-5 shadow-soft"
                 >
                   <h3 className="font-semibold text-ink">{faq.question}</h3>
                   <p className="mt-2 text-sm leading-6 text-ink/65">{faq.answer}</p>

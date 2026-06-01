@@ -1,6 +1,6 @@
 import { createHmac, timingSafeEqual } from "crypto";
 
-export const adminSessionCookieName = "airport_admin_session";
+export const adminSessionCookieName = "nolexlrs_admin_session";
 export const adminSessionMaxAge = 60 * 60 * 8;
 
 type AdminSessionPayload = {

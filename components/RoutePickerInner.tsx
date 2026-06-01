@@ -523,7 +523,7 @@ export default function RoutePickerInner({
     }
     if (!isLoaded) {
       return (
-        <div className="flex h-[320px] items-center justify-center rounded-lg border border-clay/60 bg-sand/30">
+        <div className="flex h-[320px] items-center justify-center rounded-lg border border-ink/10 bg-sand/50">
           <p className="text-sm text-ink/50">{t.mapLoading}</p>
         </div>
       );
@@ -555,8 +555,8 @@ export default function RoutePickerInner({
           onClick={() => handleDirectionChange("pickup")}
           className={`h-11 rounded-lg px-4 text-sm font-semibold transition ${
             direction === "pickup"
-              ? "bg-ink text-white shadow-lift"
-              : "border border-clay/60 bg-white text-ink/70 hover:bg-sand"
+              ? "bg-celadon-deep text-white shadow-lift"
+              : "border border-clay/70 bg-white text-ink/70 hover:border-champagne hover:bg-sand"
           }`}
         >
           {t.pickup}
@@ -566,8 +566,8 @@ export default function RoutePickerInner({
           onClick={() => handleDirectionChange("dropoff")}
           className={`h-11 rounded-lg px-4 text-sm font-semibold transition ${
             direction === "dropoff"
-              ? "bg-ink text-white shadow-lift"
-              : "border border-clay/60 bg-white text-ink/70 hover:bg-sand"
+              ? "bg-celadon-deep text-white shadow-lift"
+              : "border border-clay/70 bg-white text-ink/70 hover:border-champagne hover:bg-sand"
           }`}
         >
           {t.dropoff}
@@ -580,7 +580,7 @@ export default function RoutePickerInner({
           <select
             value={airportId}
             onChange={(event) => handleAirportChange(event.target.value)}
-            className="h-12 w-full rounded-lg border border-clay/60 bg-white px-4 text-base font-normal focus:border-ember focus:outline-none focus:ring-2 focus:ring-ember/30"
+            className="h-12 w-full rounded-lg border border-clay/70 bg-white px-4 text-base font-normal focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
           >
             {airportOptions.map((airport) => (
               <option key={airport.id} value={airport.id}>
@@ -600,13 +600,13 @@ export default function RoutePickerInner({
                 if (event.key === "Enter") handleSearch();
               }}
               placeholder={t.hint}
-              className="h-12 min-w-0 rounded-lg border border-clay/60 px-4 text-base font-normal focus:border-ember focus:outline-none focus:ring-2 focus:ring-ember/30"
+              className="h-12 min-w-0 rounded-lg border border-clay/70 px-4 text-base font-normal focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
             />
             <button
               type="button"
               onClick={handleSearch}
               disabled={searching || !address.trim() || !isLoaded || !apiKey}
-              className="h-12 rounded-lg bg-ember px-5 text-sm font-semibold text-white transition hover:bg-ember/90 disabled:cursor-not-allowed disabled:opacity-50"
+              className="h-12 rounded-lg bg-celadon-deep px-5 text-sm font-semibold text-white transition hover:bg-celadon disabled:cursor-not-allowed disabled:opacity-50"
             >
               {searching ? t.searching : t.search}
             </button>
@@ -620,13 +620,13 @@ export default function RoutePickerInner({
         </div>
       )}
 
-      <div className="overflow-hidden rounded-lg border border-clay/60 bg-sand/30">{mapBlock}</div>
+      <div className="overflow-hidden rounded-lg border border-ink/10 bg-sand/50">{mapBlock}</div>
 
       {routeResult ? (
         <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
           <div className="rounded-lg border border-ember/20 bg-ember/5 p-5">
             <p className="text-sm font-semibold text-ember">{t.total}</p>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-ink">
+            <p className="mt-2 text-3xl font-bold text-ink">
               {formatYen(routeResult.estimateLowYen)} - {formatYen(routeResult.estimateHighYen)}
             </p>
             <p className="mt-3 text-sm leading-6 text-ink/65">{t.note}</p>
@@ -634,7 +634,7 @@ export default function RoutePickerInner({
               href={whatsAppHref}
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-lg bg-ink px-4 text-sm font-semibold text-white transition hover:bg-ink/90"
+              className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-lg bg-champagne px-4 text-sm font-semibold text-ink transition hover:bg-gold"
               onClick={() => {
                 const eventParams = {
                   route_airport: routeResult.airportId,
@@ -651,7 +651,7 @@ export default function RoutePickerInner({
             </a>
           </div>
 
-          <div className="rounded-lg border border-clay/60 bg-white p-5 shadow-soft">
+          <div className="rounded-lg border border-ink/10 bg-white p-5 shadow-soft">
             <div className="grid grid-cols-2 gap-3 text-center">
               <div>
                 <p className="text-xs font-medium text-ink/50">{t.distance}</p>
@@ -677,7 +677,7 @@ export default function RoutePickerInner({
           </div>
         </div>
       ) : (
-        <div className="rounded-lg border border-clay/60 bg-white px-4 py-5 text-center text-sm text-ink/55">
+        <div className="rounded-lg border border-ink/10 bg-white px-4 py-5 text-center text-sm text-ink/55">
           {t.empty}
         </div>
       )}

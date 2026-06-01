@@ -134,7 +134,7 @@ function RoutePage({
         citySlug={content.citySlug ?? "tokyo"}
       />
 
-      <section className="section bg-white">
+      <section className="section bg-sand">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
@@ -144,7 +144,7 @@ function RoutePage({
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {content.overview.facts.map((fact) => (
-                <article key={fact.label} className="rounded-lg border border-clay/60 bg-sand/40 p-5 shadow-soft">
+                <article key={fact.label} className="rounded-lg border border-ink/10 bg-white p-5 shadow-soft">
                   <p className="text-sm font-semibold text-ember">{fact.label}</p>
                   <h3 className="mt-2 text-xl font-semibold text-ink">{fact.value}</h3>
                   <p className="mt-2 text-sm leading-6 text-ink/65">{fact.description}</p>
@@ -152,12 +152,12 @@ function RoutePage({
               ))}
             </div>
 
-            <div className="mt-6 rounded-lg border border-clay/60 bg-white p-5 shadow-soft sm:p-6">
-              <h3 className="text-lg font-semibold text-ink">{content.overview.notesTitle}</h3>
-              <ul className="mt-4 grid gap-3 text-sm leading-6 text-ink/70 md:grid-cols-3">
+            <div className="mt-6 rounded-lg border border-ink/10 bg-ink p-5 text-white shadow-soft sm:p-6">
+              <h3 className="text-lg font-semibold text-white">{content.overview.notesTitle}</h3>
+              <ul className="mt-4 grid gap-3 text-sm leading-6 text-white/70 md:grid-cols-3">
                 {content.overview.notes.map((note) => (
                   <li key={note} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-ember" />
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-champagne" />
                     <span>{note}</span>
                   </li>
                 ))}
@@ -185,17 +185,17 @@ function RoutePage({
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
               <div>
                 <WaitingTimeBanner locale={locale} />
-                <div className="mt-4 rounded-lg bg-white/80 p-4">
+                <div className="mt-4 rounded-lg border border-ink/10 bg-white p-4">
                   <p className="text-sm leading-6 text-ink/70">{content.waiting.pickupNote}</p>
                   <p className="mt-2 text-sm leading-6 text-ink/70">{content.waiting.delayNote}</p>
                 </div>
               </div>
 
-              <div className="rounded-lg border border-clay/60 bg-white/95 p-4 shadow-soft sm:p-6">
+              <div className="rounded-lg border border-ink/10 bg-white p-4 shadow-soft sm:p-6">
                 <h3 className="mb-4 text-lg font-semibold">{content.waiting.promiseTitle}</h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   {content.waiting.promises.map(([title, copy]) => (
-                    <div key={title} className="rounded-lg border border-clay/40 bg-sand/50 p-4">
+                    <div key={title} className="rounded-lg border border-ink/10 bg-[#f7f3ec] p-4">
                       <p className="font-medium">{title}</p>
                       <p className="mt-1 text-sm leading-6 text-ink/60">{copy}</p>
                     </div>
@@ -307,17 +307,17 @@ export default async function CityPage({ params }: { params: SegmentParams }) {
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
               <div>
                 <WaitingTimeBanner locale={locale} />
-                <div className="mt-4 rounded-lg bg-white/80 p-4">
+                <div className="mt-4 rounded-lg border border-ink/10 bg-white p-4">
                   <p className="text-sm leading-6 text-ink/70">{content.waiting.pickupNote}</p>
                   <p className="mt-2 text-sm leading-6 text-ink/70">{content.waiting.delayNote}</p>
                 </div>
               </div>
 
-              <div className="rounded-lg border border-clay/60 bg-white/95 p-4 shadow-soft sm:p-6">
+              <div className="rounded-lg border border-ink/10 bg-white p-4 shadow-soft sm:p-6">
                 <h3 className="mb-4 text-lg font-semibold">{content.waiting.promiseTitle}</h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   {content.waiting.promises.map(([title, copy]) => (
-                    <div key={title} className="rounded-lg border border-clay/40 bg-sand/50 p-4">
+                    <div key={title} className="rounded-lg border border-ink/10 bg-[#f7f3ec] p-4">
                       <p className="font-medium">{title}</p>
                       <p className="mt-1 text-sm leading-6 text-ink/60">{copy}</p>
                     </div>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`
   },
   description:
-    "Private Tokyo airport transfer service for Narita and Haneda airport pickup with fixed pricing and WhatsApp booking.",
+    "nolexlrs provides Japan airport pickup and curated homestay support for travelers, families, and small groups.",
   robots: {
     index: true,
     follow: true,
@@ -38,19 +38,23 @@ export default function RootLayout({
     <html lang="en" className="notranslate" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
-        <Script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gaMeasurementId}', { send_page_view: false });
-          `}
-        </Script>
+        {gaMeasurementId ? (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}', { send_page_view: false });
+              `}
+            </Script>
+          </>
+        ) : null}
       </head>
       <body className={inter.className}>
         <AnalyticsTracker />

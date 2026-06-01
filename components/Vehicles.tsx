@@ -153,7 +153,7 @@ function VehicleCard({
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-lg font-semibold sm:text-xl">{vehicle.name}</h3>
           {vehicle.galleryImages?.length ? (
-            <span className="shrink-0 rounded-full bg-ember/10 px-2.5 py-1 text-xs font-semibold text-ember">
+            <span className="shrink-0 rounded-md bg-ember/10 px-2.5 py-1 text-xs font-semibold text-ember">
               {vehicle.galleryImages.length} photos
             </span>
           ) : null}

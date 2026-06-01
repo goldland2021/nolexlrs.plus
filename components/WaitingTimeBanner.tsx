@@ -36,7 +36,7 @@ export default function WaitingTimeBanner({ locale = "en" }: WaitingTimeBannerPr
   const t = texts[locale as keyof typeof texts] || texts.en;
 
   return (
-    <div className="bg-gradient-to-r from-ember/5 to-dusk/30 border border-clay/40 rounded-2xl p-6">
+    <div className="rounded-lg border border-ink/10 bg-white p-6 shadow-soft">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold text-ink">{t.title}</h3>
@@ -45,23 +45,23 @@ export default function WaitingTimeBanner({ locale = "en" }: WaitingTimeBannerPr
         
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-ember/10 flex items-center justify-center">
-              <span className="text-ember text-lg">🛬</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-ink">
+              <span className="text-sm font-semibold text-champagne">90</span>
             </div>
             <div>
               <p className="font-medium text-sm">{t.pickup}</p>
-              <p className="text-ember font-semibold">{t.pickupTime}</p>
+              <p className="font-semibold text-celadon-deep">{t.pickupTime}</p>
               <p className="text-xs text-ink/50">{t.pickupNote}</p>
             </div>
           </div>
           
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-ember/10 flex items-center justify-center">
-              <span className="text-ember text-lg">🛫</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-stay-stone">
+              <span className="text-sm font-semibold text-champagne">30</span>
             </div>
             <div>
               <p className="font-medium text-sm">{t.dropoff}</p>
-              <p className="text-ember font-semibold">{t.dropoffTime}</p>
+              <p className="font-semibold text-celadon-deep">{t.dropoffTime}</p>
               <p className="text-xs text-ink/50">{t.note}</p>
             </div>
           </div>

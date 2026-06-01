@@ -6,7 +6,7 @@ import type { CityAirport } from "@/lib/city-routes";
 const RoutePickerInner = dynamic(() => import("./RoutePickerInner"), {
   ssr: false,
   loading: () => (
-    <div className="flex items-center justify-center h-[300px] rounded-xl border border-clay/60 bg-sand/30">
+    <div className="flex h-[300px] items-center justify-center rounded-lg border border-ink/10 bg-sand/50">
       <p className="text-sm text-ink/50">Loading map...</p>
     </div>
   )

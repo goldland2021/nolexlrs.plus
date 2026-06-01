@@ -9,7 +9,7 @@ export default function WhatsAppButton() {
   return (
     <a
       href={href}
-      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-ember px-5 py-3 text-sm font-semibold text-white shadow-lift transition hover:translate-y-[-2px]"
+      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-md bg-champagne px-5 py-3 text-sm font-semibold text-ink shadow-lift transition hover:-translate-y-0.5 hover:bg-gold"
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"

@@ -20,7 +20,7 @@ export default function LanguageSwitcher() {
   }
 
   return (
-    <div className="fixed top-5 right-5 z-50 flex items-center gap-2 rounded-full border border-clay/60 bg-white/90 p-1 shadow-soft">
+    <div className="fixed right-5 top-20 z-40 flex items-center gap-2 rounded-md border border-champagne/30 bg-ink/95 p-1 shadow-soft">
       {locales.map((locale) => {
         const href = `/${locale}${basePath || ""}`;
         const label = labels[locale] ?? locale.toUpperCase();
@@ -29,10 +29,10 @@ export default function LanguageSwitcher() {
           <a
             key={locale}
             href={href}
-            className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition ${
+            className={`flex h-8 w-8 items-center justify-center rounded-md border text-xs font-semibold transition ${
               locale === currentLocale
-                ? "border-ink bg-ink text-white shadow-soft"
-                : "border-clay/60 text-ink/80 hover:bg-sand"
+                ? "border-champagne bg-champagne text-ink shadow-soft"
+                : "border-white/10 text-white/70 hover:bg-white/10 hover:text-white"
             }`}
             aria-label={`Switch language to ${locale}`}
             aria-current={locale === currentLocale ? "page" : undefined}

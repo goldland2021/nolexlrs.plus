@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
   return buildPageMetadata({
     locale,
     path: "/tokyo-roaming",
-    title: "Tokyo Roaming VIP Pickup Credit | JP Airport Transfer",
+    title: "Tokyo Roaming VIP Pickup Credit | nolexlrs",
     description:
       "Play a short Tokyo arrival preview and unlock a JPY 2,000 VIP pickup credit for private airport transfer.",
     keywords: [

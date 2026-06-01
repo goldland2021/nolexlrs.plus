@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { locales, type Locale } from "./i18n";
 import { whatsAppDisplayPhone } from "./whatsapp";
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.jpairport.com").replace(/\/$/, "");
-export const siteName = "JP Airport Transfer";
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.nolexlrs.com").replace(/\/$/, "");
+export const siteName = "nolexlrs";
 
 export const localeNames: Record<Locale, string> = {
   en: "en_US",

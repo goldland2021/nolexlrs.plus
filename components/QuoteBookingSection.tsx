@@ -48,21 +48,21 @@ export default function QuoteBookingSection({
   const labels = copy[locale] ?? copy.en;
 
   return (
-    <section id="quote" className="section bg-gradient-to-b from-white to-sand">
+    <section id="quote" className="section bg-[#e7e0d3]">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 grid gap-5 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
             <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-ember/10 px-4 py-2">
-                <span className="text-sm font-semibold text-ember">{labels.eyebrow}</span>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-md bg-ink px-4 py-2">
+                <span className="text-sm font-semibold text-champagne">{labels.eyebrow}</span>
               </div>
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{title}</h2>
+              <h2 className="text-3xl font-bold md:text-4xl">{title}</h2>
             </div>
             <p className="max-w-2xl text-base leading-7 text-ink/70 md:text-lg">{subtitle}</p>
           </div>
 
           <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
-            <div className="rounded-lg border border-clay/60 bg-white/95 p-4 shadow-soft sm:p-6 md:p-7">
+            <div className="rounded-lg border border-ink/10 bg-white p-4 shadow-soft sm:p-6 md:p-7">
               <h3 className="mb-5 text-lg font-semibold text-ink">{labels.routeTitle}</h3>
               <RoutePicker
                 locale={locale}

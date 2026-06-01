@@ -115,10 +115,13 @@ const commonVehicles = [
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      homeTitle: "Tokyo Airport Transfer | Narita & Haneda to Hotels, Disney & Fuji",
+      homeTitle: "nolexlrs | Japan Airport Pickup & Homestay Support",
       homeDescription:
-        "Private Tokyo airport transfer from Narita or Haneda to Shinjuku, Ginza, Tokyo Station, Shinagawa, Disney, cruise terminals, and Mt Fuji day trips. English driver and WhatsApp quote.",
+        "nolexlrs combines Japan airport pickup with homestay support for travelers, families, and small groups. Get transfer quotes, local stay guidance, and WhatsApp support.",
       keywords: [
+        "nolexlrs",
+        "Japan homestay",
+        "Japan airport pickup",
         "Tokyo airport transfer",
         "Narita airport transfer",
         "Haneda airport transfer",
@@ -158,17 +161,17 @@ const dictionaries: Record<Locale, Dictionary> = {
         "Hire a Tokyo private driver for airport transfers, hotel transfers, Shinkansen station pickup, city tours, Mt Fuji day trips, hourly charters, Toyota Alphard rides, and WhatsApp booking."
     },
     hero: {
-      title: "Tokyo Airport Transfer",
-      subtitle: "Private airport pickup from Narita Airport and Haneda Airport to Tokyo hotels, homes, and cruise terminals.",
+      title: "nolexlrs",
+      subtitle: "Japan airport pickup and homestay support for travelers who want a smoother arrival and a more local stay.",
       features: [
-        "24 hour airport transfer service",
-        "English-speaking driver",
-        "Optional name-sign meet-and-greet at gate (+¥2,000)",
-        "Fixed transparent pricing",
-        "Free waiting: 90 min for pickup from flight landing, 30 min for drop-off"
+        "Japan airport pickup",
+        "Curated homestay support",
+        "WhatsApp trip coordination",
+        "Airport pickup can connect with your stay",
+        "Existing transfer quote flow remains available"
       ],
-      cta: "Get Quote on WhatsApp",
-      imageAlt: "Tokyo airport transfer private pickup vehicle"
+      cta: "Contact on WhatsApp",
+      imageAlt: "nolexlrs Japan airport pickup and homestay support"
     },
     services: {
       title: "Airport Transfer Services",
@@ -207,9 +210,9 @@ const dictionaries: Record<Locale, Dictionary> = {
       ]
     },
     booking: {
-      title: "Book Your Transfer",
+      title: "Ask About Airport Pickup",
       subtitle:
-        "Send your flight, landing time, and hotel details to get a fast quote on WhatsApp. If you want a name sign at the arrival gate, it is +¥2,000—please say so when you message us.",
+        "Send your flight, landing time, and stay address to get a fast pickup quote on WhatsApp. Homestay guests can also ask us to coordinate arrival details.",
       fields: {
         airport: "Airport",
         flight: "Flight number",
@@ -227,7 +230,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         luggage: "3 suitcases"
       },
       button: "Send on WhatsApp",
-      messageHeader: "Hello, I need a Tokyo airport transfer quote."
+      messageHeader: "Hello, I need a nolexlrs Japan airport pickup quote."
     },
     narita: {
       heroTitle: "Narita Airport Transfer to Tokyo",
@@ -252,10 +255,13 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   ja: {
     meta: {
-      homeTitle: "東京空港送迎 | 成田・羽田からホテル・ディズニー・富士山へ",
+      homeTitle: "nolexlrs | 日本空港送迎・民泊サポート",
       homeDescription:
-        "成田空港・羽田空港から新宿、銀座、東京駅、品川、東京ディズニー、クルーズターミナル、富士山日帰りまで対応するプライベート送迎。",
+        "nolexlrsは日本の空港送迎と民泊サポートをまとめて相談できる旅行サービスです。到着送迎、滞在先相談、WhatsApp連絡に対応します。",
       keywords: [
+        "nolexlrs",
+        "日本 民泊",
+        "日本 空港送迎",
         "東京 空港送迎",
         "成田空港 送迎",
         "羽田空港 送迎",
@@ -290,17 +296,17 @@ const dictionaries: Record<Locale, Dictionary> = {
         "東京のプライベートドライバーサービス。空港送迎、ホテル間移動、新幹線駅送迎、市内観光、富士山日帰り、時間貸切に対応。英語対応ドライバーの手配も可能です。"
     },
     hero: {
-      title: "東京空港送迎",
-      subtitle: "成田空港・羽田空港から東京のホテル、ご自宅、クルーズターミナルまでのプライベート送迎。",
+      title: "nolexlrs",
+      subtitle: "日本の空港送迎と民泊サポートをまとめて相談できる、旅行者向けの滞在サポート。",
       features: [
-        "24時間対応",
-        "英語対応ドライバー",
-        "到着ゲートでのネームプレートお迎えはオプション（+2,000円）",
-        "明朗な固定料金",
-        "無料待機: お迎え90分（到着時刻から）、お送り30分"
+        "日本空港送迎",
+        "民泊・滞在先サポート",
+        "WhatsAppで旅行相談",
+        "送迎と滞在をまとめて調整",
+        "既存の送迎見積もり機能を継続利用"
       ],
-      cta: "WhatsAppで見積もり",
-      imageAlt: "東京空港送迎のプライベート車両"
+      cta: "WhatsAppで相談",
+      imageAlt: "nolexlrs 日本空港送迎と民泊サポート"
     },
     services: {
       title: "空港送迎サービス",
@@ -339,9 +345,9 @@ const dictionaries: Record<Locale, Dictionary> = {
       ]
     },
     booking: {
-      title: "送迎を予約",
+      title: "空港送迎を相談",
       subtitle:
-        "フライト、到着時刻、ホテル情報を送ると、WhatsAppですぐに見積もりできます。到着ゲートでのネームプレートお迎えが必要な場合はオプション（+2,000円）ですので、メッセージでお知らせください。",
+        "フライト、到着時刻、滞在先住所を送ると、WhatsAppで送迎見積もりをご案内します。民泊の到着案内もあわせて相談できます。",
       fields: {
         airport: "空港",
         flight: "便名",
@@ -359,7 +365,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         luggage: "スーツケース3個"
       },
       button: "WhatsAppで送信",
-      messageHeader: "こんにちは。東京空港送迎の見積もりをお願いします。"
+      messageHeader: "こんにちは。nolexlrsの日本空港送迎見積もりをお願いします。"
     },
     narita: {
       heroTitle: "成田空港から東京への送迎",
@@ -384,10 +390,13 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   zh: {
     meta: {
-      homeTitle: "東京機場接送 | 成田羽田到酒店迪士尼富士山包車",
+      homeTitle: "nolexlrs | 日本接機與民宿服務",
       homeDescription:
-        "東京機場接送服務，覆蓋成田機場、羽田機場到新宿、銀座、東京站、品川、迪士尼、郵輪碼頭和富士山一日遊。固定報價，可英文和中文溝通。",
+        "nolexlrs 提供日本接機與民宿支援，適合自由行、家庭和小團體。可諮詢接送報價、住宿區域和 WhatsApp 行程協調。",
       keywords: [
+        "nolexlrs",
+        "日本民宿",
+        "日本接機",
         "東京機場接送",
         "東京接機",
         "成田機場接送",
@@ -426,16 +435,17 @@ const dictionaries: Record<Locale, Dictionary> = {
         "東京私人包車司機服務，適合機場接送、酒店移動、新幹線站接送、市區觀光、富士山一日遊和小時包車。可英文和中文溝通，WhatsApp 快速聯絡。"
     },
     hero: {
-      title: "東京機場接送",
-      subtitle: "成田機場、羽田機場到東京酒店、民宿、郵輪碼頭的私人專車接送服務。",
+      title: "nolexlrs",
+      subtitle: "整合日本接機與民宿支援，讓旅客從落地到入住都更順暢。",
       features: [
-        "24小時機場接送",
-        "可英文和中文溝通",
-        "到達口舉牌接機為可選（+2,000 日元）",
-        "免費等待：接機90分鐘（從航班落地算起），送機30分鐘"
+        "日本接機服務",
+        "民宿與住宿支援",
+        "WhatsApp 行程協調",
+        "接機可銜接民宿入住",
+        "保留現有接送估價流程"
       ],
-      cta: "WhatsApp 獲取報價",
-      imageAlt: "東京機場接送私人專車"
+      cta: "WhatsApp 諮詢",
+      imageAlt: "nolexlrs 日本接機與民宿服務"
     },
     services: {
       title: "機場接送服務",
@@ -474,9 +484,9 @@ const dictionaries: Record<Locale, Dictionary> = {
       ]
     },
     booking: {
-      title: "預約接送",
+      title: "諮詢日本接機",
       subtitle:
-        "發送航班、落地時間、酒店和乘客人數資訊，我們會透過 WhatsApp 快速報價。如需到達口舉牌接機，為可選服務另加 2,000 日元，請在留言中說明。",
+        "發送航班、落地時間、住宿地址和乘客人數，我們會透過 WhatsApp 快速回覆接機報價；民宿客人也可以一起確認入住安排。",
       fields: {
         airport: "機場",
         flight: "航班號",
@@ -494,7 +504,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         luggage: "3個行李箱"
       },
       button: "透過 WhatsApp 發送",
-      messageHeader: "您好，我需要東京機場接送報價。"
+      messageHeader: "您好，我需要 nolexlrs 日本接機報價。"
     },
     narita: {
       heroTitle: "成田機場到東京接送",

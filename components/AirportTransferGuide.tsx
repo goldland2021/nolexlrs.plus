@@ -14,7 +14,7 @@ export default function AirportTransferGuide({ airport, locale }: AirportTransfe
   const destinations = [...content.destinations].sort(compareByRoutePopularity);
 
   return (
-    <section className="section bg-white">
+    <section className="section bg-sand">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
@@ -23,7 +23,7 @@ export default function AirportTransferGuide({ airport, locale }: AirportTransfe
           </div>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="rounded-lg border border-clay/60 bg-sand/40 p-5 sm:p-6">
+            <div className="rounded-lg border border-ink/10 bg-white p-5 shadow-soft sm:p-6">
               <h3 className="text-lg font-semibold">{content.destinationsTitle}</h3>
               <div className="mt-5 grid gap-4 md:grid-cols-3">
                 {destinations.map((destination) => {
@@ -40,12 +40,12 @@ export default function AirportTransferGuide({ airport, locale }: AirportTransfe
                     <Link
                       key={destination.name}
                       href={localizedPath(locale, destination.href)}
-                      className="rounded-lg bg-white p-4 shadow-soft transition hover:-translate-y-0.5 hover:text-ember"
+                      className="rounded-lg border border-ink/10 bg-[#f7f3ec] p-4 transition hover:-translate-y-0.5 hover:border-champagne hover:text-ember"
                     >
                       {card}
                     </Link>
                   ) : (
-                    <article key={destination.name} className="rounded-lg bg-white p-4 shadow-soft">
+                    <article key={destination.name} className="rounded-lg border border-ink/10 bg-[#f7f3ec] p-4">
                       {card}
                     </article>
                   );
@@ -53,12 +53,12 @@ export default function AirportTransferGuide({ airport, locale }: AirportTransfe
               </div>
             </div>
 
-            <div className="rounded-lg border border-clay/60 bg-white p-5 shadow-soft sm:p-6">
+            <div className="rounded-lg border border-ink/10 bg-ink p-5 text-white shadow-soft sm:p-6">
               <h3 className="text-lg font-semibold">{content.tipsTitle}</h3>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-ink/70">
+              <ul className="mt-4 space-y-3 text-sm leading-6 text-white/70">
                 {content.tips.map((tip) => (
                   <li key={tip} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-ember" />
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-champagne" />
                     <span>{tip}</span>
                   </li>
                 ))}

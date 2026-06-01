@@ -19,6 +19,7 @@ type HeroProps = {
   ctaMessage?: string;
   locale?: Locale;
   citySlug?: CitySlug;
+  showCityNav?: boolean;
   showRoamingButton?: boolean;
   roamingButtonLabel?: string;
 };
@@ -26,10 +27,10 @@ type HeroProps = {
 const primaryCitySlugs: CitySlug[] = ["tokyo", "osaka", "fukuoka"];
 
 function cityButtonClass(active: boolean) {
-  return `inline-flex h-10 items-center justify-center rounded-full border px-4 text-sm font-semibold transition ${
+  return `inline-flex h-10 items-center justify-center rounded-md border px-4 text-sm font-semibold transition ${
     active
-      ? "border-ember bg-ember text-white shadow-soft"
-      : "border-clay/70 bg-white/85 text-ink/70 hover:border-ember/50 hover:text-ember"
+      ? "border-champagne bg-champagne text-ink shadow-lift"
+      : "border-white/20 bg-white/10 text-white/75 hover:border-champagne hover:text-white"
   }`;
 }
 
@@ -43,6 +44,7 @@ export default function Hero({
   ctaMessage = defaultWhatsAppMessage,
   locale = "en",
   citySlug = "tokyo",
+  showCityNav = true,
   showRoamingButton = false,
   roamingButtonLabel = "2,000 VIP"
 }: HeroProps) {
@@ -75,32 +77,34 @@ export default function Hero({
       <div className="container mx-auto px-4">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div className="space-y-6">
-            <div className="flex flex-wrap gap-3">
-              {primaryCitySlugs.map((slug) => {
-                const active = slug === citySlug;
+            {showCityNav ? (
+              <div className="flex flex-wrap gap-3">
+                {primaryCitySlugs.map((slug) => {
+                  const active = slug === citySlug;
 
-                return (
-                  <Link
-                    key={slug}
-                    href={localizedCityPath(locale, slug)}
-                    className={cityButtonClass(active)}
-                  >
-                    {labels[slug]}
-                  </Link>
-                );
-              })}
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight">
+                  return (
+                    <Link
+                      key={slug}
+                      href={localizedCityPath(locale, slug)}
+                      className={cityButtonClass(active)}
+                    >
+                      {labels[slug]}
+                    </Link>
+                  );
+                })}
+              </div>
+            ) : null}
+            <h1 className="max-w-3xl text-4xl font-semibold text-white md:text-5xl lg:text-6xl">
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-ink/70 max-w-2xl">
+            <p className="max-w-2xl text-lg text-white/70 md:text-xl">
               {subtitle}
             </p>
             {features.length > 0 && (
-              <ul className="grid gap-3 md:grid-cols-2 text-ink/80">
+              <ul className="grid gap-3 text-white/80 md:grid-cols-2">
                 {features.map((feature) => (
                   <li key={feature} className="flex items-center gap-3">
-                    <span className="inline-flex h-2.5 w-2.5 rounded-full bg-ember" />
+                    <span className="inline-flex h-2.5 w-2.5 rounded-full bg-champagne" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -109,7 +113,7 @@ export default function Hero({
             <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
               <a
                 href={href}
-                className="inline-flex items-center justify-center rounded-full bg-ember px-6 py-3 text-white shadow-lift transition hover:translate-y-[-2px]"
+                className="inline-flex items-center justify-center rounded-md bg-champagne px-6 py-3 font-semibold text-ink shadow-lift transition hover:-translate-y-0.5 hover:bg-gold"
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => trackWhatsAppLeadConversion("hero_cta")}
@@ -119,7 +123,7 @@ export default function Hero({
               {showRoamingButton && roamingButtonEnabled ? (
                 <Link
                   href={roamingHref}
-                  className="group inline-flex h-10 items-center gap-2 rounded-full border border-ember/40 bg-ink px-4 text-sm font-semibold text-gold shadow-soft transition hover:-translate-y-0.5 hover:border-ember hover:bg-ink/95"
+                  className="group inline-flex h-10 items-center gap-2 rounded-md border border-white/20 bg-white/10 px-4 text-sm font-semibold text-champagne shadow-soft transition hover:-translate-y-0.5 hover:border-champagne hover:bg-white/20"
                   aria-label="Open Tokyo Roaming VIP ride reward"
                 >
                   <svg className="h-4 w-5" viewBox="0 0 32 24" aria-hidden="true">
@@ -141,8 +145,7 @@ export default function Hero({
             </div>
           </div>
           <div className="relative reveal">
-            <div className="absolute -inset-6 rounded-[32px] bg-dusk/70 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[32px] border border-clay/60 shadow-soft">
+            <div className="relative overflow-hidden rounded-lg border border-white/20 bg-ink shadow-soft">
               <Image
                 src={imageSrc}
                 alt={imageAlt}

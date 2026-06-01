@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { trackAnalyticsEvent, trackWhatsAppLeadConversion } from "@/lib/analytics";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
 import type { RouteQuote } from "./RoutePicker";
-import ContactInfo from "./ContactInfo";
+import ContactChannels from "./ContactChannels";
 
 type BookingProps = {
   title?: string;
@@ -143,11 +143,11 @@ export default function Booking({
         </div>
         <form
           onSubmit={handleSubmit}
-          className="mt-10 grid gap-4 rounded-2xl border border-clay/60 bg-white p-4 md:p-6 shadow-soft md:grid-cols-2"
+          className="mt-10 grid gap-4 rounded-lg border border-ink/10 bg-white p-4 shadow-soft md:grid-cols-2 md:p-6"
         >
           {routeQuote ? (
-            <div className="rounded-xl border border-ember/30 bg-ember/5 px-4 py-3 text-sm text-ink/75 md:col-span-2">
-              <p className="font-semibold text-ember">
+            <div className="rounded-md border border-celadon/40 bg-celadon/10 px-4 py-3 text-sm text-ink/75 md:col-span-2">
+              <p className="font-semibold text-celadon-deep">
                 Map estimate: {formatYen(routeQuote.estimateLowYen)} - {formatYen(routeQuote.estimateHighYen)}
               </p>
               <p className="mt-1 text-xs leading-5 text-ink/60">
@@ -158,7 +158,7 @@ export default function Booking({
           <label className="grid gap-2 text-sm">
             {fields.airport}
             <input
-              className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
+              className="h-12 w-full rounded-md border border-clay/70 px-4 text-base focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
               placeholder={placeholders.airport}
               value={airportValue}
               onChange={(event) => setAirportInput({ value: event.target.value, quoteKey: routeQuoteKey })}
@@ -168,7 +168,7 @@ export default function Booking({
           <label className="grid gap-2 text-sm">
             {fields.flight}
             <input
-              className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
+              className="h-12 w-full rounded-md border border-clay/70 px-4 text-base focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
               placeholder={placeholders.flight}
               value={flight}
               onChange={(event) => setFlight(event.target.value)}
@@ -178,7 +178,7 @@ export default function Booking({
           <label className="grid gap-2 text-sm">
             {landingTimeLabel}
             <input
-              className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
+              className="h-12 w-full rounded-md border border-clay/70 px-4 text-base focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
               placeholder={landingTimePlaceholder}
               value={landingTime}
               onChange={(event) => setLandingTime(event.target.value)}
@@ -188,7 +188,7 @@ export default function Booking({
           <label className="grid gap-2 text-sm">
             {fields.hotel}
             <input
-              className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
+              className="h-12 w-full rounded-md border border-clay/70 px-4 text-base focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
               placeholder={placeholders.hotel}
               value={hotelValue}
               onChange={(event) => setHotelInput({ value: event.target.value, quoteKey: routeQuoteKey })}
@@ -198,7 +198,7 @@ export default function Booking({
           <label className="grid gap-2 text-sm">
             {fields.passengers}
             <input
-              className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
+              className="h-12 w-full rounded-md border border-clay/70 px-4 text-base focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
               placeholder={placeholders.passengers}
               value={passengers}
               onChange={(event) => setPassengers(event.target.value)}
@@ -208,7 +208,7 @@ export default function Booking({
           <label className="grid gap-2 text-sm">
             {fields.luggage}
             <input
-              className="h-12 w-full rounded-xl border border-clay/60 px-4 text-base focus:outline-none focus:ring-2 focus:ring-ember/30 focus:border-ember"
+              className="h-12 w-full rounded-md border border-clay/70 px-4 text-base focus:border-champagne focus:outline-none focus:ring-2 focus:ring-champagne/25"
               placeholder={placeholders.luggage}
               value={luggage}
               onChange={(event) => setLuggage(event.target.value)}
@@ -218,16 +218,16 @@ export default function Booking({
           <div className="flex items-end md:col-span-2">
             <button
               type="submit"
-              className="h-12 w-full rounded-xl bg-ink text-white transition hover:bg-ink/90 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-ember/30"
+              className="h-12 w-full rounded-md bg-ink font-semibold text-champagne transition hover:bg-celadon-deep active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-champagne/30"
             >
               {buttonLabel}
             </button>
           </div>
         </form>
-        <div className="mt-8 max-w-md mx-auto">
-          <ContactInfo compact />
+        <div className="mx-auto mt-8 max-w-2xl">
+          <ContactChannels compact message={messageHeader} />
           <p className="text-xs text-ink/50 mt-2 text-center">
-            Send details via form or message directly on WhatsApp
+            Send details via form or contact us on WhatsApp, WeChat, or LINE
           </p>
         </div>
     </>

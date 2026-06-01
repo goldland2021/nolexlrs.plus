@@ -247,9 +247,9 @@ export default function TokyoRoamingDemo({ locale }: TokyoRoamingDemoProps) {
             <Link
               href={localizedPath(locale)}
               onClick={(event) => event.stopPropagation()}
-              className="inline-flex h-10 shrink-0 items-center rounded-full border border-white/24 bg-black/20 px-4 text-sm font-semibold text-white shadow-soft transition hover:border-gold hover:text-gold"
+              className="inline-flex h-10 shrink-0 items-center rounded-md border border-white/20 bg-black/20 px-4 text-sm font-semibold text-white shadow-soft transition hover:border-gold hover:text-gold"
             >
-              JP Airport Transfer
+              nolexlrs Airport Pickup
             </Link>
             {rewardUnlocked ? (
               <div className="max-w-[58vw] rounded-lg border-2 border-gold bg-black/88 px-3 py-2 text-right text-xs font-bold leading-5 text-gold shadow-[0_0_28px_rgba(207,160,82,0.38)]">
@@ -275,16 +275,16 @@ export default function TokyoRoamingDemo({ locale }: TokyoRoamingDemoProps) {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border-2 border-gold bg-gold text-ink shadow-lift">
                   <CarIcon className="h-7 w-8" />
                 </div>
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.24em] text-gold">VIP Reward Unlocked</p>
-                <h1 className="mt-3 text-6xl font-semibold tracking-tight text-white">JPY 2,000</h1>
-                <p className="mt-3 text-sm font-semibold leading-6 text-white/82">
+                <p className="mt-5 text-xs font-bold uppercase text-gold">VIP Reward Unlocked</p>
+                <h1 className="mt-3 text-6xl font-semibold text-white">JPY 2,000</h1>
+                <p className="mt-3 text-sm font-semibold leading-6 text-white/80">
                   Show this reward number to our support team on WhatsApp.
                 </p>
 
-                <div className="mt-5 rounded-lg border-2 border-gold/70 bg-gold/15 p-4 shadow-[inset_0_0_20px_rgba(207,160,82,0.16)]">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Reward No.</p>
-                  <p className="mt-1 text-4xl font-semibold tracking-tight text-gold">{shownRewardCode}</p>
-                  <p className="mt-2 text-xs font-medium text-white/64">
+                <div className="mt-5 rounded-lg border-2 border-gold/70 bg-gold/20 p-4 shadow-[inset_0_0_20px_rgba(207,160,82,0.16)]">
+                  <p className="text-xs font-bold uppercase text-gold">Reward No.</p>
+                  <p className="mt-1 text-4xl font-semibold text-gold">{shownRewardCode}</p>
+                  <p className="mt-2 text-xs font-medium text-white/60">
                     {rewardAwardedAt ? formatAwardedAt(rewardAwardedAt) : "Syncing reward time..."}
                   </p>
                 </div>
@@ -294,19 +294,19 @@ export default function TokyoRoamingDemo({ locale }: TokyoRoamingDemoProps) {
                   target="_blank"
                   rel="noreferrer"
                   onClick={(event) => event.stopPropagation()}
-                  className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-full bg-gold px-5 text-sm font-bold text-ink shadow-[0_14px_30px_rgba(207,160,82,0.34)] transition hover:-translate-y-0.5"
+                  className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-md bg-gold px-5 text-sm font-bold text-ink shadow-[0_14px_30px_rgba(207,160,82,0.34)] transition hover:-translate-y-0.5"
                 >
                   Claim on WhatsApp
                 </a>
 
-                <p className="mt-4 text-xs font-medium text-white/52">Tap outside this card to play again.</p>
+                <p className="mt-4 text-xs font-medium text-white/50">Tap outside this card to play again.</p>
               </div>
             </section>
           ) : null}
 
           <div className={`${rewardUnlocked && sceneIndex === scenes.length - 1 ? "hidden" : "flex"} flex-1 items-end pb-5 pt-10 sm:pb-10 sm:pt-14`}>
             <div className="mx-auto w-full max-w-4xl">
-              <div className="relative h-16 overflow-hidden rounded-lg bg-black/42 px-2 shadow-soft">
+              <div className="relative h-16 overflow-hidden rounded-lg bg-black/40 px-2 shadow-soft">
                 <div
                   className="absolute left-0 top-0 h-full w-[150%] transition-transform duration-700 ease-out"
                   style={{ transform: `translateX(${routeTranslate}%)` }}
@@ -348,7 +348,7 @@ export default function TokyoRoamingDemo({ locale }: TokyoRoamingDemoProps) {
                     event.stopPropagation();
                     driveRoute();
                   }}
-                  className="absolute top-[-2px] z-10 flex h-14 w-16 -translate-x-1/2 items-center justify-center rounded-full border-2 border-gold bg-black/82 text-gold shadow-lift ring-4 ring-gold/22 transition-all duration-700 hover:scale-105 disabled:pointer-events-none"
+                  className="absolute top-[-2px] z-10 flex h-14 w-16 -translate-x-1/2 items-center justify-center rounded-md border-2 border-gold bg-black/80 text-gold shadow-lift ring-4 ring-gold/20 transition-all duration-700 hover:scale-105 disabled:pointer-events-none"
                   style={{ left: `${carPosition}%` }}
                   aria-label={sceneIndex === scenes.length - 1 ? "Restart road trip" : "Drive car forward"}
                 >

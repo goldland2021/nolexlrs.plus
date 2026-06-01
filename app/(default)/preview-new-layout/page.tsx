@@ -247,7 +247,7 @@ export default function PreviewNewLayoutPage() {
                          "Instant Quote"}
                       </span>
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                    <h2 className="text-3xl md:text-4xl font-bold">
                       {locale === "zh" ? "立即預約接送服務" : 
                        locale === "ja" ? "すぐに送迎を予約" : 
                        "Book Your Transfer Now"}

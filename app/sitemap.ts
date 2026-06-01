@@ -6,6 +6,7 @@ import { buildLanguageAlternates, localizedPath, siteUrl } from "@/lib/seo";
 
 const routes = [
   "",
+  "/japan-homestay",
   ...cityPageSlugs.map((slug) => cityPath(slug)),
   "/narita-airport-transfer",
   ...routePageSlugs.map((slug) => routePagePath(slug)),

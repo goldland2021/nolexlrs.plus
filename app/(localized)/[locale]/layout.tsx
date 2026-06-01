@@ -3,6 +3,7 @@ import Script from "next/script";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ServiceTabs from "@/components/ServiceTabs";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { gaMeasurementId } from "@/lib/analytics";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
@@ -48,23 +49,28 @@ export default async function LocaleLayout({
     <html lang={htmlLanguages[locale]} className="notranslate" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
-        <Script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gaMeasurementId}', { send_page_view: false });
-          `}
-        </Script>
+        {gaMeasurementId ? (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}', { send_page_view: false });
+              `}
+            </Script>
+          </>
+        ) : null}
       </head>
       <body className={inter.className}>
         <AnalyticsTracker />
-        {children}
+        <ServiceTabs />
+        <div className="pt-14">{children}</div>
         <Footer locale={locale} />
         <WhatsAppButton />
         <LanguageSwitcher />

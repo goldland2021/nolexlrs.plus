@@ -1,4 +1,4 @@
-export const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-V7EXSKJDYL";
+export const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
 export const leadFormConversionEventName = "conversion_event_submit_lead_form";
 
 type AnalyticsParams = Record<string, string | number | boolean | undefined>;

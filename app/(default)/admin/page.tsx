@@ -136,8 +136,8 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
         {/* Header */}
         <header className="mb-6 flex items-end justify-between border-b border-clay/60 pb-6">
           <div>
-            <p className="text-sm font-semibold text-ember">Airport Admin</p>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight">后台管理</h1>
+            <p className="text-sm font-semibold text-ember">nolexlrs Admin</p>
+            <h1 className="mt-1 text-2xl font-semibold">后台管理</h1>
           </div>
           <form action="/api/admin/logout" method="post">
             <button
@@ -288,7 +288,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                 {/* ── 电脑：表格 ── */}
                 <div className="hidden overflow-x-auto rounded-lg border border-clay/50 bg-white shadow-soft lg:block">
                   <table className="w-full min-w-[680px] text-left text-sm">
-                    <thead className="bg-sand/70 text-xs uppercase tracking-[0.12em] text-ink/50">
+                    <thead className="bg-sand/70 text-xs uppercase text-ink/50">
                       <tr>
                         <th className="px-4 py-3">接送 / 航班</th>
                         <th className="px-4 py-3">乘客</th>
@@ -430,7 +430,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                       <div className="flex items-start justify-between gap-4">
                         <div>
                           <p className="text-sm font-medium text-ink/55">{contact.label}</p>
-                          <p className="mt-3 text-2xl font-semibold tracking-tight">{contact.displayPhone}</p>
+                          <p className="mt-3 text-2xl font-semibold">{contact.displayPhone}</p>
                         </div>
                         {isActive ? (
                           <span className="rounded-full bg-ember/10 px-3 py-1 text-xs font-semibold text-ember">
@@ -482,7 +482,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-medium text-ink/55">Tokyo Roaming 促销</p>
-                  <h2 className="mt-2 text-xl font-semibold tracking-tight">首页小车奖励按钮</h2>
+                  <h2 className="mt-2 text-xl font-semibold">首页小车奖励按钮</h2>
                   <p className="mt-2 text-sm leading-6 text-ink/60">
                     控制首页「Get Quote on WhatsApp」旁的 ¥2,000 奖励小车按钮是否显示。
                   </p>
@@ -510,7 +510,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
               <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="text-sm font-medium text-ink/55">Tokyo Roaming Rewards</p>
-                  <h2 className="mt-2 text-xl font-semibold tracking-tight">近期奖励记录</h2>
+                  <h2 className="mt-2 text-xl font-semibold">近期奖励记录</h2>
                   <p className="mt-2 text-sm leading-6 text-ink/60">
                     客人通过 WhatsApp 申请奖励时，核对此处的奖励编号和领取时间。
                   </p>
@@ -524,7 +524,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
                 <>
                   <div className="overflow-hidden rounded-lg border border-clay/50">
                     <table className="w-full text-left text-sm">
-                      <thead className="bg-sand/70 text-xs uppercase tracking-[0.12em] text-ink/50">
+                      <thead className="bg-sand/70 text-xs uppercase text-ink/50">
                         <tr>
                           <th className="px-4 py-3">奖励编号</th>
                           <th className="px-4 py-3">领取时间</th>
