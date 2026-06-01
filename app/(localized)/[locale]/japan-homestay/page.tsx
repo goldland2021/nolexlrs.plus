@@ -8,6 +8,37 @@ import { isLocale, type Locale } from "@/lib/i18n";
 
 type LocaleParams = Promise<{ locale: string }>;
 
+const homestayHeroImage = "/images/nolexlrs/open-plan-kitchen-living.jpg";
+
+const homestayPhotos = [
+  { src: "/images/nolexlrs/open-plan-kitchen-living.jpg", alt: "Open-plan furnished homestay kitchen and living room" },
+  { src: "/images/nolexlrs/living-room-kitchen-sofa.jpg", alt: "Furnished homestay living room with sofa and kitchen" },
+  { src: "/images/nolexlrs/living-dining-tv.jpg", alt: "Homestay dining area and TV wall" },
+  { src: "/images/nolexlrs/dining-area-curtains.jpg", alt: "Compact dining area with warm curtains" },
+  { src: "/images/nolexlrs/sofa-living-room.jpg", alt: "Bright homestay sofa living room" },
+  { src: "/images/nolexlrs/kitchen-sink-counter.jpg", alt: "Clean furnished homestay kitchen counter" },
+  { src: "/images/nolexlrs/gas-stove-grill.jpg", alt: "Gas stove and grill in homestay kitchen" },
+  { src: "/images/nolexlrs/wide-living-kitchen.jpg", alt: "Wide view of living room and kitchen" },
+  { src: "/images/nolexlrs/living-dining-room-wide.jpg", alt: "Wide living and dining room view" },
+  { src: "/images/nolexlrs/laundry-washer.jpg", alt: "In-room washing machine for homestay guests" },
+  { src: "/images/nolexlrs/bedroom-double-bed.jpg", alt: "Simple double bedroom in Japanese homestay" },
+  { src: "/images/nolexlrs/bedroom-closet-wall.jpg", alt: "Bedroom storage wall and bed" },
+  { src: "/images/nolexlrs/bedroom-curtains.jpg", alt: "Bedroom with full curtains" },
+  { src: "/images/nolexlrs/bedroom-shoji-entry.jpg", alt: "Bedroom entry with shoji-style door" },
+  { src: "/images/nolexlrs/tatami-bedroom-shoji.jpg", alt: "Tatami bedroom with shoji doors" },
+  { src: "/images/nolexlrs/bedroom-window-shoji.jpg", alt: "Bedroom window with shoji detail" },
+  { src: "/images/nolexlrs/japanese-room-tatami-window.jpg", alt: "Japanese-style room with tatami and window" },
+  { src: "/images/nolexlrs/japanese-room-shoji-window.jpg", alt: "Japanese room with shoji windows" },
+  { src: "/images/nolexlrs/japanese-room-futon.jpg", alt: "Japanese-style futon room" },
+  { src: "/images/nolexlrs/vanity-sink.jpg", alt: "Homestay vanity sink" },
+  { src: "/images/nolexlrs/toilet-washlet.jpg", alt: "Private toilet with washlet" },
+  { src: "/images/nolexlrs/shower-room-mirror.jpg", alt: "Shower room mirror and fixtures" },
+  { src: "/images/nolexlrs/bathroom-shower.jpg", alt: "Compact bathroom shower area" },
+  { src: "/images/nolexlrs/toilet-room.jpg", alt: "Separate toilet room" },
+  { src: "/images/nolexlrs/shower-room-vanity.jpg", alt: "Shower room vanity and mirror" },
+  { src: "/images/nolexlrs/residence-exterior.jpg", alt: "Japanese homestay residence exterior" }
+];
+
 const content = {
   en: {
     metaTitle: "Japan Homestay Support | nolexlrs",
@@ -30,6 +61,8 @@ const content = {
     ],
     stayTypesTitle: "Homestay Options",
     stayTypesSubtitle: "A flexible structure for the new nolexlrs stay business.",
+    galleryTitle: "Homestay Photo Preview",
+    gallerySubtitle: "Real room, kitchen, bathroom, and exterior photos prepared for the nolexlrs stay service.",
     stayTypes: [
       {
         title: "City Apartments",
@@ -82,6 +115,8 @@ const content = {
     ],
     stayTypesTitle: "民泊タイプ",
     stayTypesSubtitle: "nolexlrsの新しい滞在サービスとして拡張しやすい構成です。",
+    galleryTitle: "民泊写真プレビュー",
+    gallerySubtitle: "nolexlrsの滞在サービスで使う客室、キッチン、浴室、外観の写真です。",
     stayTypes: [
       {
         title: "都市型アパート",
@@ -134,6 +169,8 @@ const content = {
     ],
     stayTypesTitle: "民宿方向",
     stayTypesSubtitle: "作為 nolexlrs 新增住宿業務，先建立清晰的服務結構。",
+    galleryTitle: "民宿照片預覽",
+    gallerySubtitle: "已接入 nolexlrs 民宿使用的客廳、廚房、臥室、衛浴和外觀照片。",
     stayTypes: [
       {
         title: "城市公寓",
@@ -178,6 +215,8 @@ const content = {
   highlights: string[];
   stayTypesTitle: string;
   stayTypesSubtitle: string;
+  galleryTitle: string;
+  gallerySubtitle: string;
   stayTypes: { title: string; copy: string }[];
   processTitle: string;
   process: [string, string][];
@@ -199,7 +238,7 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
     title: copy.metaTitle,
     description: copy.metaDescription,
     keywords: copy.keywords,
-    image: "/images/tokyo-roaming/tokyo-roaming-tokyo-hotel-arrival-transfer.jpg"
+    image: homestayHeroImage
   });
 }
 
@@ -267,7 +306,7 @@ export default async function JapanHomestayPage({ params }: { params: LocalePara
             <div className="relative">
               <div className="relative overflow-hidden rounded-lg border border-white/20 bg-ink shadow-soft">
                 <Image
-                  src="/images/tokyo-roaming/tokyo-roaming-tokyo-hotel-arrival-transfer.jpg"
+                  src={homestayHeroImage}
                   alt={copy.imageAlt}
                   width={720}
                   height={520}
@@ -293,6 +332,38 @@ export default async function JapanHomestayPage({ params }: { params: LocalePara
                   <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-ink/65">{item.copy}</p>
                 </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-white">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-3xl">
+              <h2 className="section-title">{copy.galleryTitle}</h2>
+              <p className="section-subtitle">{copy.gallerySubtitle}</p>
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {homestayPhotos.map((photo, index) => (
+                <div
+                  key={photo.src}
+                  className={`overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft ${
+                    index === 0 ? "sm:col-span-2 lg:row-span-2" : ""
+                  }`}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={720}
+                    height={540}
+                    sizes={index === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                    className={`w-full object-cover image-warm ${
+                      index === 0 ? "h-[310px] sm:h-[420px] lg:h-full" : "h-44 sm:h-52"
+                    }`}
+                  />
+                </div>
               ))}
             </div>
           </div>
