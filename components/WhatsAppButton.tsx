@@ -1,10 +1,13 @@
 "use client";
 
-import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
+import { usePathname } from "next/navigation";
+import { buildWhatsAppLink, defaultWhatsAppMessage, homestayWhatsAppMessage } from "@/lib/whatsapp";
 import { trackWhatsAppLeadConversion } from "@/lib/analytics";
 
 export default function WhatsAppButton() {
-  const href = buildWhatsAppLink(defaultWhatsAppMessage);
+  const pathname = usePathname();
+  const isHomestayPage = pathname.includes("/japan-homestay");
+  const href = buildWhatsAppLink(isHomestayPage ? homestayWhatsAppMessage : defaultWhatsAppMessage);
 
   return (
     <a
@@ -14,7 +17,7 @@ export default function WhatsAppButton() {
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
       title="WhatsApp"
-      onClick={() => trackWhatsAppLeadConversion("floating_button")}
+      onClick={() => trackWhatsAppLeadConversion(isHomestayPage ? "floating_button_homestay" : "floating_button")}
     >
       WhatsApp
     </a>
