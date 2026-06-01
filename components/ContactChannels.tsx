@@ -5,8 +5,6 @@ import { trackWhatsAppLeadConversion } from "@/lib/analytics";
 import {
   buildWhatsAppLink,
   defaultWhatsAppMessage,
-  lineId,
-  lineUrl,
   weChatId
 } from "@/lib/whatsapp";
 import ActiveWhatsAppPhone from "@/components/ActiveWhatsAppPhone";
@@ -73,13 +71,6 @@ export default function ContactChannels({
         WhatsApp: <span className="ml-1"><ActiveWhatsAppPhone /></span>
       </a>
       <CopyChannel dark={dark} label="WeChat" value={weChatId} />
-      {lineUrl ? (
-        <a href={lineUrl} target="_blank" rel="noreferrer" className={channelClass(dark)}>
-          LINE: {lineId}
-        </a>
-      ) : (
-        <CopyChannel dark={dark} label="LINE" value={lineId} />
-      )}
     </div>
   );
 }
