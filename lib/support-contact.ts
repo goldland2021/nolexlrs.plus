@@ -7,22 +7,17 @@ export type SupportContact = {
 
 export const supportContacts = [
   {
-    id: "staff_1812",
-    label: "Support +81 80-4789-1812",
-    displayPhone: "+81 80-4789-1812",
-    whatsAppPhoneNumber: "818047891812"
-  },
-  {
-    id: "staff_6072",
-    label: "Support +81 80-9277-6072",
-    displayPhone: "+81 80-9277-6072",
-    whatsAppPhoneNumber: "818092776072"
+    id: "staff_7223",
+    label: "Support +81 90-6399-7223",
+    displayPhone: "+81 90-6399-7223",
+    whatsAppPhoneNumber: "819063997223"
   }
 ] as const satisfies readonly SupportContact[];
 
-export const defaultSupportContactId = "staff_6072";
+export const defaultSupportContactId = "staff_7223";
 const supportContactSettingsKey = "active_support_contact_id";
 const roamingRewardSettingsKey = "tokyo_roaming_button_enabled";
+const legacySupportContactIds = new Set(["staff_1812", "staff_6072"]);
 
 function getSupabaseConfig() {
   const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL)?.replace(/\/$/, "");
@@ -33,6 +28,10 @@ function getSupabaseConfig() {
 }
 
 export function findSupportContact(contactId?: string | null) {
+  if (legacySupportContactIds.has(contactId ?? "")) {
+    return supportContacts[0];
+  }
+
   return supportContacts.find((contact) => contact.id === contactId) ?? null;
 }
 
