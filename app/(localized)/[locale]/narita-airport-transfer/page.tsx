@@ -32,7 +32,7 @@ export async function generateMetadata({
     title: dict.meta.naritaTitle,
     description: dict.meta.naritaDescription,
     keywords: dict.meta.keywords,
-    image: "/images/narita-airport.jpg"
+    image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
   });
 }
 
@@ -81,7 +81,7 @@ export default async function NaritaPage({ params }: { params: LocaleParams }) {
       <Hero
         title={dict.narita.heroTitle}
         subtitle={dict.narita.heroSubtitle}
-        imageSrc="/images/narita-airport.jpg"
+        imageSrc="/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
         imageAlt="Narita airport transfer to Tokyo"
         ctaLabel={dict.hero.cta}
         locale={locale}

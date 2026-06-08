@@ -32,7 +32,7 @@ export async function generateMetadata({
     title: dict.meta.driverTitle,
     description: dict.meta.driverDescription,
     keywords: dict.meta.keywords,
-    image: "/images/tokyo-driver.jpg"
+    image: "/images/pickupjp/pickupjp-alphard-black-coastal-road-day-trip.jpg"
   });
 }
 
@@ -81,7 +81,7 @@ export default async function PrivateDriverPage({ params }: { params: LocalePara
       <Hero
         title={dict.driver.heroTitle}
         subtitle={dict.driver.heroSubtitle}
-        imageSrc="/images/tokyo-driver.jpg"
+        imageSrc="/images/pickupjp/pickupjp-alphard-black-coastal-road-day-trip.jpg"
         imageAlt="Tokyo private driver service"
         ctaLabel={dict.hero.cta}
         locale={locale}

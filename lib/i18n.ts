@@ -93,22 +93,22 @@ const commonVehicles = [
   {
     name: "Luxury Sedan",
     passengers: "Up to 3 passengers",
-    image: "/images/sedan.jpg",
+    image: "/images/pickupjp/pickupjp-sedan-white-city-transfer-front.jpg",
     alt: "Luxury sedan for Tokyo airport transfer"
   },
   {
     name: "Toyota Alphard",
     passengers: "Up to 5 passengers",
-    image: "/images/alphard.jpg",
+    image: "/images/pickupjp/pickupjp-alphard-black-hotel-entrance-front.jpg",
     alt: "Toyota Alphard private airport pickup in Tokyo",
-    galleryImages: ["/images/Alphard1.jpg", "/images/Alphard3.jpg"]
+    galleryImages: ["/images/pickupjp/pickupjp-alphard-luxury-cabin-seats-interior.jpg", "/images/pickupjp/pickupjp-alphard-trunk-luggage-space-open-tailgate.jpg"]
   },
   {
     name: "Toyota Hiace",
     passengers: "Up to 8 passengers",
-    image: "/images/hiace.jpg",
+    image: "/images/pickupjp/pickupjp-hiace-white-hotel-transfer-front.jpg",
     alt: "Toyota Hiace van for Narita and Haneda airport transfer",
-    galleryImages: ["/images/hiace1.jpg", "/images/hiace2.jpg"]
+    galleryImages: ["/images/pickupjp/pickupjp-hiace-white-cherry-blossom-transfer.jpg", "/images/pickupjp/pickupjp-hiace-black-city-road-transfer.jpg"]
   }
 ];
 

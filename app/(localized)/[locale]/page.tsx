@@ -219,7 +219,7 @@ export async function generateMetadata({
     title: copy.metaTitle,
     description: copy.metaDescription,
     keywords: copy.keywords,
-    image: "/images/tokyo-airport-transfer.jpg"
+    image: "/images/pickupjp/pickupjp-hero-airport-curbside-pickup-day.png"
   });
 }
 
@@ -269,7 +269,7 @@ export default async function HomePage({ params }: { params: LocaleParams }) {
         title={copy.title}
         subtitle={copy.subtitle}
         features={copy.features}
-        imageSrc="/images/tokyo-airport-transfer.jpg"
+        imageSrc="/images/pickupjp/pickupjp-hero-airport-curbside-pickup-day.png"
         imageAlt={copy.imageAlt}
         ctaLabel={dict.hero.cta}
         locale={locale}

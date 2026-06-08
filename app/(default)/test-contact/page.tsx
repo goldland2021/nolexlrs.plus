@@ -26,7 +26,7 @@ export default function TestContactPage() {
               title="測試標題"
               subtitle="測試副標題"
               features={["功能1", "功能2", "功能3", "功能4"]}
-              imageSrc="/images/tokyo-airport-transfer.jpg"
+              imageSrc="/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
               imageAlt="測試圖片"
             />
           </section>

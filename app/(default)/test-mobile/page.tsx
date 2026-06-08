@@ -51,19 +51,19 @@ export default function TestMobilePage() {
         {
           name: "Luxury Sedan",
           passengers: "3 passengers",
-          image: "/images/sedan.jpg",
+          image: "/images/pickupjp/pickupjp-sedan-white-city-transfer-front.jpg",
           alt: "Luxury sedan"
         },
         {
           name: "Toyota Alphard",
           passengers: "5 passengers",
-          image: "/images/alphard.jpg",
+          image: "/images/pickupjp/pickupjp-alphard-black-hotel-entrance-front.jpg",
           alt: "Toyota Alphard"
         },
         {
           name: "Toyota Hiace",
           passengers: "8 passengers",
-          image: "/images/hiace.jpg",
+          image: "/images/pickupjp/pickupjp-hiace-white-hotel-transfer-front.jpg",
           alt: "Toyota Hiace"
         }
       ]
