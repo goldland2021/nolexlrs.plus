@@ -38,7 +38,7 @@ export default function TestWaitingTimePage() {
                 "透明固定價格",
                 "免費等候：接機90分鐘（從飛機降落算起），送機30分鐘"
               ]}
-              imageSrc="/images/tokyo-airport-transfer.jpg"
+              imageSrc="/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
               imageAlt="東京機場接送"
             />
           </section>

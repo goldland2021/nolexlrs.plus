@@ -47,7 +47,7 @@ export function buildPageMetadata({
   title,
   description,
   keywords,
-  image = "/images/tokyo-airport-transfer.jpg"
+  image = "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
 }: {
   locale: Locale;
   path?: string;
@@ -344,7 +344,7 @@ export function serviceJsonLd(
         name: siteName,
         url: siteUrl,
         logo: `${siteUrl}/icon.png`,
-        image: `${siteUrl}/images/tokyo-airport-transfer.jpg`,
+        image: `${siteUrl}/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg`,
         telephone: whatsAppDisplayPhone,
         contactPoint: {
           "@type": "ContactPoint",
@@ -369,7 +369,7 @@ export function serviceJsonLd(
         "@id": `${currentUrl}#airport-transfer-service`,
         name: title,
         url: currentUrl,
-        image: `${siteUrl}/images/tokyo-airport-transfer.jpg`,
+        image: `${siteUrl}/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg`,
         description,
         provider: {
           "@id": `${siteUrl}/#organization`
