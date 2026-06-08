@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { trackWhatsAppLeadConversion } from "@/lib/analytics";
 import type { Locale } from "@/lib/i18n";
 import { localizedPath } from "@/lib/seo";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
@@ -293,7 +294,10 @@ export default function TokyoRoamingDemo({ locale }: TokyoRoamingDemoProps) {
                   href={buildWhatsAppLink(rewardClaimMessage)}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={(event) => event.stopPropagation()}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    trackWhatsAppLeadConversion("tokyo_roaming_reward_claim");
+                  }}
                   className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-md bg-gold px-5 text-sm font-bold text-ink shadow-[0_14px_30px_rgba(207,160,82,0.34)] transition hover:-translate-y-0.5"
                 >
                   Claim on WhatsApp

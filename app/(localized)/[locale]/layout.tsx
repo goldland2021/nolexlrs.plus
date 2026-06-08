@@ -1,11 +1,10 @@
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import Footer from "@/components/Footer";
+import GoogleTags from "@/components/GoogleTags";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ServiceTabs from "@/components/ServiceTabs";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { gaMeasurementId } from "@/lib/analytics";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
 import { buildPageMetadata, htmlLanguages } from "@/lib/seo";
 import "../../globals.css";
@@ -49,23 +48,7 @@ export default async function LocaleLayout({
     <html lang={htmlLanguages[locale]} className="notranslate" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
-        {gaMeasurementId ? (
-          <>
-            <Script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaMeasurementId}', { send_page_view: false });
-              `}
-            </Script>
-          </>
-        ) : null}
+        <GoogleTags />
       </head>
       <body className={inter.className}>
         <AnalyticsTracker />
