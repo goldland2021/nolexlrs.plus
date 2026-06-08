@@ -8,6 +8,7 @@ export default function AnalyticsTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!gaMeasurementId) return;
     if (pathname?.startsWith("/admin")) return;
 
     trackAnalyticsEvent("page_view", {

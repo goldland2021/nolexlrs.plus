@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ContactChannels from "@/components/ContactChannels";
+import TrackedWhatsAppLink from "@/components/TrackedWhatsAppLink";
 import { buildWhatsAppLink, homestayWhatsAppMessage } from "@/lib/whatsapp";
 import { buildPageMetadata, localizedPath, siteName, siteUrl } from "@/lib/seo";
 import { isLocale, type Locale } from "@/lib/i18n";
@@ -286,14 +287,15 @@ export default async function JapanHomestayPage({ params }: { params: LocalePara
                 ))}
               </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink shadow-lift transition hover:-translate-y-0.5 hover:bg-gold"
-              >
-                {copy.cta}
-              </a>
+                <TrackedWhatsAppLink
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  conversionLocation="homestay_hero_cta"
+                  className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink shadow-lift transition hover:-translate-y-0.5 hover:bg-gold"
+                >
+                  {copy.cta}
+                </TrackedWhatsAppLink>
                 <Link
                   href={localizedPath(locale)}
                   className="inline-flex h-12 items-center justify-center rounded-md border border-champagne/50 bg-white/10 px-6 text-sm font-semibold text-white transition hover:border-champagne hover:bg-white/20"
@@ -401,14 +403,15 @@ export default async function JapanHomestayPage({ params }: { params: LocalePara
                     <ContactChannels dark message={copy.whatsappMessage} />
                   </div>
                 </div>
-                <a
+                <TrackedWhatsAppLink
                   href={whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink transition hover:bg-gold"
-              >
-                {copy.cta}
-              </a>
+                  target="_blank"
+                  rel="noreferrer"
+                  conversionLocation="homestay_contact_cta"
+                  className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink transition hover:bg-gold"
+                >
+                  {copy.cta}
+                </TrackedWhatsAppLink>
             </div>
           </div>
         </div>
