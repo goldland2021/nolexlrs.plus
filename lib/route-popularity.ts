@@ -21,7 +21,7 @@ export const routePopularityScores = {
   "/haneda-airport-to-shinagawa": 32,
   "/narita-airport-to-sumida-skytree": 31,
   "/haneda-airport-to-odaiba-toyosu-ariake": 29,
-  "/yokohama-port-transfer": 12
+  "/yokohama-port-transfer": 160
 } satisfies Record<string, number>;
 
 export function routePopularityScore(href?: string) {

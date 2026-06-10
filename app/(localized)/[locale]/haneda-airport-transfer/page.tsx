@@ -32,7 +32,7 @@ export async function generateMetadata({
     title: dict.meta.hanedaTitle,
     description: dict.meta.hanedaDescription,
     keywords: dict.meta.keywords,
-    image: "/images/haneda-airport.jpg"
+    image: "/images/pickupjp/pickupjp-airport-terminal-departure-hall-ceiling.jpg"
   });
 }
 
@@ -81,7 +81,7 @@ export default async function HanedaPage({ params }: { params: LocaleParams }) {
       <Hero
         title={dict.haneda.heroTitle}
         subtitle={dict.haneda.heroSubtitle}
-        imageSrc="/images/haneda-airport.jpg"
+        imageSrc="/images/pickupjp/pickupjp-airport-terminal-departure-hall-ceiling.jpg"
         imageAlt="Haneda airport transfer to Tokyo"
         ctaLabel={dict.hero.cta}
         locale={locale}

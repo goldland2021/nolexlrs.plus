@@ -225,7 +225,7 @@ export default function PreviewNewLayoutPage() {
                 title={currentDict.hero.title}
                 subtitle={currentDict.hero.subtitle}
                 features={currentDict.hero.features}
-                imageSrc="/images/tokyo-airport-transfer.jpg"
+                imageSrc="/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
                 imageAlt={currentDict.hero.imageAlt}
                 ctaLabel={currentDict.hero.cta}
               />

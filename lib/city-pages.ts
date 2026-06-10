@@ -1033,7 +1033,7 @@ function buildEnglishContent(slug: CityPageSlug, basicsItem: LocalizedCityBasics
         ...seo.keywords,
         ...airports.map((airport) => `${airport.name.en} transfer`)
       ]),
-      image: "/images/tokyo-airport-transfer.jpg"
+      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: `${city} Airport Transfer`,
@@ -1046,7 +1046,7 @@ function buildEnglishContent(slug: CityPageSlug, basicsItem: LocalizedCityBasics
         `${basicsItem.dayTripPhrase}`,
         "WhatsApp booking"
       ],
-      imageSrc: "/images/tokyo-airport-transfer.jpg",
+      imageSrc: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg",
       imageAlt: basicsItem.imageAlt
     },
     quote: {
@@ -1116,7 +1116,7 @@ function buildJapaneseContent(slug: CityPageSlug, basicsItem: LocalizedCityBasic
         ...seo.keywords,
         ...airports.map((airport) => `${airport.name.ja} 送迎`)
       ]),
-      image: "/images/tokyo-airport-transfer.jpg"
+      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: `${city}空港送迎`,
@@ -1129,7 +1129,7 @@ function buildJapaneseContent(slug: CityPageSlug, basicsItem: LocalizedCityBasic
         basicsItem.dayTripPhrase,
         "WhatsAppで予約"
       ],
-      imageSrc: "/images/tokyo-airport-transfer.jpg",
+      imageSrc: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg",
       imageAlt: basicsItem.imageAlt
     },
     quote: {
@@ -1200,7 +1200,7 @@ function buildChineseContent(slug: CityPageSlug, basicsItem: LocalizedCityBasics
         ...seo.keywords,
         ...airports.map((airport) => `${airport.name.zh}接送`)
       ]),
-      image: "/images/tokyo-airport-transfer.jpg"
+      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: `${city}機場接送`,
@@ -1212,7 +1212,7 @@ function buildChineseContent(slug: CityPageSlug, basicsItem: LocalizedCityBasics
         basicsItem.dayTripPhrase,
         "WhatsApp 快速預約"
       ],
-      imageSrc: "/images/tokyo-airport-transfer.jpg",
+      imageSrc: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg",
       imageAlt: basicsItem.imageAlt
     },
     quote: {

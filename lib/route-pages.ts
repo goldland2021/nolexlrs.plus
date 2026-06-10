@@ -1296,13 +1296,13 @@ function buildHanedaRoutePage(locale: Locale, slug: HanedaRouteSlug): RoutePageC
       title: config.metaTitle,
       description: config.metaDescription,
       keywords: config.keywords,
-      image: "/images/haneda-airport.jpg"
+      image: "/images/pickupjp/pickupjp-airport-terminal-departure-hall-ceiling.jpg"
     },
     hero: {
       title: config.title,
       subtitle: config.heroSubtitle,
       features: copy.features(config.destination),
-      imageSrc: "/images/haneda-airport.jpg",
+      imageSrc: "/images/pickupjp/pickupjp-airport-terminal-departure-hall-ceiling.jpg",
       imageAlt: config.imageAlt
     },
     overview: {
@@ -1957,7 +1957,7 @@ function buildKansaiRoutePage(locale: Locale, slug: KansaiRouteSlug): RoutePageC
       title: config.metaTitle,
       description: config.metaDescription,
       keywords: config.keywords,
-      image: "/images/tokyo-airport-transfer.jpg"
+      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: config.title,
@@ -1989,7 +1989,7 @@ function buildKansaiRoutePage(locale: Locale, slug: KansaiRouteSlug): RoutePageC
                 "可選到達口舉牌接機",
                 "WhatsApp 確認固定報價"
               ],
-      imageSrc: "/images/tokyo-airport-transfer.jpg",
+      imageSrc: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg",
       imageAlt: config.imageAlt
     },
     overview: {
@@ -3137,13 +3137,13 @@ function buildRegionalRoutePage(locale: Locale, slug: RegionalRouteSlug): RouteP
       title: config.metaTitle,
       description: config.metaDescription,
       keywords: config.keywords,
-      image: "/images/tokyo-airport-transfer.jpg"
+      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: config.title,
       subtitle: config.heroSubtitle,
       features: config.heroFeatures,
-      imageSrc: "/images/tokyo-airport-transfer.jpg",
+      imageSrc: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg",
       imageAlt: config.imageAlt
     },
     overview: {
@@ -3977,7 +3977,7 @@ function buildTokyoAirportRoutePage(locale: Locale, slug: TokyoAirportRouteSlug)
   const nearbyAreas = config.nearbyAreas[locale];
   const nearbyAreasEn = config.nearbyAreas.en;
   const routeAirport = config.airport === "narita" ? naritaAirport : hanedaAirport;
-  const image = config.airport === "narita" ? "/images/narita-airport.jpg" : "/images/haneda-airport.jpg";
+  const image = config.airport === "narita" ? "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg" : "/images/pickupjp/pickupjp-airport-terminal-departure-hall-ceiling.jpg";
   const path = routePagePath(slug);
 
   return {
@@ -4450,7 +4450,7 @@ function buildRegionalAdRoutePage(locale: Locale, slug: RegionalAdRouteSlug): Ro
   const airportShort = config.airportShort[locale];
   const destination = config.destination[locale];
   const nearbyAreas = config.nearbyAreas[locale];
-  const image = "/images/tokyo-airport-transfer.jpg";
+  const image = "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg";
   const path = routePagePath(slug);
   const relatedRoutes = config.relatedSlugs
     .filter((relatedSlug) => relatedSlug !== slug)
@@ -4604,7 +4604,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Toyota Alphard Narita to Shinjuku",
           "Shinjuku hotel to Narita Airport"
         ],
-        image: "/images/narita-airport.jpg"
+        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "Narita Airport to Shinjuku Transfer",
@@ -4618,7 +4618,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Optional name-sign meet-and-greet",
           "Fixed quote confirmed on WhatsApp"
         ],
-        imageSrc: "/images/narita-airport.jpg",
+        imageSrc: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg",
         imageAlt: "Private Narita Airport to Shinjuku transfer"
       },
       overview: {
@@ -4763,7 +4763,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Narita airport pickup for family",
           "Tokyo Disney hotel to Narita Airport"
         ],
-        image: "/images/narita-airport.jpg"
+        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "Narita Airport to Tokyo Disney Resort Transfer",
@@ -4777,7 +4777,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Toyota Alphard or Hiace available",
           "Fixed quote confirmed on WhatsApp"
         ],
-        imageSrc: "/images/narita-airport.jpg",
+        imageSrc: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg",
         imageAlt: "Private Narita Airport to Tokyo Disney Resort transfer"
       },
       overview: {
@@ -4945,7 +4945,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "アルファード 成田 新宿",
           "新宿ホテル 成田空港"
         ],
-        image: "/images/narita-airport.jpg"
+        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田空港から新宿への送迎",
@@ -4958,7 +4958,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "ネームプレートお迎えオプション",
           "WhatsAppで固定料金を確認"
         ],
-        imageSrc: "/images/narita-airport.jpg",
+        imageSrc: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg",
         imageAlt: "成田空港から新宿へのプライベート送迎"
       },
       overview: {
@@ -5098,7 +5098,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "東京ディズニー 空港送迎",
           "ディズニーホテル 成田空港"
         ],
-        image: "/images/narita-airport.jpg"
+        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田空港から東京ディズニーリゾート送迎",
@@ -5112,7 +5112,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "アルファードまたはハイエース",
           "WhatsAppで固定料金を確認"
         ],
-        imageSrc: "/images/narita-airport.jpg",
+        imageSrc: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg",
         imageAlt: "成田空港から東京ディズニーリゾートへのプライベート送迎"
       },
       overview: {
@@ -5275,7 +5275,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Alphard 成田到新宿",
           "新宿酒店到成田機場"
         ],
-        image: "/images/narita-airport.jpg"
+        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田機場到新宿接送",
@@ -5288,7 +5288,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "可選到達口舉牌接機",
           "WhatsApp 確認固定報價"
         ],
-        imageSrc: "/images/narita-airport.jpg",
+        imageSrc: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg",
         imageAlt: "成田機場到新宿私人專車接送"
       },
       overview: {
@@ -5426,7 +5426,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "東京迪士尼機場接送",
           "迪士尼酒店到成田機場"
         ],
-        image: "/images/narita-airport.jpg"
+        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田機場到東京迪士尼接送",
@@ -5439,7 +5439,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "可選 Alphard 或 Hiace",
           "WhatsApp 確認固定報價"
         ],
-        imageSrc: "/images/narita-airport.jpg",
+        imageSrc: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg",
         imageAlt: "成田機場到東京迪士尼私人專車接送"
       },
       overview: {

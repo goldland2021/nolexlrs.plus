@@ -227,7 +227,7 @@ export default function Booking({
         <div className="mx-auto mt-8 max-w-2xl">
           <ContactChannels compact message={messageHeader} />
           <p className="text-xs text-ink/50 mt-2 text-center">
-            Send details via form or contact us on WhatsApp, WeChat, or LINE
+            Send details via form or contact us on WhatsApp or WeChat
           </p>
         </div>
     </>

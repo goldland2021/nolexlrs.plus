@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { trackWhatsAppLeadConversion } from "@/lib/analytics";
 import type { Locale } from "@/lib/i18n";
 import { localizedPath } from "@/lib/seo";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
@@ -14,8 +15,8 @@ type TokyoRoamingDemoProps = {
 const scenes = [
   {
     id: "narita-t2",
-    image: "/images/tokyo-roaming/tokyo-roaming-narita-airport-vip-pickup.jpg",
-    imageAlt: "Luxury private airport pickup at Narita Airport with driver and black van",
+    image: "/images/pickupjp/pickupjp-airport-arrival-hall-meeting-point.jpg",
+    imageAlt: "Narita Airport arrival hall meeting point for a private pickup",
     label: "Narita T2",
     title: "Narita T2 Arrival",
     line: "Welcome to Japan. Your private airport transfer starts at Narita Terminal 2.",
@@ -23,19 +24,19 @@ const scenes = [
     score: 500
   },
   {
-    id: "asakusa",
-    image: "/images/tokyo-roaming/tokyo-roaming-asakusa-temple-night-transfer.jpg",
-    imageAlt: "Private driver night tour near Asakusa temple streets in Tokyo",
-    label: "Asakusa",
-    title: "Asakusa Night",
-    line: "Glide past Tokyo's old town lights and temple streets.",
-    hint: "Tokyo old town",
+    id: "shibuya",
+    image: "/images/pickupjp/pickupjp-shibuya-crossing-night-city-view.jpeg",
+    imageAlt: "Shibuya crossing night city view for a Tokyo private driver route",
+    label: "Shibuya",
+    title: "Shibuya Night",
+    line: "Pass through Tokyo's bright city streets after arrival.",
+    hint: "City lights",
     score: 1000
   },
   {
     id: "mt-fuji",
-    image: "/images/tokyo-roaming/tokyo-roaming-mt-fuji-private-driver.jpg",
-    imageAlt: "Mt Fuji private driver day trip with black luxury van",
+    image: "/images/pickupjp/pickupjp-mt-fuji-chureito-pagoda-day-trip.jpeg",
+    imageAlt: "Mt Fuji and Chureito Pagoda day trip scenery",
     label: "Mt Fuji",
     title: "Mt Fuji View",
     line: "A private driver can take you beyond Tokyo for classic Japan scenery.",
@@ -44,8 +45,8 @@ const scenes = [
   },
   {
     id: "tokyo-tower",
-    image: "/images/tokyo-roaming/tokyo-roaming-tokyo-tower-night-transfer.jpg",
-    imageAlt: "Tokyo Tower night private car transfer with black luxury van",
+    image: "/images/pickupjp/pickupjp-tokyo-tower-skyline-night.jpeg",
+    imageAlt: "Tokyo Tower night skyline for a private city transfer",
     label: "Tokyo Tower",
     title: "Tokyo Night",
     line: "Cruise into the city lights with a comfortable private car.",
@@ -54,7 +55,7 @@ const scenes = [
   },
   {
     id: "theme-park",
-    image: "/images/tokyo-roaming/tokyo-roaming-tokyo-hotel-arrival-transfer.jpg",
+    image: "/images/pickupjp/pickupjp-alphard-black-city-hotel-transfer-side.jpg",
     imageAlt: "Tokyo hotel arrival private airport transfer with black luxury van",
     label: "Hotel",
     title: "Hotel Arrival",
@@ -64,8 +65,8 @@ const scenes = [
   },
   {
     id: "reward",
-    image: "/images/tokyo-roaming/tokyo-roaming-airport-vip-lounge-reward.jpg",
-    imageAlt: "Premium airport lounge reward screen for Japan private transfer service",
+    image: "/images/pickupjp/pickupjp-airport-terminal-information-counter.jpg",
+    imageAlt: "Airport terminal information counter for private pickup support",
     label: "Reward",
     title: "VIP Pickup Credit",
     line: "You unlocked a JPY 2,000 VIP pickup credit for your first ride.",
@@ -293,7 +294,10 @@ export default function TokyoRoamingDemo({ locale }: TokyoRoamingDemoProps) {
                   href={buildWhatsAppLink(rewardClaimMessage)}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={(event) => event.stopPropagation()}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    trackWhatsAppLeadConversion("tokyo_roaming_reward_claim");
+                  }}
                   className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-md bg-gold px-5 text-sm font-bold text-ink shadow-[0_14px_30px_rgba(207,160,82,0.34)] transition hover:-translate-y-0.5"
                 >
                   Claim on WhatsApp

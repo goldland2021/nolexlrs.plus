@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ContactChannels from "@/components/ContactChannels";
-import { buildWhatsAppLink } from "@/lib/whatsapp";
+import TrackedWhatsAppLink from "@/components/TrackedWhatsAppLink";
+import { buildWhatsAppLink, homestayWhatsAppMessage } from "@/lib/whatsapp";
 import { buildPageMetadata, localizedPath, siteName, siteUrl } from "@/lib/seo";
 import { isLocale, type Locale } from "@/lib/i18n";
 
@@ -92,7 +93,7 @@ const content = {
       ["Are live room listings available yet?", "This page is the new service layer. The next expansion can add a structured property list, pricing, filters, photos, and availability."],
       ["Which cities can be supported first?", "The existing transfer project already covers Tokyo, Osaka, Hokkaido, Fukuoka, and Okinawa, so those are the natural first homestay regions."]
     ],
-    whatsappMessage: "Hello, I want to ask about nolexlrs Japan homestay support."
+    whatsappMessage: homestayWhatsAppMessage
   },
   ja: {
     metaTitle: "日本民泊サポート | nolexlrs",
@@ -146,7 +147,7 @@ const content = {
       ["房源一覧はもうありますか？", "このページは新しい民泊サービス層です。次の拡張で房源一覧、料金、絞り込み、写真、空室状況を追加できます。"],
       ["最初に対応しやすい都市は？", "既存の送迎機能が東京、大阪、北海道、福岡、沖縄を扱うため、この地域から始めるのが自然です。"]
     ],
-    whatsappMessage: "こんにちは。nolexlrsの日本民泊サポートについて相談したいです。"
+    whatsappMessage: "こんにちは。nolexlrsの日本民泊を予約したいです。空室、日程、料金を確認してください。"
   },
   zh: {
     metaTitle: "日本民宿服務 | nolexlrs",
@@ -200,7 +201,7 @@ const content = {
       ["現在有房源列表嗎？", "這個頁面先建立新民宿業務層。下一步可以加入房源列表、價格、篩選、照片和可訂日期。"],
       ["會先支援哪些城市？", "現有接送已覆蓋東京、大阪、北海道、福岡和沖繩，這些會是最自然的第一批民宿區域。"]
     ],
-    whatsappMessage: "您好，我想諮詢 nolexlrs 日本民宿服務。"
+    whatsappMessage: "您好，我想預訂 nolexlrs 日本民宿，請幫我確認房源、日期和價格。"
   }
 } satisfies Record<Locale, {
   metaTitle: string;
@@ -286,14 +287,15 @@ export default async function JapanHomestayPage({ params }: { params: LocalePara
                 ))}
               </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink shadow-lift transition hover:-translate-y-0.5 hover:bg-gold"
-              >
-                {copy.cta}
-              </a>
+                <TrackedWhatsAppLink
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  conversionLocation="homestay_hero_cta"
+                  className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink shadow-lift transition hover:-translate-y-0.5 hover:bg-gold"
+                >
+                  {copy.cta}
+                </TrackedWhatsAppLink>
                 <Link
                   href={localizedPath(locale)}
                   className="inline-flex h-12 items-center justify-center rounded-md border border-champagne/50 bg-white/10 px-6 text-sm font-semibold text-white transition hover:border-champagne hover:bg-white/20"
@@ -401,14 +403,15 @@ export default async function JapanHomestayPage({ params }: { params: LocalePara
                     <ContactChannels dark message={copy.whatsappMessage} />
                   </div>
                 </div>
-                <a
+                <TrackedWhatsAppLink
                   href={whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink transition hover:bg-gold"
-              >
-                {copy.cta}
-              </a>
+                  target="_blank"
+                  rel="noreferrer"
+                  conversionLocation="homestay_contact_cta"
+                  className="inline-flex h-12 items-center justify-center rounded-md bg-champagne px-6 text-sm font-semibold text-ink transition hover:bg-gold"
+                >
+                  {copy.cta}
+                </TrackedWhatsAppLink>
             </div>
           </div>
         </div>

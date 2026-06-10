@@ -4,6 +4,7 @@ import Booking from "@/components/Booking";
 import ContactInfo from "@/components/ContactInfo";
 import Footer from "@/components/Footer";
 import ActiveWhatsAppPhone from "@/components/ActiveWhatsAppPhone";
+import TrackedWhatsAppLink from "@/components/TrackedWhatsAppLink";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function TestContactPage() {
               title="測試標題"
               subtitle="測試副標題"
               features={["功能1", "功能2", "功能3", "功能4"]}
-              imageSrc="/images/tokyo-airport-transfer.jpg"
+              imageSrc="/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
               imageAlt="測試圖片"
             />
           </section>
@@ -56,14 +57,15 @@ export default function TestContactPage() {
             <div className="space-y-4">
               <p className="text-ink/70">點擊以下連結測試WhatsApp功能：</p>
               <div className="space-y-2">
-                <a 
+                <TrackedWhatsAppLink
                   href={buildWhatsAppLink(defaultWhatsAppMessage)}
                   className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
                   target="_blank"
                   rel="noreferrer"
+                  conversionLocation="test_contact_link"
                 >
                   測試預設消息連結
-                </a>
+                </TrackedWhatsAppLink>
                 <p className="text-sm text-ink/50">
                   連結格式: /api/whatsapp?text=編碼後的消息
                 </p>
