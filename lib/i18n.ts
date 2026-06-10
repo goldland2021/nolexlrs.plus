@@ -115,11 +115,11 @@ const commonVehicles = [
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      homeTitle: "nolexlrs | Japan Airport Pickup & Homestay Support",
+      homeTitle: "pickupjp.com | Japan Airport Pickup & Homestay Support",
       homeDescription:
-        "nolexlrs combines Japan airport pickup with homestay support for travelers, families, and small groups. Get transfer quotes, local stay guidance, and WhatsApp support.",
+        "pickupjp.com combines Japan airport pickup with homestay support for travelers, families, and small groups. Get transfer quotes, local stay guidance, and WhatsApp support.",
       keywords: [
-        "nolexlrs",
+        "pickupjp.com",
         "Japan homestay",
         "Japan airport pickup",
         "Tokyo airport transfer",
@@ -161,7 +161,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "Hire a Tokyo private driver for airport transfers, hotel transfers, Shinkansen station pickup, city tours, Mt Fuji day trips, hourly charters, Toyota Alphard rides, and WhatsApp booking."
     },
     hero: {
-      title: "nolexlrs",
+      title: "pickupjp.com",
       subtitle: "Japan airport pickup and homestay support for travelers who want a smoother arrival and a more local stay.",
       features: [
         "Japan airport pickup",
@@ -171,7 +171,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "Existing transfer quote flow remains available"
       ],
       cta: "Contact on WhatsApp",
-      imageAlt: "nolexlrs Japan airport pickup and homestay support"
+      imageAlt: "pickupjp.com Japan airport pickup and homestay support"
     },
     services: {
       title: "Airport Transfer Services",
@@ -230,7 +230,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         luggage: "3 suitcases"
       },
       button: "Send on WhatsApp",
-      messageHeader: "Hello, I need a nolexlrs Japan airport pickup quote."
+      messageHeader: "Hello, I need a pickupjp.com Japan airport pickup quote."
     },
     narita: {
       heroTitle: "Narita Airport Transfer to Tokyo",
@@ -255,11 +255,11 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   ja: {
     meta: {
-      homeTitle: "nolexlrs | 日本空港送迎・民泊サポート",
+      homeTitle: "pickupjp.com | 日本空港送迎・民泊サポート",
       homeDescription:
-        "nolexlrsは日本の空港送迎と民泊サポートをまとめて相談できる旅行サービスです。到着送迎、滞在先相談、WhatsApp連絡に対応します。",
+        "pickupjp.comは日本の空港送迎と民泊サポートをまとめて相談できる旅行サービスです。到着送迎、滞在先相談、WhatsApp連絡に対応します。",
       keywords: [
-        "nolexlrs",
+        "pickupjp.com",
         "日本 民泊",
         "日本 空港送迎",
         "東京 空港送迎",
@@ -296,7 +296,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "東京のプライベートドライバーサービス。空港送迎、ホテル間移動、新幹線駅送迎、市内観光、富士山日帰り、時間貸切に対応。英語対応ドライバーの手配も可能です。"
     },
     hero: {
-      title: "nolexlrs",
+      title: "pickupjp.com",
       subtitle: "日本の空港送迎と民泊サポートをまとめて相談できる、旅行者向けの滞在サポート。",
       features: [
         "日本空港送迎",
@@ -306,7 +306,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "既存の送迎見積もり機能を継続利用"
       ],
       cta: "WhatsAppで相談",
-      imageAlt: "nolexlrs 日本空港送迎と民泊サポート"
+      imageAlt: "pickupjp.com 日本空港送迎と民泊サポート"
     },
     services: {
       title: "空港送迎サービス",
@@ -365,7 +365,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         luggage: "スーツケース3個"
       },
       button: "WhatsAppで送信",
-      messageHeader: "こんにちは。nolexlrsの日本空港送迎見積もりをお願いします。"
+      messageHeader: "こんにちは。pickupjp.comの日本空港送迎見積もりをお願いします。"
     },
     narita: {
       heroTitle: "成田空港から東京への送迎",
@@ -390,11 +390,11 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   zh: {
     meta: {
-      homeTitle: "nolexlrs | 日本接機與民宿服務",
+      homeTitle: "pickupjp.com | 日本接機與民宿服務",
       homeDescription:
-        "nolexlrs 提供日本接機與民宿支援，適合自由行、家庭和小團體。可諮詢接送報價、住宿區域和 WhatsApp 行程協調。",
+        "pickupjp.com 提供日本接機與民宿支援，適合自由行、家庭和小團體。可諮詢接送報價、住宿區域和 WhatsApp 行程協調。",
       keywords: [
-        "nolexlrs",
+        "pickupjp.com",
         "日本民宿",
         "日本接機",
         "東京機場接送",
@@ -435,7 +435,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "東京私人包車司機服務，適合機場接送、酒店移動、新幹線站接送、市區觀光、富士山一日遊和小時包車。可英文和中文溝通，WhatsApp 快速聯絡。"
     },
     hero: {
-      title: "nolexlrs",
+      title: "pickupjp.com",
       subtitle: "整合日本接機與民宿支援，讓旅客從落地到入住都更順暢。",
       features: [
         "日本接機服務",
@@ -445,7 +445,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         "保留現有接送估價流程"
       ],
       cta: "WhatsApp 諮詢",
-      imageAlt: "nolexlrs 日本接機與民宿服務"
+      imageAlt: "pickupjp.com 日本接機與民宿服務"
     },
     services: {
       title: "機場接送服務",
@@ -504,7 +504,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         luggage: "3個行李箱"
       },
       button: "透過 WhatsApp 發送",
-      messageHeader: "您好，我需要 nolexlrs 日本接機報價。"
+      messageHeader: "您好，我需要 pickupjp.com 日本接機報價。"
     },
     narita: {
       heroTitle: "成田機場到東京接送",

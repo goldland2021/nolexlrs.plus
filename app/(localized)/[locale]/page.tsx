@@ -18,7 +18,7 @@ type LocaleParams = Promise<{ locale: string }>;
 
 const tokyoPageCopy = {
   en: {
-    metaTitle: "Tokyo Airport Transfer | nolexlrs",
+    metaTitle: "Tokyo Airport Transfer | pickupjp.com",
     metaDescription:
       "Private Tokyo airport transfer for Narita Airport, Haneda Airport, Tokyo hotels, stations, Disney Resort, cruise terminals, and Mt Fuji day trips.",
     keywords: [
@@ -73,7 +73,7 @@ const tokyoPageCopy = {
     }
   },
   ja: {
-    metaTitle: "東京空港送迎 | nolexlrs",
+    metaTitle: "東京空港送迎 | pickupjp.com",
     metaDescription:
       "成田空港、羽田空港、東京ホテル、駅、ディズニー、クルーズターミナル、富士山日帰りに対応する東京のプライベート空港送迎。",
     keywords: [
@@ -128,7 +128,7 @@ const tokyoPageCopy = {
     }
   },
   zh: {
-    metaTitle: "東京機場接送 | nolexlrs",
+    metaTitle: "東京機場接送 | pickupjp.com",
     metaDescription:
       "東京私人機場接送服務，支援成田機場、羽田機場、東京酒店、車站、迪士尼、郵輪碼頭與富士山一日遊包車。",
     keywords: [
