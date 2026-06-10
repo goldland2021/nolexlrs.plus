@@ -27,7 +27,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
       <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-md items-center">
         <div className="w-full rounded-lg border border-clay/60 bg-white p-6 shadow-soft">
           <div className="mb-8">
-            <p className="text-sm font-semibold text-ember">nolexlrs Admin</p>
+            <p className="text-sm font-semibold text-ember">pickupjp.com Admin</p>
             <h1 className="mt-2 text-3xl font-semibold">後台登入</h1>
             <p className="mt-2 text-sm leading-6 text-ink/60">
               管理員登入後可以查看網站訪問人數、國家來源和詢價點擊統計。

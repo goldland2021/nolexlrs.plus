@@ -136,7 +136,7 @@ export default async function AdminDashboardPage({ searchParams }: AdminDashboar
         {/* Header */}
         <header className="mb-6 flex items-end justify-between border-b border-clay/60 pb-6">
           <div>
-            <p className="text-sm font-semibold text-ember">nolexlrs Admin</p>
+            <p className="text-sm font-semibold text-ember">pickupjp.com Admin</p>
             <h1 className="mt-1 text-2xl font-semibold">后台管理</h1>
           </div>
           <form action="/api/admin/logout" method="post">

@@ -63,7 +63,7 @@ export default function Footer({ locale = "en" }: FooterProps) {
             <div className="my-3">
               <ContactChannels compact dark />
             </div>
-            <p>Email: {contactEmail}</p>
+            {contactEmail ? <p>Email: {contactEmail}</p> : null}
             <p>{copy.reply}</p>
           </div>
         </div>

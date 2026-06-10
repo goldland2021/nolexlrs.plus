@@ -250,7 +250,7 @@ export default function TokyoRoamingDemo({ locale }: TokyoRoamingDemoProps) {
               onClick={(event) => event.stopPropagation()}
               className="inline-flex h-10 shrink-0 items-center rounded-md border border-white/20 bg-black/20 px-4 text-sm font-semibold text-white shadow-soft transition hover:border-gold hover:text-gold"
             >
-              nolexlrs Airport Pickup
+              pickupjp.com Airport Pickup
             </Link>
             {rewardUnlocked ? (
               <div className="max-w-[58vw] rounded-lg border-2 border-gold bg-black/88 px-3 py-2 text-right text-xs font-bold leading-5 text-gold shadow-[0_0_28px_rgba(207,160,82,0.38)]">

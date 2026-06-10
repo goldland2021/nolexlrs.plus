@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`
   },
   description:
-    "nolexlrs provides Japan airport pickup and curated homestay support for travelers, families, and small groups.",
+    "pickupjp.com provides Japan airport pickup and curated homestay support for travelers, families, and small groups.",
   robots: {
     index: true,
     follow: true,

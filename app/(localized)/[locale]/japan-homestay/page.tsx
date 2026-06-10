@@ -42,14 +42,14 @@ const homestayPhotos = [
 
 const content = {
   en: {
-    metaTitle: "Japan Homestay Support | nolexlrs",
+    metaTitle: "Japan Homestay Support | pickupjp.com",
     metaDescription:
-      "nolexlrs Japan homestay support for furnished stays, family trips, longer visits, airport pickup coordination, and local arrival help.",
-    keywords: ["Japan homestay", "Japan furnished stay", "Tokyo homestay", "Japan family stay", "nolexlrs homestay"],
+      "pickupjp.com Japan homestay support for furnished stays, family trips, longer visits, airport pickup coordination, and local arrival help.",
+    keywords: ["Japan homestay", "Japan furnished stay", "Tokyo homestay", "Japan family stay", "pickupjp.com homestay"],
     eyebrow: "Japan Homestay",
     title: "Stay like a local, arrive with support",
     subtitle:
-      "nolexlrs is expanding beyond airport pickup into curated homestay support for travelers who want a furnished home base, local guidance, and a smoother arrival.",
+      "pickupjp.com is expanding beyond airport pickup into curated homestay support for travelers who want a furnished home base, local guidance, and a smoother arrival.",
     cta: "Ask about homestays",
     airportCta: "Add airport pickup",
     imageAlt: "Tokyo hotel arrival and private transfer support",
@@ -61,9 +61,9 @@ const content = {
       "Short stay and longer stay options"
     ],
     stayTypesTitle: "Homestay Options",
-    stayTypesSubtitle: "A flexible structure for the new nolexlrs stay business.",
+    stayTypesSubtitle: "A flexible structure for the new pickupjp.com stay business.",
     galleryTitle: "Homestay Photo Preview",
-    gallerySubtitle: "Real room, kitchen, bathroom, and exterior photos prepared for the nolexlrs stay service.",
+    gallerySubtitle: "Real room, kitchen, bathroom, and exterior photos prepared for the pickupjp.com stay service.",
     stayTypes: [
       {
         title: "City Apartments",
@@ -89,21 +89,21 @@ const content = {
       "Send your city, dates, number of guests, and whether you also need airport pickup. The current WhatsApp flow can already handle the first inquiry while the room database is added.",
     faqTitle: "Homestay FAQ",
     faqs: [
-      ["Can I combine airport pickup and homestay?", "Yes. Airport pickup is the mature part of nolexlrs, so the arrival route can be coordinated with the stay address."],
+      ["Can I combine airport pickup and homestay?", "Yes. Airport pickup is the mature part of pickupjp.com, so the arrival route can be coordinated with the stay address."],
       ["Are live room listings available yet?", "This page is the new service layer. The next expansion can add a structured property list, pricing, filters, photos, and availability."],
       ["Which cities can be supported first?", "The existing transfer project already covers Tokyo, Osaka, Hokkaido, Fukuoka, and Okinawa, so those are the natural first homestay regions."]
     ],
     whatsappMessage: homestayWhatsAppMessage
   },
   ja: {
-    metaTitle: "日本民泊サポート | nolexlrs",
+    metaTitle: "日本民泊サポート | pickupjp.com",
     metaDescription:
-      "nolexlrsの日本民泊サポート。家具付き滞在、家族旅行、長期滞在、空港送迎との連携、到着時の相談に対応します。",
-    keywords: ["日本 民泊", "日本 滞在サポート", "東京 民泊", "家族旅行 民泊", "nolexlrs 民泊"],
+      "pickupjp.comの日本民泊サポート。家具付き滞在、家族旅行、長期滞在、空港送迎との連携、到着時の相談に対応します。",
+    keywords: ["日本 民泊", "日本 滞在サポート", "東京 民泊", "家族旅行 民泊", "pickupjp.com 民泊"],
     eyebrow: "日本民泊",
     title: "到着から滞在まで、まとめて相談",
     subtitle:
-      "nolexlrsは空港送迎に加えて、家具付きの民泊、家族向け滞在、現地到着サポートへ拡張しています。",
+      "pickupjp.comは空港送迎に加えて、家具付きの民泊、家族向け滞在、現地到着サポートへ拡張しています。",
     cta: "民泊を相談",
     airportCta: "空港送迎も追加",
     imageAlt: "東京到着と送迎サポート",
@@ -115,9 +115,9 @@ const content = {
       "短期・中長期滞在"
     ],
     stayTypesTitle: "民泊タイプ",
-    stayTypesSubtitle: "nolexlrsの新しい滞在サービスとして拡張しやすい構成です。",
+    stayTypesSubtitle: "pickupjp.comの新しい滞在サービスとして拡張しやすい構成です。",
     galleryTitle: "民泊写真プレビュー",
-    gallerySubtitle: "nolexlrsの滞在サービスで使う客室、キッチン、浴室、外観の写真です。",
+    gallerySubtitle: "pickupjp.comの滞在サービスで使う客室、キッチン、浴室、外観の写真です。",
     stayTypes: [
       {
         title: "都市型アパート",
@@ -147,17 +147,17 @@ const content = {
       ["房源一覧はもうありますか？", "このページは新しい民泊サービス層です。次の拡張で房源一覧、料金、絞り込み、写真、空室状況を追加できます。"],
       ["最初に対応しやすい都市は？", "既存の送迎機能が東京、大阪、北海道、福岡、沖縄を扱うため、この地域から始めるのが自然です。"]
     ],
-    whatsappMessage: "こんにちは。nolexlrsの日本民泊を予約したいです。空室、日程、料金を確認してください。"
+    whatsappMessage: "こんにちは。pickupjp.comの日本民泊を予約したいです。空室、日程、料金を確認してください。"
   },
   zh: {
-    metaTitle: "日本民宿服務 | nolexlrs",
+    metaTitle: "日本民宿服務 | pickupjp.com",
     metaDescription:
-      "nolexlrs 日本民宿服務，支援家具民宿、家庭出行、長住安排、接機銜接和到達協助。",
-    keywords: ["日本民宿", "日本住宿支援", "東京民宿", "日本家庭住宿", "nolexlrs 民宿"],
+      "pickupjp.com 日本民宿服務，支援家具民宿、家庭出行、長住安排、接機銜接和到達協助。",
+    keywords: ["日本民宿", "日本住宿支援", "東京民宿", "日本家庭住宿", "pickupjp.com 民宿"],
     eyebrow: "日本民宿",
     title: "從接機到入住，一起安排",
     subtitle:
-      "nolexlrs 會在現有日本接機基礎上擴展民宿服務，適合需要家具住宿、家庭出行、長住和本地入住協助的旅客。",
+      "pickupjp.com 會在現有日本接機基礎上擴展民宿服務，適合需要家具住宿、家庭出行、長住和本地入住協助的旅客。",
     cta: "諮詢民宿",
     airportCta: "加上接機",
     imageAlt: "東京到達與私人接送支援",
@@ -169,9 +169,9 @@ const content = {
       "短住和中長住選項"
     ],
     stayTypesTitle: "民宿方向",
-    stayTypesSubtitle: "作為 nolexlrs 新增住宿業務，先建立清晰的服務結構。",
+    stayTypesSubtitle: "作為 pickupjp.com 新增住宿業務，先建立清晰的服務結構。",
     galleryTitle: "民宿照片預覽",
-    gallerySubtitle: "已接入 nolexlrs 民宿使用的客廳、廚房、臥室、衛浴和外觀照片。",
+    gallerySubtitle: "已接入 pickupjp.com 民宿使用的客廳、廚房、臥室、衛浴和外觀照片。",
     stayTypes: [
       {
         title: "城市公寓",
@@ -197,11 +197,11 @@ const content = {
       "發送城市、入住日期、人數，以及是否需要接機。房源資料庫接入前，也可以先用現有 WhatsApp 流程收集需求。",
     faqTitle: "民宿常見問題",
     faqs: [
-      ["可以把接機和民宿一起安排嗎？", "可以。接機是 nolexlrs 已有成熟部分，可根據民宿地址銜接到達路線。"],
+      ["可以把接機和民宿一起安排嗎？", "可以。接機是 pickupjp.com 已有成熟部分，可根據民宿地址銜接到達路線。"],
       ["現在有房源列表嗎？", "這個頁面先建立新民宿業務層。下一步可以加入房源列表、價格、篩選、照片和可訂日期。"],
       ["會先支援哪些城市？", "現有接送已覆蓋東京、大阪、北海道、福岡和沖繩，這些會是最自然的第一批民宿區域。"]
     ],
-    whatsappMessage: "您好，我想預訂 nolexlrs 日本民宿，請幫我確認房源、日期和價格。"
+    whatsappMessage: "您好，我想預訂 pickupjp.com 日本民宿，請幫我確認房源、日期和價格。"
   }
 } satisfies Record<Locale, {
   metaTitle: string;
