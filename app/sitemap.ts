@@ -15,17 +15,15 @@ const routes = [
   "/tokyo-roaming"
 ];
 
+// No lastModified here on purpose: stamping every URL with the build date
+// teaches crawlers to distrust the value, which is worse than omitting it.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   return routes.flatMap((route) =>
     locales.map((locale) => ({
       url: `${siteUrl}${localizedPath(locale, route)}`,
       alternates: {
         languages: buildLanguageAlternates(route)
       },
-      lastModified: now,
-      changeFrequency: "weekly" as const,
       priority: route === "" ? 1 : 0.8
     }))
   );

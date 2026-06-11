@@ -32,7 +32,7 @@ export async function generateMetadata({
     title: dict.meta.driverTitle,
     description: dict.meta.driverDescription,
     keywords: dict.meta.keywords,
-    image: "/images/pickupjp/pickupjp-alphard-black-coastal-road-day-trip.jpg"
+    image: "/images/pickupjp/og/pickupjp-alphard-black-coastal-road-day-trip.jpg"
   });
 }
 

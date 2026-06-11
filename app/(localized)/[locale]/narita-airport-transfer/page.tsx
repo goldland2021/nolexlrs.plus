@@ -32,7 +32,7 @@ export async function generateMetadata({
     title: dict.meta.naritaTitle,
     description: dict.meta.naritaDescription,
     keywords: dict.meta.keywords,
-    image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
+    image: "/images/pickupjp/og/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
   });
 }
 

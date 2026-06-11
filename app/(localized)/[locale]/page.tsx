@@ -219,7 +219,7 @@ export async function generateMetadata({
     title: copy.metaTitle,
     description: copy.metaDescription,
     keywords: copy.keywords,
-    image: "/images/pickupjp/pickupjp-hero-airport-curbside-pickup-day.png"
+    image: "/images/pickupjp/og/pickupjp-hero-airport-curbside-pickup-day.jpg"
   });
 }
 

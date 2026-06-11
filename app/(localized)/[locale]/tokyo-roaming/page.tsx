@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
       "Tokyo airport transfer",
       "Toyota Alphard airport pickup"
     ],
-    image: "/images/pickupjp/pickupjp-alphard-black-open-door-luxury-seat.jpg"
+    image: "/images/pickupjp/og/pickupjp-alphard-black-open-door-luxury-seat.jpg"
   });
 }
 
