@@ -1,22 +1,14 @@
 import Script from "next/script";
-import { googleTagIds, primaryGoogleTagId } from "@/lib/analytics";
+import { gaMeasurementId } from "@/lib/analytics";
 
 export default function GoogleTags() {
-  if (!primaryGoogleTagId) return null;
-
-  const configLines = googleTagIds
-    .map((id) => {
-      const options = id.startsWith("G-") ? ", { send_page_view: false }" : "";
-
-      return `gtag('config', ${JSON.stringify(id)}${options});`;
-    })
-    .join("\n");
+  if (!gaMeasurementId) return null;
 
   return (
     <>
       <Script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${primaryGoogleTagId}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
         strategy="afterInteractive"
       />
       <Script id="google-tags" strategy="afterInteractive">
@@ -24,7 +16,7 @@ export default function GoogleTags() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          ${configLines}
+          gtag('config', ${JSON.stringify(gaMeasurementId)}, { send_page_view: false });
         `}
       </Script>
     </>
