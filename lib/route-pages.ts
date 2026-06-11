@@ -1296,7 +1296,7 @@ function buildHanedaRoutePage(locale: Locale, slug: HanedaRouteSlug): RoutePageC
       title: config.metaTitle,
       description: config.metaDescription,
       keywords: config.keywords,
-      image: "/images/pickupjp/pickupjp-airport-terminal-departure-hall-ceiling.jpg"
+      image: "/images/pickupjp/og/pickupjp-airport-terminal-departure-hall-ceiling.jpg"
     },
     hero: {
       title: config.title,
@@ -1957,7 +1957,7 @@ function buildKansaiRoutePage(locale: Locale, slug: KansaiRouteSlug): RoutePageC
       title: config.metaTitle,
       description: config.metaDescription,
       keywords: config.keywords,
-      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
+      image: "/images/pickupjp/og/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: config.title,
@@ -3137,7 +3137,7 @@ function buildRegionalRoutePage(locale: Locale, slug: RegionalRouteSlug): RouteP
       title: config.metaTitle,
       description: config.metaDescription,
       keywords: config.keywords,
-      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
+      image: "/images/pickupjp/og/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: config.title,
@@ -4604,7 +4604,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Toyota Alphard Narita to Shinjuku",
           "Shinjuku hotel to Narita Airport"
         ],
-        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
+        image: "/images/pickupjp/og/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "Narita Airport to Shinjuku Transfer",
@@ -4763,7 +4763,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Narita airport pickup for family",
           "Tokyo Disney hotel to Narita Airport"
         ],
-        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
+        image: "/images/pickupjp/og/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "Narita Airport to Tokyo Disney Resort Transfer",
@@ -4945,7 +4945,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "アルファード 成田 新宿",
           "新宿ホテル 成田空港"
         ],
-        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
+        image: "/images/pickupjp/og/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田空港から新宿への送迎",
@@ -5098,7 +5098,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "東京ディズニー 空港送迎",
           "ディズニーホテル 成田空港"
         ],
-        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
+        image: "/images/pickupjp/og/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田空港から東京ディズニーリゾート送迎",
@@ -5275,7 +5275,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "Alphard 成田到新宿",
           "新宿酒店到成田機場"
         ],
-        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
+        image: "/images/pickupjp/og/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田機場到新宿接送",
@@ -5426,7 +5426,7 @@ const routePageContent: Record<Locale, Record<RoutePageSlug, RoutePageContent>> 
           "東京迪士尼機場接送",
           "迪士尼酒店到成田機場"
         ],
-        image: "/images/pickupjp/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
+        image: "/images/pickupjp/og/pickupjp-airport-arrivals-gate-a-pickup-guide.jpg"
       },
       hero: {
         title: "成田機場到東京迪士尼接送",

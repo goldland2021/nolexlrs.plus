@@ -1033,7 +1033,7 @@ function buildEnglishContent(slug: CityPageSlug, basicsItem: LocalizedCityBasics
         ...seo.keywords,
         ...airports.map((airport) => `${airport.name.en} transfer`)
       ]),
-      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
+      image: "/images/pickupjp/og/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: `${city} Airport Transfer`,
@@ -1116,7 +1116,7 @@ function buildJapaneseContent(slug: CityPageSlug, basicsItem: LocalizedCityBasic
         ...seo.keywords,
         ...airports.map((airport) => `${airport.name.ja} 送迎`)
       ]),
-      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
+      image: "/images/pickupjp/og/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: `${city}空港送迎`,
@@ -1200,7 +1200,7 @@ function buildChineseContent(slug: CityPageSlug, basicsItem: LocalizedCityBasics
         ...seo.keywords,
         ...airports.map((airport) => `${airport.name.zh}接送`)
       ]),
-      image: "/images/pickupjp/pickupjp-alphard-white-airport-pickup-curbside.jpg"
+      image: "/images/pickupjp/og/pickupjp-alphard-white-airport-pickup-curbside.jpg"
     },
     hero: {
       title: `${city}機場接送`,

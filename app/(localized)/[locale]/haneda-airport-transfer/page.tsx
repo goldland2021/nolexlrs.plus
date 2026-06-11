@@ -32,7 +32,7 @@ export async function generateMetadata({
     title: dict.meta.hanedaTitle,
     description: dict.meta.hanedaDescription,
     keywords: dict.meta.keywords,
-    image: "/images/pickupjp/pickupjp-airport-terminal-departure-hall-ceiling.jpg"
+    image: "/images/pickupjp/og/pickupjp-airport-terminal-departure-hall-ceiling.jpg"
   });
 }
 

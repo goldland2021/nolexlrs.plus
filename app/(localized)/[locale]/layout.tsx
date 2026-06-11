@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { notFound } from "next/navigation";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import Footer from "@/components/Footer";
 import GoogleTags from "@/components/GoogleTags";
@@ -13,8 +14,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 type LocaleParams = Promise<{ locale: string }>;
 
+// Unknown locales must 404 instead of silently serving the English pages,
+// otherwise every random path becomes an indexable duplicate of the site.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+function resolveLocale(requestedLocale: string): Locale {
+  if (!isLocale(requestedLocale)) notFound();
+  return requestedLocale;
 }
 
 export async function generateMetadata({
@@ -23,7 +33,7 @@ export async function generateMetadata({
   params: LocaleParams;
 }) {
   const { locale: requestedLocale } = await params;
-  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
+  const locale = resolveLocale(requestedLocale);
   const dict = getDictionary(locale);
 
   return buildPageMetadata({
@@ -42,7 +52,7 @@ export default async function LocaleLayout({
   params: LocaleParams;
 }) {
   const { locale: requestedLocale } = await params;
-  const locale = isLocale(requestedLocale) ? requestedLocale : "en";
+  const locale = resolveLocale(requestedLocale);
 
   return (
     <html lang={htmlLanguages[locale]} className="notranslate" translate="no" suppressHydrationWarning>

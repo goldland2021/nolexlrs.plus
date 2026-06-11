@@ -26,6 +26,8 @@ import {
 type SegmentParams = Promise<{ locale: string; city: string }>;
 type CityPageSlug = Exclude<CitySlug, "tokyo">;
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
     [...cityPageSlugs, ...routePageSlugs].map((city) => ({ locale, city }))
